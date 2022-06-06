@@ -1,0 +1,132 @@
+<!-- <!xml version="1.0" standalone="no"> -->
+<!DOCTYPE ConfigFile SYSTEM "config.dtd">
+
+<ConfigFile>
+
+
+<!-- These information are used by the SI Predictor, not by the RotationManager -->
+	<CostPerAtom>
+		100000
+	</CostPerAtom>
+	<FDFParameter>
+		<endMultiplier>
+			6
+		</endMultiplier>
+		<aFactor>
+			1.0
+		</aFactor>
+		<cFactor>
+			1.0
+		</cFactor>
+	</FDFParameter>
+<!-- end: SI Predictor -->
+
+	<Atoms>
+		<Atom name="atom_SAD4" description="SAD-H264"/>
+		
+		<Atom name="atom_QuadSub" description="Four_Subtractions-H264"/>
+		<Atom name="atom_PackLSBMSB" description="PackLSBMSB-H264"/>
+		<Atom name="atom_Transform" description="Transform-H264"/>
+		<Atom name="atom_SATD" description="Absolute_Sum_of_HT_values-H264"/>
+		
+		<Atom name="atom_BytePack" description="Funnel_Shifter_4_Alignment-H264"/>
+		<Atom name="atom_PointFilter" description="Six-Tap_Filter_One-Pixel-H264"/>
+		<Atom name="atom_Clip3" description="Clip_input_between_minmax-H264"/>
+			
+		<Atom name="atom_CollapseAdd" description="Add_4_Bytes_of_a_Register-H264"/>
+		<Atom name="atom_PackLBytes" description="Pack_Lower_Byte_of_4_Registers-H264"/>
+		
+		<Atom name="atom_Cond" description="ConditionEvaluation for Loop-Filter-H264"/>
+		<Atom name="atom_LF" description="Filter for Loop-Filter BS4-H264"/>
+	</Atoms>
+
+	<!-- SI for Motion Estimation for 1 row of 16x16 MB-->
+	<!--<SpecialInstruction name="SAD_16" number="0" opcode="0x000007E1" type="R_R">    -->
+	<!--	<Molecule duration="9">-->
+	<!--		<Atom name="atom_SAD4" quantity="1"/>-->
+	<!--	</Molecule>-->
+	<!--	<Molecule duration="8">-->
+	<!--		<Atom name="atom_SAD4" quantity="2"/>-->
+	<!--	</Molecule>-->
+	<!--	<Molecule duration="7">-->
+	<!--		<Atom name="atom_SAD4" quantity="4"/>-->
+	<!--	</Molecule>-->
+	<!--	<Software duration="304"/>	-->
+	<!--</SpecialInstruction>-->
+
+	<!-- SI for Motion Estimation for complete 16x16 MB -->
+	<SpecialInstruction name="SAD_16" number="0" opcode="0x04000006" type="R_R_R">    
+		<Molecule duration="37">
+			<Atom name="atom_SAD4" quantity="2"/>
+		</Molecule>
+		<Software duration="4673"/>	
+	</SpecialInstruction>
+
+	<!-- SI for 2x2 Hadamard Transformation -->
+	<SpecialInstruction name="HT_2X2" number="1" opcode="0x04000005" type="R_R_R">
+		<Molecule duration="5"> 
+			<Atom name="atom_Transform" quantity="1"/> 
+		</Molecule> 
+		<Software duration="100"/> <!-- TODO --> 
+	</SpecialInstruction>
+
+	<!-- SI for 4x4 Hadamard Transformation -->
+	<SpecialInstruction name="HT_4X4" number="2" opcode="0x04008001" type="R_R_s">    
+		<Molecule duration="16"> 
+			<Atom name="atom_PackLSBMSB" quantity="1"/> 
+			<Atom name="atom_Transform" quantity="1"/> 
+		</Molecule> 
+		<Software duration="298"/>
+	</SpecialInstruction>
+
+	<!-- SI for inter-frame prediction and Motion Compensation -->
+	<SpecialInstruction name="MC_Hz4" number="3" opcode="0x0000003F" type="R_R">
+		<Molecule duration="9">
+			<Atom name="atom_BytePack" quantity="2"/>
+			<Atom name="atom_PointFilter" quantity="2"/>
+			<Atom name="atom_Clip3" quantity="2"/>
+		</Molecule>
+		<Software duration="215"/>
+	</SpecialInstruction>
+
+	<!-- SI for intra-frame prediction for HDC -->
+	<SpecialInstruction name="IPred_HDC16x16" number="4" opcode="0x04000002" type="R_R_R"> 
+		<Software duration="249"/>
+	</SpecialInstruction>
+
+	<!-- SI for intra-frame prediction for VDC -->
+	<SpecialInstruction name="IPred_VDC16x16" number="5" opcode="0x00000039" type="R_R"> 
+		<Software duration="69"/>
+	</SpecialInstruction>
+	
+	<!-- SI for Loop Filter -->
+	<SpecialInstruction name="LF_BS_4_4" number="6" opcode="0x000007E0" type="R_R">
+		<Molecule duration="9">
+			<Atom name="atom_Cond" quantity="1"/>
+			<Atom name="atom_LF" quantity="1"/>
+		</Molecule>
+		<Software duration="960"/>	
+	</SpecialInstruction>
+
+	<!-- SI for SATD for ME -->
+	<SpecialInstruction name="SATD_4x4" number="7" opcode="0x04000003" type="R_R_R">
+		<Molecule duration="22">
+			<Atom name="atom_QuadSub" quantity="1"/>
+			<Atom name="atom_PackLSBMSB" quantity="1"/>
+			<Atom name="atom_Transform" quantity="1"/>
+			<Atom name="atom_SATD" quantity="1"/>
+		</Molecule>
+		<Software duration="544"/>	
+	</SpecialInstruction>
+
+	<!-- SI for DCT_4x4 -->
+	<SpecialInstruction name="DCT_4x4" number="8" opcode="0x04000004" type="R_R_R">
+		<Molecule duration="21">
+			<Atom name="atom_QuadSub" quantity="1"/>
+			<Atom name="atom_PackLSBMSB" quantity="1"/>
+			<Atom name="atom_Transform" quantity="1"/>
+		</Molecule>
+		<Software duration="488"/>	
+	</SpecialInstruction>
+
+</ConfigFile>

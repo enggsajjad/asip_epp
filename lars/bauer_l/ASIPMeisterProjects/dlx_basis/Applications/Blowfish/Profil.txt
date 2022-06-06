@@ -1,0 +1,138 @@
+#### List of different label names for the same address:
+#### Syntax: #:<TAB>LabelA_Name<TAB>LabelA_JumpTarget<TAB>LabelB_Name<TAB>LabelB_JumpTarget
+#:	f:		l4:	
+#:	blowfish_encrypt:		l6:	
+#:	blowfish_decrypt:		l11:	
+#:	blowfish_init:		l16:	
+#:	dummy:		l34:	
+#:	main:		l36:	
+
+#### List of base blocks with number of executions and used special instructions:
+#### Syntax: startLabel<TAB>startJumpInstruction<TAB>endLabel<TAB>endJumpInstruction<TAB>
+####         startAddress<TAB>numberOfExecutions<TAB>executionTime<TAB>CSV(specialInstructions)
+start:		main:	jal	0	1	23	
+main:	jal	exit	jal	21	1	7	
+exit	jal	f:		26	0	0	
+l4:		l5:	j	27	8400	253	
+l5:	j	l5:		137	0	0	
+l5:			return	139	8400	18	
+	return	blowfish_encrypt:		154	0	0	
+l6:		l7:		156	523	61	
+l7:		l8:	bnez	206	8891	13	
+l8:	bnez	l9:	j	217	523	4	
+l9:	j	l8:		221	0	0	
+l8:		f:	jal	223	8368	91	
+f:	jal	l7:	j	273	8368	46	
+l7:	j	l9:		312	0	0	
+l9:		l10:	j	314	523	78	
+l10:	j	l10:		380	0	0	
+l10:			return	382	523	18	
+	return	blowfish_decrypt:		397	0	0	
+l11:		l12:		399	2	61	
+l12:		l13:	bnez	449	34	13	
+l13:	bnez	l14:	j	460	2	4	
+l14:	j	l13:		464	0	0	
+l13:		f:	jal	466	32	91	
+f:	jal	l12:	j	516	32	46	
+l12:	j	l14:		555	0	0	
+l14:		l15:	j	557	2	78	
+l15:	j	l15:		624	0	0	
+l15:			return	626	2	18	
+	return	blowfish_init:		641	0	0	
+l16:		l17:		643	1	32	
+l17:		l18:		670	4	17	
+l18:		l18:	bnez	685	1024	238	
+l18:	bnez	l19:	j	776	4	4	
+l19:	j	l19:		780	0	0	
+l19:		l17:	bnez	782	4	28	
+l17:	bnez	l20:	j	807	1	4	
+l20:	j	l20:		811	0	0	
+l20:		l21:		813	1	27	
+l21:		l22:		837	18	17	
+l22:		l23:	bnez	853	72	32	
+l23:	bnez	l24:	j	881	62	4	
+l24:	j	l23:		885	0	0	
+l23:		l24:		887	10	17	
+l24:		l22:	bnez	902	72	20	
+l22:	bnez	l25:	j	921	18	4	
+l25:	j	l25:		925	0	0	
+l25:		l21:	bnez	927	18	138	
+l21:	bnez	l26:	j	991	1	4	
+l26:	j	l26:		995	0	0	
+l26:		l27:		997	1	38	
+l27:		blowfish_encrypt:	jal	1031	9	15	
+blowfish_encrypt:	jal	l27:	bnez	1044	9	155	
+l27:	bnez	l28:	j	1122	1	4	
+l28:	j	l28:		1126	0	0	
+l28:		l29:		1128	1	17	
+l29:		l30:		1143	4	17	
+l30:		blowfish_encrypt:	jal	1158	512	15	
+blowfish_encrypt:	jal	l30:	bnez	1171	512	265	
+l30:	bnez	l31:	j	1288	4	4	
+l31:	j	l31:		1292	0	0	
+l31:		l29:	bnez	1294	4	28	
+l29:	bnez	l32:	j	1319	1	4	
+l32:	j	l32:		1323	0	0	
+l32:		l33:	j	1325	1	14	
+l33:	j	l33:		1338	0	0	
+l33:			return	1340	1	18	
+	return	dummy:		1355	0	0	
+l34:		blowfish_init:	jal	1357	0	0	
+blowfish_init:	jal	blowfish_encrypt:	jal	1396	0	0	
+blowfish_encrypt:	jal	blowfish_decrypt:	jal	1437	0	0	
+blowfish_decrypt:	jal	l35:	j	1478	0	0	
+l35:	j	l35:		1510	0	0	
+l35:			return	1512	0	0	
+	return	main:		1527	0	0	
+l36:		l37:	bnez	1529	1	28	
+l37:	bnez	l38:	j	1554	0	0	
+l38:	j	l37:		1558	0	0	
+l37:		l39:	j	1560	1	24	
+l39:	j	l38:		1581	0	0	
+l38:		dummy:	jal	1583	0	0	
+dummy:	jal	l39:		1612	0	0	
+l39:		blowfish_init:	jal	1618	1	27	
+blowfish_init:	jal	l40:		1644	1	20	
+l40:		l41:	bnez	1662	3	15	
+l41:	bnez	l42:	j	1674	1	4	
+l42:	j	l41:		1678	0	0	
+l41:		blowfish_encrypt:	jal	1680	2	29	
+blowfish_encrypt:	jal	l40:	j	1706	2	20	
+l40:	j	l42:		1723	0	0	
+l42:		l43:		1725	1	30	
+l43:		l44:	bnez	1750	17	15	
+l44:	bnez	l45:	j	1762	1	4	
+l45:	j	l44:		1766	0	0	
+l44:		l43:	j	1768	16	31	
+l43:	j	l45:		1793	0	0	
+l45:		l46:		1795	1	17	
+l46:		l47:	bnez	1810	3	15	
+l47:	bnez	l48:	j	1822	1	4	
+l48:	j	l47:		1826	0	0	
+l47:		blowfish_decrypt:	jal	1828	2	29	
+blowfish_decrypt:	jal	l46:	j	1854	2	20	
+l46:	j	l48:		1871	0	0	
+l48:		l49:		1873	1	30	
+l49:		l50:	bnez	1898	17	15	
+l50:	bnez	l51:	j	1910	1	4	
+l51:	j	l50:		1914	0	0	
+l50:		l49:	j	1916	16	31	
+l49:	j	l51:		1941	0	0	
+l51:		l52:	j	1943	1	14	
+l52:	j	l52:		1956	0	0	
+l52:			return	1958	1	18	
+	return	exit:		1973	0	0	
+exit:		l1:		1975	1	0	
+l1:		l2:		1978	0	0	
+l2:		_inputstring1:		1996	0	0	
+_inputstring1:		_inputstring2:		3020	0	0	
+_inputstring2:		_encryptedstring:		3024	0	0	
+_encryptedstring:		_decryptedstring:		3039	0	0	
+_decryptedstring:		l3:		3054	0	0	
+l3:		finish:		3069	0	0	
+
+#### List of JumpTable Usages:
+####   Syntax is: "#;<TAB>BaseBlockLabel<TAB>CSV(JumpTargets)"
+####   "BaseBlockLabel" is the starting label of the baseBlock where the JumpTable is used, e.g. L10.
+####   Then in the above Base Block List there must be something like: "L10<TAB><TAB><TAB>jr".
+####   "CSV" are the Comma Seperated Values of the possible Jump Targets in this Jump Table

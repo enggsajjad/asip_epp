@@ -1,0 +1,979 @@
+	.section	.data
+	.section	.text
+	.addressing	Word
+	.section	.text
+	.addressing	Word
+	;.addressing	Word
+
+	xor	%GPR30, %GPR30, %GPR30
+	xor	%GPR29, %GPR29, %GPR29
+	xor	%GPR28, %GPR28, %GPR28
+	lhi	%GPR30, $(0xFFFFC/0x10000)
+	lhi	%GPR29, $(0xFFFFC/0x10000)
+	ori	%GPR30, %GPR30, $(0xFFFFC%0x10000)
+	ori	%GPR29, %GPR29, $(0xFFFFC%0x10000)
+	sw	-4(%GPR29), %GPR30
+	sw	-8(%GPR29), %GPR31
+	addi	%GPR29, %GPR30, $-8
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	jal	main	
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	0(%GPR29), %GPR1
+	jal	exit
+	nop
+
+	;.addressing	Word
+intToStr:
+L_intToStr_1:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$56	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-36(%GPR30),%GPR1	
+	sw	-40(%GPR30),%GPR2	
+	; Automatically 5 NOPs removed by reduceNOPs.sh
+	lhi	%GPR2,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$0	
+	lhi	%GPR1,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$0	
+	sw	-44(%GPR30),%GPR2	
+	lhi	%GPR2,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-48(%GPR30),%GPR2	
+	nop	; Automatically added by findLoadStoreProblem.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR2,-36(%GPR30)	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	slt	%GPR27,%GPR2,%GPR1	
+	bnez	%GPR27,L_intToStr_2	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_intToStr_3	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_intToStr_2:
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR1,-36(%GPR30)	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sub	%GPR1,%GPR0,%GPR1	
+	lhi	%GPR2,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$45	
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-36(%GPR30),%GPR1	
+	nop	; Automatically added by findLoadStoreProblem.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR1,-40(%GPR30)	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	jal	storeByte	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR1,-44(%GPR30)	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR1,%GPR1,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-44(%GPR30),%GPR1	
+	j	L_intToStr_5	
+	nop
+L_intToStr_3:
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR2,-36(%GPR30)	
+	lhi	%GPR1,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	seq	%GPR27,%GPR2,%GPR1	
+	bnez	%GPR27,L_intToStr_4	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_intToStr_6	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_intToStr_4:
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR1,-40(%GPR30)	
+	lhi	%GPR2,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$48	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	jal	storeByte	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR1,-44(%GPR30)	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR1,%GPR1,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-44(%GPR30),%GPR1	
+L_intToStr_5:
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR2,-36(%GPR30)	
+	lhi	%GPR1,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	%GPR27,%GPR2,%GPR1	
+	bnez	%GPR27,L_intToStr_6	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_intToStr_7	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_intToStr_6:
+	nop	; Automatically Added by addNopAfterLabels.pl
+	subi	%GPR1,%GPR30,$32	
+	lw	%GPR3,-48(%GPR30)	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	%GPR1,%GPR1,%GPR3	
+	lhi	%GPR2,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$10	
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR3,-36(%GPR30)	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	MOD	%GPR2,%GPR3,%GPR2	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR2,%GPR2,$48	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	jal	storeByte	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR1,-48(%GPR30)	
+	lw	%GPR2,-36(%GPR30)	
+	addi	%GPR1,%GPR1,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-48(%GPR30),%GPR1	
+	lhi	%GPR1,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$10	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	div	%GPR1,%GPR2,%GPR1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-36(%GPR30),%GPR1	
+	j	L_intToStr_5	
+	nop
+L_intToStr_7:
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR2,-48(%GPR30)	
+	lhi	%GPR1,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sgt	%GPR27,%GPR2,%GPR1	
+	bnez	%GPR27,L_intToStr_8	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_intToStr_9	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_intToStr_8:
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR2,-48(%GPR30)	
+	subi	%GPR1,%GPR30,$32	
+	subi	%GPR2,%GPR2,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	%GPR1,%GPR1,%GPR2	
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-48(%GPR30),%GPR2	
+	; Automatically 5 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	jal	loadByteUnsigned	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR1,-40(%GPR30)	
+	lw	%GPR3,-44(%GPR30)	
+	add	%GPR2,%GPR28,%GPR0	
+	add	%GPR1,%GPR1,%GPR3	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	jal	storeByte	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR1,-44(%GPR30)	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR1,%GPR1,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-44(%GPR30),%GPR1	
+	j	L_intToStr_7	
+	nop
+L_intToStr_9:
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR1,-40(%GPR30)	
+	lw	%GPR2,-44(%GPR30)	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	%GPR1,%GPR1,%GPR2	
+	lhi	%GPR2,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	storeByte	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_intToStr_10	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_intToStr_10:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	.section	.data
+	.section	.text
+	.addressing	Word
+	;.addressing	Word
+checkbuffer:
+L_lib_lcd_dlxsim_1:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 9 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_2	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_2:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+getbytes:
+L_lib_lcd_dlxsim_3:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_4	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_4:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+sendcommand:
+L_lib_lcd_dlxsim_5:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_6	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_6:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+t_print:
+L_lib_lcd_dlxsim_7:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+
+
+	lhi	%GPR2, $0x200
+
+L_lib_lcd_dlxsim_8:
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lb	%GPR3,0(%GPR1)	
+	lhi	%GPR4,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR4,%GPR4,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	%GPR27,%GPR3,%GPR4	
+	bnez	%GPR27,L_lib_lcd_dlxsim_9	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_10	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_9:
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lb	%GPR3,0(%GPR1)	
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+
+
+	sw	0(%GPR2), %GPR3
+
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+	lhi	%GPR3,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR3,%GPR3,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	%GPR1,%GPR1,%GPR3	
+	j	L_lib_lcd_dlxsim_8	
+	nop
+L_lib_lcd_dlxsim_10:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_11	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_11:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+t_cursor:
+L_lib_lcd_dlxsim_12:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_13	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_13:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+t_enable:
+L_lib_lcd_dlxsim_14:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_15	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_15:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+g_print:
+L_lib_lcd_dlxsim_16:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_17	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_17:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+g_drawrect:
+L_lib_lcd_dlxsim_18:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_19	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_19:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+g_drawline:
+L_lib_lcd_dlxsim_20:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_21	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_21:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+g_makebar:
+L_lib_lcd_dlxsim_22:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_23	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_23:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+g_setbar:
+L_lib_lcd_dlxsim_24:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_25	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_25:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+g_makeswitch:
+L_lib_lcd_dlxsim_26:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_27	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_27:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+g_makemenubutton:
+L_lib_lcd_dlxsim_28:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_29	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_29:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+g_makeradiogroup:
+L_lib_lcd_dlxsim_30:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_31:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+d_clear:
+L_lib_lcd_dlxsim_32:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 9 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_lib_lcd_dlxsim_33	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_lib_lcd_dlxsim_33:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	.section	.data
+	.section	.text
+	.addressing	Word
+	;.addressing	Word
+loadByteUnsigned:
+L_loadStoreByte_1:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	andi	%GPR2,%GPR1,$-4	
+	andi	%GPR1,%GPR1,$3	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR1,%GPR1,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subu	%GPR1,%GPR0,%GPR1	
+	lw	%GPR2,0(%GPR2)	
+	slli	%GPR1,%GPR1,$3	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sra	%GPR1,%GPR2,%GPR1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	andi	%GPR28,%GPR1,$255	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_loadStoreByte_2	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_loadStoreByte_2:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+loadByteSigned:
+L_loadStoreByte_3:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	andi	%GPR2,%GPR1,$-4	
+	andi	%GPR1,%GPR1,$3	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR1,%GPR1,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subu	%GPR1,%GPR0,%GPR1	
+	lw	%GPR2,0(%GPR2)	
+	slli	%GPR1,%GPR1,$3	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sra	%GPR1,%GPR2,%GPR1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	andi	%GPR1,%GPR1,$255	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	slli	%GPR1,%GPR1,$24	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	srai	%GPR28,%GPR1,$24	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_loadStoreByte_4	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_loadStoreByte_4:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+storeByte:
+L_loadStoreByte_5:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 8 NOPs removed by reduceNOPs.sh
+	andi	%GPR3,%GPR1,$3	
+	andi	%GPR4,%GPR1,$3	
+	lhi	%GPR5,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR5,%GPR5,$3	
+	andi	%GPR1,%GPR1,$-4	
+	lhi	%GPR6,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR6,%GPR6,$255	
+	addi	%GPR4,%GPR4,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subu	%GPR4,%GPR0,%GPR4	
+	sub	%GPR3,%GPR5,%GPR3	
+	lw	%GPR5,0(%GPR1)	
+	slli	%GPR4,%GPR4,$3	
+	slli	%GPR3,%GPR3,$3	
+	sll	%GPR2,%GPR2,%GPR4	
+	sll	%GPR3,%GPR6,%GPR3	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR3,%GPR3,$1	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subu	%GPR3,%GPR0,%GPR3	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	and	%GPR3,%GPR5,%GPR3	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	or	%GPR28,%GPR3,%GPR2	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	0(%GPR1),%GPR28	
+	j	L_loadStoreByte_6	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_loadStoreByte_6:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+	.section	.data
+L_testOpt_1:
+	.data.8	90
+	.data.8	97
+	.data.8	104
+	.data.8	108
+	.data.8	58
+	.data.8	32
+	.space	1
+L_testOpt_2:
+	.data.8	13
+	.data.8	10
+	.space	1
+	.section	.text
+	.addressing	Word
+	;.addressing	Word
+main:
+L_testOpt_3:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$28	
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	subi	%GPR2,%GPR30,$20	
+	lhi	%GPR1,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$42	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	intToStr	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR1,$( L_testOpt_1	/0x10000)
+	ori	%GPR1,%GPR1,$( L_testOpt_1	%0x10000)
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	t_print	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR1,%GPR30,$20	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	t_print	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR1,$( L_testOpt_2	/0x10000)
+	ori	%GPR1,%GPR1,$( L_testOpt_2	%0x10000)
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	t_print	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_testOpt_4	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_testOpt_4:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+exit:

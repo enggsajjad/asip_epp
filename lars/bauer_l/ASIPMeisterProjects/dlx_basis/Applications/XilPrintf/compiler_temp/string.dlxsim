@@ -1,0 +1,1726 @@
+	.section	.text
+	.addressing	Word
+strlen:
+L1:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+				; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$0	
+	nop
+	nop
+	nop
+L2:
+	add	r2,r1,r0	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lb	r2,0(r2)	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$1	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop	;;6,9
+	nop	;;6,9
+	nop	;;6,9
+	add	r1,r1,r3	
+	sne	r27,r2,r4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L3	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L4	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L3:
+	addi	r28,r28,$1	
+	j	L2	
+	nop
+	nop
+	nop
+L4:
+	j	L5	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L5:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+strcat:
+L6:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+				; Automatically 9 NOPs removed by reduceNOPs.sh
+L7:
+	lb	r3,0(r1)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r3,r4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L8	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L9	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L8:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r3	
+	j	L7	
+	nop
+	nop
+	nop
+L9:
+	lb	r3,0(r2)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r3,r4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L10	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L11	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L10:
+	add	r4,r2,r0	
+	nop	;;0,3
+	nop	;;0,3
+	nop	;;0,3
+	add	r3,r1,r0	
+	lb	r4,0(r4)	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$1	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$1	
+	nop	;;6,8
+	nop	;;6,8
+	sb	0(r3),r4	
+	add	r1,r1,r5	
+	add	r2,r2,r6	
+	j	L9	
+	nop
+	nop
+	nop
+L11:
+	add	r28,r1,r0	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L12	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L12:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+strncat:
+L13:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+				; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop
+	nop
+	nop
+L14:
+	lb	r5,0(r1)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r5,r6	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L15	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L16	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L15:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r5	
+	j	L14	
+	nop
+	nop
+	nop
+L16:
+	lb	r5,0(r2)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r5,r6	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L17	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L19	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L17:
+	addi	r4,r4,$1	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	slt	r27,r4,r3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L18	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L19	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L18:
+	add	r5,r2,r0	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lb	r7,0(r5)	
+	add	r6,r1,r0	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r8,r8,$1	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r9,r9,$1	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$1	
+	sb	0(r6),r7	
+	add	r1,r1,r8	
+	add	r2,r2,r9	
+	j	L16	
+	nop
+	nop
+	nop
+L19:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$0	
+	seq	r27,r4,r3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L20	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L21	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L20:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sb	0(r1),r2	
+	nop
+	nop
+	nop
+L21:
+	add	r28,r1,r0	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L22	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L22:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+strcpy:
+L23:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+				; Automatically 9 NOPs removed by reduceNOPs.sh
+L24:
+	lb	r3,0(r2)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r3,r4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L25	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L26	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L25:
+	add	r4,r2,r0	
+	nop	;;0,3
+	nop	;;0,3
+	nop	;;0,3
+	add	r3,r1,r0	
+	lb	r4,0(r4)	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$1	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$1	
+	nop	;;6,8
+	nop	;;6,8
+	sb	0(r3),r4	
+	add	r1,r1,r5	
+	add	r2,r2,r6	
+	j	L24	
+	nop
+	nop
+	nop
+L26:
+	add	r28,r1,r0	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L27	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L27:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+strncpy:
+L28:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+				; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop
+	nop
+	nop
+L29:
+	lb	r5,0(r2)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r5,r6	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L30	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L32	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L30:
+	addi	r4,r4,$1	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	slt	r27,r4,r3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L31	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L32	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L31:
+	add	r5,r2,r0	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lb	r7,0(r5)	
+	add	r6,r1,r0	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r8,r8,$1	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r9,r9,$1	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$1	
+	sb	0(r6),r7	
+	add	r1,r1,r8	
+	add	r2,r2,r9	
+	j	L29	
+	nop
+	nop
+	nop
+L32:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$0	
+	seq	r27,r4,r3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L33	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L34	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L33:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sb	0(r1),r2	
+	nop
+	nop
+	nop
+L34:
+	add	r28,r1,r0	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L35	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L35:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+strcmp:
+L36:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+				; Automatically 9 NOPs removed by reduceNOPs.sh
+L37:
+	lb	r3,0(r1)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r3,r4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L38	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L41	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L38:
+	lb	r3,0(r2)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r3,r4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L39	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L41	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L39:
+	lb	r4,0(r1)	
+	lb	r5,0(r2)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$1	
+	nop	;;4,6
+	nop	;;4,6
+	slt	r27,r4,r5	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L40	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L43	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L40:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$65535	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$-1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L49	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L41:
+	nop	;;0,2
+	nop	;;0,2
+	lb	r1,0(r1)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$0	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	sne	r27,r1,r4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L42	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L46	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L42:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L49	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L43:
+	lb	r3,0(r1)	
+	lb	r4,0(r2)	
+	nop	;;1,5
+	nop	;;1,5
+	nop	;;1,5
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sgt	r27,r3,r4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L44	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L45	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L44:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L49	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L45:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$1	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$1	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	r1,r1,r3	
+	add	r2,r2,r4	
+	j	L37	
+	nop
+	nop
+	nop
+L46:
+	lb	r1,0(r2)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r1,r2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L47	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L48	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L47:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$65535	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$-1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L49	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L48:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L49	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L49:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+strncmp:
+L50:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+				; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop
+	nop
+	nop
+L51:
+	lb	r5,0(r1)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r5,r6	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L52	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L56	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L52:
+	lb	r5,0(r2)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r5,r6	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L53	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L56	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L53:
+	addi	r4,r4,$1	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$1	
+	slt	r27,r4,r3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L54	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L57	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L54:
+	lb	r6,0(r1)	
+	lb	r7,0(r2)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$1	
+	nop	;;4,6
+	nop	;;4,6
+	slt	r27,r6,r7	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L55	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L59	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L55:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$65535	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$-1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L67	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L56:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$0	
+	nop
+	nop
+	nop
+L57:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$0	
+	seq	r27,r4,r3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L58	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L62	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L58:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L67	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L59:
+	lb	r5,0(r1)	
+	lb	r6,0(r2)	
+	nop	;;1,5
+	nop	;;1,5
+	nop	;;1,5
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sgt	r27,r5,r6	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L60	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L61	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L60:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L67	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L61:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$1	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$1	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	r1,r1,r5	
+	add	r2,r2,r6	
+	j	L51	
+	nop
+	nop
+	nop
+L62:
+	lb	r1,0(r1)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r1,r3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L63	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L64	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L63:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L67	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L64:
+	lb	r1,0(r2)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r1,r2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L65	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L66	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L65:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$65535	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$-1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L67	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L66:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L67	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L67:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+tolower:
+L68:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+				; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$65	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sge	r27,r1,r2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L69	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L71	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L69:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$90	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sle	r27,r1,r2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L70	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L71	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L70:
+	addi	r28,r1,$32	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$1	
+	j	L72	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L71:
+	add	r28,r1,r0	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$0	
+	j	L72	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L72:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+isdigit:
+L73:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+				; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$48	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sge	r27,r1,r2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L74	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L76	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L74:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$57	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sle	r27,r1,r2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L75	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L76	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L75:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$1	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$1	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	j	L77	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L76:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$0	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$0	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	j	L77	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L77:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data

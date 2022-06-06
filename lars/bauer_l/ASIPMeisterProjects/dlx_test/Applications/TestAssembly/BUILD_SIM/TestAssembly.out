@@ -1,0 +1,127 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.section	.text
+2				.addressing	Word
+3				.section	.text
+4				.addressing	Word
+5				;.addressing	Word
+6			
+7	0000	03def026		xor	%r30, %r30, %r30
+8	0001	03bde826		xor	%r29, %r29, %r29
+9	0002	039ce026		xor	%r28, %r28, %r28
+10	0003	00000000		nop
+11	0004	3c1e000f		lhi	%r30, $(0xFFFFC/0x10000)
+12	0005	3c1d000f		lhi	%r29, $(0xFFFFC/0x10000)
+13	0006	00000000		nop
+14	0007	00000000		nop
+15	0008	37defffc		ori	%r30, %r30, $(0xFFFFC%0x10000)
+16	0009	37bdfffc		ori	%r29, %r29, $(0xFFFFC%0x10000)
+17	000a	00000000		nop
+18	000b	00000000		nop
+19	000c	00000000		nop
+20	000d	afbefffc		sw	-4(%r29), %r30
+21	000e	afbffff8		sw	-8(%r29), %r31
+22	000f	23ddfff8		addi	%r29, %r30, $-8
+23	0010	00000000		nop
+24	0011	00000000		nop
+25	0012	00000000		nop
+26	0013	0c00000a		jal	main	
+27	0014	00000000		nop
+28	0015	00000000		nop
+29	0016	00000000		nop
+30	0017	00000000		nop
+31	0018	00000000		nop
+32	0019	afa10000		sw	0(%r29), %r1
+33	001a	0c000016		jal	exit
+34	001b	00000000		nop
+35	001c	00000000		nop
+36			
+37				;.addressing	Word
+38			
+39	001d	8c070050	main:	lw	%r7, C(%r0)
+40	001e	2001000a		addi	%r1, %r0, $10
+41	001f	00000000		nop
+42	0020	00000000		nop
+43	0021	20e70005		addi	%r7, %r7, $5
+44			
+45	0022	8c860028	loop:	lw	%r6, B(%r4)
+46	0023	28210001		subi	%r1, %r1, $1
+47	0024	00000000		nop
+48	0025	00000000		nop
+49	0026	00c73020		add	%r6, %r6, %r7
+50	0027	00000000		nop
+51	0028	00000000		nop
+52	0029	00000000		nop
+53	002a	ac860000		sw	A(%r4), %r6
+54	002b	20840004		addi	%r4, %r4, $4
+55	002c	1420fff6		bnez	%r1, loop
+56	002d	00000000		nop
+57	002e	00000000		nop
+58			
+59				.section	.data
+60				;.addressing	Word
+61			
+62	0000	00000000	A:	.data.32	0
+63	0004	00000000		.data.32	0
+64	0008	00000000		.data.32	0
+65	000c	00000000		.data.32	0
+66	0010	00000000		.data.32	0
+67	0014	00000000		.data.32	0
+68	0018	00000000		.data.32	0
+69	001c	00000000		.data.32	0
+70	0020	00000000		.data.32	0
+71	0024	00000000		.data.32	0
+72			
+73	0028	00000001	B:	.data.32	1
+74	002c	00000002		.data.32	2
+75	0030	00000003		.data.32	3
+76	0034	00000004		.data.32	4
+77	0038	00000005		.data.32	5
+78	003c	00000006		.data.32	6
+79	0040	00000007		.data.32	7
+80	0044	00000008		.data.32	8
+81	0048	00000009		.data.32	9
+82	004c	0000000a		.data.32	10
+83			
+84	0050	0000002a	C:	.data.32	42
+85			
+86				.section	.text
+87				.addressing	Word
+88				;.addressing	Word
+89	002f	00000000		nop
+90			exit:
+91	0030	00000000		nop
+92	0031	00000000		nop
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+loop	.text	0022	Label	22	45 
+exit	.text	0030	Label	30	90 
+A	.data	0000	Label	0	62 
+B	.data	0028	Label	28	73 
+C	.data	0050	Label	50	84 
+main	.text	001d	Label	1d	39 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	32 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		54 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

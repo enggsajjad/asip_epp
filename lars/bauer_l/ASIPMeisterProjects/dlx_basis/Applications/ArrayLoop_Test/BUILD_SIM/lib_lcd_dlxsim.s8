@@ -1,0 +1,1282 @@
+	.section	.data
+L1:
+	.data.8	48
+	.data.8	120
+	.space	1
+	.section	.text
+	.addressing	Word
+t_printInt:
+L2:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$32	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	subi	%GPR2,%GPR30,$24	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	intToStr	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR1,%GPR30,$24	
+
+
+	lhi	%GPR2, $0x200
+	nop
+	nop
+	nop
+
+	sw	-4(%GPR30),%GPR2	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	lw	%GPR2,-4(%GPR30)	
+	j	L4	
+	nop
+	nop
+	nop
+L3:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L6	
+	nop
+	nop
+	nop
+	nop
+L4:
+	lb	%GPR2,0(%GPR1)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sne	%GPR27,%GPR2,%GPR3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L5	
+	nop
+	nop
+	nop
+	nop
+	j	L3	
+	nop
+	nop
+	nop
+	nop
+L5:
+	lw	%GPR3,-4(%GPR30)	
+
+
+	nop
+	nop
+	nop
+	sw	0(%GPR3), %GPR2
+
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$1	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	add	%GPR1,%GPR1,%GPR2	
+	j	L4	
+	nop
+	nop
+	nop
+L6:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+t_printHex:
+L7:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$28	
+	nop
+	nop
+	nop
+	nop
+	add	%GPR3,%GPR2,%GPR0	
+	nop
+	nop
+	nop
+	subi	%GPR2,%GPR30,$20	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	intToHexStr	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+
+
+	lhi	%GPR1, $0x200
+	nop
+	nop
+	nop
+
+	sw	-4(%GPR30),%GPR1	
+	lhi	%GPR1,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$( L1	%0x10000)
+	nop	;;7,10
+	nop	;;7,10
+	nop	;;7,10
+	lw	%GPR2,-4(%GPR30)	
+	j	L9	
+	nop
+	nop
+	nop
+L8:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L14	
+	nop
+	nop
+	nop
+	nop
+L9:
+	lb	%GPR2,0(%GPR1)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sne	%GPR27,%GPR2,%GPR3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L10	
+	nop
+	nop
+	nop
+	nop
+	j	L11	
+	nop
+	nop
+	nop
+	nop
+L10:
+	lw	%GPR3,-4(%GPR30)	
+
+
+	nop
+	nop
+	nop
+	sw	0(%GPR3), %GPR2
+
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$1	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	add	%GPR1,%GPR1,%GPR2	
+	j	L9	
+	nop
+	nop
+	nop
+L11:
+	subi	%GPR1,%GPR30,$20	
+
+
+	lhi	%GPR2, $0x200
+	nop
+	nop
+	nop
+
+	sw	-8(%GPR30),%GPR2	
+	nop	;;2,6
+	nop	;;2,6
+	nop	;;2,6
+	nop	;;2,6
+	lw	%GPR2,-8(%GPR30)	
+	nop
+	nop
+	nop
+L12:
+	lb	%GPR2,0(%GPR1)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sne	%GPR27,%GPR2,%GPR3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L13	
+	nop
+	nop
+	nop
+	nop
+	j	L8	
+	nop
+	nop
+	nop
+	nop
+L13:
+	lw	%GPR3,-8(%GPR30)	
+
+
+	nop
+	nop
+	nop
+	sw	0(%GPR3), %GPR2
+
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$1	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	add	%GPR1,%GPR1,%GPR2	
+	j	L12	
+	nop
+	nop
+	nop
+L14:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+checkbuffer:
+L15:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop	;;1,6
+	nop	;;1,6
+	nop	;;1,6
+	nop	;;1,6
+	nop	;;1,6
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;6,10
+	nop	;;6,10
+	nop	;;6,10
+	nop	;;6,10
+	j	L16	
+	nop
+	nop
+	nop
+	nop
+L16:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+getbytes:
+L17:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L18	
+	nop
+	nop
+	nop
+	nop
+L18:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+sendcommand:
+L19:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L20	
+	nop
+	nop
+	nop
+	nop
+L20:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+t_print:
+L21:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$12	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+
+
+	lhi	%GPR2, $0x200
+	nop
+	nop
+	nop
+
+	sw	-4(%GPR30),%GPR2	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	lw	%GPR2,-4(%GPR30)	
+	nop
+	nop
+	nop
+L22:
+	lb	%GPR2,0(%GPR1)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sne	%GPR27,%GPR2,%GPR3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L23	
+	nop
+	nop
+	nop
+	nop
+	j	L24	
+	nop
+	nop
+	nop
+	nop
+L23:
+	lw	%GPR3,-4(%GPR30)	
+
+
+	nop
+	nop
+	nop
+	sw	0(%GPR3), %GPR2
+
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$1	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	add	%GPR1,%GPR1,%GPR2	
+	j	L22	
+	nop
+	nop
+	nop
+L24:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L25	
+	nop
+	nop
+	nop
+	nop
+L25:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+t_cursor:
+L26:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L27	
+	nop
+	nop
+	nop
+	nop
+L27:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+t_enable:
+L28:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L29	
+	nop
+	nop
+	nop
+	nop
+L29:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+g_print:
+L30:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L31	
+	nop
+	nop
+	nop
+	nop
+L31:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+g_drawrect:
+L32:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L33	
+	nop
+	nop
+	nop
+	nop
+L33:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+g_drawline:
+L34:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L35	
+	nop
+	nop
+	nop
+	nop
+L35:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+g_makebar:
+L36:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L37	
+	nop
+	nop
+	nop
+	nop
+L37:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+g_setbar:
+L38:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L39	
+	nop
+	nop
+	nop
+	nop
+L39:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+g_makeswitch:
+L40:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L41	
+	nop
+	nop
+	nop
+	nop
+L41:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+g_makemenubutton:
+L42:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L43	
+	nop
+	nop
+	nop
+	nop
+L43:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+g_makeradiogroup:
+L44:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	j	L45	
+	nop
+	nop
+	nop
+	nop
+L45:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+d_clear:
+L46:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop	;;1,6
+	nop	;;1,6
+	nop	;;1,6
+	nop	;;1,6
+	nop	;;1,6
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;6,10
+	nop	;;6,10
+	nop	;;6,10
+	nop	;;6,10
+	j	L47	
+	nop
+	nop
+	nop
+	nop
+L47:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop

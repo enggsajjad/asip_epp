@@ -1,0 +1,32 @@
+369c369
+< RULE [srl_0] srl:mirShiftRight(rs0:GPR, rs1:GPR) -> rd:GPR;
+---
+> RULE [srl_0] srl:mirShiftRightSign(rs0:GPR, rs1:GPR) -> rd:GPR;
+371c371
+< (IS_UCHAR(srl.Type) || IS_USHORT(srl.Type) || IS_ULONG(srl.Type) )
+---
+> (IS_CHAR(srl.Type) || IS_UCHAR(srl.Type) || IS_SHORT(srl.Type) || IS_USHORT(srl.Type) || IS_USHORT(srl.Type) || IS_USHORT(srl.Type) || IS_LONG(srl.Type) || IS_ULONG(srl.Type) || IS_ULONG(srl.Type) || IS_ULONG(srl.Type))
+390c390
+< RULE [srli_0] srli:mirShiftRight(rs0:GPR, const__:mirIntConst) -> rd:GPR;
+---
+> RULE [srli_0] srli:mirShiftRightSign(rs0:GPR, const__:mirIntConst) -> rd:GPR;
+392c392
+< (IS_UCHAR(srli.Type) || IS_USHORT(srli.Type) || IS_ULONG(srli.Type))
+---
+> (IS_CHAR(srli.Type) || IS_UCHAR(srli.Type) || IS_SHORT(srli.Type) || IS_USHORT(srli.Type) || IS_USHORT(srli.Type) || IS_USHORT(srli.Type) || IS_LONG(srli.Type) || IS_ULONG(srli.Type) || IS_ULONG(srli.Type) || IS_ULONG(srli.Type))
+411c411
+< RULE [sra_0] sra:mirShiftRightSign(rs0:GPR, rs1:GPR) -> rd:GPR;
+---
+> RULE [sra_0] sra:mirShiftRight(rs0:GPR, rs1:GPR) -> rd:GPR;
+413c413
+< (IS_CHAR(sra.Type) || IS_SHORT(sra.Type) || IS_LONG(sra.Type) )
+---
+> (IS_CHAR(sra.Type) || IS_UCHAR(sra.Type) || IS_SHORT(sra.Type) || IS_USHORT(sra.Type) || IS_USHORT(sra.Type) || IS_USHORT(sra.Type) || IS_LONG(sra.Type) || IS_ULONG(sra.Type) || IS_ULONG(sra.Type) || IS_ULONG(sra.Type))
+432c432
+< RULE [srai_0] srai:mirShiftRightSign(rs0:GPR, const__:mirIntConst) -> rd:GPR;
+---
+> RULE [srai_0] srai:mirShiftRight(rs0:GPR, const__:mirIntConst) -> rd:GPR;
+434c434
+< (IS_CHAR(srai.Type) || IS_SHORT(srai.Type) || IS_LONG(srai.Type) )
+---
+> (IS_CHAR(srai.Type) || IS_UCHAR(srai.Type) || IS_SHORT(srai.Type) || IS_USHORT(srai.Type) || IS_USHORT(srai.Type) || IS_USHORT(srai.Type) || IS_LONG(srai.Type) || IS_ULONG(srai.Type) || IS_ULONG(srai.Type) || IS_ULONG(srai.Type))

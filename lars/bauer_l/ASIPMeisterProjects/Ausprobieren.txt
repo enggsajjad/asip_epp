@@ -1,0 +1,32 @@
+* Einen Optimierungsschalter fuer Energy-aware-Compilierung anbieten. Dieser muesste dann die Kosten der Regeln beeinflussen. Z.B. "COST f(normal, energy);"
+
+* slt als arithmetischen Befehl anbieten.
+
+* Man koennte einen kombinierten Div/Mod-Befehl anbieten.
+
+* Problem bei Sinas: Labels, wenn die Sinas-Funktion mehrfach verwendet werden. Moegliche Loesung: Ein Skript, dass die Labels eindeutig numeriert und die Labelverwendungen gesteuert per f & b Prefix anpasst.
+
+* Dynamic Frequency Scaling per Assemblerbefehl. Muss fuer PowEst aber auch fuer Simulations-Testbench funktionieren.
+
+* Registerfile in 2 Haelften aufteilen. In CoSy Move-Befehl zum Datentransport einbauen. Schauen, ob sich die Peak-Power verringert.
+
+* Performance-Counter innerhalb und ausserhalb der CPU einbauen. Ausserhalb per CAPIM abfragen. Innerhalb mit einem Spezialregister und Spezialbefehlen
+
+* Ausprobieren, ob man einen MULT-Befehl auch ohne stalling ausfuehren kann (so dass die 32+ NOPs in der Scheduler-Latency tatschlich noetig gewesen waeren)
+
+* Die CoSy Rules nach handeingebauten NOPs durchsuchen, diese ueberdenken und ggf. entfernen.
+
+* Mehrere DMAUs verwenden. Z.B. fuer DSP-Befehle. Befehl anbieten, der Zwei Datenwoerter gleichzeitig liest/schreibt.
+
+* Printf in CoSy Std-Lib anschauen und OS-Call durch CKF aufloesen. Assemblerbefehl in CPU einbauen, der Daten Byteweise ueber einen neuen CPU-Port ausgibt. Diese Daten dann ueber CAPIM an PC weitergeben.
+
+* LB Befehl mit CoSy rule auf LW reduzieren ("Scratch" fuer temporaere Register).
+
+* TestData.OUT in der ModelSim simulation automatisch ueberpruefen. Z.B. mit TestData.EXPECTED vergleichen.
+
+* 2*Mult in einer EXE
+
+* Hardware-Hazard provozieren. Z.B neuen Befehl, der normale ALU0 in MEM benutzt.
+
+* FP mit CoSy ausprobieren
+

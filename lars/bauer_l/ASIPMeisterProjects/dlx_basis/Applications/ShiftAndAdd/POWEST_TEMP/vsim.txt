@@ -1,0 +1,13 @@
+project open sim_vcd.mpf
+project addfile Vtable.vhd
+project addfile VCOMPONENT.vhd
+project addfile tcb015ghd_221a.vhd
+project addfile cpu_vhd.vhd
+project addfile tb_ASIPmeister.vhd
+project compileall
+vsim -t 1ns work.cfg
+vcd file SwitchingActivities.vcd
+vcd add -r /TEST/DUT/*
+run -all
+quit -sim
+exit

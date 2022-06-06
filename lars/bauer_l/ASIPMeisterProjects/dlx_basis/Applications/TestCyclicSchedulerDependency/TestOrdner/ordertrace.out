@@ -1,0 +1,302 @@
+Warning: WCHARTD (wide character typedef) undefined
+
+Cycle = 0 Procstate = 0
+Schedulable: @1 
+Selected: @1 (from one):      %1 prologue
+dagendcycle = 4
+
+Cycle = 0 Procstate = 2
+Schedulable: @2 
+Selected: @2 (from one):      %2 xirBarrier0
+
+Cycle = 1 Procstate = 6
+Schedulable: @6 @3 
+	@6:mirIntConst0 lvl:26-26 lat:0 res:1 nsuc:2 cnfl:8 -> -63456
+	@3:mirIntConst0 lvl:26-26 lat:0 res:1 nsuc:2 cnfl:8 -> -63456
+Selected @6      %6 := mirIntConst0
+dagendcycle = 6
+
+Cycle = 2 Procstate = 22
+Schedulable: @3 @7 
+	@3:mirIntConst0 lvl:26-22 lat:0 res:1 nsuc:2 cnfl:8 -> -47072
+	@7:movi23 lvl:22-22 lat:4 res:0 nsuc:3 cnfl:1 -> -261840
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @3      %3 := mirIntConst0
+dagendcycle = 7
+
+Cycle = 3 Procstate = 7
+Schedulable: @7 @4 
+	@7:movi23 lvl:22-22 lat:3 res:0 nsuc:3 cnfl:1 -> -196304
+		-pfill[0] = (0.031<<0)*1 = 0
+	@4:movi23 lvl:22-22 lat:4 res:0 nsuc:3 cnfl:1 -> -261840
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @7      %7 := movi23(mem %6)
+dagendcycle = 10
+
+Cycle = 6 Procstate = 3
+Schedulable: @4 @8 
+Selected @8 (immediate):      %8 := defpsrGPR(%7)
+
+Cycle = 6 Procstate = 3
+Schedulable: @4 
+Selected: @4 (from one):      %4 := movi23(mem %3)
+dagendcycle = 11
+
+Cycle = 7 Procstate = 13
+Schedulable: @5 
+Selected: @5 (from one):      %5 := defpsrGPR(%4)
+
+Cycle = 7 Procstate = 13
+Schedulable: @9 
+Selected: @9 (from one):      %9 j_targetIsNext
+dagendcycle = 12
+
+Cycle = 8 Procstate = 53
+Schedulable: @10 @13 @19 @21 @33 
+	@10:mirIntConst0 lvl:6-6 lat:4 res:0 nsuc:3 cnfl:4 -> -261072
+	@13:mirIntConst0 lvl:6-6 lat:4 res:0 nsuc:3 cnfl:4 -> -261072
+	@19:globaddrGPR lvl:9-6 lat:4 res:0 nsuc:3 cnfl:4 -> -248784
+		-pfill[0] = (0.031<<0)*1 = 0
+	@21:mirIntConst0 lvl:17-6 lat:4 res:0 nsuc:3 cnfl:4 -> -216016
+	@33:mirIntConst0 lvl:9-6 lat:4 res:0 nsuc:3 cnfl:4 -> -248784
+Selected @21     %21 := mirIntConst0
+
+Cycle = 12 Procstate = 0
+Schedulable: @10 @13 @19 @21 @33 
+	@10:mirIntConst0 lvl:6-6 lat:0 res:0 nsuc:3 cnfl:4 -> 1049648
+	@13:mirIntConst0 lvl:6-6 lat:0 res:0 nsuc:3 cnfl:4 -> 1049648
+	@19:globaddrGPR lvl:9-6 lat:0 res:0 nsuc:3 cnfl:4 -> 1061936
+		-pfill[0] = (0.031<<0)*1 = 0
+	@21:mirIntConst0 lvl:17-6 lat:0 res:0 nsuc:3 cnfl:4 -> 1094704
+	@33:mirIntConst0 lvl:9-6 lat:0 res:0 nsuc:3 cnfl:4 -> 1061936
+Selected @21     %21 := mirIntConst0
+dagendcycle = 16
+
+Cycle = 12 Procstate = 2
+Schedulable: @10 @13 @19 @33 @22 
+	@10:mirIntConst0 lvl:6-6 lat:0 res:1 nsuc:3 cnfl:4 -> -64464
+	@13:mirIntConst0 lvl:6-6 lat:0 res:1 nsuc:3 cnfl:4 -> -64464
+	@19:globaddrGPR lvl:9-6 lat:0 res:1 nsuc:3 cnfl:4 -> -52176
+		-pfill[0] = (0.031<<0)*1 = 0
+	@33:mirIntConst0 lvl:9-6 lat:0 res:1 nsuc:3 cnfl:4 -> -52176
+	@22:movi23 lvl:13-6 lat:4 res:0 nsuc:3 cnfl:4 -> -232400
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @19     %19 := globaddrGPR
+dagendcycle = 17
+
+Cycle = 13 Procstate = 7
+Schedulable: @10 @13 @33 @22 
+	@10:mirIntConst0 lvl:6-6 lat:0 res:1 nsuc:3 cnfl:4 -> -64464
+	@13:mirIntConst0 lvl:6-6 lat:0 res:1 nsuc:3 cnfl:4 -> -64464
+	@33:mirIntConst0 lvl:9-6 lat:0 res:1 nsuc:3 cnfl:4 -> -52176
+	@22:movi23 lvl:13-6 lat:3 res:0 nsuc:3 cnfl:4 -> -166864
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @33     %33 := mirIntConst0
+dagendcycle = 18
+
+Cycle = 14 Procstate = 27
+Schedulable: @10 @13 @22 @34 
+	@10:mirIntConst0 lvl:6-5 lat:0 res:1 nsuc:3 cnfl:4 -> -60368
+	@13:mirIntConst0 lvl:6-5 lat:0 res:1 nsuc:3 cnfl:4 -> -60368
+	@22:movi23 lvl:13-5 lat:2 res:0 nsuc:3 cnfl:4 -> -97232
+		-pfill[0] = (0.031<<0)*1 = 0
+	@34:movi23 lvl:5-5 lat:4 res:0 nsuc:3 cnfl:4 -> -261072
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @10     %10 := mirIntConst0
+dagendcycle = 19
+
+Cycle = 15 Procstate = 27
+Schedulable: @13 @22 @34 @11 
+	@13:mirIntConst0 lvl:6-2 lat:0 res:1 nsuc:3 cnfl:4 -> -48080
+	@22:movi23 lvl:13-2 lat:1 res:0 nsuc:3 cnfl:4 -> -19408
+		-pfill[0] = (0.031<<0)*1 = 0
+	@34:movi23 lvl:5-2 lat:3 res:0 nsuc:3 cnfl:4 -> -183248
+		-pfill[0] = (0.031<<0)*1 = 0
+	@11:movi23 lvl:2-2 lat:4 res:0 nsuc:3 cnfl:1 -> -261840
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @22     %22 := movi23(mem %21)
+dagendcycle = 20
+
+Cycle = 16 Procstate = 28
+Schedulable: @13 @34 @11 @23 
+	@13:mirIntConst0 lvl:6-2 lat:0 res:1 nsuc:3 cnfl:4 -> -48080
+	@34:movi23 lvl:5-2 lat:2 res:0 nsuc:3 cnfl:4 -> -117712
+		-pfill[0] = (0.031<<0)*1 = 0
+	@11:movi23 lvl:2-2 lat:3 res:0 nsuc:3 cnfl:1 -> -196304
+		-pfill[0] = (0.031<<0)*1 = 0
+	@23:mult_0 lvl:9-2 lat:4 res:0 nsuc:4 cnfl:8 -> -231360
+		-pfill[0] = (0.031<<0)*1 = 0
+		+pfree[0] = (0.031<<0)*1 = 0
+Selected @13     %13 := mirIntConst0
+dagendcycle = 21
+
+Cycle = 17 Procstate = 32
+Schedulable: @34 @11 @23 @14 
+	@34:movi23 lvl:5-2 lat:1 res:0 nsuc:3 cnfl:4 -> -52176
+		-pfill[0] = (0.031<<0)*1 = 0
+	@11:movi23 lvl:2-2 lat:2 res:0 nsuc:3 cnfl:1 -> -130768
+		-pfill[0] = (0.031<<0)*1 = 0
+	@23:mult_0 lvl:9-2 lat:3 res:0 nsuc:4 cnfl:8 -> -165824
+		-pfill[0] = (0.031<<0)*1 = 0
+		+pfree[0] = (0.031<<0)*1 = 0
+	@14:movi23 lvl:2-2 lat:4 res:0 nsuc:3 cnfl:1 -> -261840
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @34     %34 := movi23(mem %33)
+dagendcycle = 22
+
+Cycle = 18 Procstate = 48
+Schedulable: @11 @23 @14 
+	@11:movi23 lvl:2-2 lat:1 res:0 nsuc:3 cnfl:1 -> -65232
+		-pfill[0] = (0.031<<0)*1 = 0
+	@23:mult_0 lvl:9-2 lat:2 res:0 nsuc:4 cnfl:8 -> -100288
+		-pfill[0] = (0.031<<0)*1 = 0
+		+pfree[0] = (0.031<<0)*1 = 0
+	@14:movi23 lvl:2-2 lat:3 res:0 nsuc:3 cnfl:1 -> -196304
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @11     %11 := movi23(mem %10)
+dagendcycle = 23
+
+Cycle = 19 Procstate = 33
+Schedulable: @23 @14 
+	@23:mult_0 lvl:9-2 lat:1 res:0 nsuc:4 cnfl:8 -> -34752
+		-pfill[0] = (0.031<<0)*1 = 0
+		+pfree[0] = (0.031<<0)*1 = 0
+	@14:movi23 lvl:2-2 lat:2 res:0 nsuc:3 cnfl:1 -> -130768
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @23     %23 := mult_0(tempo usepsrGPR, %22)
+dagendcycle = 24
+
+Cycle = 20 Procstate = 54
+Schedulable: @14 @24 @30 
+	@14:movi23 lvl:2-1 lat:1 res:0 nsuc:3 cnfl:1 -> -61136
+		-pfill[0] = (0.031<<0)*1 = 0
+	@24:ADDR_GPR lvl:5-1 lat:4 res:0 nsuc:3 cnfl:4 -> -244688
+		-pfill[0] = (0.031<<0)*1 = 0
+		+pfree[0] = (0.062<<0)*1 = 0
+	@30:addi_0 lvl:1-1 lat:4 res:0 nsuc:4 cnfl:0 -> -262080
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @14     %14 := movi23(mem %13)
+dagendcycle = 25
+
+Cycle = 21 Procstate = 58
+Schedulable: @24 @30 @16 
+	@24:ADDR_GPR lvl:5-1 lat:3 res:0 nsuc:3 cnfl:4 -> -179152
+		-pfill[0] = (0.031<<0)*1 = 0
+		+pfree[0] = (0.062<<0)*1 = 0
+	@30:addi_0 lvl:1-1 lat:3 res:0 nsuc:4 cnfl:0 -> -196544
+		-pfill[0] = (0.031<<0)*1 = 0
+	@16:xirAsmMultiResCall0 lvl:1-1 lat:1 res:0 nsuc:6 cnfl:0 -> -65440
+		+pfree[0] = (0.062<<0)*1 = 0
+Selected @16     %16 xirAsmMultiResCall0(%12, %15)
+dagendcycle = 26
+
+Cycle = 22 Procstate = 71
+Schedulable: @24 @30 @17 @18 
+Selected @17 (immediate):     %17 MultiDef0()
+
+Cycle = 22 Procstate = 71
+Schedulable: @24 @30 @18 
+Selected @18 (immediate):     %18 MultiDef0()
+
+Cycle = 22 Procstate = 71
+Schedulable: @24 @30 
+	@24:ADDR_GPR lvl:5-1 lat:2 res:0 nsuc:3 cnfl:4 -> -113616
+		-pfill[0] = (0.031<<0)*1 = 0
+		+pfree[0] = (0.062<<0)*1 = 0
+	@30:addi_0 lvl:1-1 lat:2 res:0 nsuc:4 cnfl:0 -> -131008
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @24     %24 := ADDR_GPR(%19, %23)
+dagendcycle = 28
+
+Cycle = 24 Procstate = 3
+Schedulable: @30 @27 
+	@30:addi_0 lvl:1-1 lat:0 res:1 nsuc:4 cnfl:0 -> -65472
+		-pfill[0] = (0.031<<0)*1 = 0
+	@27:lw_25 lvl:1-1 lat:4 res:0 nsuc:4 cnfl:0 -> -262080
+		-pfill[0] = (0.031<<0)*1 = 0
+		+pfree[0] = (0.031<<0)*1 = 0
+Selected @30     %30 := addi_0(tempo usepsrGPR)
+dagendcycle = 29
+
+Cycle = 25 Procstate = 13
+Schedulable: @27 @31 
+Selected @31 (immediate):     %31 := defpsrGPR(%30)
+
+Cycle = 25 Procstate = 13
+Schedulable: @27 
+Selected: @27 (from one):     %27 := lw_25(trivaddrconv(regtoaddrGPR(%24)))
+dagendcycle = 32
+
+Cycle = 28 Procstate = 3
+Schedulable: @28 
+Selected: @28 (from one):     %28 := defpsrGPR(%27)
+
+Cycle = 28 Procstate = 3
+Schedulable: @35 
+Selected: @35 (from one):     %35 := comp2cc34(tempo usepsrGPR, %34)
+dagendcycle = 33
+
+Cycle = 29 Procstate = 13
+Schedulable: @36 
+Selected: @36 (from one):     %36 branch_cond(mem %35)
+
+Cycle = 0 Procstate = 0
+Schedulable: @38 
+Selected: @38 (from one):     %38 ret_GPR_j(tempo usepsrGPR)
+dagendcycle = 4
+
+Cycle = 0 Procstate = 3
+Schedulable: @39 @41 @48 @50 
+	@39:globaddrGPR lvl:8-0 lat:4 res:0 nsuc:1 cnfl:4 -> -228336
+		-pfill[0] = (0.031<<0)*1 = 0
+	@41:mirIntConst0 lvl:16-0 lat:4 res:0 nsuc:1 cnfl:4 -> -195568
+	@48:lw_25 lvl:4-0 lat:4 res:0 nsuc:2 cnfl:5 -> -244448
+		-pfill[0] = (0.031<<0)*1 = 0
+	@50:end lvl:0-0 lat:4 res:0 nsuc:0 cnfl:0 -> -262144
+Selected @41     %41 := mirIntConst0
+dagendcycle = 8
+
+Cycle = 4 Procstate = 2
+Schedulable: @39 @48 @50 @42 
+	@39:globaddrGPR lvl:8-0 lat:0 res:1 nsuc:1 cnfl:4 -> -31728
+		-pfill[0] = (0.031<<0)*1 = 0
+	@48:lw_25 lvl:4-0 lat:0 res:1 nsuc:2 cnfl:5 -> -47840
+		-pfill[0] = (0.031<<0)*1 = 0
+	@50:end lvl:0-0 lat:0 res:1 nsuc:0 cnfl:0 -> -65536
+	@42:movi23 lvl:12-0 lat:4 res:0 nsuc:1 cnfl:4 -> -211952
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @39     %39 := globaddrGPR
+dagendcycle = 9
+
+Cycle = 5 Procstate = 7
+Schedulable: @48 @50 @42 
+	@48:lw_25 lvl:4-0 lat:0 res:1 nsuc:2 cnfl:5 -> -47840
+		-pfill[0] = (0.031<<0)*1 = 0
+	@50:end lvl:0-0 lat:0 res:1 nsuc:0 cnfl:0 -> -65536
+	@42:movi23 lvl:12-0 lat:3 res:0 nsuc:1 cnfl:4 -> -146416
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @48     %48 := lw_25(localaddr)
+dagendcycle = 10
+
+Cycle = 6 Procstate = 28
+Schedulable: @50 @42 
+	@50:end lvl:0-0 lat:0 res:1 nsuc:0 cnfl:0 -> -65536
+	@42:movi23 lvl:12-0 lat:2 res:0 nsuc:1 cnfl:4 -> -80880
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @50     %50 end
+
+Cycle = 7 Procstate = 30
+Schedulable: @50 @42 
+	@50:end lvl:0-0 lat:0 res:0 nsuc:0 cnfl:0 -> 1048576
+	@42:movi23 lvl:12-0 lat:1 res:0 nsuc:1 cnfl:4 -> -15344
+		-pfill[0] = (0.031<<0)*1 = 0
+Selected @50     %50 end
+dagendcycle = 11
+
+Cycle = 7 Procstate = 32
+Schedulable: @42 
+Selected: @42 (from one):     %42 := movi23(mem %41)
+Internal fatal error in engine sched (pid = 29310):
+cyclic scheduler dependency graph
+
+Compiler quits.

@@ -1,0 +1,12 @@
+test -r env_settings || {
+  echo
+  echo "ERROR: \"env_settings\" could not be found!"
+  echo "       Make sure, that you start this script in the same folder,"
+  echo "       where the \"env_settings\" is placed."
+  echo
+  exit 1
+}
+
+source env_settings
+$COSY_DIR/cosy.sh
+

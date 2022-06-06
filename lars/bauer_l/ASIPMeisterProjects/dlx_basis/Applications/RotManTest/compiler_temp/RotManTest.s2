@@ -1,0 +1,123 @@
+	.section	.data
+	.section	.text
+	.addressing	Word
+	.section	.text
+	.addressing	Word
+	;.addressing	Word
+
+	xor	%GPR30, %GPR30, %GPR30
+	xor	%GPR29, %GPR29, %GPR29
+	xor	%GPR28, %GPR28, %GPR28
+	lhi	%GPR30, $(0xFFFFC/0x10000)
+	lhi	%GPR29, $(0xFFFFC/0x10000)
+	ori	%GPR30, %GPR30, $(0xFFFFC%0x10000)
+	ori	%GPR29, %GPR29, $(0xFFFFC%0x10000)
+	sw	-4(%GPR29), %GPR30
+	sw	-8(%GPR29), %GPR31
+	addi	%GPR29, %GPR30, $-8
+	jal	main	
+	nop
+	sw	0(%GPR29), %GPR1
+	jal	exit
+	nop
+
+	;.addressing	Word
+main:
+L_RotManTest_1:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	; Automatically 9 NOPs removed by reduceNOPs.sh
+	lhi	%GPR3,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR3,%GPR3,$0	
+	lhi	%GPR2,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$5	
+	lhi	%GPR28,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	add	%GPR1,%GPR3,%GPR0	
+L_RotManTest_2:
+	add	%GPR4,%GPR3,%GPR2	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	slt	%GPR27,%GPR1,%GPR4	
+	bnez	%GPR27,L_RotManTest_3	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_RotManTest_6	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_RotManTest_3:
+	forecast	$0, $1 	
+	forecast	$7, $1 	
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+	lhi	%GPR4,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR4,%GPR4,$0	
+L_RotManTest_4:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR5,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR5,%GPR5,$0	
+	lhi	%GPR6,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR6,%GPR6,$0	
+	lhi	%GPR7,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR7,%GPR7,$0	
+	lhi	%GPR8,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR8,%GPR8,$0	
+
+
+	;; SINAS: SAD_16()
+	SAD16	%GPR7, %GPR5, %GPR6, %GPR8
+
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR7,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR7,%GPR7,$0	
+	lhi	%GPR6,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR6,%GPR6,$0	
+	lhi	%GPR5,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR5,%GPR5,$0	
+
+
+	;; SINAS: SATD_4x4()
+	satd4x4	%GPR5, %GPR7, %GPR6, %GPR5
+
+	addi	%GPR4,%GPR4,$1	
+	lhi	%GPR5,$0	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR5,%GPR5,$100	
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	slt	%GPR27,%GPR4,%GPR5	
+	bnez	%GPR27,L_RotManTest_4	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_RotManTest_5	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_RotManTest_5:
+	forecast	$0, $0 	
+	forecast	$7, $0 	
+	addi	%GPR1,%GPR1,$1	
+	j	L_RotManTest_2	
+	nop
+L_RotManTest_6:
+	j	L_RotManTest_7	
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_RotManTest_7:
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	jr	%GPR31	
+	nop
+exit:

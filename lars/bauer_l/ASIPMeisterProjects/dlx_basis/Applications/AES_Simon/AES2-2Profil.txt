@@ -1,0 +1,277 @@
+#### List of different label names for the same address:
+#### Syntax: #:<TAB>LabelA_Name<TAB>LabelA_JumpTarget<TAB>LabelB_Name<TAB>LabelB_JumpTarget
+#:	mul:		l2:	
+#:	addroundkey:		l7:	
+#:	shiftrows:		l14:	
+#:	substitution:		l24:	
+#:	mixcolumns:		l31:	
+#:	invmixcolumns:		l43:	
+#:	rijndaelkeysched:		l55:	
+#:	rijndaelencrypt:		l97:	
+#:	rijndaeldecrypt:		l102:	
+#:	main:		l107:	
+
+#### List of base blocks with number of executions and used special instructions:
+#### Syntax: startLabel<TAB>startJumpInstruction<TAB>endLabel<TAB>endJumpInstruction<TAB>
+####         startAddress<TAB>numberOfExecutions<TAB>executionTime<TAB>CSV(specialInstructions)
+start:		main:	jal	0	1	23	
+main:	jal	exit	jal	21	1	7	
+exit	jal	mul:		26	0	0	
+l2:		l3:	bnez	27	585	28	
+l3:	bnez	l5:	j	52	0	0	
+l5:	j	l3:		56	0	0	
+l3:		l4:	bnez	58	585	18	
+l4:	bnez	l5:	j	75	48	4	
+l5:	j	l4:		79	0	0	
+l4:		l6:	j	81	537	96	
+l6:	j	l5:		139	0	0	
+l5:		l6:	j	141	48	19	
+l6:	j	l6:		159	0	0	
+l6:			return	161	585	18	
+	return	addroundkey:		176	0	0	
+l7:		l8:		178	22	22	
+l8:		l9:		197	88	12	
+l9:		l10:	bnez	208	440	8	
+l10:	bnez	l11:	j	215	88	4	
+l11:	j	l10:		219	0	0	
+l10:		l9:	j	221	352	155	
+l9:	j	l11:		270	0	0	
+l11:		l8:	bnez	272	88	20	
+l8:	bnez	l12:	j	291	22	4	
+l12:	j	l12:		295	0	0	
+l12:		l13:	j	297	22	14	
+l13:	j	l13:		310	0	0	
+l13:			return	312	22	18	
+	return	shiftrows:		327	0	0	
+l14:		l15:		329	20	22	
+l15:		l16:		348	60	12	
+l16:		l17:	bnez	359	300	8	
+l17:	bnez	l18:	j	366	60	4	
+l18:	j	l17:		370	0	0	
+l17:		l16:	j	372	240	214	
+l16:	j	l18:		446	0	0	
+l18:		l19:		448	60	12	
+l19:		l20:	bnez	459	300	8	
+l20:	bnez	l21:	j	466	60	4	
+l21:	j	l20:		470	0	0	
+l20:		l19:	j	472	240	68	
+l19:	j	l21:		503	0	0	
+l21:		l15:	bnez	505	60	20	
+l15:	bnez	l22:	j	524	20	4	
+l22:	j	l22:		528	0	0	
+l22:		l23:	j	530	20	14	
+l23:	j	l23:		543	0	0	
+l23:			return	545	20	18	
+	return	substitution:		560	0	0	
+l24:		l25:		562	20	22	
+l25:		l26:		581	80	12	
+l26:		l27:	bnez	592	400	8	
+l27:	bnez	l28:	j	599	80	4	
+l28:	j	l27:		603	0	0	
+l27:		l26:	j	605	320	118	
+l26:	j	l28:		651	0	0	
+l28:		l25:	bnez	653	80	20	
+l25:	bnez	l29:	j	672	20	4	
+l29:	j	l29:		676	0	0	
+l29:		l30:	j	678	20	14	
+l30:	j	l30:		691	0	0	
+l30:			return	693	20	18	
+	return	mixcolumns:		708	0	0	
+l31:		l32:		710	9	34	
+l32:		l33:	bnez	739	45	13	
+l33:	bnez	l36:	j	750	9	4	
+l36:	j	l33:		754	0	0	
+l33:		l34:		756	36	12	
+l34:		l34:	bnez	767	144	76	
+l34:	bnez	l35:	j	806	36	4	
+l35:	j	l35:		810	0	0	
+l35:		l32:	j	812	36	5	
+l32:	j	l36:		816	0	0	
+l36:		mul:	jal	818	9	20	
+mul:	jal	l37:		837	9	15	
+l37:		l38:		851	36	12	
+l38:		l39:	bnez	862	180	13	
+l39:	bnez	l40:	j	873	36	4	
+l40:	j	l39:		877	0	0	
+l39:		l38:	j	879	144	114	
+l38:	j	l40:		921	0	0	
+l40:		l37:	bnez	923	36	20	
+l37:	bnez	l41:	j	942	9	4	
+l41:	j	l41:		946	0	0	
+l41:		l42:	j	948	9	14	
+l42:	j	l42:		961	0	0	
+l42:			return	963	9	18	
+	return	invmixcolumns:		978	0	0	
+l43:		l44:		980	9	34	
+l44:		l45:	bnez	1008	45	15	
+l45:	bnez	l48:	j	1020	9	4	
+l48:	j	l45:		1024	0	0	
+l45:		l46:		1026	36	17	
+l46:		mul:	jal	1041	144	128	
+mul:	jal	mul:	jal	1096	144	136	
+mul:	jal	mul:	jal	1158	144	136	
+mul:	jal	mul:	jal	1220	144	90	
+mul:	jal	l46:	bnez	1270	144	111	
+l46:	bnez	l47:	j	1337	36	4	
+l47:	j	l47:		1341	0	0	
+l47:		l44:	j	1343	36	15	
+l44:	j	l48:		1355	0	0	
+l48:		l49:		1357	9	17	
+l49:		l50:		1372	36	17	
+l50:		l51:	bnez	1387	180	15	
+l51:	bnez	l52:	j	1399	36	4	
+l52:	j	l51:		1403	0	0	
+l51:		l50:	j	1405	144	125	
+l50:	j	l52:		1455	0	0	
+l52:		l49:	bnez	1457	36	28	
+l49:	bnez	l53:	j	1482	9	4	
+l53:	j	l53:		1486	0	0	
+l53:		l54:	j	1488	9	14	
+l54:	j	l54:		1501	0	0	
+l54:			return	1503	9	18	
+	return	rijndaelkeysched:		1518	0	0	
+l55:		l56:		1520	1	42	
+l56:		l57:	bnez	1559	5	8	
+l57:	bnez	l60:	j	1566	1	4	
+l60:	j	l57:		1570	0	0	
+l57:		l58:		1572	4	12	
+l58:		l58:	bnez	1583	16	119	
+l58:	bnez	l59:	j	1631	4	4	
+l59:	j	l59:		1635	0	0	
+l59:		l56:	j	1637	4	5	
+l56:	j	l60:		1641	0	0	
+l60:		l61:		1643	1	17	
+l61:		l62:	bnez	1659	5	8	
+l62:	bnez	l66:	j	1666	1	4	
+l66:	j	l62:		1670	0	0	
+l62:		l63:	bnez	1672	4	50	
+l63:	bnez	l66:	j	1687	0	0	
+l66:	j	l63:		1691	0	0	
+l63:		l64:		1693	4	20	
+l64:		l64:	bnez	1712	16	228	
+l64:	bnez	l65:	j	1767	4	4	
+l65:	j	l65:		1771	0	0	
+l65:		l61:	j	1773	4	6	
+l61:	j	l66:		1778	0	0	
+l66:		l67:		1780	1	12	
+l67:		l68:	bnez	1791	11	50	
+l68:	bnez	l95:	j	1806	1	4	
+l95:	j	l68:		1810	0	0	
+l68:		l69:		1812	10	12	
+l69:		l69:	bnez	1823	40	217	
+l69:	bnez	l70:	j	1899	10	4	
+l70:	j	l70:		1903	0	0	
+l70:		l71:	bnez	1905	10	84	
+l71:	bnez	l76:	j	1951	0	0	
+l76:	j	l71:		1955	0	0	
+l71:		l72:		1957	10	12	
+l72:		l73:	bnez	1968	40	8	
+l73:	bnez	l88:	j	1975	10	4	
+l88:	j	l73:		1979	0	0	
+l73:		l74:		1981	30	12	
+l74:		l74:	bnez	1992	120	161	
+l74:	bnez	l75:	j	2047	30	4	
+l75:	j	l75:		2051	0	0	
+l75:		l72:	j	2053	30	5	
+l72:	j	l76:		2057	0	0	
+l76:		l77:		2059	0	0	
+l77:		l78:	bnez	2070	0	0	
+l78:	bnez	l81:	j	2091	0	0	
+l81:	j	l78:		2095	0	0	
+l78:		l79:		2097	0	0	
+l79:		l79:	bnez	2108	0	0	
+l79:	bnez	l80:	j	2163	0	0	
+l80:	j	l80:		2167	0	0	
+l80:		l77:	j	2169	0	0	
+l77:	j	l81:		2173	0	0	
+l81:		l82:		2175	0	0	
+l82:		l82:	bnez	2186	0	0	
+l82:	bnez	l83:	j	2271	0	0	
+l83:	j	l83:		2275	0	0	
+l83:		l84:		2277	0	0	
+l84:		l85:	bnez	2296	0	0	
+l85:	bnez	l88:	j	2303	0	0	
+l88:	j	l85:		2307	0	0	
+l85:		l86:		2309	0	0	
+l86:		l86:	bnez	2320	0	0	
+l86:	bnez	l87:	j	2375	0	0	
+l87:	j	l87:		2379	0	0	
+l87:		l84:	j	2381	0	0	
+l84:	j	l88:		2385	0	0	
+l88:		l89:		2387	10	12	
+l89:		l90:	bnez	2398	50	8	
+l90:	bnez	l94:	j	2405	10	4	
+l94:	j	l90:		2409	0	0	
+l90:		l91:	bnez	2411	40	50	
+l91:	bnez	l94:	j	2426	0	0	
+l94:	j	l91:		2430	0	0	
+l91:		l92:		2432	40	20	
+l92:		l92:	bnez	2451	160	228	
+l92:	bnez	l93:	j	2506	40	4	
+l93:	j	l93:		2510	0	0	
+l93:		l89:	j	2512	40	6	
+l89:	j	l94:		2517	0	0	
+l94:		l67:	j	2519	10	11	
+l67:	j	l95:		2529	0	0	
+l95:		l96:	j	2531	1	14	
+l96:	j	l96:		2544	0	0	
+l96:			return	2546	1	18	
+	return	rijndaelencrypt:		2561	0	0	
+l97:		addroundkey:	jal	2563	1	57	
+addroundkey:	jal	l98:		2612	1	20	
+l98:		l99:	bnez	2630	10	15	
+l99:	bnez	l100:	j	2642	1	4	
+l100:	j	l99:		2646	0	0	
+l99:		substitution:	jal	2648	9	20	
+substitution:	jal	shiftrows:	jal	2665	9	32	
+shiftrows:	jal	mixcolumns:	jal	2694	9	20	
+mixcolumns:	jal	addroundkey:	jal	2711	9	76	
+addroundkey:	jal	l98:	j	2748	9	20	
+l98:	j	l100:		2765	0	0	
+l100:		substitution:	jal	2767	1	20	
+substitution:	jal	shiftrows:	jal	2784	1	32	
+shiftrows:	jal	addroundkey:	jal	2813	1	76	
+addroundkey:	jal	l101:	j	2850	1	17	
+l101:	j	l101:		2866	0	0	
+l101:			return	2868	1	18	
+	return	rijndaeldecrypt:		2883	0	0	
+l102:		addroundkey:	jal	2885	1	113	
+addroundkey:	jal	substitution:	jal	2954	1	25	
+substitution:	jal	shiftrows:	jal	2976	1	32	
+shiftrows:	jal	l103:		3005	1	21	
+l103:		l104:	bnez	3023	10	21	
+l104:	bnez	l105:	j	3042	1	4	
+l105:	j	l104:		3046	0	0	
+l104:		addroundkey:	jal	3048	9	71	
+addroundkey:	jal	invmixcolumns:	jal	3080	9	20	
+invmixcolumns:	jal	substitution:	jal	3097	9	25	
+substitution:	jal	shiftrows:	jal	3119	9	32	
+shiftrows:	jal	l103:	j	3148	9	20	
+l103:	j	l105:		3165	0	0	
+l105:		addroundkey:	jal	3167	1	21	
+addroundkey:	jal	l106:	j	3184	1	17	
+l106:	j	l106:		3200	0	0	
+l106:			return	3202	1	18	
+	return	main:		3217	0	0	
+l107:		rijndaelkeysched:	jal	3219	1	711	
+rijndaelkeysched:	jal	rijndaelencrypt:	jal	3895	1	26	
+rijndaelencrypt:	jal	rijndaeldecrypt:	jal	3920	1	26	
+rijndaeldecrypt:	jal	l108:		3945	1	7	
+l108:			return	3951	1	17	
+	return	exit:		3966	0	0	
+exit:		_state:		3968	1	0	
+_state:		_roundkey:		3971	0	0	
+_roundkey:		_logtable:		3975	0	0	
+_logtable:		_alogtable:		4035	0	0	
+_alogtable:		_s:		4099	0	0	
+_s:		_si:		4163	0	0	
+_si:		_ig:		4227	0	0	
+_ig:		_rcon:		4291	0	0	
+_rcon:		l1:		4295	0	0	
+l1:		finish:		4325	0	0	
+
+#### List of JumpTable Usages:
+####   Syntax is: "#;<TAB>BaseBlockLabel<TAB>CSV(JumpTargets)"
+####   "BaseBlockLabel" is the starting label of the baseBlock where the JumpTable is used, e.g. L10.
+####   Then in the above Base Block List there must be something like: "L10<TAB><TAB><TAB>jr".
+####   "CSV" are the Comma Seperated Values of the possible Jump Targets in this Jump Table

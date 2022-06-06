@@ -1,0 +1,142 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.section	.data
+2				;.global	_result
+3				.align	4
+4			_result:
+5	0000	00000000		.space	4
+6				.section	.text
+7				.addressing	Word
+8	0000	03def026		xor	%GPR30, %GPR30, %GPR30
+9	0001	03bde826		xor	%GPR29, %GPR29, %GPR29
+10	0002	039ce026		xor	%GPR28, %GPR28, %GPR28
+11	0003	00000000		nop
+12	0004	3c1e000f		lhi	%GPR30, $15
+13	0005	3c1d000f		lhi	%GPR29, $15
+14	0006	00000000		nop
+15	0007	00000000		nop
+16	0008	37defffc		ori	%GPR30, %GPR30, $65532
+17	0009	37bdfffc		ori	%GPR29, %GPR29, $65532
+18	000a	00000000		nop
+19	000b	00000000		nop
+20	000c	00000000		nop
+21	000d	afbefffc		sw	-4(%GPR29), %GPR30
+22	000e	afbffff8		sw	-8(%GPR29), %GPR31
+23	000f	23ddfff8		addi	%GPR29, %GPR30, $-8
+24	0010	0c000005		jal	main	
+25	0011	00000000		nop
+26	0012	afa10000		sw	0(%GPR29), %GPR1
+27	0013	0c000041		jal	exit	
+28	0014	00000000		nop
+29			main:
+30			L1:
+31	0015	00000000		nop
+32	0016	00000000		nop
+33	0017	00000000		nop
+34				; Automatically 1 NOPs removed by reduceNOPs.sh
+35	0018	afbefffc		sw	-4(%GPR29),%GPR30	
+36	0019	afbf0000		sw	0(%GPR29),%GPR31	
+37	001a	2fbe0004		subui	%GPR30,%GPR29,$4	
+38	001b	2bbd0008		subi	%GPR29,%GPR29,$8	
+39	001c	00000000		nop
+40	001d	00000000		nop
+41	001e	00000000		nop
+42				; Automatically 6 NOPs removed by reduceNOPs.sh
+43	001f	3c040000		lhi	%GPR4,$( _result	/0x10000)
+44	0020	00000000		nop
+45	0021	00000000		nop
+46	0022	00000000		nop
+47	0023	34840000		ori	%GPR4,%GPR4,$( _result	%0x10000)
+48	0024	3c050000		lhi	%GPR5,$( _result	/0x10000)
+49	0025	00000000		nop
+50	0026	00000000		nop
+51	0027	00000000		nop
+52	0028	34a50000		ori	%GPR5,%GPR5,$( _result	%0x10000)
+53	0029	00000000		nop	;;4,6
+54	002a	00000000		nop	;;4,6
+55	002b	3c010000		lhi	%GPR1,$0	
+56	002c	00000000		nop
+57	002d	00000000		nop
+58	002e	00000000		nop
+59				; Automatically 1 NOPs removed by reduceNOPs.sh
+60	002f	34210005		ori	%GPR1,%GPR1,$5	
+61	0030	00000000		nop	;;6,10
+62	0031	00000000		nop	;;6,10
+63	0032	00000000		nop	;;6,10
+64				; Automatically 1 NOPs removed by reduceNOPs.sh
+65	0033	00220820		add	%GPR1,%GPR1,%GPR2	
+66	0034	00000000		nop	;;10,14
+67	0035	00000000		nop	;;10,14
+68	0036	00000000		nop	;;10,14
+69				; Automatically 1 NOPs removed by reduceNOPs.sh
+70	0037	00230820		add	%GPR1,%GPR1,%GPR3	
+71	0038	00000000		nop	;;14,18
+72	0039	00000000		nop	;;14,18
+73	003a	00000000		nop	;;14,18
+74				; Automatically 1 NOPs removed by reduceNOPs.sh
+75	003b	ac810000		sw	0(%GPR4),%GPR1	
+76	003c	00000000		nop	;;18,22
+77	003d	00000000		nop	;;18,22
+78	003e	00000000		nop	;;18,22
+79				; Automatically 1 NOPs removed by reduceNOPs.sh
+80	003f	8cbc0000		lw	%GPR28,0(%GPR5)	
+81	0040	00000000		nop	;;22,26
+82	0041	00000000		nop	;;22,26
+83	0042	00000000		nop	;;22,26
+84				; Automatically 1 NOPs removed by reduceNOPs.sh
+85	0043	08000004		j	L2	
+86	0044	00000000		nop
+87	0045	00000000		nop
+88	0046	00000000		nop
+89				; Automatically 1 NOPs removed by reduceNOPs.sh
+90			L2:
+91	0047	00000000		nop
+92	0048	00000000		nop
+93	0049	00000000		nop
+94				; Automatically 1 NOPs removed by reduceNOPs.sh
+95	004a	8fdf0004		lw	%GPR31,4(%GPR30)	
+96	004b	27dd0004		addui	%GPR29,%GPR30,$4	
+97	004c	8fde0000		lw	%GPR30,0(%GPR30)	
+98	004d	00000000		nop
+99	004e	00000000		nop
+100	004f	00000000		nop
+101	0050	03e00008		jr	%GPR31	
+102	0051	00000000		nop
+103	0052	00000000		nop
+104	0053	00000000		nop
+105				; Automatically 2 NOPs removed by reduceNOPs.sh
+106			exit:
+107	0054	00000000		nop
+108	0055	00000000		nop
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+exit	.text	0054	Label	54	106 
+_result	.data	0000	Label	0	4 
+L1	.text	0015	Label	15	30 
+L2	.text	0047	Label	47	90 
+main	.text	0015	Label	15	29 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	56 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		4 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

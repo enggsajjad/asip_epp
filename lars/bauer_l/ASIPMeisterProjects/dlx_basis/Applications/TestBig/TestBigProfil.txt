@@ -1,0 +1,64 @@
+#### List of different label names for the same address:
+#### Syntax: #:<TAB>LabelA_Name<TAB>LabelA_JumpTarget<TAB>LabelB_Name<TAB>LabelB_JumpTarget
+#:	foo:		l1:	
+#:	prim:		l3:	
+#:	main:		l14:	
+
+#### List of base blocks with number of executions and used special instructions:
+#### Syntax: startLabel<TAB>startJumpInstruction<TAB>endLabel<TAB>endJumpInstruction<TAB>
+####         startAddress<TAB>numberOfExecutions<TAB>executionTime<TAB>CSV(specialInstructions)
+start:		main:	jal	0	1	0	
+main:	jal	exit	jal	21	1	0	
+exit	jal	foo:		26	0	0	
+l1:		l2:	j	27	20200	0	mac
+l2:	j	l2:		47	0	0	
+l2:			return	49	20200	0	
+	return	prim:		64	0	0	
+l3:		l4:		66	1	0	
+l4:		l5:	bnez	84	1000	0	
+l5:	bnez	l12:	j	91	1	0	
+l12:	j	l5:		95	0	0	
+l5:		l6:	bnez	97	999	0	
+l6:	bnez	l7:	j	116	999	0	
+l7:	j	l6:		120	0	0	
+l6:		l13:	j	122	0	0	
+l13:	j	l7:		135	0	0	
+l7:		l8:	bnez	137	999	0	
+l8:	bnez	l9:	j	154	998	0	
+l9:	j	l8:		158	0	0	
+l8:		l4:	j	160	1	0	
+l4:	j	l9:		164	0	0	
+l9:		l4:	j	166	998	0	
+l4:	j	l10:		170	0	0	
+l10:		l4:	j	172	0	0	
+l4:	j	l11:		175	0	0	
+l11:		l4:	j	177	0	0	
+l4:	j	l12:		180	0	0	
+l12:		l13:	j	182	1	0	
+l13:	j	l13:		195	0	0	
+l13:			return	197	1	0	
+	return	main:		212	0	0	
+l14:		l15:		214	1	0	
+l15:		foo:	jal	262	10000	0	
+foo:	jal	l15:	bnez	297	10000	0	avg
+l15:	bnez	l16:	j	369	1	0	
+l16:	j	l16:		373	0	0	
+l16:		l17:		375	1	0	
+l17:		foo:	jal	390	10200	0	
+foo:	jal	l17:	bnez	425	10200	0	xchg
+l17:	bnez	l18:	j	482	1	0	
+l18:	j	l18:		486	0	0	
+l18:		prim:	jal	488	1	0	
+prim:	jal	l19:	j	512	1	0	
+l19:	j	l19:		534	0	0	
+l19:			return	536	1	0	
+	return	exit:		551	0	0	
+exit:		_c:		553	1	0	
+_c:		_isprim:		556	0	0	
+_isprim:		finish:		557	0	0	
+
+#### List of JumpTable Usages:
+####   Syntax is: "#;<TAB>BaseBlockLabel<TAB>CSV(JumpTargets)"
+####   "BaseBlockLabel" is the starting label of the baseBlock where the JumpTable is used, e.g. L10.
+####   Then in the above Base Block List there must be something like: "L10<TAB><TAB><TAB>jr".
+####   "CSV" are the Comma Seperated Values of the possible Jump Targets in this Jump Table

@@ -1,0 +1,279 @@
+# %W% %E%
+# (c) Copyright 2000,2001,2003 ACE Associated Compiler Experts bv
+# (c) Copyright 2000,2001,2003 ACE Associated Computer Experts bv
+# All rights reserved.  Subject to conditions in RESTRICTIONS file.
+
+postextract	= sh Install
+
+###################################################
+#
+# The next three lines include the default testlbv compiler.
+# For the exercise adding your own `lowbv' engine to your own
+# `testlbv', put comments in front of this line with testlbv.
+#
+# Then, fix the paths in the lines after that by replacing
+# $WORK with the path of to your own CoSy components. (If you
+# have not done so before.)
+#
+# Finally, remove the hash (#) comment from the lines
+# `testlbv [link]' and `lowbv [link]' so your own compiler
+# and engine are included.
+#
+target=compilers
+source=/home/saschgo/devrep/compilers
+	delcc	[link]		
+
+
+target=engines
+source=/home/saschgo/devrep/engines
+	delcg 	[link]
+
+target=compilers
+source=/$WORK/comp
+#	testlbv		[link]
+
+target=engines
+source=/$WORK/eng
+#	lowbv		[link]
+
+###################################################
+#
+target=compilers
+source=/usr/local/cosy/CoSy3800/repository/ACE/compilers
+	common
+#	first
+
+target=engines
+source=/usr/local/cosy/CoSy3800/repository/ACE/engines
+	beg
+	begsparccg
+	sparcswp
+	checkmir
+	dagex
+	echo
+	i586cg
+	ir2gdl
+	hwloopcheck
+	loopbcount
+	loopdump
+	looppragma
+	looprev
+	ndump
+	cg	samplecg
+	samplecgsinas
+	test
+	xref
+	alias
+	allocpr
+	alloctp
+	anc0
+	blockmerge
+	blockorder
+	cfgedges
+	chainflow
+	checkcfg
+	conevun
+	constprop
+	copyprop
+	cse
+	deadblock
+	deadcode
+	deadobj
+	deadtype
+	debug
+	defuse
+	defusereport
+	dismemun
+	domorder
+	domtree
+	dwarf1
+	dwarf2
+	exprprop
+	float2fpe
+	globreg
+	hwloopannotate
+	hwloopcreate
+	inliner
+	loopanalysis
+	loopcanon
+	loopfuse
+	loopguard
+	loopinvariant
+	loopive
+	loopremove
+	loopstrength
+	loopunroll
+	lowerbitfield
+	lowerboolval
+	lowercirc
+	lowercom
+	lowerfix
+	lowerhwloop
+	lowermaa
+	lowerpfc
+	lowerstret
+	lowervarargs
+	lrrename
+	misc
+	mkcontainers
+	mvpostop
+	noregun
+	pdomtree
+	pirtoc
+	pragmainline
+	pragmaswitch
+	prefix
+	proc2block
+	rcontab
+	resize
+	rodata
+	ropars
+	scalarreplace
+	setrefobj
+	setrestrict
+	sinasdump
+	sinasmultres
+	sinasnames
+	swpannotate
+	swploopinfo
+	swppragma
+	swpprepare
+	sharestring
+	strength
+	swsort
+	tailmerge
+	tailrec
+	tardesmix
+	uniqlabel
+	unit2proc
+	unnest
+	uswitch
+	utinit
+
+#####################################################
+#
+target=.
+source=/usr/local/cosy/CoSy3800/repository/ACE
+	ir	
+
+target=.
+source=/usr/local/cosy/CoSy3800/repository/ACE
+	.	
+	etc/config
+
+#script to build compiler
+target=.
+source=~/scripts
+	buildcompiler
+
+# Enable the LinuxNFS line when mke/mkc hangs (in a lock,
+# to see remove silent setting at beginning of Makefile).
+# This sometimes happens on a Linux with improper NFS.
+#
+source=/usr/local/cosy/CoSy3800/repository/ACE/contrib
+target=etc/config
+#	LinuxNFS
+
+target=src
+source=/usr/local/cosy/CoSy3800/repository/ACE/src
+	beg
+	begmigrate
+	cosycc
+	ecp
+	ect
+	edc
+	ffsdc
+	framework
+	host
+	product
+	libf80
+	libfix
+	libx64
+	flex
+	libCRT
+	libOS
+	libc
+	libcirc
+	libdsp
+	liberr
+	libfpe
+	libint
+	pserver
+
+
+target=extern
+source=/usr/local/cosy/CoSy3800/repository/extern
+	flex-2.5.4a.tar	[link]
+
+target=libs
+source=/usr/local/cosy/CoSy3800/repository/ACE/src
+ libc
+ libOS
+ libCRT
+ libfpe
+
+target=SuperTest
+source=/usr/local/cosy/CoSy3800/repository/ACE/SuperTest
+        .       [pkg(SuperTest)]
+
+        h       [pkg(SuperTest)]
+        lib     [pkg(SuperTest)]
+        HELP    [pkg(SuperTest)]
+        command [pkg(SuperTest)]
+        interface       [pkg(SuperTest)]
+        Install [pkg(SuperTest)]
+        postextract     [pkg(SuperTest)]
+
+target=SuperTest/suite
+source=/usr/local/cosy/CoSy3800/repository/ACE/SuperTest/suite
+        frame.c [pkg(SuperTest)]
+        simpframe.c     [pkg(SuperTest)]
+
+        FIRST   [pkg(SuperTest)]
+
+        2       [pkg(SuperTest)]
+        3/0     [pkg(SuperTest)]
+        3/1     [pkg(SuperTest)]
+        3/2     [pkg(SuperTest)]
+        3/3     [pkg(SuperTest)]
+        3/4     [pkg(SuperTest)]
+        3/5     [pkg(SuperTest)]
+        3/6     [pkg(SuperTest)]
+        3/7     [pkg(SuperTest)]
+        3/8     [pkg(SuperTest)]
+        4/0     [pkg(SuperTest)]
+        4/1     [pkg(SuperTest)]
+        4/2     [pkg(SuperTest)]
+        4/3     [pkg(SuperTest)]
+        4/4     [pkg(SuperTest)]
+        4/5     [pkg(SuperTest)]
+        4/6     [pkg(SuperTest)]
+        4/7     [pkg(SuperTest)]
+        4/8     [pkg(SuperTest)]
+        4/9     [pkg(SuperTest)]
+        4/10    [pkg(SuperTest)]
+        4/11    [pkg(SuperTest)]
+        4/12    [pkg(SuperTest)]
+
+        depth/minor/bin [pkg(SuperTest)]
+        depth/minor/cast        [pkg(SuperTest)]
+        depth/minor/extern      [pkg(SuperTest)]
+        depth/major/bin1        [pkg(SuperTest)]
+        depth/major/bin2        [pkg(SuperTest)]
+        depth/major/bin3        [pkg(SuperTest)]
+        depth/major/cast        [pkg(SuperTest)]
+        depth/major/caste       [pkg(SuperTest)]
+        depth/major/extern      [pkg(SuperTest)]
+        depth/major/ptr [pkg(SuperTest)]
+        depth/major/side        [pkg(SuperTest)]
+        depth/major/static      [pkg(SuperTest)]
+        depth/major/struct      [pkg(SuperTest)]
+
+        C99     [pkg(SuperTest)]
+
+
+        dspc    [pkg(SuperTest)]
+
+
+
+

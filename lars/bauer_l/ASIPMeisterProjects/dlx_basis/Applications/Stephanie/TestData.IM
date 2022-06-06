@@ -1,0 +1,59 @@
+00000000 03DEF026 -- xor %r30, %r30, %r30
+00000001 03BDE826 -- xor %r29, %r29, %r29
+00000002 039CE026 -- xor %r28, %r28, %r28
+00000003 3C1E000F -- lhi %r30, $(0xFFFFC/0x10000)
+00000004 3C1D000F -- lhi %r29, $(0xFFFFC/0x10000)
+00000005 37DEFFFC -- ori %r30, %r30, $(0xFFFFC%0x10000)
+00000006 37BDFFFC -- ori %r29, %r29, $(0xFFFFC%0x10000)
+00000007 AFBEFFFC -- sw -4(%r29), %r30
+00000008 AFBFFFF8 -- sw -8(%r29), %r31
+00000009 23DDFFF8 -- addi %r29, %r30, $-8
+0000000A 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000000B 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000000C 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000000D 0C000007 -- jal main
+0000000E 00000000 -- nop 
+0000000F 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000010 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000011 AFA10000 -- sw 0(%r29), %r1
+00000012 0C000028 -- jal exit
+00000013 00000000 -- nop 
+00000014 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000015 AFBEFFFC -- sw -4(%r29),%r30
+00000016 AFBF0000 -- sw 0(%r29),%r31
+00000017 2FBE0004 -- subui %r30,%r29,$4
+00000018 2BBD0008 -- subi %r29,%r29,$8
+00000019 F41E00FF -- forecast $30, $255 
+0000001A 3C010000 -- lhi %r1,$0
+0000001B 34210000 -- ori %r1,%r1,$0
+0000001C 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000001D 3C020000 -- lhi %r2,$0
+0000001E 34420000 -- ori %r2,%r2,$0
+0000001F 3C030000 -- lhi %r3,$0
+00000020 34630000 -- ori %r3,%r3,$0
+00000021 3C040000 -- lhi %r4,$0
+00000022 34840001 -- ori %r4,%r4,$1
+00000023 00441FE0 -- HD %r3, %r2, %r4
+00000024 20210001 -- addi %r1,%r1,$1
+00000025 3C02000F -- lhi %r2,$15
+00000026 34424240 -- ori %r2,%r2,$1000000
+00000027 0022D82A -- slt %r27,%r1,%r2
+00000028 1760FFF4 -- bnez %r27,L_main_2
+00000029 00000000 -- nop 
+0000002A 08000002 -- j L_main_3
+0000002B 00000000 -- nop 
+0000002C 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000002D 3C1C0000 -- lhi %r28,$0
+0000002E 379C0000 -- ori %r28,%r28,$0
+0000002F 08000002 -- j L_main_4
+00000030 00000000 -- nop 
+00000031 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000032 8FDF0004 -- lw %r31,4(%r30)
+00000033 27DD0004 -- addui %r29,%r30,$4
+00000034 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000035 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000036 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000037 8FDE0000 -- lw %r30,0(%r30)
+00000038 03E00008 -- jr %r31
+00000039 00000000 -- nop 
+0000003a FFFFFFFF -- halt

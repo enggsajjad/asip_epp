@@ -1,0 +1,346 @@
+	.section	.text
+	.addressing	Word
+_start:
+	xor	r30, r30, r30
+	xor	r29, r29, r29
+	xor	r28, r28, r28
+	nop
+	addui	r30, r30, $3
+	addui	r29, r29, $3
+	nop
+	nop
+	slli	r30, r30, $12
+	slli	r29, r29, $12
+	nop
+	nop
+	nop
+	sw	-4(r29), r30
+	sw	-8(r29), r31
+	addi	r29, r30, $-8
+	jal	main	
+	nop
+	sw	0(r29), r1
+	jal	exit	
+	nop
+main:
+L3:
+	nop
+	nop
+	nop
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	lhi	r1,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( L1	%0x10000)
+	nop
+	nop
+	nop
+	lw	r2,0(r1)	
+	nop
+	nop
+	nop
+L4:
+	lhi	r1,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( L1	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$10	
+	lw	r3,0(r1)	
+	nop
+	nop
+	nop
+	sltu	r27,r3,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L5	
+	nop
+	nop
+	nop
+	j	L10	
+	nop
+	nop
+	nop
+L5:
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$10	
+	nop
+	nop
+	nop
+	subu	r4,r4,r2	
+	nop
+	nop
+	nop
+	andi	r4,r4,$3	
+	nop
+	nop
+	nop
+	addu	r4,r2,r4	
+	nop
+	nop
+	nop
+	sltu	r27,r3,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L6	
+	nop
+	nop
+	nop
+	j	L7	
+	nop
+	nop
+	nop
+L6:
+	lhi	r4,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r4,r4,$( L2	%0x10000)
+	addui	r6,r3,$1	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$10	
+	lw	r5,0(r4)	
+	nop
+	nop
+	nop
+	multu	r3,r3,r7	
+	nop
+	nop
+	nop
+	addu	r3,r5,r3	
+	nop
+	nop
+	nop
+	sw	0(r4),r3	
+	nop
+	nop
+	nop
+	sw	0(r1),r6	
+	j	L4	
+	nop
+	nop
+	nop
+L7:
+	nop
+	nop
+	nop
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$10	
+	nop
+	nop
+	nop
+	sltu	r27,r3,r2	
+	nop
+	nop
+	nop
+	bnez	r27,L8	
+	nop
+	nop
+	nop
+	j	L10	
+	nop
+	nop
+	nop
+L8:
+	lhi	r3,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r3,r3,$( L2	%0x10000)
+	nop
+	nop
+	nop
+L9:
+	nop
+	nop
+	nop
+	lw	r4,0(r1)	
+	nop
+	nop
+	nop
+	addui	r5,r4,$1	
+	addui	r6,r4,$2	
+	addui	r8,r4,$3	
+	addui	r2,r4,$4	
+	lw	r7,0(r3)	
+	nop
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$10	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$10	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$10	
+	nop
+	nop
+	multu	r4,r4,r9	
+	multu	r5,r5,r10	
+	multu	r6,r6,r11	
+	nop
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$10	
+	nop
+	nop
+	nop
+	addu	r4,r7,r4	
+	multu	r8,r8,r9	
+	nop
+	nop
+	nop
+	sw	0(r3),r4	
+	nop
+	nop
+	nop
+	lw	r4,0(r3)	
+	nop
+	nop
+	nop
+	addu	r4,r4,r5	
+	nop
+	nop
+	nop
+	sw	0(r3),r4	
+	nop
+	nop
+	nop
+	lw	r4,0(r3)	
+	nop
+	nop
+	nop
+	addu	r4,r4,r6	
+	nop
+	nop
+	nop
+	sw	0(r3),r4	
+	nop
+	nop
+	nop
+	lw	r4,0(r3)	
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$10	
+	nop
+	nop
+	nop
+	addu	r4,r4,r8	
+	nop
+	nop
+	nop
+	sw	0(r3),r4	
+	nop
+	nop
+	nop
+	sw	0(r1),r2	
+	nop
+	nop
+	nop
+	lw	r2,0(r1)	
+	nop
+	nop
+	nop
+	sltu	r27,r2,r9	
+	nop
+	nop
+	nop
+	bnez	r27,L9	
+	nop
+	nop
+	nop
+	j	L10	
+	nop
+	nop
+	nop
+L10:
+	lhi	r1,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( L2	%0x10000)
+	nop
+	nop
+	nop
+	lw	r28,0(r1)	
+	nop
+	nop
+	nop
+	j	L11	
+	nop
+	nop
+	nop
+L11:
+	nop
+	nop
+	nop
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+exit:
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data
+	.align	4
+L1:
+	.data.32	4294967286
+	.align	4
+L2:
+	.data.32	42

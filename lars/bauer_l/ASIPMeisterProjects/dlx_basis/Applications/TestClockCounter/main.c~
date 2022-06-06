@@ -1,0 +1,25 @@
+#include "clockCounter.h"
+#include "lib_lcd.h"
+
+int globVal;
+
+int main() {
+  int retVal, i;
+
+  writeClockCounter(424242);
+  globVal = readClockCounter();
+  t_print("Read ClockCounter: ");
+  t_printInt(globVal);
+  t_print("\r\n");
+
+  writeClockCounter(0);
+  for (i=0; i<128; i++) {
+    retVal *= i;
+  }
+  globVal = readClockCounter();
+  t_print("Read ClockCounter: ");
+  t_printInt(globVal);
+  t_print("\r\n");
+
+  return retVal;
+}

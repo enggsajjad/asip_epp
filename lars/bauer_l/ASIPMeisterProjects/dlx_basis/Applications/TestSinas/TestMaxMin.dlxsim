@@ -1,0 +1,117 @@
+	.section	.text
+	.addressing	Word
+	.section	.text
+	.addressing	Word
+	;.addressing	Word
+
+	xor	r30, r30, r30
+	xor	r29, r29, r29
+	xor	r28, r28, r28
+	nop
+	lhi	r30, $15
+	lhi	r29, $15
+	nop
+	nop
+	ori	r30, r30, $65532
+	ori	r29, r29, $65532
+	nop
+	nop
+	nop
+	sw	-4(r29), r30
+	sw	-8(r29), r31
+	addi	r29, r30, $-8
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	jal	main	
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	0(r29), r1
+	jal	exit	
+	nop
+main:
+L1:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 9 NOPs removed by reduceNOPs.sh
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$42	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$23	
+
+
+	nop
+	nop
+	nop
+	label:
+
+
+nop
+	maxMin	r2, r3, r1, r2
+	nop
+	nop
+	nop
+
+
+	nop	;;8,10
+	nop	;;8,10
+	add	r1,r2,r1	
+	nop	;;10,14
+	nop	;;10,14
+	nop	;;10,14
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r28,r1,r3	
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L2:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+exit:
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data

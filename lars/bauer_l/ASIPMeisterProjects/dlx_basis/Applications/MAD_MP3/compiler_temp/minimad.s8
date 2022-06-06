@@ -1,0 +1,1412 @@
+	.section	.data
+	;.global	_mp3Stream
+	.align	4
+_mp3Stream:
+	.space	1024
+L1:
+	.data.8	100
+	.data.8	101
+	.data.8	99
+	.data.8	111
+	.data.8	100
+	.data.8	105
+	.data.8	110
+	.data.8	103
+	.data.8	32
+	.data.8	101
+	.data.8	114
+	.data.8	114
+	.data.8	111
+	.data.8	114
+	.data.8	32
+	.space	1
+L2:
+	.data.8	32
+	.data.8	40
+	.space	1
+L3:
+	.data.8	41
+	.data.8	32
+	.data.8	97
+	.data.8	116
+	.data.8	32
+	.data.8	98
+	.data.8	121
+	.data.8	116
+	.data.8	101
+	.data.8	32
+	.data.8	111
+	.data.8	102
+	.data.8	102
+	.data.8	115
+	.data.8	101
+	.data.8	116
+	.data.8	32
+	.space	1
+L4:
+	.data.8	10
+	.space	1
+	.section	.text
+	.addressing	Word
+decode:
+L5:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$72	
+	nop
+	nop
+	nop
+	nop
+	add	%GPR4,%GPR1,%GPR0	
+	add	%GPR9,%GPR2,%GPR0	
+	nop
+	nop
+	nop
+	nop	;;3,5
+	nop	;;3,5
+	subi	%GPR5,%GPR30,$8	
+	lhi	%GPR7,$( error	/0x10000)
+	nop
+	nop
+	nop
+	ori	%GPR7,%GPR7,$( error	%0x10000)
+	lhi	%GPR6,$( output	/0x10000)
+	nop
+	nop
+	nop
+	ori	%GPR6,%GPR6,$( output	%0x10000)
+	lhi	%GPR8,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR8,%GPR8,$4	
+	lhi	%GPR3,$( input	/0x10000)
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$( input	%0x10000)
+	sw	-8(%GPR30),%GPR4	
+	nop	;;10,12
+	nop	;;10,12
+	add	%GPR10,%GPR5,%GPR8	
+	nop	;;12,15
+	nop	;;12,15
+	nop	;;12,15
+	subi	%GPR2,%GPR30,$8	
+	subi	%GPR1,%GPR30,$60	
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	sw	0(%GPR10),%GPR9	
+	lhi	%GPR8,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR8,%GPR8,$0	
+	lhi	%GPR5,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR5,%GPR5,$0	
+	lhi	%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	mad_decoder_init	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop	;;24,26
+	nop	;;24,26
+	subi	%GPR1,%GPR30,$60	
+	nop	;;26,29
+	nop	;;26,29
+	nop	;;26,29
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	mad_decoder_run	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR1,%GPR30,$60	
+	sw	-64(%GPR30),%GPR28	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	mad_decoder_finish	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR28,-64(%GPR30)	
+	nop	;;34,38
+	nop	;;34,38
+	nop	;;34,38
+	nop	;;34,38
+	j	L6	
+	nop
+	nop
+	nop
+	nop
+L6:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+main:
+L7:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	lhi	%GPR1,$( _mp3Stream	/0x10000)
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$( _mp3Stream	%0x10000)
+	nop	;;3,8
+	nop	;;3,8
+	nop	;;3,8
+	nop	;;3,8
+	nop	;;3,8
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$256	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	decode	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;9,14
+	nop	;;9,14
+	nop	;;9,14
+	nop	;;9,14
+	nop	;;9,14
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+	j	L8	
+	nop
+	nop
+	nop
+	nop
+L8:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+input:
+L9:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$12	
+	nop
+	nop
+	nop
+	nop
+	add	%GPR4,%GPR2,%GPR0	
+	nop
+	nop
+	nop
+	nop	;;2,4
+	nop	;;2,4
+	add	%GPR3,%GPR1,%GPR0	
+	sw	-4(%GPR30),%GPR1	
+	nop	;;5,7
+	nop	;;5,7
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	nop	;;7,10
+	nop	;;7,10
+	nop	;;7,10
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	add	%GPR1,%GPR3,%GPR1	
+	nop	;;11,15
+	nop	;;11,15
+	nop	;;11,15
+	nop	;;11,15
+	lw	%GPR1,0(%GPR1)	
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L10	
+	nop
+	nop
+	nop
+	nop
+	j	L11	
+	nop
+	nop
+	nop
+	nop
+L10:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$16	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L12	
+	nop
+	nop
+	nop
+	nop
+L11:
+	lw	%GPR1,-4(%GPR30)	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	add	%GPR3,%GPR1,%GPR0	
+	lw	%GPR2,0(%GPR1)	
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	nop	;;6,10
+	nop	;;6,10
+	nop	;;6,10
+	nop	;;6,10
+	add	%GPR1,%GPR3,%GPR1	
+	nop	;;10,14
+	nop	;;10,14
+	nop	;;10,14
+	nop	;;10,14
+	lw	%GPR3,0(%GPR1)	
+	add	%GPR1,%GPR4,%GPR0	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	mad_stream_buffer	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop	;;16,19
+	nop	;;16,19
+	nop	;;16,19
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;19,21
+	nop	;;19,21
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	nop	;;22,24
+	nop	;;22,24
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	add	%GPR1,%GPR3,%GPR1	
+	nop	;;25,29
+	nop	;;25,29
+	nop	;;25,29
+	nop	;;25,29
+	sw	0(%GPR1),%GPR2	
+	j	L12	
+	nop
+	nop
+	nop
+	nop
+L12:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+scale:
+L13:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,4
+	nop	;;2,4
+	addi	%GPR1,%GPR1,$4096	
+	nop	;;4,7
+	nop	;;4,7
+	nop	;;4,7
+	lhi	%GPR2,$4096	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$268435456	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	sge	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L14	
+	nop
+	nop
+	nop
+	nop
+	j	L15	
+	nop
+	nop
+	nop
+	nop
+L14:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR1,$4095	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$268435455	
+	j	L17	
+	nop
+	nop
+	nop
+L15:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$61440	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-268435456	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	slt	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L16	
+	nop
+	nop
+	nop
+	nop
+	j	L17	
+	nop
+	nop
+	nop
+	nop
+L16:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR1,$61440	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$-268435456	
+	nop
+	nop
+	nop
+L17:
+	srai	%GPR28,%GPR1,$13	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	j	L18	
+	nop
+	nop
+	nop
+	nop
+L18:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+putchar:
+L19:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$12	
+	nop
+	nop
+	nop
+	nop
+	add	%GPR2,%GPR1,%GPR0	
+	nop
+	nop
+	nop
+	nop	;;2,4
+	nop	;;2,4
+	subi	%GPR3,%GPR30,$4	
+	nop	;;4,6
+	nop	;;4,6
+	sb	-4(%GPR30),%GPR2	
+	lhi	%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$1	
+	subi	%GPR1,%GPR30,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	nop	;;9,11
+	nop	;;9,11
+	add	%GPR3,%GPR3,%GPR4	
+	nop	;;11,15
+	nop	;;11,15
+	nop	;;11,15
+	nop	;;11,15
+	sb	0(%GPR3),%GPR2	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	t_print	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;16,21
+	nop	;;16,21
+	nop	;;16,21
+	nop	;;16,21
+	nop	;;16,21
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;21,25
+	nop	;;21,25
+	nop	;;21,25
+	nop	;;21,25
+	j	L20	
+	nop
+	nop
+	nop
+	nop
+L20:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+output:
+L21:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$28	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$6	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$4	
+	lhi	%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$4616	
+	lhi	%GPR5,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR5,%GPR5,$8	
+	add	%GPR1,%GPR3,%GPR1	
+	add	%GPR2,%GPR3,%GPR2	
+	add	%GPR4,%GPR3,%GPR4	
+	add	%GPR3,%GPR3,%GPR5	
+	lhu	%GPR1,0(%GPR1)	
+	nop	;;15,17
+	nop	;;15,17
+	sw	-4(%GPR30),%GPR4	
+	sw	-8(%GPR30),%GPR3	
+	sw	-12(%GPR30),%GPR1	
+	lhu	%GPR1,0(%GPR2)	
+	nop	;;20,24
+	nop	;;20,24
+	nop	;;20,24
+	nop	;;20,24
+	sw	-16(%GPR30),%GPR1	
+	nop
+	nop
+	nop
+L22:
+	lw	%GPR1,-12(%GPR30)	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	add	%GPR2,%GPR1,%GPR0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	subui	%GPR2,%GPR2,$1	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	sw	-12(%GPR30),%GPR2	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	sne	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L23	
+	nop
+	nop
+	nop
+	nop
+	j	L25	
+	nop
+	nop
+	nop
+	nop
+L23:
+	lw	%GPR1,-8(%GPR30)	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	add	%GPR3,%GPR1,%GPR0	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$4	
+	lw	%GPR1,0(%GPR1)	
+	nop	;;6,9
+	nop	;;6,9
+	nop	;;6,9
+	add	%GPR2,%GPR3,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	-8(%GPR30),%GPR2	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	scale	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	add	%GPR1,%GPR28,%GPR0	
+	sw	-20(%GPR30),%GPR28	
+	nop	;;16,19
+	nop	;;16,19
+	nop	;;16,19
+	andi	%GPR1,%GPR1,$255	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	putchar	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR1,-20(%GPR30)	
+	nop	;;21,25
+	nop	;;21,25
+	nop	;;21,25
+	nop	;;21,25
+	srai	%GPR1,%GPR1,$8	
+	nop	;;25,29
+	nop	;;25,29
+	nop	;;25,29
+	nop	;;25,29
+	andi	%GPR1,%GPR1,$255	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	putchar	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;30,32
+	nop	;;30,32
+	lw	%GPR2,-16(%GPR30)	
+	nop	;;32,35
+	nop	;;32,35
+	nop	;;32,35
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$2	
+	nop	;;35,39
+	nop	;;35,39
+	nop	;;35,39
+	nop	;;35,39
+	seq	%GPR27,%GPR2,%GPR1	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L24	
+	nop
+	nop
+	nop
+	nop
+	j	L22	
+	nop
+	nop
+	nop
+	nop
+L24:
+	lw	%GPR1,-4(%GPR30)	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	add	%GPR3,%GPR1,%GPR0	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$4	
+	lw	%GPR1,0(%GPR1)	
+	nop	;;6,9
+	nop	;;6,9
+	nop	;;6,9
+	add	%GPR2,%GPR3,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	-4(%GPR30),%GPR2	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	scale	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	add	%GPR1,%GPR28,%GPR0	
+	sw	-20(%GPR30),%GPR28	
+	nop	;;16,19
+	nop	;;16,19
+	nop	;;16,19
+	andi	%GPR1,%GPR1,$255	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	putchar	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR1,-20(%GPR30)	
+	nop	;;21,25
+	nop	;;21,25
+	nop	;;21,25
+	nop	;;21,25
+	srai	%GPR1,%GPR1,$8	
+	nop	;;25,29
+	nop	;;25,29
+	nop	;;25,29
+	nop	;;25,29
+	andi	%GPR1,%GPR1,$255	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	putchar	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	j	L22	
+	nop
+	nop
+	nop
+L25:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L26	
+	nop
+	nop
+	nop
+	nop
+L26:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+error:
+L27:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$16	
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR30),%GPR2	
+	nop
+	nop
+	nop
+	sw	-8(%GPR30),%GPR1	
+	lhi	%GPR1,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$( L1	%0x10000)
+	nop	;;4,9
+	nop	;;4,9
+	nop	;;4,9
+	nop	;;4,9
+	nop	;;4,9
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	t_print	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;9,11
+	nop	;;9,11
+	lw	%GPR2,-4(%GPR30)	
+	nop	;;11,14
+	nop	;;11,14
+	nop	;;11,14
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$60	
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+	add	%GPR1,%GPR2,%GPR1	
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+	lw	%GPR1,0(%GPR1)	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	printInt	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lhi	%GPR1,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$( L2	%0x10000)
+	nop	;;24,29
+	nop	;;24,29
+	nop	;;24,29
+	nop	;;24,29
+	nop	;;24,29
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	t_print	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR1,-4(%GPR30)	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	mad_stream_errorstr	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	add	%GPR1,%GPR28,%GPR0	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	t_print	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lhi	%GPR1,$( L3	/0x10000)
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$( L3	%0x10000)
+	nop	;;34,39
+	nop	;;34,39
+	nop	;;34,39
+	nop	;;34,39
+	nop	;;34,39
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	t_print	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;39,41
+	nop	;;39,41
+	lw	%GPR3,-4(%GPR30)	
+	lw	%GPR1,-8(%GPR30)	
+	nop	;;42,44
+	nop	;;42,44
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$20	
+	nop	;;44,46
+	nop	;;44,46
+	lw	%GPR1,0(%GPR1)	
+	nop	;;46,48
+	nop	;;46,48
+	add	%GPR2,%GPR3,%GPR2	
+	nop	;;48,52
+	nop	;;48,52
+	nop	;;48,52
+	nop	;;48,52
+	lw	%GPR2,0(%GPR2)	
+	nop	;;52,56
+	nop	;;52,56
+	nop	;;52,56
+	nop	;;52,56
+	sub	%GPR1,%GPR2,%GPR1	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	printInt	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lhi	%GPR1,$( L4	/0x10000)
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$( L4	%0x10000)
+	nop	;;58,63
+	nop	;;58,63
+	nop	;;58,63
+	nop	;;58,63
+	nop	;;58,63
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	t_print	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;63,68
+	nop	;;63,68
+	nop	;;63,68
+	nop	;;63,68
+	nop	;;63,68
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$17	
+	nop	;;68,72
+	nop	;;68,72
+	nop	;;68,72
+	nop	;;68,72
+	j	L28	
+	nop
+	nop
+	nop
+	nop
+L28:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop

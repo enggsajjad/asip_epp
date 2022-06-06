@@ -1,0 +1,3 @@
+#define COSY
+
+int globalVariable;

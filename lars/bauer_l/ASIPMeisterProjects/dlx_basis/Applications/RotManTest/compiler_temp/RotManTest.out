@@ -1,0 +1,161 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.section	.data
+2				.section	.text
+3				.addressing	Word
+4				.section	.text
+5				.addressing	Word
+6				;.addressing	Word
+7			
+8	0000	03def026		xor	%r30, %r30, %r30
+9	0001	03bde826		xor	%r29, %r29, %r29
+10	0002	039ce026		xor	%r28, %r28, %r28
+11	0003	3c1e000f		lhi	%r30, $(0xFFFFC/0x10000)
+12	0004	3c1d000f		lhi	%r29, $(0xFFFFC/0x10000)
+13	0005	37defffc		ori	%r30, %r30, $(0xFFFFC%0x10000)
+14	0006	37bdfffc		ori	%r29, %r29, $(0xFFFFC%0x10000)
+15	0007	afbefffc		sw	-4(%r29), %r30
+16	0008	afbffff8		sw	-8(%r29), %r31
+17	0009	23ddfff8		addi	%r29, %r30, $-8
+18	000a	0c000005		jal	main	
+19	000b	00000000		nop
+20	000c	afa10000		sw	0(%r29), %r1
+21	000d	0c00003b		jal	exit
+22	000e	00000000		nop
+23			
+24				;.addressing	Word
+25			main:
+26			L_RotManTest_1:
+27				; Automatically 1 NOPs removed by reduceNOPs.sh
+28	000f	afbefffc		sw	-4(%r29),%r30	
+29	0010	afbf0000		sw	0(%r29),%r31	
+30	0011	2fbe0004		subui	%r30,%r29,$4	
+31	0012	2bbd0008		subi	%r29,%r29,$8	
+32				; Automatically 9 NOPs removed by reduceNOPs.sh
+33	0013	3c030000		lhi	%r3,$0	
+34				; Automatically 1 NOPs removed by reduceNOPs.sh
+35	0014	34630000		ori	%r3,%r3,$0	
+36	0015	3c020000		lhi	%r2,$0	
+37				; Automatically 1 NOPs removed by reduceNOPs.sh
+38	0016	34420005		ori	%r2,%r2,$5	
+39	0017	3c1c0000		lhi	%r28,$0	
+40				; Automatically 1 NOPs removed by reduceNOPs.sh
+41	0018	379c0000		ori	%r28,%r28,$0	
+42	0019	00600820		add	%r1,%r3,%r0	
+43			L_RotManTest_2:
+44	001a	00622020		add	%r4,%r3,%r2	
+45				; Automatically 1 NOPs removed by reduceNOPs.sh
+46	001b	0024d82a		slt	%r27,%r1,%r4	
+47	001c	17600004		bnez	%r27,L_RotManTest_3	
+48	001d	00000000		nop
+49				; Automatically 1 NOPs removed by reduceNOPs.sh
+50	001e	08000023		j	L_RotManTest_6	
+51	001f	00000000		nop
+52				; Automatically 1 NOPs removed by reduceNOPs.sh
+53			L_RotManTest_3:
+54	0020	f4000001		forecast	$0, $1 	
+55	0021	f4070001		forecast	$7, $1 	
+56				; Automatically 2 NOPs removed by reduceNOPs.sh
+57	0022	3c040000		lhi	%r4,$0	
+58				; Automatically 1 NOPs removed by reduceNOPs.sh
+59	0023	34840000		ori	%r4,%r4,$0	
+60			L_RotManTest_4:
+61				; Automatically 1 NOPs removed by reduceNOPs.sh
+62	0024	3c050000		lhi	%r5,$0	
+63				; Automatically 1 NOPs removed by reduceNOPs.sh
+64	0025	34a50000		ori	%r5,%r5,$0	
+65	0026	3c060000		lhi	%r6,$0	
+66				; Automatically 1 NOPs removed by reduceNOPs.sh
+67	0027	34c60000		ori	%r6,%r6,$0	
+68	0028	3c070000		lhi	%r7,$0	
+69				; Automatically 1 NOPs removed by reduceNOPs.sh
+70	0029	34e70000		ori	%r7,%r7,$0	
+71	002a	3c080000		lhi	%r8,$0	
+72				; Automatically 1 NOPs removed by reduceNOPs.sh
+73	002b	35080000		ori	%r8,%r8,$0	
+74			
+75			
+76				;; SINAS: SAD_16()
+77	002c	04a641c6		SAD16	%r7, %r5, %r6, %r8
+78			
+79				; Automatically 1 NOPs removed by reduceNOPs.sh
+80	002d	3c070000		lhi	%r7,$0	
+81				; Automatically 1 NOPs removed by reduceNOPs.sh
+82	002e	34e70000		ori	%r7,%r7,$0	
+83	002f	3c060000		lhi	%r6,$0	
+84				; Automatically 1 NOPs removed by reduceNOPs.sh
+85	0030	34c60000		ori	%r6,%r6,$0	
+86	0031	3c050000		lhi	%r5,$0	
+87				; Automatically 1 NOPs removed by reduceNOPs.sh
+88	0032	34a50000		ori	%r5,%r5,$0	
+89			
+90			
+91				;; SINAS: SATD_4x4()
+92	0033	04e62943		satd4x4	%r5, %r7, %r6, %r5
+93			
+94	0034	20840001		addi	%r4,%r4,$1	
+95	0035	3c050000		lhi	%r5,$0	
+96				; Automatically 1 NOPs removed by reduceNOPs.sh
+97	0036	34a50064		ori	%r5,%r5,$100	
+98				; Automatically 1 NOPs removed by reduceNOPs.sh
+99	0037	0085d82a		slt	%r27,%r4,%r5	
+100	0038	1760ffec		bnez	%r27,L_RotManTest_4	
+101	0039	00000000		nop
+102				; Automatically 1 NOPs removed by reduceNOPs.sh
+103	003a	08000002		j	L_RotManTest_5	
+104	003b	00000000		nop
+105				; Automatically 1 NOPs removed by reduceNOPs.sh
+106			L_RotManTest_5:
+107	003c	f4000000		forecast	$0, $0 	
+108	003d	f4070000		forecast	$7, $0 	
+109	003e	20210001		addi	%r1,%r1,$1	
+110	003f	0bffffdb		j	L_RotManTest_2	
+111	0040	00000000		nop
+112			L_RotManTest_6:
+113	0041	08000002		j	L_RotManTest_7	
+114	0042	00000000		nop
+115				; Automatically 1 NOPs removed by reduceNOPs.sh
+116			L_RotManTest_7:
+117				; Automatically 1 NOPs removed by reduceNOPs.sh
+118	0043	8fdf0004		lw	%r31,4(%r30)	
+119	0044	27dd0004		addui	%r29,%r30,$4	
+120	0045	8fde0000		lw	%r30,0(%r30)	
+121	0046	03e00008		jr	%r31	
+122	0047	00000000		nop
+123			exit:
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+exit	.text	0048	Label	48	123 
+L_RotManTest_1	.text	000f	Label	f	26 
+L_RotManTest_2	.text	001a	Label	1a	43 
+L_RotManTest_3	.text	0020	Label	20	53 
+L_RotManTest_4	.text	0024	Label	24	60 
+L_RotManTest_5	.text	003c	Label	3c	106 
+L_RotManTest_6	.text	0041	Label	41	112 
+L_RotManTest_7	.text	0043	Label	43	116 
+main	.text	000f	Label	f	25 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	48 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		0 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

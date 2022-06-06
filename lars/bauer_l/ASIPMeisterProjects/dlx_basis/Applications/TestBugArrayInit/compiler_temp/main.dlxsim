@@ -1,0 +1,50 @@
+	.section	.text
+	.addressing	Word
+main:
+L1:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	nop
+	subi	r29,r29,$72	
+	nop
+	nop
+	nop
+	; Automatically 4 NOPs removed by reduceNOPs.sh
+	subi	r28,r30,$64	
+	nop	;;2,10
+	nop	;;2,10
+	nop	;;2,10
+	; Automatically 5 NOPs removed by reduceNOPs.sh
+	j	L2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L2:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data

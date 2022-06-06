@@ -1,0 +1,138 @@
+// @(#)peascc_v3.edl	1.2 03/01/20
+// 
+// COPYRIGHT NOTICE (NOT TO BE REMOVED):
+// 
+// This file, or parts of it, or modified versions of it, may not be copied,
+// reproduced or transmitted in any form, including reprinting, translation,
+// photocopying or microfilming, or by any means, electronic, mechanical or
+// otherwise, or stored in a retrieval system, or used for any purpose, without
+// the prior written permission of all Owners unless it is explicitly marked as
+// having Classification `Public'.
+//   Classification: Restricted.
+// 
+// Owners of this file give notice:
+//   (c) Copyright 1996-2000 ACE Associated Compiler Experts bv
+//   (c) Copyright 1993-1996 ACE Associated Computer Experts bv
+// All rights, including copyrights, reserved.
+// 
+// This file contains or may contain restricted information and is UNPUBLISHED
+// PROPRIETARY SOURCE CODE OF THE Owners.  The Copyright Notice(s) above do not
+// evidence any actual or intended publication of such source code.  This file
+// is additionally subject to the conditions listed in the RESTRICTIONS file
+// and is with NO WARRANTY.
+// 
+// END OF COPYRIGHT NOTICE
+
+// true engine always returns true (used to build if/then construct)
+//OPT:		*.true:status:1
+//OPT:		*.uswitch:encodetable
+//OPT:		*.conevun:option:-f
+//OPT:		*.conevpr:option:-f
+//OPT-t:        *.ndump:option:-t
+
+// check/dump
+engine class dump (in u: mirUnit, t: TarDes)
+//OPT-d<pass>:		*.mile<pass>.nomile:status:0
+//OPT-d<pass>:		*.mile<pass>.dump.nodump:status:0
+//OPT-d*:		*.nomile:status:0
+//OPT-d*:		*.nodump:status:0
+{
+	engine	true:	test;
+	engine	nodump:	test;
+loop
+exit	nodump		()	//OPT:	*.dump.nodump:status:1
+	ndump		(u, t)	
+exit	true		()
+}
+engine class mile (in u: mirUnit, t: TarDes)
+{
+	engine	true:	test;
+	engine	nomile:	test;
+loop
+	echo		()
+exit	nomile		()	//OPT:		*.mile.nomile:status:1
+	dump		(u, t)	//OPT-check:	*.mile.nomile:status:0
+	checkmir	(u)
+	dagex		(u)
+exit	true		()
+}
+
+
+// init at very start
+engine class init (out u: mirUnit; out t: TarDes)
+{
+pipeline
+//OPT:		*.utinit:source:builtin:peascg_v3.tdf
+// Force normal-C behaviour, unsigned arithmetic is Modulo arithmetic
+	utinit		(u, t)
+}
+
+
+// cfg edges-repair
+engine class cfgrepair (IN u: mirUnit)
+{
+	region p{}	: mirProcGlobal;
+pipeline
+	unit2proc	(u, p{})
+	cfgedges	(p)
+}
+
+//
+// Composite engine to do restrict base class analysis
+//
+ENGINE CLASS setrestrict_un(IN u: mirUnit)
+{
+	REGION	p{}:	mirProcGlobal;
+PIPELINE
+	unit2proc	(u, p{})
+	setrestrict	(p)
+}
+
+//
+// Composite engine to correct the CFG edges in the IR
+//
+ENGINE CLASS makecfg(IN u: mirUnit)
+{
+	REGION	p{}:	mirProcGlobal;
+PIPELINE
+	unit2proc	(u, p{})
+	cfgedges	(p)
+}
+
+// frontend
+engine class frontend (in u: mirUnit, t: TarDes)
+{
+	ENGINE	pponly:	test;
+	ENGINE	true:	test;
+LOOP
+	// c parser - does not produce CFG edges
+	anc0		(u, t)
+		//OPT:		*.anc0:option:-Hbuiltin:intrinsics.h
+		//OPT+:		*.anc0:source:<path>
+		//OPT-X <val>:	*.anc0:xvalue:<val>
+		//OPT-I<path>:  *.anc0:option:-I<path>
+		//OPT-D<macro>: *.anc0:option:-D<macro>
+		//OPT-U<macro>: *.anc0:option:-U<macro>
+		//OPT+:		*.anc0:ppoutput:<base>.i
+		//OPT-E:	*.anc0:option:-P
+		//OPT-restrict:	*.anc0:xvalue:restrict=1
+		//OPT:		*.anc0:wchar_t:char
+		//OPT:		*.anc0:ptrdiff_t:long
+		//OPT:		*.anc0:size_t:unsigned long
+		//OPT:		*.anc0:xvalue:stricts=0
+		//OPT:		*.anc0:xvalue:oldstyle=1
+		//OPT:		*.anc0:xvalue:warnings=1
+
+		//OPT-Wstrict:	*.anc0:xvalue:warnings=1
+		//OPT-Wstrict:	*.anc0:xvalue:stricts=1
+
+		//OPT-Wansi:	*.anc0:xvalue:warnings=1
+		//OPT-Wansi:	*.anc0:xvalue:oldstyle=0
+
+		//OPT-Wall:	*.anc0:xvalue:stricts=1
+		//OPT-Wall:	*.anc0:xvalue:warnings=1
+		//OPT-Wall:	*.anc0:xvalue:oldstyle=0
+
+		//OPT-g:	*.anc0:option:-g
+		//OPT-g:	*.ndump:option:-g
+

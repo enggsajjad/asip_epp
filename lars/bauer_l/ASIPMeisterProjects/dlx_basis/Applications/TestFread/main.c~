@@ -1,0 +1,125 @@
+#ifndef COSY
+#include <stdio.h>
+#include <stdlib.h>
+#endif
+
+#include "string.h"
+#include "fread.h"
+
+#define DEBUG 1
+
+int main () {
+  int zaehler;
+  char userarray1[4];
+  char userarray2[4];
+  struct MYFILE* file1;
+  struct MYFILE* file2;
+  
+  file1 = myfopen("foo.txt", "r");
+  file2 = myfopen("ethanol.txt", "r");
+
+
+# if DEBUG
+    printf("fread1-aufruf\n");
+# endif
+    myfread(userarray1, 1, 4, file1);
+//    printf("foo.txt lesend geoeffnet\n");
+for (zaehler=0; zaehler<4; zaehler++) {
+# if DEBUG
+    printf("daten, foo.txt: %d, ",userarray1[zaehler]);
+    printf("Zaehlerstand: %d, \n", zaehler);
+# endif
+    }
+
+# if DEBUG
+    printf("fread2-aufruf\n");
+# endif
+    myfread(userarray2, 1, 4, file2);
+//    printf("ethanol.txt lesend geoeffnet\n");
+# if DEBUG
+for (zaehler=0; zaehler<4; zaehler++) {
+    printf("daten, etoh original: %d, ",userarray2[zaehler]);
+    printf("Zaehlerstand: %d, \n", zaehler);
+    }
+# endif    
+    myfclose(file2);
+
+file2 = myfopen("ethanol.txt", "w");
+# if DEBUG
+    printf("fwrite1-aufruf\n");
+# endif
+    myfwrite(userarray1, 1, 4, file2);
+//    printf("ethanol.txt schreibend geoeffnet\n");
+
+    myfclose(file1);
+    myfclose(file2);
+
+
+//for (zaehler=0; zaehler<4; zaehler++) {
+//    userarray1[zaehler]=0;
+//    }
+
+    file1 = myfopen("ethanol.txt", "r");
+# if DEBUG
+    printf("fread3-aufruf\n");
+# endif
+    myfread(userarray2, 1, 4, file1);
+# if DEBUG
+for (zaehler=0; zaehler<4; zaehler++) {
+    printf("daten, etoh neu: %d, ",userarray1[zaehler]);
+    printf("Zaehlerstand: %d, \n", zaehler);
+    }
+# endif
+    for(zaehler = 0; zaehler < 4; zaehler++) {
+	if( userarray1[zaehler] == userarray2[zaehler] )
+    	    continue;
+	else {
+	    printf("Unterschied an Position %d; userarray1 %d; userarray2 %d\n",zaehler, userarray1[zaehler], userarray2[zaehler]);
+	    return 999;
+	    }
+	}
+    myfclose(file1);
+printf("test passed!\n");
+  file1 = myfopen("chocolatebar.txt", "r");
+  file2 = myfopen("benzol.txt", "w");
+# if DEBUG
+  printf("myfopen1\n");
+# endif
+  int number;
+  while ( (number=myfread(userarray1, 1, 4, file1)) != 0 ) myfwrite(userarray1, 1, number, file2);
+  myfclose(file1);
+  myfclose(file2);
+  
+  file1 = myfopen("chocolatebar.txt", "r");
+  file2 = myfopen("benzol.txt", "r");
+# if DEBUG
+  printf("myfopen2\n");
+# endif
+  while ( (number=myfread(userarray1, 1, 4, file1)) != 0 ) {
+# if DEBUG
+    for (zaehler=0; zaehler<4; zaehler++) {
+    printf("daten, choco  neu: %d, ",userarray1[zaehler]);
+    printf("Zaehlerstand: %d, \n", zaehler);
+    }
+# endif    
+  if (myfread(userarray2, 1, 4, file2) != number) {
+	 printf("ERROR: Dateien unterschiedlich lang\n");
+	return 42;
+    }
+# if DEBUG
+    for (zaehler=0; zaehler<4; zaehler++) {
+    printf("daten, benzol  neu: %d, ",userarray2[zaehler]);
+    printf("Zaehlerstand: %d, \n", zaehler);
+    }
+# endif
+    if (memcmp(userarray1, userarray2, 4) != 0) {
+	printf("ERROR: Kopierfehler!\n");
+	return 23;
+    }
+  }
+  myfclose(file1);
+  myfclose(file2);
+printf("test2 passed!\n");
+
+return 0;
+}

@@ -1,0 +1,28 @@
+#!/bin/sh
+# (c)2003, PEAS Project
+
+cd meister
+
+if [ ! -d $2.sw ]; 
+then
+  mkdir $2.sw
+fi
+
+cd $2.sw
+
+if [ -f ../structure.arch ];
+then 
+  mv ../structure.arch .
+fi
+
+echo "Starting SW tools generation." 1> ../$3
+echo "" 1>> ../$3
+swtools_translator -i ../$2.tr -mod ../$2.mod 2>> ../$3
+
+if [ $? == 0 ];
+then
+  echo "Successfully Generated." 1>> ../$3
+fi
+
+cd ..
+

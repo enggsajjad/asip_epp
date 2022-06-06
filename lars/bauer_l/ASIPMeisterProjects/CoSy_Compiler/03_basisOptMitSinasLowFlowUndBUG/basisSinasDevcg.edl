@@ -1,0 +1,137 @@
+// @(#)basisSinasDevcg.edl	1.1 06/06/07
+// 
+// COPYRIGHT NOTICE (NOT TO BE REMOVED):
+// 
+// This file, or parts of it, or modified versions of it, may not be copied,
+// reproduced or transmitted in any form, including reprinting, translation,
+// photocopying or microfilming, or by any means, electronic, mechanical or
+// otherwise, or stored in a retrieval system, or used for any purpose, without
+// the prior written permission of all Owners unless it is explicitly marked as
+// having Classification `Public'.
+//   Classification: Restricted.
+// 
+// Owners of this file give notice:
+//   (c) Copyright 2001-2003 ACE Associated Computer Experts bv
+//   (c) Copyright 2001-2003 ACE Associated Compiler Experts bv
+// All rights, including copyrights, reserved.
+// 
+// This file contains or may contain restricted information and is UNPUBLISHED
+// PROPRIETARY SOURCE CODE OF THE Owners.  The Copyright Notice(s) above do not
+// evidence any actual or intended publication of such source code.  This file
+// is additionally subject to the conditions listed in the RESTRICTIONS file
+// and is with NO WARRANTY.
+// 
+// END OF COPYRIGHT NOTICE
+
+ENGINE CLASS schedregion(IN r: lirBBRegion; IN p: mirProcGlobal; IN u: mirUnit)
+{
+	ENGINE	ddgclean	: ddg;
+		//OPT:*.ddgclean:clean
+PIPELINE
+	ddg		(r, p, u)
+	sched		(r, p, u)
+	ddgclean	(r, p, u)
+}
+
+
+ENGINE CLASS schedproc(IN p: mirProcGlobal; IN u: mirUnit)
+{
+	REGION r[] : lirBBRegion;
+PIPELINE
+	proc2region     (p, r[])
+	schedregion	(r, p, u)
+	sinkregion	(r)
+}
+
+//OPT:		*.codegenproc.dumplir:skip
+//OPT:		*.codegenproc.dl1:output:dl1.out
+//OPT:		*.codegenproc.dl2:output:dl2.out
+//OPT:		*.codegenproc.dl3:output:dl3.out
+//OPT:		*.codegenproc.dl4:output:dl4.out
+//OPT:		*.codegenproc.dl5:output:dl5.out
+//OPT-dlir:	*.codegenproc.dumplir:skip:0
+
+ENGINE CLASS codegenproc(IN p: mirProcGlobal; IN u: mirUnit; IN t: TarDes)
+{
+	ENGINE scheduler	: schedproc;
+	ENGINE packer		: schedproc;
+	ENGINE dl1		: dumplir;
+	ENGINE dl2		: dumplir;
+	ENGINE dl3		: dumplir;
+	ENGINE dl4		: dumplir;
+	ENGINE dl5		: dumplir;
+
+
+PIPELINE
+	match		(p)
+	dl1		(p, u, t)
+	scheduler	(p, u)
+	dl2		(p, u, t)
+	gra		(p, u, t)
+	dl3		(p, u, t)
+	reload2move	(p)
+	dl4		(p, u, t)
+	rulestat	(p, u, t)
+	packer		(p, u)
+	dl5		(p, u, t)
+	emit		(p, u, t)
+	cleanlir	(p, u, t)
+}
+
+ENGINE CLASS codegen(IN u: mirUnit; IN t: TarDes)
+{
+	REGION p{}	: mirProcGlobal;
+
+PIPELINE
+	unit2proc	(u, p{})
+	codegenproc	(p, u, t)
+}
+
+ENGINE CLASS lower(IN u: mirUnit; IN t: TarDes)
+{
+	REGION p{}		: mirProcGlobal;
+
+PIPELINE
+	unit2proc	(u, p{})
+	blockorder	(p)
+	lowercom	(p, u, t)
+		//OPT:		*.lower.lowerpfc:inhibit:100000
+		//OPT:		*.lower.lowerpfc:inhibit:100001
+	dismempr	(p, u, t)
+	lowerpfc	(p, u, t)
+	lowerboolval	(p, u, t)
+	lowerbitfield	(p, u, t)
+		//OPT:		*.lower.lowerbitfield:minsize:32
+	initlir		(p, u, t)
+	setpsr		(p, u, t)
+	mkxir		(p, u, t)
+	allocpr		(p, u, t)
+}
+
+
+ENGINE CLASS basisSinasDevcg(IN u:mirUnit; IN t:TarDes)
+{
+	ENGINE	dump1	: ndump;
+	ENGINE	dump2	: ndump;
+PIPELINE
+	dump1		(u, t)
+	rcontab		(u, t)
+	dismemun	(u, t)
+	conevun		(u, t)
+	asmparse	(u)
+	asmdump		(u, t)
+//	float2fpe	(u, t)
+//		// added by sascha - DLX is of that endianess
+//		//OPT:		*.float2fpe:big_endian
+	lowerstret	(u, t)
+	alloctp		(u, t)
+	ccreg		(u, t)
+	paroffset	(u, t)
+	noregun		(u)
+	lower		(u, t)
+	dump2		(u, t)
+	datagen		(u, t)
+		//OPT-dcg:	*.basisSinasDevcg.dump1:output:dumpcg1.out
+		//OPT-dcg:	*.basisSinasDevcg.dump2:output:dumpcg2.out
+	codegen		(u, t)
+}

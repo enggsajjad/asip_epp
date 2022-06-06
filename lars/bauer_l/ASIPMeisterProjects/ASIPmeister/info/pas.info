@@ -1,0 +1,1706 @@
+Info file: pas.info,    -*-Text-*-
+produced by `texinfo-format-buffer'
+from file `pas.texi'
+using `texinfmt.el' version 2.38 of 3 July 1998.
+
+
+
+START-INFO-DIR-ENTRY
+
+* PAS: (pas).                     PAS - Meta Assembler
+END-INFO-DIR-ENTRY
+
+
+
+
+File: pas.info, Node: Top, Next: Intro, Prev: (dir), Up: (dir)
+
+PAS - メタアセンブラユーザーズマニュアル
+****************************************
+
+本書は，PAS メタアセンブラのユーザーズ・マニュアルです．PAS バージョン 
+0.3 に対応しています．
+
+* Menu:
+
+* Intro::		PAS の概要
+* Sample Session::	PAS の実行例
+* Description File::	アセンブル規則記述ファイル
+* Syntax::      	アセンブリ言語の文法
+* Addressing Mode::	アドレッシングモード
+* Directives::		アセンブラ制御命令
+* Invocation::		pas の起動方法
+
+
+
+File: pas.info, Node: Intro, Next: Sample Session, Prev: Top, Up: Top
+
+PAS の概要
+**********
+
+メタアセンブラ PAS は，構成変更可能なアセンブラです．変更可能なパラメー
+タは，レジスタクラス，命令形式などの命令フォーマット，1バイトのビット数，
+エンディアン，アドレッシング単位(バイト，ワード) などからなります．これ
+らのパラメータは，アセンブル規則記述ファイルと呼ばれる，命令フォーマット
+を記述するファイルや，アセンブラの制御命令(疑似命令)，コマンド行オプショ
+ンなどで指定することができます．
+
+アセンブル規則記述ファイルについての詳細は *Note Description File::.  ア
+センブラ制御命令については *Note Directives::.  コマンド行オプションにつ
+いては *Note Invocation::.
+
+
+
+File: pas.info, Node: Sample Session, Next: Description File, Prev: Intro, Up: Top
+
+PAS の実行例
+************
+
+     pas -des foo.des -src a.s
+
+ここで，foo.des がアセンブル規則記述ファイル，a.s がアセンブリソースファ
+イルです．a.s が
+
+             .data.24 -1
+             .data.32 128
+             .data.16 5
+     L4:
+     L5:
+             .data.24 0123
+             .data.24 0xabcd
+
+となっていた場合，次のようなリスティング出力が得られます．
+
+     ****** Source Program List ******
+     LineNo  LC      Code            Source Program 
+     1       0000    ffffff          .data.24 -1
+     2       0003    00000080                .data.32 128
+     3       0007    0005            .data.16 5
+     4                       L4:
+     5                       L5:
+     6       0009    000053          .data.24 0123
+     7       000c    00abcd          .data.24 0xabcd
+
+
+     ******** Cross Reference List ********
+     Defined Symbol
+     name    section lc      attr    value   lineno 
+     L4      .text   0009    Label   9       4 
+     L5      .text   0009    Label   9       5 
+
+
+     Undefined Symbol
+     name    section lc      attr    value   lineno 
+
+
+     Multiple Defined Symbol
+     name    section lc      attr    value   lineno 
+
+
+     ******* Section Data List ******* 
+     Sec     Attr            Size
+     .text   Writable        f 
+     addr_space : 16 
+     addressing : Byte 
+     bitwidth per byte : 8 
+     word alignment : 4 
+     .data   Data            0 
+     addr_space : 16 
+     addressing : Byte 
+     bitwidth per byte : 8 
+     word alignment : 4 
+
+
+
+
+
+File: pas.info, Node: Description File, Next: Syntax, Prev: Sample Session, Up: Top
+
+アセンブル規則記述ファイル
+**************************
+
+アセンブル規則記述ファイルには以下の三つを記述します．
+
+
+   * レジスタクラス定義
+
+     レジスタをグループ分けし，それをクラスを定義します．クラス毎に，そ
+     のクラスに属するレジスタの名前と，そのレジスタの機械語コード中の表
+     現の対応を記述します．
+
+          Resource_tbl{
+          	"gpr"{
+          		{"GPR0","00000"},
+          		{"GPR1","00001"},
+                          ...
+          		{"GPR31","11111"}
+          	}
+          }
+
+     これは，MIPS R3000 用のアセンブル規則記述ファイルから抜き出したもの
+     です．この例では，*gpr* というレジスタクラスを定義しており，このク
+     ラスには，GPR0, GPR1, ..., GPR31 というレジスタが属していることを表
+     しています．例えば，GPR1 というレジスタの機械語コード中での表現は，
+     00001 となります．
+
+   * 命令形式定義機械語命令の形式を定義します．命令長，オペランドの数，
+     オペランド形式を定義します．
+
+     同様に MIPS R3000 用の記述から命令形式定義の例を見てみます．
+
+          Instruction_type{
+          	type{
+          		"Itype"{
+          			width{"31","0"},
+          			otype{
+          				"ItypeO"{
+          					"RDirect"{"Resource"{"rt","gpr"}},
+          					"RDirect"{"Resource"{"rs","gpr"}},
+          					"Immediate_data"{"Immediate"{"immediate",""}}
+          				},
+          				"ItypeO2"{
+          					"RDirect"{"Resource"{"rt","gpr"}},
+          					"RDirect"{"Resource"{"rs","gpr"}},
+          					"Absolute_address"{"Symbol"{"immediate",""}}
+          				},
+                                          ...
+                                  }
+                          }
+                   }
+          }
+
+     この部分では，Itype という名前の命令形式を定義しています．Itype と
+     いう命令形式の命令長は，`width{"31","0"}' により，32ビットになりま
+     す．otype に，Itype 形式で使用できるオペランドの組を定義します．こ
+     の場合，ItypeO というオペランド形式は，三つのオペランドからなり，汎
+     用レジスタ，汎用レジスタ，即値という組合せになります．AS では，アド
+     レッシングモードについては，一般に良く使用されている形式をあらかじ
+     め定義してあります．RDirect はレジスタ直接，Immediate_data は，即値
+     を表します．gpr は，レジスタクラス定義で定義されているレジスタクラ
+     ス名です．
+
+
+   * 命令定義個々の機械語命令を定義します．どの命令形式に属するか，フィー
+     ルドの幅，位置，用途(オペコードかオペランドか)などを記述します．
+
+     例として，やはり，MIPS R3000 の ADDI 命令の定義を見てみます．
+
+          Instruction{
+          	"ADDI"{
+          		type{"Itype"{otype{"ItypeO"}}},
+          		"OP-code"{"binary"{"001000"},width{"31","26"}},
+          		"Operand"{"name"{"rs"},width{"25","21"}},
+          		"Operand"{"name"{"rt"},width{"20","16"}},
+          		"Operand"{"name"{"immediate"},width{"15","0"}}
+          	},
+                  ...
+          }
+
+     これを見ると，ADDI の命令形式は Itype であり，オペランド形式は
+     ItypeO であることが分かります．OP-code や Operand は命令の各フィー
+     ルドを記述します．命令の 31ビット〜26ビットがオペコードを表し，ADDI 
+     の場合はその値が二進法で 00100 になります．オペランドは三つ取り，一
+     番目が 25ビット〜21ビットで表されます．rs という名前は, 命令形式定
+     義に現れており，それを見ると，レジスタ直接で，使用するレジスタは 
+     gpr クラスに所属するということになります．二番目のオペランドは 20 
+     ビット〜16ビットで，やはり gpr クラスのレジスタを表します．三番目は，
+     15ビット〜0ビットで，16ビットの即値を表すということが分かります．
+
+
+アセンブル規則記述ファイルには，それぞれの機械語命令が具体的にどのような
+動作をするかまでは記述しません．あくまでもアセンブルを行なうのに必要な情
+報に限られます．
+
+以下，各定義の詳細を見ていきます．
+
+* Menu:
+
+* Register Class::	レジスタクラス定義
+* Instrution Type::     命令形式定義
+* Instruction:: 	命令定義
+
+
+
+File: pas.info, Node: Register Class, Next: Instrution Type, Prev: Description File, Up: Description File
+
+レジスタクラス定義
+==================
+
+レジスタクラス定義の記述形式を以下に示します．
+
+     Resource_tbl {
+     	"レジスタクラス名" {
+             	{"レジスタ名","コード"},
+             	{"レジスタ名","コード"},
+                     ...
+             	{"レジスタ名","コード"}
+             },
+     	"レジスタクラス名" {
+             	{"レジスタ名","コード"},
+             	{"レジスタ名","コード"},
+                     ...
+             	{"レジスタ名","コード"}
+             },               
+             ...
+     }
+
+Resource_tbl というキーワードでレジスタクラス定義の開始を表します．以下，
+中括弧の中に，各レジスタクラスの定義をカンマで区切って並べます．各レジス
+タクラスは，レジスタ名とそのコード(二進数)を並べたものになります．レジス
+タクラス名，レジスタ名，コードは ""(ダブルクォート) で囲む必要があります．
+
+
+
+File: pas.info, Node: Instrution Type, Next: Instruction, Prev: Register Class, Up: Description File
+
+命令形式定義
+============
+
+命令形式定義の記述形式を以下に示します．
+
+     Instruction_type {
+       type {
+         "命令形式名" {
+            width{"最上位ビット", "最下位ビット"},
+            オペランド指定
+         },
+         "命令形式名" {
+            width{"最上位ビット", "最下位ビット"},
+            オペランド指定
+         },
+         ...
+       }
+     }
+
+Instruction_type キーワードで命令形式定義を開始します．以下，必要な分だ
+け各命令形式の記述を並べます．各命令形式は，命令形式名，命令長指定，オペ
+ランド指定の組からなります．
+
+width は各命令形式の命令長を指定する構文で，例えば 32 ビット長の場合，
+width{"31","0"} のように，最上位ビットのビット位置，最下位ビットのビット
+位置の組合せで指定を行ないます．
+
+オペランド指定は，オペランドの数と形式を指定するものです．以下にオペラン
+ド指定の記述形式を示します．
+
+     otype{
+       "オペランド形式名" {
+          "アドレッシングモード名" {
+             "構成要素名", {"フィールド名", "レジスタクラス名"}
+          },
+          "アドレッシングモード名" {
+             "構成要素名", {"フィールド名", "レジスタクラス名"},
+          }
+          ...
+       },
+       "オペランド形式名" {
+          "アドレッシングモード名" {
+             "構成要素名", {"フィールド名", "レジスタクラス名"}
+          },
+          "アドレッシングモード名" {
+             "構成要素名", {"フィールド名", "レジスタクラス名"},
+          }
+          ...
+       },
+       ...
+     }
+
+otype キーワードでオペランド指定を開始します．以下に，所属する命令形式で
+使用可能なオペランドの組合せ指定を並べて書きます．オペランド形式名は，オ
+ペランドの組合せの名前です．アドレッシングモード名は，オペランドのアドレッ
+シングモードを表し，PAS であらかじめ定義されています．構成要素名は，この
+オペランドの意味を表します．フィールド名は，次のセクションで説明する命令
+定義に現れるもので，機械語コードのどのフィールドにオペランドが現れるかを
+指定するために使います．オペランドがレジスタを使用するものである場合，レ
+ジスタクラス名を指定します．レジスタを使用しない場合は，空("")にします．
+
+アドレッシングモード名として使用可能な名前は以下の通りです．
+
+`RDirect'
+`Indirect'
+`RIndirect'
+`RIwPreDec'
+`RIwPreInc'
+`RIwPostDec'
+`RIwPostInc'
+`RIwDisp'
+`RIwDisp_Up'
+`RIwIndex'
+`RIwIndex_Up'
+`RIwIndex_Up'
+`RIwScaledIndex'
+`RIwDispScaledIndex'
+`PCrelative_address'
+`Absolute_address'
+`Immediate_data'
+
+アドレッシングモードの詳細については，*Note Addressing Mode::.
+
+また，構成要素名は以下のいずれかになります．
+
+`Resource'
+     レジスタであることを表します．
+
+`Displacement'
+     ディスプレースメント修飾レジスタ間接などのアドレッシングモードのディ
+     スプレースメントであることを表します．
+
+`Immediate'
+     即値であることを表します．
+
+`Scale'
+     スケール付インデックス修飾レジスタ間接などのアドレッシングモードの
+     スケールであることを表します．
+
+`Symbol'
+     シンボルであることを表します．
+
+
+
+
+File: pas.info, Node: Instruction, Prev: Instrution Type, Up: Description File
+
+命令定義
+========
+
+     Instruction {
+        "命令名" {
+            type{"命令形式名"{otype{"オペランドタイプ名"}}},
+            "フィールドタイプ名"{
+               "フィールド属性"{"フィールド値"}, width{"MSB", "LSB"}
+            },
+            "フィールドタイプ名"{
+               "フィールド属性"{"フィールド値"}, width{"MSB", "LSB"}
+            },
+            ...
+        },
+        "命令名" {
+            type{"命令形式名"{otype{"オペランドタイプ名"}}},
+            "フィールドタイプ名"{
+               "フィールド属性"{"フィールド値"}, width{"MSB", "LSB"}
+            },
+            "フィールドタイプ名"{
+               "フィールド属性"{"フィールド値"}, width{"MSB", "LSB"}
+            },
+            ...
+        },
+        ...
+     }
+
+
+Instruction キーワードで命令定義を開始します．各命令は，命令名，命令形式
+指定，各フィールドの記述からなります．
+
+命令形式指定は，命令形式定義で定義した命令形式名とオペランドタイプ名を使っ
+て指定を行ないます．
+
+フィールドの指定は，フィールドタイプ名，フィールド属性，フィールド値，位
+置指定からなります．
+
+フィールドタイプ名は，オペコードやオペランドの区別を表します．指定できる
+のは以下の通りです．
+
+`OP-code'
+     フィールドがオペコードであることを表します．
+
+`Operand'
+     フィールドがオペランドであることを表します．
+
+`Reserved'
+     フィールドが予約されおり，現在使用されていないことを表します．
+
+
+フィールド属性は，`binary' か `name' になります．`binary' の場合は，次の
+フィールド値にフィールドに入るべき値を二進数で指定します．`name' の場合
+は，フィールド値には命令形式定義で定義したフィールド名を書き，フィールド
+とオペランドの記述を結びつけます．
+
+位置指定は，`width' キーワードの後の中括弧に，フィールドの最上位ビット位
+置(MSB)と最下位ビット位置(LSB)を指定することで行ないます．
+
+
+
+
+File: pas.info, Node: Syntax, Next: Addressing Mode, Prev: Description File, Up: Top
+
+アセンブリ言語の文法
+********************
+
+アセンブリソースコードの書き方を以下に示します．
+
+* Menu:
+
+* Statement::		文
+* Keywords::		予約語
+* Symbols::		シンボル
+* Constants::		定数
+* Location counter::	ロケーション・カウンタ
+* Expression::		式
+
+
+
+File: pas.info, Node: Statement, Next: Keywords, Prev: Syntax, Up: Syntax
+
+文
+==
+
+ソースプログラムは文の並びから構成されます．文は一行に一個記述します．文
+の構成は以下のようになります．
+
+     [ラベル] [オペレーション [オペランド]] [コメント]
+
+`ラベル'
+     文につける名前です．
+
+     ラベルは行頭から開始し，ラベル名の直後に `:' (コロン)をつけます．ラ
+     ベルに使用できる文字は，先頭の一文字が 英大文字，英小文字，アンダー
+     スコア(`_')，ピリオド(`.') のどれかでなければなりません．二文字目以
+     降は，これらの文字に数字，ドル記号(`$')が加わります．
+
+`オペレーション'
+     実行命令，アセンブラ制御命令のニーモニックを記述します．実行命令は 
+     CPU の命令のことで，アセンブル規則記述ファイルに記述されているもの
+     です．アセンブラ制御命令は，アセンブラに指示を与える命令です．
+
+     オペレーションは，ラベルがない場合は，2カラム目以降から書き始めます．
+     ラベルがある場合は，ラベルの後に1つ以上の空白またはタブをおいて書き
+     始めます．
+
+     オペレーションによっては，ラベルを記述できない場合があります．アセ
+     ンブラ制御命令でラベルを記述できないものついては，各アセンブラ制御
+     命令の解説のところで，その旨を明記してあります．
+
+`オペランド'
+     オペレーションの実行対象などを記述します．オペランドの子数と種類は，
+     オペレーションによって異なります．
+
+     オペランドは，オペレーションの後に1つ以上の空白またはタブをおいて書
+     き始めます．
+
+`コメント'
+     注釈を記述します．プログラムの実行には影響ありません．
+
+     コメントは，セミコロン(`;')から行末までになります．
+
+
+
+
+File: pas.info, Node: Keywords, Next: Symbols, Prev: Statement, Up: Syntax
+
+予約語
+======
+
+予約語は，特別な意味を持つ語としてアセンブラが用意している名前です．
+
+予約語の種類には，アセンブラ制御命令，演算子，ロケーションカウンタがあり
+ます．
+
+
+
+File: pas.info, Node: Symbols, Next: Constants, Prev: Keywords, Up: Syntax
+
+シンボル
+========
+
+シンボルは，プログラマが定義する名前であり，次の役割を果たします．
+
+`アドレスシンボル'
+     データの格納場所，分岐先などのアドレスを表します．
+
+`定数シンボル'
+     定数を表します．
+
+
+シンボル名に使用できる文字は，先頭の一文字が 英大文字，英小文字，アンダー
+スコア(`_')，ピリオド(`.') のどれかでなければなりません．二文字目以降は，
+これらの文字に数字，ドル記号(`$')が加わります．
+
+予約語は，シンボルとして使用できません．
+
+
+
+File: pas.info, Node: Constants, Next: Location counter, Prev: Symbols, Up: Syntax
+
+定数
+====
+
+定数には整数定数と文字列定数があります．
+
+整数定数には以下の種類があります．
+
+`2進整数'
+     「0b」または「0B」で始まり，「0」または「1」が続きます．
+
+`8進整数'
+     「0」で始まり，「0-7」が続きます．
+
+`10進整数'
+     「0」でない整数で始まり，「0-9」が続きます．
+
+`16進整数'
+     「0x」または「0X」で始まり，「0-9,a-f,A-F」が続きます．
+
+
+文字列定数は，文字の並びを対応する ASCII コード値のデータの並びとして，
+扱うものです．ダブルクォートで囲って表します．通常の ASCII 印字可能文字
+の他に，特別な表記法として以下のものが使用できます．
+
+`\b'
+     バックスペース BS(0x08) を表します．
+`\f'
+     フォームフィード FF(0x0C) を表します．
+`\n'
+     ラインフィード LF(0x0A) を表します．
+`\r'
+     キャリッジリターン CR(0x0D) を表します．
+`\t'
+     水平タブ HT(0x09) を表します．
+`\v'
+     垂直タブ VT(0x0B) を表します．
+`\\'
+     バックスラッシュを表します．
+`\"'
+     ダブルクォートを表します．
+
+例:
+
+     	"hello\t\"world\"\n"
+
+また，ASCII コード値を 8 進表記，16進表記を使って表すこともできます．
+`8進表記'
+     `\0' の後に，0〜7 の数字を並べます．
+
+     例:
+
+          	"\012\033"
+
+`16進表記'
+     `\0x' または `\0X' の後に，0〜9,a〜f,A〜F の数字を並べます．
+
+          	"\0xa\0xb"
+
+
+
+
+
+File: pas.info, Node: Location counter, Next: Expression, Prev: Constants, Up: Syntax
+
+ロケーション・カウンタ
+======================
+
+ロケーション・カウンタは，オブジェクトコードを配置するアドレスを指します．
+ロケーション・カウンタの値は，オブジェクトコードの出力に応じて自動的に変
+化します．また，アセンブラ制御命令によって指定の値に変更することも可能で
+す．
+
+現在のロケーション・カウンタの値は，ドット(`.')で参照できます．`.' は予
+約語です．
+
+
+
+
+File: pas.info, Node: Expression, Prev: Location counter, Up: Syntax
+
+式
+==
+
+式は，定数やシンボルと演算子を組み合わせて演算結果を求めるものです．実行
+命令やアセンブラ制御命令のオペランドに使用します．
+
+式の構成要素を以下に示します．
+
+* Menu:
+
+* Term::		項
+* Operator::		演算子
+* Parenthesis::           括弧
+
+
+
+
+File: pas.info, Node: Term, Next: Operator, Prev: Expression, Up: Expression
+
+項
+--
+
+項は以下のものから成ります．
+
+   * 定数
+   * ロケーション・カウンタ(`.')
+   * シンボル
+   * 上記の項と演算子による演算結果
+
+単独の項も式の一種です．
+
+
+
+
+File: pas.info, Node: Operator, Next: Parenthesis, Prev: Term, Up: Expression
+
+演算子
+------
+
+演算子の種類と優先度は以下のようになります．優先度の数字が小さいほど優先
+度が高くなります．
+
+優先度 0
+`-'
+     単項の - は，符合反転または 2 の補数
+`~'
+     ビット毎の NOT, 1 の補数
+
+優先度 1
+`*'
+     乗算
+`/'
+     除算
+`%'
+     剰余
+
+優先度 2
+`|'
+     ビット毎の OR
+`&'
+     ビット毎の AND
+`^'
+     ビット毎の排他的論理和
+
+優先度 3
+`+'
+     加算
+`-'
+     減算
+
+
+
+
+File: pas.info, Node: Parenthesis, Prev: Operator, Up: Expression
+
+括弧
+----
+
+丸括弧`()'によって，演算の優先順位を変えることができます．
+
+1つの式の中に複数の演算が含まれる場合，演算子の優先順位と括弧指定によっ
+て，演算を処理する順序が決まります．
+
+PAS は以下の規則に従って演算を処理します．
+
+`規則 1'
+     括弧で括られた演算から処理する．括弧が多重になっているときは，より
+     内側の括弧で括られた演算を優先する．
+
+`規則 2'
+     演算の優先順位が高いものから処理する．
+
+
+
+
+
+File: pas.info, Node: Addressing Mode, Next: Directives, Prev: Syntax, Up: Top
+
+アドレッシングモード
+********************
+
+PAS では，一般的に使用されるアドレッシングモードをあらかじめ用意しており，
+アーキテクチャによらず統一的に使用することができます．
+
+以下に PAS で定義されているアドレッシングモードを示します．
+
+``%Rn' : レジスタ直接'
+     レジスタを参照します．
+
+``(式)' : 間接アドレッシング'
+     式の値がメモリアドレスを表します．
+
+``(%Rn)' : レジスタ間接'
+     レジスタ Rn の値がメモリアドレスを表します．
+
+``-(%Rn)' : プリ・デクリメント・レジスタ間接'
+     デクリメントした後のレジスタ Rn の値がメモリアドレスを表します．
+
+``+(%Rn)' : プリ・インクリメント・レジスタ間接'
+     インクリメントした後のレジスタ Rn の値がメモリアドレスを表します．
+
+``(%Rn)-' : ポスト・デクリメント・レジスタ間接'
+     デクリメントする前のレジスタ Rn の値がメモリアドレスを表します．
+
+``(%Rn)+' : ポスト・インクリメント・レジスタ間接'
+     インクリメントする前のレジスタ Rn の値がメモリアドレスを表します．
+
+``disp(%Rn)' : ディスプレースメント修飾レジスタ間接'
+     「Rn の値 + disp」の値がメモリアドレスを表します．レジスタ Rn の値
+     は更新されません．
+
+``(%Rbase + disp)' : ディスプレースメント修飾レジスタ間接更新アドレッシング'
+     「Rn の値 + disp」の値がメモリアドレスを表します．レジスタ Rn の値
+     は，「「Rn の値 + disp」の値に更新されます．
+
+``(%Rbase, %Rindex)' : インデックス修飾レジスタ間接'
+     「Rbase の値 + Rindex の値」の値がメモリアドレスを表します．レジス
+     タ Rbase, Rindex の値は更新されません．
+
+``(%Rbase + %Rindex)' : インデックス修飾レジスタ間接更新アドレッシング'
+     「Rbase の値 + Rindex の値」の値がメモリアドレスを表します．レジス
+     タ Rbase の値は「Rbase の値 + Rindex の値」に更新されます．
+
+``(%Rbase, %Rindex, scale)' : スケール付インデックス修飾レジスタ間接'
+     「Rbase の値 + Rindex の値 × scale」の値がメモリアドレスを表します．
+     レジスタ Rbase, Rindex の値は更新されません．
+
+``disp(%Rbase, %Rindex, scale)'ディスプレースメント，スケール付インデックス修飾レジスタ間接'
+     「Rbase の値 + Rindex の値 × scale + disp」の値がメモリアドレスを
+     表します．レジスタ Rbase, Rindex の値は更新されません．
+
+``symbol' : シンボル指定による PC 相対アドレス'
+     symbol が，分岐先メモリアドレスを表します．「symbol の値 - PC」の値
+     を PC 相対のディスプレースメントとします．
+
+``*symbol' : シンボル指定による絶対アドレス'
+     symbol が，分岐先の絶対メモリアドレスを表します．
+
+``$imm': 即値'
+     imm の値がそのまま使われます．
+
+
+
+
+
+File: pas.info, Node: Directives, Next: Invocation, Prev: Addressing Mode, Up: Top
+
+アセンブラ制御命令
+******************
+
+* Menu:
+
+* Accum::		`.accum'
+* Accum.s::		`.accum.s'
+* Accum.l::		`.accum.l'
+* Accum_spec::		`.accum_spec'
+* Addr_space::		`.addr_space'
+* Addressing::		`.addressing'
+* Align::		`.align'
+* Ascii::		`.ascii'
+* Asciz::		`.asciz'
+* Bits_per_byte::	`.bits_per_byte'
+* Data::		`.data'
+* Double::		`.double'
+* Double_spec::		`.double_spec'
+* End::  		`.end'
+* Endian::		`.endian'
+* Equ::			`.equ'
+* Equiv::		`.equiv'
+* Fixed::		`.fixed'
+* Fixed.s::		`.fixed.s'
+* Fixed.l::		`.fixed.l'
+* Fixed_spec::		`.fixed_spec'
+* Float::		`.float'
+* Float_spec::		`.float_spec'
+* Long_accum_spec::	`.long_accum_spec'
+* Long_fixed_spec::	`.long_fixed_spec'
+* Org::			`.org'
+* Section::		`.section'
+* Short_accum_spec::	`.short_accum_spec'
+* Short_fixed_spec::	`.short_fixed_spec'
+* Space::	        `.space'
+* Uaccum::		`.uaccum'
+* Uaccum.s::		`.uaccum.s'
+* Uaccum.l::		`.uaccum.l'
+* Ufixed::		`.ufixed'
+* Ufixed.s::		`.ufixed.s'
+* Ufixed.l::		`.ufixed.l'
+* Word_align::		`.word_align'
+
+
+
+
+File: pas.info, Node: Accum, Next: Accum.s, Prev: Directives, Up: Directives
+
+`.accum "ACCUM_NUM"'
+====================
+
+整数部つき固定小数点データを確保します.  ACCUM_NUM で指定される10進小数
+点表記の固定小数点数を`.accum_spec' 制御命令で指定された形式に従って変換
+し，メモリ上に配置します．
+
+指定できるデータの値は，`.accum_spec' で指定した整数部の二進桁数
+により異なります．整数部二進桁数が 4 であれば，
+-16 <= ACCUM_NUM < 16 の範囲になります．
+
+例:
+     	.accum -16.0
+     	.accum  15.5
+
+
+
+
+File: pas.info, Node: Accum.s, Next: Accum.l, Prev: Accum, Up: Directives
+
+`.accum.s "ACCUM_NUM"'
+======================
+
+短精度整数部つき固定小数点データを確保します.  ACCUM_NUM で指定される10
+進小数点表記の固定小数点数を`.short_accum_spec' 制御命令で指定された形式
+に従って変換し，メモリ上に配置します．
+
+指定できるデータの値は，`.short_accum_spec' で指定した整数部の二進桁数
+により異なります．整数部二進桁数が 4 であれば，
+-16 <= ACCUM_NUM < 16 の範囲になります．
+
+例:
+     	.accum.s -16.0
+     	.accum.s  15.5
+
+
+
+
+File: pas.info, Node: Accum.l, Next: Accum_spec, Prev: Accum.s, Up: Directives
+
+`.accum.l "ACCUM_NUM"'
+======================
+
+長精度整数部つき固定小数点データを確保します.  ACCUM_NUM で指定される10
+進小数点表記の固定小数点数を`.long_accum_spec' 制御命令で指定された形式
+に従って変換し，メモリ上に配置します．
+
+指定できるデータの値は，`.long_accum_spec' で指定した整数部の二進桁数
+により異なります．整数部二進桁数が 4 であれば，
+-16 <= ACCUM_NUM < 16 の範囲になります．
+
+例:
+     	.accum.l -16.0
+     	.accum.l  15.5
+
+
+
+
+File: pas.info, Node: Accum_spec, Next: Addr_space, Prev: Accum.l, Up: Directives
+
+`.accum_spec "SPEC"'
+====================
+
+整数部つき固定小数点データ形式を定義します．符合付の形式と符合なしの形式
+がありますが，その両方を指定します．SPEC でデータの大きさ，整数部二進桁
+数，スケール(小数部二進桁数)を指定します．SPEC の前半部で符合なしを，後
+半部で符合付を指定します．
+
+SPEC の指定方法は以下のようになります．
+
+     SIZE1:INTEGRAL1:SCALE1,SIZE2:INTEGRAL2:SCALE2
+
+`SIZE1'
+     符合なし型の場合のデータの大きさ
+`INTEGRAL1'
+     符合なし型の場合の整数部の二進数での桁数
+`SCALE1'
+     符合なし型の場合の小数部の二進数での桁数
+`SIZE2'
+     符合付き型の場合のデータの大きさ
+`INTEGRAL2'
+     符合付き型の場合の整数部の二進数での桁数
+`SCALE2'
+     符合付き型の場合の小数部の二進数での桁数
+
+デフォルトは
+     20:4:15,20:4:15
+
+になっています．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Addr_space, Next: Addressing, Prev: Accum_spec, Up: Directives
+
+`.addr_space "NUM"'
+===================
+
+アドレス空間の大きさを指定します．引数 NUM は整数値を指定します．アドレ
+ス空間の大きさは，2^NUM になります．デフォルト値は，16 です．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Addressing, Next: Align, Prev: Addr_space, Up: Directives
+
+`.addressing "ADDRUNIT"'
+========================
+
+メモリのアドレッシング単位を設定します．ADDRUNIT に指定可能なのは，
+`Byte' または `Word' です．`Byte' を指定するとアドレッシングがバイト単位
+になります．`Word' を指定するとアドレッシングがワード単位になります．デ
+フォルト値は，`Byte' です．
+
+ラベルは記述できません．
+
+例:
+     	.addressing Byte
+
+     	.addressing Word
+
+
+
+
+
+File: pas.info, Node: Align, Next: Ascii, Prev: Addressing, Up: Directives
+
+`.align "NUM"'
+==============
+
+引数 NUM は整数値であり，ロケーション・カウンタ値の境界調整数を指定しま
+す．ロケーション・カウンタの値を境界調整数の倍数に補正します．例:
+     	.align 4
+     	.data.32 0x1234
+
+この例では，`.align 4' で，`.data.32' 制御命令で確保する定数を4 バイト境
+界に調整します．
+
+
+
+
+File: pas.info, Node: Ascii, Next: Asciz, Prev: Align, Up: Directives
+
+`.ascii "STRING"'
+=================
+
+引数 STRING で指定される文字列定数データをメモリ上に確保します．ゼロ終端
+文字列は追加しません．ラベルを記述可能です．例:
+             .ascii "hello, world\n\0"
+     str1:   .ascii "ABCDEF"
+
+
+
+
+File: pas.info, Node: Asciz, Next: Bits_per_byte, Prev: Ascii, Up: Directives
+
+`.asciz "STRING"'
+=================
+
+引数 STRING で指定される文字列定数データをメモリ上に確保します．文字列デー
+タの末尾にゼロ終端文字列を追加します．ラベルを記述することが可能です．
+
+例:
+             .asciz "hello, world\n"
+     L1:     .asciz "abcdef"
+
+
+
+
+File: pas.info, Node: Bits_per_byte, Next: Data, Prev: Asciz, Up: Directives
+
+`.bits_per_byte "NUM"'
+======================
+
+1バイトのビット数を指定します．引数 NUM は整数値を指定します．デフォルト
+は 8 です．
+
+ラベルは記述できません．
+
+例:
+     	.bits_per_byte 12	; 1バイトを 12 ビットに指定
+
+
+
+
+File: pas.info, Node: Data, Next: Double, Prev: Bits_per_byte, Up: Directives
+
+`.data."WIDTH" "NUM"'
+=====================
+
+整数データを確保します．WIDTH で，データの大きさをビット数で指定します．
+NUM は整数値であり，整数データの値を指定します．
+
+例:
+     	.data.24 10	; 24ビット長のデータを確保
+     	.data.16 0x1234 ; 16ビット長のデータを確保
+
+
+
+
+File: pas.info, Node: Double, Next: Double_spec, Prev: Data, Up: Directives
+
+`.double "HEX_NUM"'
+===================
+
+倍精度浮動小数点型データを確保します．データ型は `.double_spec' 制御命令
+で規定されます．引数 HEX_NUM にはエンコード済みのデータを 16 進数で指定
+します．
+
+例:
+     	.double 0x3ff0000000000000	; 1.0 (デフォルトの形式設定の場合)
+
+
+
+
+File: pas.info, Node: Double_spec, Next: End, Prev: Double, Up: Directives
+
+`.double_spec "SPEC"'
+=====================
+
+倍精度浮動小数点データ型を定義します．引数 SPEC の指定は以下のようになり
+ます．
+
+     SIZE:SIGN:EXPONET:MANTISSA
+
+それぞれの意味は以下の通りです．大きさは全てビット数で指定します．
+
+`size'
+     データ型全体の大きさです．
+`sign'
+     符合を表すビット数を指定します．
+`exponent'
+     指数部の大きさです．
+`mantissa'
+     仮数部の大きさです．
+
+デフォルトでは，
+
+     .double_spec 64:1:11:52
+
+になっています．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: End, Next: Endian, Prev: Double_spec, Up: Directives
+
+`.end'
+======
+
+ソースプログラムの終わりを宣言します．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Endian, Next: Equ, Prev: End, Up: Directives
+
+`.endian "ENDIAN"'
+==================
+
+エンディアンを指定します．引数 ENDIAN には，ビッグエンディアンの場合は
+`Big' を，リトルエンディアンの場合は `Little' を指定します．デフォルトは 
+`Big' です．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Equ, Next: Equiv, Prev: Endian, Up: Directives
+
+`.equ "SYMBOL", "VALUE"'
+========================
+
+引数 SYMBOL で指定されるシンボルに，引数 VALUE で指定される値を設定しま
+す．`.equ' で設定したシンボルの値を再設定することはできません．二回目以
+降の設定は無視されます．
+
+ラベルは記述できません．
+
+例:
+     	.equ foo, 0x100
+
+
+
+
+File: pas.info, Node: Equiv, Next: Fixed, Prev: Equ, Up: Directives
+
+`.equiv "SYMBOL", "VALUE"'
+==========================
+
+引数 SYMBOL で指定されるシンボルに，引数 VALUE で指定される値を設定しま
+す．`.equiv' で設定したシンボルの値は，再設定することが可能です．
+
+ラベルは記述できません．
+
+例:
+     	.equiv bar, 0xff
+
+
+
+
+File: pas.info, Node: Fixed, Next: Fixed.s, Prev: Equiv, Up: Directives
+
+`.fixed "FIXED_NUM"'
+====================
+
+固定小数点データを確保します.  FIXED_NUM で指定される10進小数点表記の固
+定小数点数を`.fixed_spec' 制御命令で指定された形式に従って変換し，メモリ
+上に配置します．
+
+指定できるデータは，-1 <= FIXED_NUM < 1 の範囲になります．
+
+例:
+     	.fixed 0.1
+     	.fixed -0.5
+
+
+
+
+File: pas.info, Node: Fixed.s, Next: Fixed.l, Prev: Fixed, Up: Directives
+
+`.fixed.s "FIXED_NUM"'
+======================
+
+短精度固定小数点データを確保します.  FIXED_NUM で指定される10進小数点表
+記の固定小数点数を`.short_fixed_spec' 制御命令で指定された形式に従って変
+換し，メモリ上に配置します．
+
+指定できるデータの値は，-1 <= FIXED_NUM < 1 の範囲になります．
+
+例:
+     	.fixed.s 0.1
+     	.fixed.s -0.5
+
+
+
+
+File: pas.info, Node: Fixed.l, Next: Fixed_spec, Prev: Fixed.s, Up: Directives
+
+`.fixed.l "FIXED_NUM"'
+======================
+
+長精度固定小数点データを確保します.  FIXED_NUM で指定される10進小数点表
+記の固定小数点数を`.long_fixed_spec' 制御命令で指定された形式に従って変
+換し，メモリ上に配置します．
+
+指定できるデータは，-1 <= FIXED_NUM < 1 の範囲になります．
+
+例:
+     	.fixed.l 0.1
+     	.fixed.l -0.5
+
+
+
+
+File: pas.info, Node: Fixed_spec, Next: Float, Prev: Fixed.l, Up: Directives
+
+`.fixed_spec "SPEC"'
+====================
+
+固定小数点データを定義します．符合付の形式と符合なしの形式がありますが，
+その両方を指定します．SPEC でデータの大きさ，スケール(小数部二進桁数)を
+指定します．SPEC の前半部で符合なしを，後半部で符合付を指定します．
+
+SPEC の指定方法は以下のようになります．
+
+     SIZE1:SCALE1,SIZE2:SCALE2
+
+`SIZE1'
+     符合なし型の場合のデータの大きさ
+`SCALE1'
+     符合なし型の場合の小数部の二進数での桁数
+`SIZE2'
+     符合付き型の場合のデータの大きさ
+`SCALE2'
+     符合付き型の場合の小数部の二進数での桁数
+
+デフォルトは，
+
+     	.fixed_spec 16:15,16:15
+
+になっています．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Float, Next: Float_spec, Prev: Fixed_spec, Up: Directives
+
+`.float "HEX_NUM"'
+==================
+
+単精度浮動小数点型データを確保します．データ型は `.float_spec' 制御命令
+で規定されます．引数 HEX_NUM にはエンコード済みのデータを 16 進数で指定
+します．
+
+例:
+     	.float 0x3f800000	; 1.0 (デフォルトの形式設定の場合)
+
+
+
+
+File: pas.info, Node: Float_spec, Next: Long_accum_spec, Prev: Float, Up: Directives
+
+`.float_spec "SPEC"'
+====================
+
+単精度浮動小数点データ型を定義します．引数 SPEC の指定は以下のようになり
+ます．
+
+     SIZE:SIGN:EXPONET:MANTISSA
+
+それぞれの意味は以下の通りです．大きさは全てビット数で指定します．
+
+`size'
+     データ型全体の大きさです．
+`sign'
+     符合を表すビット数を指定します．
+`exponent'
+     指数部の大きさです．
+`mantissa'
+     仮数部の大きさです．
+
+デフォルトでは，
+
+     .float_spec 32:1:8:23
+
+になっています．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Long_accum_spec, Next: Long_fixed_spec, Prev: Float_spec, Up: Directives
+
+`.long_accum_spec "SPEC"'
+=========================
+
+長精度整数部つき固定小数点データを定義します．符合付の形式と符合なしの形
+式がありますが，その両方を指定します．SPEC でデータの大きさ，整数部二進
+桁数，スケール(小数部二進桁数)を指定します．SPEC の前半部で符合なしを，
+後半部で符合付を指定します．
+
+SPEC の指定方法は以下のようになります．
+
+     SIZE1:INTEGRAL1:SCALE1,SIZE2:INTEGRAL2:SCALE2
+
+`SIZE1'
+     符合なし型の場合のデータの大きさ
+`INTEGRAL1'
+     符合なし型の場合の整数部の二進数での桁数
+`SCALE1'
+     符合なし型の場合の小数部の二進数での桁数
+`SIZE2'
+     符合付き型の場合のデータの大きさ
+`INTEGRAL2'
+     符合付き型の場合の整数部の二進数での桁数
+`SCALE2'
+     符合付き型の場合の小数部の二進数での桁数
+
+デフォルトは
+
+     	.long_accum_spec 36:4:31,36:4:31
+
+になっています．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Long_fixed_spec, Next: Org, Prev: Long_accum_spec, Up: Directives
+
+`.long_fixed_spec'
+==================
+
+長精度固定小数点データを定義します．符合付の形式と符合なしの形式がありま
+すが，その両方を指定します．SPEC でデータの大きさ，スケール(小数部二進桁
+数)を指定します．SPEC の前半部で符合なしを，後半部で符合付を指定します．
+
+SPEC の指定方法は以下のようになります．
+
+     SIZE1:SCALE1,SIZE2:SCALE2
+
+`SIZE1'
+     符合なし型の場合のデータの大きさ
+`SCALE1'
+     符合なし型の場合の小数部の二進数での桁数
+`SIZE2'
+     符合付き型の場合のデータの大きさ
+`SCALE2'
+     符合付き型の場合の小数部の二進数での桁数
+
+デフォルトは，
+
+     .long_fixed_spec 36:4:31,36:4:31
+
+になっています．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Org, Next: Section, Prev: Long_fixed_spec, Up: Directives
+
+`.org "LC"'
+===========
+
+ロケーション・カウンタ値を設定します．
+LC はロケーション・カウンタ値を指定する整数です．
+.ORG によりロケーション・カウンタ値が増えた場合，
+元のロケーション・カウンタ値と新しいロケーション・カウンタ値の間は 0 で
+埋められます．
+
+ラベルは記述できません．
+
+例:
+     	.org 0x100
+
+
+
+File: pas.info, Node: Section, Next: Short_accum_spec, Prev: Org, Up: Directives
+
+`.section "SECTION"'
+====================
+
+引数 SECTION で指定されるセクションを宣言します．指定可能なセクションは
+以下の通りです．
+
+`.text'
+     テキスト・セクション
+`.data'
+     データ・セクション
+
+すでに宣言済みのセクションを再び宣言し，再開することができます．
+
+次のいずれかの場合，デフォルト・セクションが用意されます．
+
+   * セクションを宣言しないうちに，実行命令を記述している
+   * セクションを宣言しないうちに，データを確保するアセンブラ制御命令を
+     記述している．
+   * セクションを宣言しないうちに，`.align' または `.org' または 
+     `.space' アセンブラ制御命令を記述している
+   * セクションを宣言しないうちに，ロケーション・カウンタを参照している
+   * セクションを宣言しなうちに，ラベルの行だけを記述している
+
+デフォルト・セクションは，先頭アドレス 0, 境界調整数 2 のテキスト・セク
+ションです．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Short_accum_spec, Next: Short_fixed_spec, Prev: Section, Up: Directives
+
+`.short_accum_spec "SPEC"'
+==========================
+
+短精度整数部つき固定小数点データを定義します．符合付の形式と符合なしの形
+式がありますが，その両方を指定します．SPEC でデータの大きさ，整数部二進
+桁数，スケール(小数部二進桁数)を指定します．SPEC の前半部で符合なしを，
+後半部で符合付を指定します．
+
+SPEC の指定方法は以下のようになります．
+
+     SIZE1:INTEGRAL1:SCALE1,SIZE2:INTEGRAL2:SCALE2
+
+`SIZE1'
+     符合なし型の場合のデータの大きさ
+`INTEGRAL1'
+     符合なし型の場合の整数部の二進数での桁数
+`SCALE1'
+     符合なし型の場合の小数部の二進数での桁数
+`SIZE2'
+     符合付き型の場合のデータの大きさ
+`INTEGRAL2'
+     符合付き型の場合の整数部の二進数での桁数
+`SCALE2'
+     符合付き型の場合の小数部の二進数での桁数
+
+デフォルトは，
+
+     	.short_accum_spec 12:4:7,12:4:7
+
+になっています．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Short_fixed_spec, Next: Space, Prev: Short_accum_spec, Up: Directives
+
+`.short_fixed_spec "SPEC"'
+==========================
+
+短精度固定小数点データを定義します．符合付の形式と符合なしの形式がありま
+すが，その両方を指定します．SPEC でデータの大きさ，スケール(小数部二進桁
+数)を指定します．SPEC の前半部で符合なしを，後半部で符合付を指定します．
+
+SPEC の指定方法は以下のようになります．
+
+     SIZE1:SCALE1,SIZE2:SCALE2
+
+`SIZE1'
+     符合なし型の場合のデータの大きさ
+`SCALE1'
+     符合なし型の場合の小数部の二進数での桁数
+`SIZE2'
+     符合付き型の場合のデータの大きさ
+`SCALE2'
+     符合付き型の場合の小数部の二進数での桁数
+
+デフォルトは，
+
+     .short_fixed_spec 8:7,8:7
+
+になっています．
+
+ラベルは記述できません．
+
+
+
+
+File: pas.info, Node: Space, Next: Uaccum, Prev: Short_fixed_spec, Up: Directives
+
+`.space "NUM"'
+==============
+
+現在のロケーション・カウンタ値に，引数 NUM で指定された値を加算します．
+NUM は整数値を指定します．`.space' によりロケーション・カウンタ値が増え
+た場合，元のロケーション・カウンタ値と新しいロケーション・カウンタ値の間
+は 0 で埋められます．
+
+     	.space 16	;ロケーションカウンタを 16 進める
+
+
+
+
+File: pas.info, Node: Uaccum, Next: Uaccum.s, Prev: Space, Up: Directives
+
+`.uaccum "ACCUM_NUM"'
+=====================
+
+符合なし整数部つき固定小数点データを確保します.  ACCUM_NUM で指定される
+10進小数点表記の固定小数点数を`.accum_spec' 制御命令で指定された形式に従っ
+て変換し，メモリ上に配置します．
+
+指定できるデータの値は，`.accum_spec' で指定した整数部の二進桁数により異
+なります．整数部二進桁数が 4 であれば，0 <= ACCUM_NUM < 16 の範囲になり
+ます．
+
+例:
+     	.uaccum  0.0
+     	.uaccum  15.5
+
+
+
+
+File: pas.info, Node: Uaccum.s, Next: Uaccum.l, Prev: Uaccum, Up: Directives
+
+`.uaccum.s "ACCUM_NUM"'
+=======================
+
+符合なし整数部つき固定小数点データを確保します.  ACCUM_NUM で指定される
+10進小数点表記の固定小数点数を`.short_accum_spec' 制御命令で指定された形
+式に従って変換し，メモリ上に配置します．
+
+指定できるデータの値は，`.short_accum_spec' で指定した整数部の二進桁数に
+より異なります．整数部二進桁数が 4 であれば，0 <= ACCUM_NUM < 16 の範囲
+になります．
+
+例:
+     	.uaccum.s  0.0
+     	.uaccum.s  15.5
+
+
+
+
+File: pas.info, Node: Uaccum.l, Next: Ufixed, Prev: Uaccum.s, Up: Directives
+
+`.uaccum.l "ACCUM_NUM"'
+=======================
+
+符合なし長精度整数部つき固定小数点データを確保します.  ACCUM_NUM で指定
+される10進小数点表記の固定小数点数を`.long_accum_spec' 制御命令で指定さ
+れた形式に従って変換し，メモリ上に配置します．
+
+指定できるデータの値は，`.long_accum_spec' で指定した整数部の二進桁数に
+より異なります．整数部二進桁数が 4 であれば，0 <= ACCUM_NUM < 16 の範囲
+になります．
+
+例:
+     	.accum.l  0.0
+     	.accum.l  15.5
+
+
+
+
+File: pas.info, Node: Ufixed, Next: Ufixed.s, Prev: Uaccum.l, Up: Directives
+
+`.ufixed "FIXED_NUM"'
+=====================
+
+符合なし固定小数点データを確保します.  FIXED_NUM で指定される10進小数点
+表記の固定小数点数を`.fixed_spec' 制御命令で指定された形式に従って変換し，
+メモリ上に配置します．
+
+指定できるデータは，0 <= FIXED_NUM < 1 の範囲になります．
+
+例:
+     	.ufixed 0.1
+     	.ufixed 0.9
+
+
+
+
+File: pas.info, Node: Ufixed.s, Next: Ufixed.l, Prev: Ufixed, Up: Directives
+
+`.ufixed.s "FIXED_NUM"'
+=======================
+
+符合なし短精度固定小数点データを確保します.  FIXED_NUM で指定される10進
+小数点表記の固定小数点数を`.short_fixed_spec' 制御命令で指定された形式に
+従って変換し，メモリ上に配置します．
+
+指定できるデータは，0 <= FIXED_NUM < 1 の範囲になります．
+
+例:
+     	.ufixed.s 0.1
+     	.ufixed.s 0.9
+
+
+
+
+File: pas.info, Node: Ufixed.l, Next: Word_align, Prev: Ufixed.s, Up: Directives
+
+`.ufixed.l "FIXED_NUM"'
+=======================
+
+符合なし長精度固定小数点データを確保します.  FIXED_NUM で指定される10進
+小数点表記の固定小数点数を`.long_fixed_spec' 制御命令で指定された形式に
+従って変換し，メモリ上に配置します．
+
+指定できるデータは，0 <= FIXED_NUM < 1 の範囲になります．
+
+例:
+     	.ufixed.l 0.1
+     	.ufixed.l 0.9
+
+
+
+
+File: pas.info, Node: Word_align, Prev: Ufixed.l, Up: Directives
+
+`.word_align "NUM"'
+===================
+
+語境界を引数 NUM で指定した値に設定します．
+
+ラベルは記述できません．
+
+例:
+     	.word_align 8	; 8 バイト境界に設定
+
+
+
+
+File: pas.info, Node: Invocation, Prev: Directives, Up: Top
+
+pas の起動方法
+**************
+
+pas の起動方法について説明します．
+
+起動形式は以下の通りです．
+
+     `pas' [`-des' DESCFILE] [`-src' SRCFILE] \
+     	[`-a' LISTINGFILE] [`-endian' ENDIAN] \
+             [`-help'] [`-version'] [`-debug']
+
+各オプションの意味は以下の通りです．
+
+`-des DESCFILE'
+     引数 DESCFILE でアセンブル規則記述ファイルを指定します．このオプショ
+     ンは，`-help' または `-version' が指定されていない場合は必須です．
+
+`-src SRCFILE'
+     引数 SRCFILE でアセンブリソースファイルを指定します．このオプション
+     は，`-help' または `-version' が指定されていない場合は必須です．
+
+`-a LISTINGFILE'
+     引数 LISTINGFILE でアセンブルリスティングの出力ファイルを指定します．
+     このオプションを省略した場合は，標準出力に出力されます．
+
+`-endian ENDIAN'
+     引数 ENDIAN でエンディアンを指定します．指定できるのは，`Big' また
+     は `Little' です．
+
+`-help'
+     pas の使用方法の簡単な要約を標準出力に表示して終了します．
+
+`-version'
+     pas のバージョンを標準出力に表示して終了します．
+
+`-debug'
+     通常のリスティング表示に加えて，アセンブル規則ファイルを解析した結
+     果のダンプやセクションの内容を表示します．
+
+
+
+
+
+
+
+Tag table:
+Node: Top243
+Node: Intro635
+Node: Sample Session1061
+Node: Description File2573
+Node: Register Class5444
+Node: Instrution Type6134
+Node: Instruction8134
+Node: Syntax9400
+Node: Statement9680
+Node: Keywords10575
+Node: Symbols10744
+Node: Constants11072
+Node: Location counter11958
+Node: Expression12249
+Node: Term12479
+Node: Operator12659
+Node: Parenthesis13005
+Node: Addressing Mode13305
+Node: Directives14949
+Node: Accum16033
+Node: Accum.s16402
+Node: Accum.l16791
+Node: Accum_spec17183
+Node: Addr_space17780
+Node: Addressing18001
+Node: Align18349
+Node: Ascii18630
+Node: Asciz18877
+Node: Bits_per_byte19146
+Node: Data19384
+Node: Double19656
+Node: Double_spec19931
+Node: End20343
+Node: Endian20473
+Node: Equ20695
+Node: Equiv20958
+Node: Fixed21210
+Node: Fixed.s21508
+Node: Fixed.l21827
+Node: Fixed_spec22148
+Node: Float22639
+Node: Float_spec22906
+Node: Long_accum_spec23324
+Node: Long_fixed_spec23964
+Node: Org24473
+Node: Section24739
+Node: Short_accum_spec25328
+Node: Short_fixed_spec25969
+Node: Space26491
+Node: Uaccum26779
+Node: Uaccum.s27150
+Node: Uaccum.l27544
+Node: Ufixed27937
+Node: Ufixed.s28246
+Node: Ufixed.l28572
+Node: Word_align28901
+Node: Invocation29089
+
+End tag table

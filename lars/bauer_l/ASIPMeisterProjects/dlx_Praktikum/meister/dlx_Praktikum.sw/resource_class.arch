@@ -1,0 +1,628 @@
+resource class
+{
+  pcu
+  {
+    port
+    {
+      input  {clock, load, reset, hold, data_in}
+      output {data_out}
+    }
+    function
+    {
+      read
+      {
+        interface {
+          clock{ clock }
+          load{ load }
+          reset{ reset }
+          hold{ hold }
+          data_in{ data_in }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      inc
+      {
+        interface {
+          clock{ clock }
+          load{ load }
+          reset{ reset }
+          hold{ hold }
+          data_in{ data_in }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      write
+      {
+        interface {
+          clock{ clock }
+          load{ load }
+          reset{ reset }
+          hold{ hold }
+          data_in{ data_in }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+    }
+  }
+  register
+  {
+    port
+    {
+      input  {clock, reset, enb, data_in}
+      output {data_out}
+    }
+    function
+    {
+      write
+      {
+        interface {
+          clock{ clock }
+          reset{ reset }
+          enb{ enb }
+          data_in{ data_in }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+    }
+  }
+  imau
+  {
+    port
+    {
+      input  {addr, data_bus}
+      output {addr_bus, data__}
+    }
+    function
+    {
+      read
+      {
+        interface {
+          addr{ addr }
+          data_bus{ data_bus }
+          addr_bus{ addr_bus }
+          data__{ data__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+    }
+  }
+  dmau
+  {
+    port
+    {
+      input  {reset, req, rw, ac_mode, ext_mode, addr, data_in, ack_bus}
+      output {addr_err, req_bus, w_mode_bus, addr_bus, data_bus, ack, data_out}
+    }
+    function
+    {
+      lb
+      {
+        interface {
+          reset{ reset }
+          req{ req }
+          rw{ rw }
+          ac_mode{ ac_mode }
+          ext_mode{ ext_mode }
+          addr{ addr }
+          data_in{ data_in }
+          ack_bus{ ack_bus }
+          addr_err{ addr_err }
+          req_bus{ req_bus }
+          w_mode_bus{ w_mode_bus }
+          addr_bus{ addr_bus }
+          data_bus{ data_bus }
+          ack{ ack }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      lh
+      {
+        interface {
+          reset{ reset }
+          req{ req }
+          rw{ rw }
+          ac_mode{ ac_mode }
+          ext_mode{ ext_mode }
+          addr{ addr }
+          data_in{ data_in }
+          ack_bus{ ack_bus }
+          addr_err{ addr_err }
+          req_bus{ req_bus }
+          w_mode_bus{ w_mode_bus }
+          addr_bus{ addr_bus }
+          data_bus{ data_bus }
+          ack{ ack }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      load
+      {
+        interface {
+          reset{ reset }
+          req{ req }
+          rw{ rw }
+          ac_mode{ ac_mode }
+          ext_mode{ ext_mode }
+          addr{ addr }
+          data_in{ data_in }
+          ack_bus{ ack_bus }
+          addr_err{ addr_err }
+          req_bus{ req_bus }
+          w_mode_bus{ w_mode_bus }
+          addr_bus{ addr_bus }
+          data_bus{ data_bus }
+          ack{ ack }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      lbu
+      {
+        interface {
+          reset{ reset }
+          req{ req }
+          rw{ rw }
+          ac_mode{ ac_mode }
+          ext_mode{ ext_mode }
+          addr{ addr }
+          data_in{ data_in }
+          ack_bus{ ack_bus }
+          addr_err{ addr_err }
+          req_bus{ req_bus }
+          w_mode_bus{ w_mode_bus }
+          addr_bus{ addr_bus }
+          data_bus{ data_bus }
+          ack{ ack }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      lhu
+      {
+        interface {
+          reset{ reset }
+          req{ req }
+          rw{ rw }
+          ac_mode{ ac_mode }
+          ext_mode{ ext_mode }
+          addr{ addr }
+          data_in{ data_in }
+          ack_bus{ ack_bus }
+          addr_err{ addr_err }
+          req_bus{ req_bus }
+          w_mode_bus{ w_mode_bus }
+          addr_bus{ addr_bus }
+          data_bus{ data_bus }
+          ack{ ack }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      sb
+      {
+        interface {
+          reset{ reset }
+          req{ req }
+          rw{ rw }
+          ac_mode{ ac_mode }
+          ext_mode{ ext_mode }
+          addr{ addr }
+          data_in{ data_in }
+          ack_bus{ ack_bus }
+          addr_err{ addr_err }
+          req_bus{ req_bus }
+          w_mode_bus{ w_mode_bus }
+          addr_bus{ addr_bus }
+          data_bus{ data_bus }
+          ack{ ack }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      sh
+      {
+        interface {
+          reset{ reset }
+          req{ req }
+          rw{ rw }
+          ac_mode{ ac_mode }
+          ext_mode{ ext_mode }
+          addr{ addr }
+          data_in{ data_in }
+          ack_bus{ ack_bus }
+          addr_err{ addr_err }
+          req_bus{ req_bus }
+          w_mode_bus{ w_mode_bus }
+          addr_bus{ addr_bus }
+          data_bus{ data_bus }
+          ack{ ack }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      store
+      {
+        interface {
+          reset{ reset }
+          req{ req }
+          rw{ rw }
+          ac_mode{ ac_mode }
+          ext_mode{ ext_mode }
+          addr{ addr }
+          data_in{ data_in }
+          ack_bus{ ack_bus }
+          addr_err{ addr_err }
+          req_bus{ req_bus }
+          w_mode_bus{ w_mode_bus }
+          addr_bus{ addr_bus }
+          data_bus{ data_bus }
+          ack{ ack }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+    }
+  }
+  registerfile
+  {
+    port
+    {
+      input  {clock, reset, w_enb0, w_sel0, data_in0, r_sel0, r_sel1}
+      output {data_out0, data_out1}
+    }
+    function
+    {
+      read0
+      {
+        interface {
+          clock{ clock }
+          reset{ reset }
+          w_enb0{ w_enb0 }
+          w_sel0{ w_sel0 }
+          data_in0{ data_in0 }
+          r_sel0{ r_sel0 }
+          r_sel1{ r_sel1 }
+          data_out0{ data_out0 }
+          data_out1{ data_out1 }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      read1
+      {
+        interface {
+          clock{ clock }
+          reset{ reset }
+          w_enb0{ w_enb0 }
+          w_sel0{ w_sel0 }
+          data_in0{ data_in0 }
+          r_sel0{ r_sel0 }
+          r_sel1{ r_sel1 }
+          data_out0{ data_out0 }
+          data_out1{ data_out1 }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      write0
+      {
+        interface {
+          clock{ clock }
+          reset{ reset }
+          w_enb0{ w_enb0 }
+          w_sel0{ w_sel0 }
+          data_in0{ data_in0 }
+          r_sel0{ r_sel0 }
+          r_sel1{ r_sel1 }
+          data_out0{ data_out0 }
+          data_out1{ data_out1 }
+        }
+        latency    {1}
+        throughput {1}
+      }
+    }
+  }
+  alu
+  {
+    port
+    {
+      input  {a, b, cin, mode__}
+      output {result, flag__}
+    }
+    function
+    {
+      add
+      {
+        interface {
+          a{ a }
+          b{ b }
+          cin{ cin }
+          mode__{ mode__ }
+          result{ result }
+          flag__{ flag__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      addu
+      {
+        interface {
+          a{ a }
+          b{ b }
+          cin{ cin }
+          mode__{ mode__ }
+          result{ result }
+          flag__{ flag__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      sub
+      {
+        interface {
+          a{ a }
+          b{ b }
+          cin{ cin }
+          mode__{ mode__ }
+          result{ result }
+          flag__{ flag__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      subu
+      {
+        interface {
+          a{ a }
+          b{ b }
+          cin{ cin }
+          mode__{ mode__ }
+          result{ result }
+          flag__{ flag__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      and
+      {
+        interface {
+          a{ a }
+          b{ b }
+          cin{ cin }
+          mode__{ mode__ }
+          result{ result }
+          flag__{ flag__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      or
+      {
+        interface {
+          a{ a }
+          b{ b }
+          cin{ cin }
+          mode__{ mode__ }
+          result{ result }
+          flag__{ flag__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      xor
+      {
+        interface {
+          a{ a }
+          b{ b }
+          cin{ cin }
+          mode__{ mode__ }
+          result{ result }
+          flag__{ flag__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      cmp
+      {
+        interface {
+          a{ a }
+          b{ b }
+          cin{ cin }
+          mode__{ mode__ }
+          result{ result }
+          flag__{ flag__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      cmpu
+      {
+        interface {
+          a{ a }
+          b{ b }
+          cin{ cin }
+          mode__{ mode__ }
+          result{ result }
+          flag__{ flag__ }
+        }
+        latency    {1}
+        throughput {1}
+      }
+    }
+  }
+  extender
+  {
+    port
+    {
+      input  {data_in, mode__}
+      output {data_out}
+    }
+    function
+    {
+      sign
+      {
+        interface {
+          data_in{ data_in }
+          mode__{ mode__ }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+    }
+  }
+  multiplier
+  {
+    port
+    {
+      input  {clock, reset, a, b, mode__, start, clear}
+      output {result, fin}
+    }
+    function
+    {
+      mul
+      {
+        interface {
+          clock{ clock }
+          reset{ reset }
+          a{ a }
+          b{ b }
+          mode__{ mode__ }
+          start{ start }
+          clear{ clear }
+          result{ result }
+          fin{ fin }
+        }
+        latency    {33}
+        throughput {33}
+      }
+      mulu
+      {
+        interface {
+          clock{ clock }
+          reset{ reset }
+          a{ a }
+          b{ b }
+          mode__{ mode__ }
+          start{ start }
+          clear{ clear }
+          result{ result }
+          fin{ fin }
+        }
+        latency    {33}
+        throughput {33}
+      }
+    }
+  }
+  divider
+  {
+    port
+    {
+      input  {clock, reset, clear, a, b, start, mode__}
+      output {q, r, flag__, fin}
+    }
+    function
+    {
+      div
+      {
+        interface {
+          clock{ clock }
+          reset{ reset }
+          clear{ clear }
+          a{ a }
+          b{ b }
+          start{ start }
+          mode__{ mode__ }
+          q{ q }
+          r{ r }
+          flag__{ flag__ }
+          fin{ fin }
+        }
+        latency    {32}
+        throughput {32}
+      }
+      divu
+      {
+        interface {
+          clock{ clock }
+          reset{ reset }
+          clear{ clear }
+          a{ a }
+          b{ b }
+          start{ start }
+          mode__{ mode__ }
+          q{ q }
+          r{ r }
+          flag__{ flag__ }
+          fin{ fin }
+        }
+        latency    {32}
+        throughput {32}
+      }
+    }
+  }
+  shifter
+  {
+    port
+    {
+      input  {data_in, mode__, ctrl}
+      output {data_out}
+    }
+    function
+    {
+      sll
+      {
+        interface {
+          data_in{ data_in }
+          mode__{ mode__ }
+          ctrl{ ctrl }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      srl
+      {
+        interface {
+          data_in{ data_in }
+          mode__{ mode__ }
+          ctrl{ ctrl }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+      sra
+      {
+        interface {
+          data_in{ data_in }
+          mode__{ mode__ }
+          ctrl{ ctrl }
+          data_out{ data_out }
+        }
+        latency    {1}
+        throughput {1}
+      }
+    }
+  }
+}
+

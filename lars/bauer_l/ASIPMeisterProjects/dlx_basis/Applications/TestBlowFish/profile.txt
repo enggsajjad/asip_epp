@@ -1,0 +1,110 @@
+#:#:#:	jal	exit:	f:	
+#:#:#:	f:		l4:	
+#:#:#:	blowfish_encrypt:		l6:	
+#:#:#:	blowfish_decrypt:		l11:	
+#:#:#:	blowfish_init:		l16:	
+#:#:#:	main:		l34:	
+start:		main:	jal	
+main:	jal	exit:	jal	
+l4:		l5:	j	
+l5:	j	l5:		
+l5:			return	
+	return	blowfish_encrypt:		
+l6:		l7:		
+l7:		l8		:	bnez	
+l8		:	bnez	l9:	j	
+l9:	j	l8:		
+l8:		f:	jal	
+f:	jal	l7:	j	
+l7:	j	l9:		
+l9:		l10:	j	
+l10:	j	l10:		
+l10:			return	
+	return	blowfish_decrypt:		
+l11:		l12:		
+l12:		l13		:	bnez	
+l13		:	bnez	l14:	j	
+l14:	j	l13:		
+l13:		f:	jal	
+f:	jal	l12:	j	
+l12:	j	l14:		
+l14:		l15:	j	
+l15:	j	l15:		
+l15:			return	
+	return	blowfish_init:		
+l16:		l17:		
+l17:		l18:		
+l18:		l18:	bnez	
+l18:	bnez	l19:	j	
+l19:	j	l19:		
+l19:		l17:	bnez	
+l17:	bnez	l20:	j	
+l20:	j	l20:		
+l20:		l21:		
+l21:		l22:		
+l22:		l23:	bnez	
+l23:	bnez	l24:	j	
+l24:	j	l23:		
+l23:		l24:		
+l24:		l22:	bnez	
+l22:	bnez	l25:	j	
+l25:	j	l25:		
+l25:		l21:	bnez	
+l21:	bnez	l26:	j	
+l26:	j	l26:		
+l26:		l27:		
+l27:		blowfish_encrypt:	jal	
+blowfish_encrypt:	jal	l27:	bnez	
+l27:	bnez	l28:	j	
+l28:	j	l28:		
+l28:		l29:		
+l29:		l30:		
+l30:		blowfish_encrypt:	jal	
+blowfish_encrypt:	jal	l30:	bnez	
+l30:	bnez	l31:	j	
+l31:	j	l31:		
+l31:		l29:	bnez	
+l29:	bnez	l32:	j	
+l32:	j	l32:		
+l32:		l33:	j	
+l33:	j	l33:		
+l33:			return	
+	return	main:		
+l34:		blowfish_init:	jal	
+blowfish_init:	jal	l35:		
+l35:		l36:	bnez	
+l36:	bnez	l37:	j	
+l37:	j	l36:		
+l36:		blowfish_encrypt:	jal	
+blowfish_encrypt:	jal	l35:	j	
+l35:	j	l37:		
+l37:		l38:		
+l38:		l39:	bnez	
+l39:	bnez	l40:	j	
+l40:	j	l39:		
+l39:		l38:	j	
+l38:	j	l40:		
+l40:		l41:		
+l41:		l42:	bnez	
+l42:	bnez	l43:	j	
+l43:	j	l42:		
+l42:		blowfish_decrypt:	jal	
+blowfish_decrypt:	jal	l41:	j	
+l41:	j	l43:		
+l43:		l44:		
+l44:		l45:	bnez	
+l45:	bnez	l46:	j	
+l46:	j	l45:		
+l45:		l44:	j	
+l44:	j	l46:		
+l46:		l47:	j	
+l47:	j	l47:		
+l47:			return	
+	return	exit:		
+exit:		l1:		
+l1:		l2:		
+l2:		_inputstring:		
+_inputstring:		_encryptedstring:		
+_encryptedstring:		_decryptedstring:		
+_decryptedstring:		l3:		
+l3:		finish:		

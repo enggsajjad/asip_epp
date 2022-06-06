@@ -1,0 +1,4516 @@
+	.section	.data
+	;.global	_mad_timer_zero
+	.align	4
+_mad_timer_zero:
+	.space	8
+	.section	.text
+	.addressing	Word
+mad_timer_compare:
+L1:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR1,20(%GPR30)	
+	lw	%GPR2,12(%GPR30)	
+	nop	;;3,7
+	nop	;;3,7
+	nop	;;3,7
+	nop	;;3,7
+	sub	%GPR1,%GPR2,%GPR1	
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$0	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	slt	%GPR27,%GPR1,%GPR3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L2	
+	nop
+	nop
+	nop
+	nop
+	j	L3	
+	nop
+	nop
+	nop
+	nop
+L2:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$-1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L10	
+	nop
+	nop
+	nop
+	nop
+L3:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sgt	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L4	
+	nop
+	nop
+	nop
+	nop
+	j	L5	
+	nop
+	nop
+	nop
+	nop
+L4:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L10	
+	nop
+	nop
+	nop
+	nop
+L5:
+	nop	;;0,2
+	nop	;;0,2
+	subi	%GPR1,%GPR30,$-12	
+	subi	%GPR2,%GPR30,$-20	
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$4	
+	lhi	%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$4	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR1,%GPR3	
+	add	%GPR2,%GPR2,%GPR4	
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$0	
+	nop	;;10,12
+	nop	;;10,12
+	lw	%GPR1,0(%GPR1)	
+	lw	%GPR2,0(%GPR2)	
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	subu	%GPR1,%GPR1,%GPR2	
+	nop	;;17,21
+	nop	;;17,21
+	nop	;;17,21
+	nop	;;17,21
+	slt	%GPR27,%GPR1,%GPR3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L6	
+	nop
+	nop
+	nop
+	nop
+	j	L7	
+	nop
+	nop
+	nop
+	nop
+L6:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$-1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L10	
+	nop
+	nop
+	nop
+	nop
+L7:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sgt	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L8	
+	nop
+	nop
+	nop
+	nop
+	j	L9	
+	nop
+	nop
+	nop
+	nop
+L8:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L10	
+	nop
+	nop
+	nop
+	nop
+L9:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L10	
+	nop
+	nop
+	nop
+	nop
+L10:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+mad_timer_negate:
+L11:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	lw	%GPR2,0(%GPR1)	
+	nop	;;3,7
+	nop	;;3,7
+	nop	;;3,7
+	nop	;;3,7
+	sub	%GPR2,%GPR0,%GPR2	
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$4	
+	lhi	%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$0	
+	nop	;;9,11
+	nop	;;9,11
+	sw	0(%GPR1),%GPR2	
+	add	%GPR2,%GPR1,%GPR3	
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	lw	%GPR2,0(%GPR2)	
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	sne	%GPR27,%GPR2,%GPR4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L12	
+	nop
+	nop
+	nop
+	nop
+	j	L13	
+	nop
+	nop
+	nop
+	nop
+L12:
+	lw	%GPR2,0(%GPR1)	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	subi	%GPR2,%GPR2,$1	
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$4	
+	lhi	%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$4	
+	lhi	%GPR5,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR5,%GPR5,$352800000	
+	sw	0(%GPR1),%GPR2	
+	add	%GPR3,%GPR1,%GPR3	
+	add	%GPR1,%GPR1,%GPR4	
+	nop	;;10,13
+	nop	;;10,13
+	nop	;;10,13
+	lw	%GPR2,0(%GPR3)	
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	subu	%GPR2,%GPR5,%GPR2	
+	nop	;;17,21
+	nop	;;17,21
+	nop	;;17,21
+	nop	;;17,21
+	sw	0(%GPR1),%GPR2	
+	j	L13	
+	nop
+	nop
+	nop
+L13:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+mad_timer_set:
+L14:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$16	
+	nop
+	nop
+	nop
+	nop
+	add	%GPR5,%GPR4,%GPR0	
+	sw	-4(%GPR30),%GPR1	
+	add	%GPR4,%GPR3,%GPR0	
+	nop
+	nop
+	nop
+	sw	0(%GPR1),%GPR2	
+	sgeu	%GPR27,%GPR4,%GPR5	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L15	
+	nop
+	nop
+	nop
+	nop
+	j	L25	
+	nop
+	nop
+	nop
+	nop
+L15:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sgtu	%GPR27,%GPR5,%GPR1	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L16	
+	nop
+	nop
+	nop
+	nop
+	j	L25	
+	nop
+	nop
+	nop
+	nop
+L16:
+	lw	%GPR2,-4(%GPR30)	
+	divu	%GPR1,%GPR4,%GPR5	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lw	%GPR2,0(%GPR2)	
+	modu	%GPR4,%GPR4,%GPR5	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	addu	%GPR2,%GPR2,%GPR1	
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$1	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	lw	%GPR1,-4(%GPR30)	
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	sw	0(%GPR1),%GPR2	
+	nop
+	nop
+	nop
+L17:
+	add	%GPR1,%GPR5,%GPR0	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$22050	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sltu	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L18	
+	nop
+	nop
+	nop
+	nop
+	j	L29	
+	nop
+	nop
+	nop
+	nop
+L18:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sleu	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L26	
+	nop
+	nop
+	nop
+	nop
+	j	L19	
+	nop
+	nop
+	nop
+	nop
+L19:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$1000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L36	
+	nop
+	nop
+	nop
+	nop
+	j	L20	
+	nop
+	nop
+	nop
+	nop
+L20:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$8000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L37	
+	nop
+	nop
+	nop
+	nop
+	j	L21	
+	nop
+	nop
+	nop
+	nop
+L21:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$11025	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L38	
+	nop
+	nop
+	nop
+	nop
+	j	L22	
+	nop
+	nop
+	nop
+	nop
+L22:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$12000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L39	
+	nop
+	nop
+	nop
+	nop
+	j	L23	
+	nop
+	nop
+	nop
+	nop
+L23:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$16000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L24	
+	nop
+	nop
+	nop
+	nop
+	j	L45	
+	nop
+	nop
+	nop
+	nop
+L24:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$22050	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L25:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$0	
+	j	L17	
+	nop
+	nop
+	nop
+L26:
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	nop	;;4,6
+	nop	;;4,6
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	nop	;;6,8
+	nop	;;6,8
+	add	%GPR1,%GPR3,%GPR1	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	sw	0(%GPR1),%GPR2	
+	nop
+	nop
+	nop
+L27:
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	nop	;;4,6
+	nop	;;4,6
+	lhi	%GPR2,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$352800000	
+	nop	;;6,8
+	nop	;;6,8
+	add	%GPR1,%GPR3,%GPR1	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	lw	%GPR1,0(%GPR1)	
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	sgeu	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L28	
+	nop
+	nop
+	nop
+	nop
+	j	L46	
+	nop
+	nop
+	nop
+	nop
+L28:
+	lw	%GPR1,-4(%GPR30)	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	reduce_timer	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	j	L46	
+	nop
+	nop
+	nop
+L29:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$22050	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L40	
+	nop
+	nop
+	nop
+	nop
+	j	L30	
+	nop
+	nop
+	nop
+	nop
+L30:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$24000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L41	
+	nop
+	nop
+	nop
+	nop
+	j	L31	
+	nop
+	nop
+	nop
+	nop
+L31:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$32000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L42	
+	nop
+	nop
+	nop
+	nop
+	j	L32	
+	nop
+	nop
+	nop
+	nop
+L32:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$44100	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L43	
+	nop
+	nop
+	nop
+	nop
+	j	L33	
+	nop
+	nop
+	nop
+	nop
+L33:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$48000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L44	
+	nop
+	nop
+	nop
+	nop
+	j	L34	
+	nop
+	nop
+	nop
+	nop
+L34:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$352800000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L35	
+	nop
+	nop
+	nop
+	nop
+	j	L45	
+	nop
+	nop
+	nop
+	nop
+L35:
+	lw	%GPR2,-4(%GPR30)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	add	%GPR1,%GPR2,%GPR1	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	sw	0(%GPR1),%GPR4	
+	j	L27	
+	nop
+	nop
+	nop
+L36:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$5	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$352800	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L37:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$44100	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L38:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$32000	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L39:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$29400	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L40:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$16000	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L41:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$14700	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L42:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$11025	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L43:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$8000	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L44:
+	nop	;;0,2
+	nop	;;0,2
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$7350	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	add	%GPR1,%GPR3,%GPR1	
+	multu	%GPR2,%GPR4,%GPR2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	sw	0(%GPR1),%GPR2	
+	j	L27	
+	nop
+	nop
+	nop
+L45:
+	lw	%GPR2,-4(%GPR30)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$4	
+	nop	;;4,6
+	nop	;;4,6
+	lhi	%GPR3,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$352800000	
+	nop	;;6,8
+	nop	;;6,8
+	add	%GPR1,%GPR2,%GPR1	
+	add	%GPR2,%GPR5,%GPR0	
+	nop	;;9,12
+	nop	;;9,12
+	nop	;;9,12
+	sw	-8(%GPR30),%GPR1	
+	add	%GPR1,%GPR4,%GPR0	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	scale_rational	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR1,-8(%GPR30)	
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	sw	0(%GPR1),%GPR28	
+	j	L27	
+	nop
+	nop
+	nop
+L46:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+mad_timer_add:
+L47:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	lw	%GPR3,0(%GPR1)	
+	lw	%GPR2,12(%GPR30)	
+	nop	;;4,7
+	nop	;;4,7
+	nop	;;4,7
+	subi	%GPR4,%GPR30,$-12	
+	add	%GPR2,%GPR3,%GPR2	
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$4	
+	lhi	%GPR5,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR5,%GPR5,$4	
+	nop	;;10,12
+	nop	;;10,12
+	sw	0(%GPR1),%GPR2	
+	add	%GPR2,%GPR4,%GPR3	
+	add	%GPR3,%GPR1,%GPR5	
+	lhi	%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$4	
+	nop	;;15,17
+	nop	;;15,17
+	lw	%GPR2,0(%GPR2)	
+	lw	%GPR3,0(%GPR3)	
+	add	%GPR4,%GPR1,%GPR4	
+	lhi	%GPR5,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR5,%GPR5,$4	
+	nop	;;20,22
+	nop	;;20,22
+	addu	%GPR2,%GPR3,%GPR2	
+	nop	;;22,24
+	nop	;;22,24
+	add	%GPR3,%GPR1,%GPR5	
+	lhi	%GPR5,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR5,%GPR5,$352800000	
+	sw	0(%GPR4),%GPR2	
+	nop	;;26,30
+	nop	;;26,30
+	nop	;;26,30
+	nop	;;26,30
+	lw	%GPR2,0(%GPR3)	
+	nop	;;30,34
+	nop	;;30,34
+	nop	;;30,34
+	nop	;;30,34
+	sgeu	%GPR27,%GPR2,%GPR5	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L48	
+	nop
+	nop
+	nop
+	nop
+	j	L49	
+	nop
+	nop
+	nop
+	nop
+L48:
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	reduce_timer	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	j	L49	
+	nop
+	nop
+	nop
+L49:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+mad_timer_multiply:
+L50:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,4
+	nop	;;2,4
+	add	%GPR28,%GPR2,%GPR0	
+	nop	;;4,7
+	nop	;;4,7
+	nop	;;4,7
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	slt	%GPR27,%GPR2,%GPR3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L51	
+	nop
+	nop
+	nop
+	nop
+	j	L52	
+	nop
+	nop
+	nop
+	nop
+L51:
+	sub	%GPR28,%GPR0,%GPR2	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	mad_timer_negate	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+L52:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR1,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR1,%GPR1,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sne	%GPR27,%GPR28,%GPR1	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L53	
+	nop
+	nop
+	nop
+	nop
+	j	L54	
+	nop
+	nop
+	nop
+	nop
+L53:
+	srli	%GPR28,%GPR28,$1	
+	j	L52	
+	nop
+	nop
+	nop
+L54:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+mad_timer_count:
+L55:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$12	
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR30),%GPR1	
+	nop
+	nop
+	nop
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	nop	;;2,7
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$100	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	slt	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L56	
+	nop
+	nop
+	nop
+	nop
+	j	L70	
+	nop
+	nop
+	nop
+	nop
+L56:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$30	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	slt	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L57	
+	nop
+	nop
+	nop
+	nop
+	j	L64	
+	nop
+	nop
+	nop
+	nop
+L57:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-2	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L82	
+	nop
+	nop
+	nop
+	nop
+	j	L58	
+	nop
+	nop
+	nop
+	nop
+L58:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-1	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L83	
+	nop
+	nop
+	nop
+	nop
+	j	L59	
+	nop
+	nop
+	nop
+	nop
+L59:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L84	
+	nop
+	nop
+	nop
+	nop
+	j	L60	
+	nop
+	nop
+	nop
+	nop
+L60:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$10	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L61	
+	nop
+	nop
+	nop
+	nop
+L61:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$24	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sge	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L62	
+	nop
+	nop
+	nop
+	nop
+	j	L69	
+	nop
+	nop
+	nop
+	nop
+L62:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$25	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sle	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L69	
+	nop
+	nop
+	nop
+	nop
+L63:
+	subi	%GPR1,%GPR30,$-12	
+	lw	%GPR3,-4(%GPR30)	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$4	
+	nop	;;4,7
+	nop	;;4,7
+	nop	;;4,7
+	lhi	%GPR2,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$352800000	
+	add	%GPR1,%GPR1,%GPR4	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	lw	%GPR1,0(%GPR1)	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	scale_rational	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR2,-4(%GPR30)	
+	lw	%GPR1,12(%GPR30)	
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	mac	%GPR28,%GPR1,%GPR2	
+	nop	;;19,23
+	nop	;;19,23
+	nop	;;19,23
+	nop	;;19,23
+	j	L85	
+	nop
+	nop
+	nop
+	nop
+L64:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$30	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L65	
+	nop
+	nop
+	nop
+	nop
+L65:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$48	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L66	
+	nop
+	nop
+	nop
+	nop
+L66:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$50	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L67	
+	nop
+	nop
+	nop
+	nop
+L67:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$60	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L68	
+	nop
+	nop
+	nop
+	nop
+L68:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$75	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L69	
+	nop
+	nop
+	nop
+	nop
+L69:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	j	L85	
+	nop
+	nop
+	nop
+	nop
+L70:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$16000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	slt	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L71	
+	nop
+	nop
+	nop
+	nop
+	j	L76	
+	nop
+	nop
+	nop
+	nop
+L71:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$100	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L72	
+	nop
+	nop
+	nop
+	nop
+L72:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$1000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L73	
+	nop
+	nop
+	nop
+	nop
+L73:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$8000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L74	
+	nop
+	nop
+	nop
+	nop
+L74:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$11025	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L75	
+	nop
+	nop
+	nop
+	nop
+L75:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$12000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L69	
+	nop
+	nop
+	nop
+	nop
+L76:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$16000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L77	
+	nop
+	nop
+	nop
+	nop
+L77:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$22050	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L78	
+	nop
+	nop
+	nop
+	nop
+L78:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$24000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L79	
+	nop
+	nop
+	nop
+	nop
+L79:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$32000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L80	
+	nop
+	nop
+	nop
+	nop
+L80:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$44100	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L81	
+	nop
+	nop
+	nop
+	nop
+L81:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$48000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L63	
+	nop
+	nop
+	nop
+	nop
+	j	L69	
+	nop
+	nop
+	nop
+	nop
+L82:
+	lw	%GPR1,12(%GPR30)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$3600	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	div	%GPR28,%GPR1,%GPR2	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	j	L85	
+	nop
+	nop
+	nop
+	nop
+L83:
+	lw	%GPR1,12(%GPR30)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$60	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	div	%GPR28,%GPR1,%GPR2	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	j	L85	
+	nop
+	nop
+	nop
+	nop
+L84:
+	lw	%GPR28,12(%GPR30)	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	j	L85	
+	nop
+	nop
+	nop
+	nop
+L85:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+mad_timer_fraction:
+L86:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	add	%GPR3,%GPR1,%GPR0	
+	nop
+	nop
+	nop
+	nop	;;2,4
+	nop	;;2,4
+	add	%GPR1,%GPR3,%GPR0	
+	nop	;;4,7
+	nop	;;4,7
+	nop	;;4,7
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$0	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L89	
+	nop
+	nop
+	nop
+	nop
+	j	L87	
+	nop
+	nop
+	nop
+	nop
+L87:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$352800000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L88	
+	nop
+	nop
+	nop
+	nop
+	j	L93	
+	nop
+	nop
+	nop
+	nop
+L88:
+	subi	%GPR1,%GPR30,$-12	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$4	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	add	%GPR1,%GPR1,%GPR2	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	lw	%GPR28,0(%GPR1)	
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	j	L94	
+	nop
+	nop
+	nop
+	nop
+L89:
+	subi	%GPR1,%GPR30,$-12	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$4	
+	nop	;;4,6
+	nop	;;4,6
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$0	
+	nop	;;6,8
+	nop	;;6,8
+	add	%GPR1,%GPR1,%GPR2	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	lw	%GPR1,0(%GPR1)	
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	sne	%GPR27,%GPR1,%GPR3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L90	
+	nop
+	nop
+	nop
+	nop
+	j	L91	
+	nop
+	nop
+	nop
+	nop
+L90:
+	subi	%GPR1,%GPR30,$-12	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$4	
+	nop	;;4,6
+	nop	;;4,6
+	lhi	%GPR3,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$352800000	
+	nop	;;6,8
+	nop	;;6,8
+	add	%GPR1,%GPR1,%GPR2	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	lw	%GPR1,0(%GPR1)	
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	divu	%GPR28,%GPR3,%GPR1	
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	j	L92	
+	nop
+	nop
+	nop
+L91:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR28,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR28,%GPR28,$352800001	
+	nop
+	nop
+	nop
+L92:
+	j	L94	
+	nop
+	nop
+	nop
+	nop
+L93:
+	subi	%GPR1,%GPR30,$-12	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR4,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$4	
+	nop	;;4,6
+	nop	;;4,6
+	lhi	%GPR2,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$352800000	
+	nop	;;6,8
+	nop	;;6,8
+	add	%GPR1,%GPR1,%GPR4	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	lw	%GPR1,0(%GPR1)	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	scale_rational	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	j	L94	
+	nop
+	nop
+	nop
+	nop
+L94:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+mad_timer_string:
+L95:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$12	
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR30),%GPR3	
+	nop
+	nop
+	nop
+	nop	;;2,4
+	nop	;;2,4
+	add	%GPR1,%GPR4,%GPR0	
+	nop	;;4,7
+	nop	;;4,7
+	nop	;;4,7
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$75	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	slt	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L96	
+	nop
+	nop
+	nop
+	nop
+	j	L117	
+	nop
+	nop
+	nop
+	nop
+L96:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$10	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	slt	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L97	
+	nop
+	nop
+	nop
+	nop
+	j	L110	
+	nop
+	nop
+	nop
+	nop
+L97:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-60	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L103	
+	nop
+	nop
+	nop
+	nop
+	j	L98	
+	nop
+	nop
+	nop
+	nop
+L98:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-50	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L103	
+	nop
+	nop
+	nop
+	nop
+	j	L99	
+	nop
+	nop
+	nop
+	nop
+L99:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-48	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L103	
+	nop
+	nop
+	nop
+	nop
+	j	L100	
+	nop
+	nop
+	nop
+	nop
+L100:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-30	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L103	
+	nop
+	nop
+	nop
+	nop
+	j	L101	
+	nop
+	nop
+	nop
+	nop
+L101:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-25	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sge	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L102	
+	nop
+	nop
+	nop
+	nop
+	j	L104	
+	nop
+	nop
+	nop
+	nop
+L102:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-24	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sle	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L103	
+	nop
+	nop
+	nop
+	nop
+	j	L104	
+	nop
+	nop
+	nop
+	nop
+L103:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-60	
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$10	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	mult	%GPR2,%GPR4,%GPR2	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	mult	%GPR2,%GPR2,%GPR3	
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	subi	%GPR2,%GPR2,$18	
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	modu	%GPR1,%GPR1,%GPR2	
+	nop	;;20,24
+	nop	;;20,24
+	nop	;;20,24
+	nop	;;20,24
+	nop
+	nop
+	nop
+L104:
+	lw	%GPR1,-4(%GPR30)	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-60	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L131	
+	nop
+	nop
+	nop
+	nop
+	j	L105	
+	nop
+	nop
+	nop
+	nop
+L105:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-50	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L131	
+	nop
+	nop
+	nop
+	nop
+	j	L106	
+	nop
+	nop
+	nop
+	nop
+L106:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-48	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L131	
+	nop
+	nop
+	nop
+	nop
+	j	L107	
+	nop
+	nop
+	nop
+	nop
+L107:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-30	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L131	
+	nop
+	nop
+	nop
+	nop
+	j	L108	
+	nop
+	nop
+	nop
+	nop
+L108:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-25	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sge	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L109	
+	nop
+	nop
+	nop
+	nop
+	j	L131	
+	nop
+	nop
+	nop
+	nop
+L109:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$65535	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$-24	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sle	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L131	
+	nop
+	nop
+	nop
+	nop
+	j	L131	
+	nop
+	nop
+	nop
+	nop
+L110:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$10	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L111	
+	nop
+	nop
+	nop
+	nop
+L111:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$24	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sge	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L112	
+	nop
+	nop
+	nop
+	nop
+	j	L104	
+	nop
+	nop
+	nop
+	nop
+L112:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$25	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sle	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L113	
+	nop
+	nop
+	nop
+	nop
+L113:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$30	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L114	
+	nop
+	nop
+	nop
+	nop
+L114:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$48	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L115	
+	nop
+	nop
+	nop
+	nop
+L115:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$50	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L116	
+	nop
+	nop
+	nop
+	nop
+L116:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$60	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L104	
+	nop
+	nop
+	nop
+	nop
+L117:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$16000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	slt	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L118	
+	nop
+	nop
+	nop
+	nop
+	j	L124	
+	nop
+	nop
+	nop
+	nop
+L118:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$75	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L119	
+	nop
+	nop
+	nop
+	nop
+L119:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$100	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L120	
+	nop
+	nop
+	nop
+	nop
+L120:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$1000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L121	
+	nop
+	nop
+	nop
+	nop
+L121:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$8000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L122	
+	nop
+	nop
+	nop
+	nop
+L122:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$11025	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L123	
+	nop
+	nop
+	nop
+	nop
+L123:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$12000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L104	
+	nop
+	nop
+	nop
+	nop
+L124:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$16000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L125	
+	nop
+	nop
+	nop
+	nop
+L125:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$22050	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L126	
+	nop
+	nop
+	nop
+	nop
+L126:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$24000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L127	
+	nop
+	nop
+	nop
+	nop
+L127:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$32000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L128	
+	nop
+	nop
+	nop
+	nop
+L128:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$44100	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L129	
+	nop
+	nop
+	nop
+	nop
+L129:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$48000	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	seq	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L130	
+	nop
+	nop
+	nop
+	nop
+	j	L104	
+	nop
+	nop
+	nop
+	nop
+L130:
+	subi	%GPR1,%GPR30,$-12	
+	nop	;;1,4
+	nop	;;1,4
+	nop	;;1,4
+	lhi	%GPR2,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR2,%GPR2,$4	
+	nop	;;4,6
+	nop	;;4,6
+	lhi	%GPR3,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$352800000	
+	nop	;;6,8
+	nop	;;6,8
+	add	%GPR1,%GPR1,%GPR2	
+	nop	;;8,10
+	nop	;;8,10
+	divu	%GPR2,%GPR3,%GPR4	
+	nop	;;10,12
+	nop	;;10,12
+	lw	%GPR1,0(%GPR1)	
+	nop	;;12,14
+	nop	;;12,14
+	add	%GPR3,%GPR5,%GPR0	
+	nop	;;14,16
+	nop	;;14,16
+	modu	%GPR1,%GPR1,%GPR2	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	scale_rational	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	j	L104	
+	nop
+	nop
+	nop
+L131:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+reduce_timer:
+L132:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop	;;2,5
+	nop	;;2,5
+	nop	;;2,5
+	lw	%GPR2,0(%GPR1)	
+	nop	;;5,7
+	nop	;;5,7
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$4	
+	lhi	%GPR4,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR4,%GPR4,$352800000	
+	nop	;;8,10
+	nop	;;8,10
+	lhi	%GPR5,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR5,%GPR5,$4	
+	add	%GPR3,%GPR1,%GPR3	
+	nop	;;11,13
+	nop	;;11,13
+	lhi	%GPR7,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR7,%GPR7,$4	
+	add	%GPR5,%GPR1,%GPR5	
+	lw	%GPR3,0(%GPR3)	
+	lhi	%GPR6,$5383	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR6,%GPR6,$352800000	
+	nop	;;16,19
+	nop	;;16,19
+	nop	;;16,19
+	divu	%GPR3,%GPR3,%GPR4	
+	nop	;;19,23
+	nop	;;19,23
+	nop	;;19,23
+	nop	;;19,23
+	addu	%GPR2,%GPR2,%GPR3	
+	add	%GPR4,%GPR1,%GPR7	
+	nop	;;24,27
+	nop	;;24,27
+	nop	;;24,27
+	sw	0(%GPR1),%GPR2	
+	nop	;;27,31
+	nop	;;27,31
+	nop	;;27,31
+	nop	;;27,31
+	lw	%GPR1,0(%GPR5)	
+	nop	;;31,35
+	nop	;;31,35
+	nop	;;31,35
+	nop	;;31,35
+	modu	%GPR1,%GPR1,%GPR6	
+	nop	;;35,39
+	nop	;;35,39
+	nop	;;35,39
+	nop	;;35,39
+	sw	0(%GPR4),%GPR1	
+	j	L133	
+	nop
+	nop
+	nop
+L133:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+gcd:
+L134:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop	;;0,2
+	nop	;;0,2
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+L135:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	lhi	%GPR3,$0	
+	nop
+	nop
+	nop
+	nop
+	ori	%GPR3,%GPR3,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	sne	%GPR27,%GPR2,%GPR3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L136	
+	nop
+	nop
+	nop
+	nop
+	j	L137	
+	nop
+	nop
+	nop
+	nop
+L136:
+	add	%GPR3,%GPR2,%GPR0	
+	modu	%GPR2,%GPR1,%GPR2	
+	nop	;;1,5
+	nop	;;1,5
+	nop	;;1,5
+	nop	;;1,5
+	add	%GPR1,%GPR3,%GPR0	
+	j	L135	
+	nop
+	nop
+	nop
+L137:
+	add	%GPR28,%GPR1,%GPR0	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	j	L138	
+	nop
+	nop
+	nop
+	nop
+L138:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+reduce_rational:
+L139:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$16	
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR30),%GPR1	
+	sw	-8(%GPR30),%GPR2	
+	nop
+	nop
+	nop
+	lw	%GPR2,0(%GPR2)	
+	lw	%GPR1,0(%GPR1)	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	gcd	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR1,-4(%GPR30)	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	add	%GPR2,%GPR1,%GPR0	
+	lw	%GPR1,0(%GPR1)	
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	nop	;;12,16
+	divu	%GPR1,%GPR1,%GPR28	
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	nop	;;16,20
+	sw	0(%GPR2),%GPR1	
+	lw	%GPR1,-8(%GPR30)	
+	nop	;;21,25
+	nop	;;21,25
+	nop	;;21,25
+	nop	;;21,25
+	add	%GPR2,%GPR1,%GPR0	
+	lw	%GPR1,0(%GPR1)	
+	nop	;;26,30
+	nop	;;26,30
+	nop	;;26,30
+	nop	;;26,30
+	divu	%GPR1,%GPR1,%GPR28	
+	nop	;;30,34
+	nop	;;30,34
+	nop	;;30,34
+	nop	;;30,34
+	sw	0(%GPR2),%GPR1	
+	j	L140	
+	nop
+	nop
+	nop
+L140:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop
+scale_rational:
+L141:
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	nop
+	subi	%GPR29,%GPR29,$20	
+	nop
+	nop
+	nop
+	nop
+	sw	-4(%GPR30),%GPR1	
+	nop	;;1,5
+	nop	;;1,5
+	nop	;;1,5
+	nop	;;1,5
+	sw	-8(%GPR30),%GPR2	
+	nop	;;5,9
+	nop	;;5,9
+	nop	;;5,9
+	nop	;;5,9
+	sw	-12(%GPR30),%GPR3	
+	nop
+	nop
+	nop
+	subi	%GPR2,%GPR30,$8	
+	subi	%GPR1,%GPR30,$4	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	reduce_rational	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR2,%GPR30,$8	
+	subi	%GPR1,%GPR30,$12	
+	nop
+	nop
+	nop
+	nop
+	subi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	jal	reduce_rational	
+	nop
+	nop
+	nop
+	nop
+	addi	%GPR29,%GPR29,$8	
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR2,-8(%GPR30)	
+	lw	%GPR1,-12(%GPR30)	
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+	sltu	%GPR27,%GPR2,%GPR1	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L142	
+	nop
+	nop
+	nop
+	nop
+	j	L143	
+	nop
+	nop
+	nop
+	nop
+L142:
+	lw	%GPR1,-12(%GPR30)	
+	lw	%GPR2,-8(%GPR30)	
+	lw	%GPR3,-4(%GPR30)	
+	lw	%GPR4,-12(%GPR30)	
+	lw	%GPR5,-8(%GPR30)	
+	modu	%GPR1,%GPR1,%GPR2	
+	lw	%GPR6,-4(%GPR30)	
+	nop	;;6,8
+	nop	;;6,8
+	divu	%GPR4,%GPR4,%GPR5	
+	multu	%GPR1,%GPR1,%GPR3	
+	lw	%GPR2,-8(%GPR30)	
+	nop	;;10,13
+	nop	;;10,13
+	nop	;;10,13
+	multu	%GPR3,%GPR4,%GPR6	
+	divu	%GPR1,%GPR1,%GPR2	
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+	addu	%GPR28,%GPR1,%GPR3	
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+	j	L146	
+	nop
+	nop
+	nop
+	nop
+L143:
+	lw	%GPR1,-8(%GPR30)	
+	lw	%GPR2,-4(%GPR30)	
+	nop	;;1,5
+	nop	;;1,5
+	nop	;;1,5
+	nop	;;1,5
+	sltu	%GPR27,%GPR1,%GPR2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	%GPR27,L144	
+	nop
+	nop
+	nop
+	nop
+	j	L145	
+	nop
+	nop
+	nop
+	nop
+L144:
+	lw	%GPR1,-4(%GPR30)	
+	lw	%GPR2,-8(%GPR30)	
+	lw	%GPR3,-12(%GPR30)	
+	lw	%GPR4,-4(%GPR30)	
+	lw	%GPR5,-8(%GPR30)	
+	modu	%GPR1,%GPR1,%GPR2	
+	lw	%GPR6,-12(%GPR30)	
+	nop	;;6,8
+	nop	;;6,8
+	divu	%GPR4,%GPR4,%GPR5	
+	multu	%GPR1,%GPR1,%GPR3	
+	lw	%GPR2,-8(%GPR30)	
+	nop	;;10,13
+	nop	;;10,13
+	nop	;;10,13
+	multu	%GPR3,%GPR4,%GPR6	
+	divu	%GPR1,%GPR1,%GPR2	
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+	addu	%GPR28,%GPR1,%GPR3	
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+	j	L146	
+	nop
+	nop
+	nop
+	nop
+L145:
+	lw	%GPR1,-4(%GPR30)	
+	lw	%GPR2,-12(%GPR30)	
+	lw	%GPR3,-8(%GPR30)	
+	nop	;;2,5
+	nop	;;2,5
+	nop	;;2,5
+	multu	%GPR1,%GPR1,%GPR2	
+	nop	;;5,9
+	nop	;;5,9
+	nop	;;5,9
+	nop	;;5,9
+	divu	%GPR28,%GPR1,%GPR3	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	j	L146	
+	nop
+	nop
+	nop
+	nop
+L146:
+	nop
+	nop
+	nop
+	nop
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	nop
+	nop
+	nop
+	jr	%GPR31	
+	nop
+	nop
+	nop
+	nop

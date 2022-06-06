@@ -1,0 +1,51 @@
+#! /bin/sh
+###################################################################
+#                                                                 #
+#                   Copyright 2002 PEAS Project                   #
+#                                                                 #
+###################################################################
+
+ASIP_MEISTER_HOME=/Software/epp/ASIPmeister
+
+sim_dir_name="$2.sim"
+syn_dir_name="$2.syn"
+
+cd meister
+
+${ASIP_MEISTER_HOME}/bin/modpp $2.mod 2> $3
+
+if [ $? = 0 ]
+then
+
+    case $1 in
+    sim|both)
+	test -d $sim_dir_name || mkdir $sim_dir_name
+
+	echo "Generating simulation model..." >> $3
+	${ASIP_MEISTER_HOME}/bin/rtgen -m sim -d $sim_dir_name arch.file \
+			$2.ppd 2>> $3
+	cd $sim_dir_name
+	${ASIP_MEISTER_HOME}/bin/filter
+	cd ..
+	;;
+    esac
+
+    if [ $1 = "both" ]
+    then
+	echo "" >> $3
+    fi
+
+    case $1 in
+    syn|both)
+	test -d $syn_dir_name || mkdir $syn_dir_name
+
+	echo "Generating synthesizable model..." >> $3
+	${ASIP_MEISTER_HOME}/bin/rtgen -m syn -d $syn_dir_name arch.file \
+			$2.ppd 2>> $3
+	cd $syn_dir_name
+	${ASIP_MEISTER_HOME}/bin/filter
+	cd ..
+	;;
+    esac
+
+fi

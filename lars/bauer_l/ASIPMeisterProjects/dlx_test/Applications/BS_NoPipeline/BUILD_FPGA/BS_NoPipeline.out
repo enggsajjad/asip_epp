@@ -1,0 +1,574 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				;.addressing	Word
+2				.section	.text
+3				.addressing	Word
+4				.section	.text
+5				.addressing	Word
+6				;.addressing	Word
+7			
+8	0000	03def026		xor	%r30, %r30, %r30
+9	0001	03bde826		xor	%r29, %r29, %r29
+10	0002	039ce026		xor	%r28, %r28, %r28
+11	0003	00000000		nop
+12	0004	3c1e0000		lhi	%r30, $(0xEFFC/0x10000)
+13	0005	3c1d0000		lhi	%r29, $(0xEFFC/0x10000)
+14	0006	00000000		nop
+15	0007	00000000		nop
+16	0008	37deeffc		ori	%r30, %r30, $(0xEFFC%0x10000)
+17	0009	37bdeffc		ori	%r29, %r29, $(0xEFFC%0x10000)
+18	000a	00000000		nop
+19	000b	00000000		nop
+20	000c	00000000		nop
+21	000d	afbefffc		sw	-4(%r29), %r30
+22	000e	afbffff8		sw	-8(%r29), %r31
+23	000f	23ddfff8		addi	%r29, %r30, $-8
+24	0010	00000000		nop
+25	0011	00000000		nop
+26	0012	00000000		nop
+27	0013	0c00000e		jal	main	
+28	0014	00000000		nop
+29	0015	00000000		nop
+30	0016	00000000		nop
+31	0017	00000000		nop
+32	0018	00000000		nop
+33	0019	afa10000		sw	0(%r29), %r1
+34	001a	0c000183		jal	exit
+35	001b	00000000		nop
+36	001c	00000000		nop
+37			
+38	001d	00000000		nop
+39	001e	00000000		nop
+40	001f	00000000		nop
+41	0020	00000000		nop
+42			main:
+43				; Call BubbleSort
+44	0021	00000000		nop
+45	0022	00000000		nop
+46	0023	00000000		nop
+47	0024	00000000		nop
+48	0025	2bbd0008		subi	%r29, %r29, $8			; create place for the parameters
+49	0026	00000000		nop
+50	0027	00000000		nop
+51	0028	00000000		nop
+52	0029	00000000		nop
+53	002a	afa00000		sw	0(%r29), %r0			; "const unsigned int startIndex"
+54	002b	00000000		nop
+55	002c	00000000		nop
+56	002d	00000000		nop
+57	002e	00000000		nop
+58	002f	20010013		addi	%r1, %r0, $19
+59	0030	00000000		nop
+60	0031	00000000		nop
+61	0032	00000000		nop
+62	0033	00000000		nop
+63	0034	afa10004		sw	4(%r29), %r1			; "const unsigned int endIndex"
+64	0035	00000000		nop
+65	0036	00000000		nop
+66	0037	00000000		nop
+67	0038	00000000		nop
+68	0039	0c000023		jal	_bubbleSort
+69	003a	00000000		nop
+70	003b	00000000		nop
+71	003c	00000000		nop
+72	003d	00000000		nop
+73				; Automatically 5 NOPs removed by reduceNOPs.sh
+74	003e	23bd0008		addi	%r29, %r29, $8			; clean up place for parameters
+75			
+76	003f	00000000		nop
+77	0040	00000000		nop
+78	0041	00000000		nop
+79	0042	00000000		nop
+80	0043	8fbe0000		lw	%r30, 0(%r29)			; Restore frame pointer
+81	0044	00000000		nop
+82	0045	00000000		nop
+83	0046	00000000		nop
+84	0047	00000000		nop
+85	0048	8fbf0004		lw	%r31, 4(%r29)			; Restore return address
+86	0049	00000000		nop
+87	004a	00000000		nop
+88	004b	00000000		nop
+89	004c	00000000		nop
+90	004d	8fa10008		lw	%r1,  8(%r29)			; Restore r1
+91	004e	00000000		nop
+92	004f	00000000		nop
+93	0050	00000000		nop
+94	0051	00000000		nop
+95	0052	001ee820		add	%r29, %r0, %r30			; Restore stack pointer
+96			
+97	0053	00000000		nop
+98	0054	00000000		nop
+99	0055	00000000		nop
+100	0056	00000000		nop
+101	0057	0c000140		jal	_exit
+102	0058	00000000		nop
+103	0059	00000000		nop
+104	005a	00000000		nop
+105	005b	00000000		nop
+106			
+107			
+108				; Automatically 5 NOPs removed by reduceNOPs.sh
+109			_bubbleSort:
+110	005c	00000000		nop
+111	005d	00000000		nop
+112	005e	00000000		nop
+113	005f	00000000		nop
+114	0060	001df020		add	%r30, %r0, %r29			; Establish new frame pointer 
+115	0061	00000000		nop
+116	0062	00000000		nop
+117	0063	00000000		nop
+118	0064	00000000		nop
+119	0065	2bbd0030		subi	%r29, %r29, $(8 + 10*4)		; Adjust Stack Pointer; 8 for oldFP+RET and x*4 for saved Registers
+120	0066	00000000		nop
+121	0067	00000000		nop
+122	0068	00000000		nop
+123	0069	00000000		nop
+124	006a	afbe0000		sw	0(%r29), %r30			; Save the frame pointer 
+125	006b	00000000		nop
+126	006c	00000000		nop
+127	006d	00000000		nop
+128	006e	00000000		nop
+129	006f	afbf0004		sw	4(%r29), %r31			; Save the return address 
+130			
+131				; Save Registers 
+132	0070	00000000		nop
+133	0071	00000000		nop
+134	0072	00000000		nop
+135	0073	00000000		nop
+136	0074	afa10008		sw	8(%r29), %r1			; r1 is used for comparing-results and for temporary stuff.
+137	0075	00000000		nop
+138	0076	00000000		nop
+139	0077	00000000		nop
+140	0078	00000000		nop
+141	0079	afa2000c		sw	12(%r29), %r2			; r2 is the parameter value "startIndex".
+142	007a	00000000		nop
+143	007b	00000000		nop
+144	007c	00000000		nop
+145	007d	00000000		nop
+146	007e	afa30010		sw	16(%r29), %r3			; r3 is the parameter value "endIndex".
+147	007f	00000000		nop
+148	0080	00000000		nop
+149	0081	00000000		nop
+150	0082	00000000		nop
+151	0083	afa40014		sw	20(%r29), %r4			; r4 is the loop-variable "i".
+152	0084	00000000		nop
+153	0085	00000000		nop
+154	0086	00000000		nop
+155	0087	00000000		nop
+156	0088	afa50018		sw	24(%r29), %r5			; r5 is the loop-variable "j".
+157	0089	00000000		nop
+158	008a	00000000		nop
+159	008b	00000000		nop
+160	008c	00000000		nop
+161	008d	afa6001c		sw	28(%r29), %r6			; r6 is the loop-end "innerLoopEnd".
+162	008e	00000000		nop
+163	008f	00000000		nop
+164	0090	00000000		nop
+165	0091	00000000		nop
+166	0092	afa70020		sw	32(%r29), %r7			; r7 is "next_j".
+167	0093	00000000		nop
+168	0094	00000000		nop
+169	0095	00000000		nop
+170	0096	00000000		nop
+171	0097	afa80024		sw	36(%r29), %r8			; r8 is "value_j".
+172	0098	00000000		nop
+173	0099	00000000		nop
+174	009a	00000000		nop
+175	009b	00000000		nop
+176	009c	afa90028		sw	40(%r29), %r9			; r9 is "value_next_j".
+177	009d	00000000		nop
+178	009e	00000000		nop
+179	009f	00000000		nop
+180	00a0	00000000		nop
+181	00a1	afaa002c		sw	44(%r29), %r10			; r10 is the start address of 'array'.
+182	00a2	00000000		nop
+183	00a3	00000000		nop
+184	00a4	00000000		nop
+185	00a5	00000000		nop
+186			
+187				; Load Parameters
+188				; Automatically 5 NOPs removed by reduceNOPs.sh
+189	00a6	8fc20000		lw	%r2, 0(%r30)
+190	00a7	00000000		nop
+191	00a8	00000000		nop
+192	00a9	00000000		nop
+193	00aa	00000000		nop
+194	00ab	8fc30004		lw	%r3, 4(%r30)
+195			
+196				; Initialize start address of 'array'
+197	00ac	00000000		nop
+198	00ad	00000000		nop
+199	00ae	00000000		nop
+200	00af	00000000		nop
+201	00b0	3c0a0000		lhi	%r10, $(_array/65536)&0xffff
+202	00b1	00000000		nop
+203	00b2	00000000		nop
+204	00b3	00000000		nop
+205	00b4	00000000		nop
+206	00b5	254a0000		addui	%r10, %r10, $(_array&0xffff)
+207			
+208			
+209				;;;;;;;;;;;;;;;;;;;;;;;;
+210				;; Add your code here ;;
+211				;;;;;;;;;;;;;;;;;;;;;;;;
+212				; innerLoopEnd = array+endIndex
+213	00b6	00000000		nop
+214	00b7	00000000		nop
+215	00b8	00000000		nop
+216	00b9	00000000		nop
+217	00ba	40660002		slli	%r6, %r3, $2
+218	00bb	00000000		nop
+219	00bc	00000000		nop
+220	00bd	00000000		nop
+221	00be	00000000		nop
+222	00bf	00ca3020		add	%r6, %r6, %r10
+223			
+224				; i = startIndex;
+225	00c0	00000000		nop
+226	00c1	00000000		nop
+227	00c2	00000000		nop
+228	00c3	00000000		nop
+229	00c4	00402020		add	%r4, %r2, %r0
+230			
+231	00c5	00000000		nop
+232	00c6	00000000		nop
+233	00c7	00000000		nop
+234	00c8	00000000		nop
+235			OuterLoop_Start:
+236				; while (i < endIndex) {
+237	00c9	00000000		nop
+238	00ca	00000000		nop
+239	00cb	00000000		nop
+240	00cc	00000000		nop
+241	00cd	0083083a		sltu	%r1, %r4, %r3
+242	00ce	00000000		nop
+243	00cf	00000000		nop
+244	00d0	00000000		nop
+245	00d1	00000000		nop
+246	00d2	1020007a		beqz	%r1, OuterLoop_End
+247	00d3	00000000		nop
+248	00d4	00000000		nop
+249	00d5	00000000		nop
+250	00d6	00000000		nop
+251			
+252				;   j = array+startIndex;
+253				; Automatically 5 NOPs removed by reduceNOPs.sh
+254	00d7	40450002		slli	%r5, %r2, $2
+255	00d8	00000000		nop
+256	00d9	00000000		nop
+257	00da	00000000		nop
+258	00db	00000000		nop
+259	00dc	00aa2820		add	%r5, %r5, %r10
+260			
+261				;   value_j = *j;
+262	00dd	00000000		nop
+263	00de	00000000		nop
+264	00df	00000000		nop
+265	00e0	00000000		nop
+266	00e1	8ca80000		lw	%r8, 0(%r5)
+267			
+268				;   next_j = j;
+269	00e2	00000000		nop
+270	00e3	00000000		nop
+271	00e4	00000000		nop
+272	00e5	00000000		nop
+273	00e6	00a03820		add	%r7, %r5, %r0
+274			
+275	00e7	00000000		nop
+276	00e8	00000000		nop
+277	00e9	00000000		nop
+278	00ea	00000000		nop
+279			InnerLoop_Start:
+280				;   while (j < innerLoopEnd) {
+281	00eb	00000000		nop
+282	00ec	00000000		nop
+283	00ed	00000000		nop
+284	00ee	00000000		nop
+285	00ef	00a6083a		sltu	%r1, %r5, %r6
+286	00f0	00000000		nop
+287	00f1	00000000		nop
+288	00f2	00000000		nop
+289	00f3	00000000		nop
+290	00f4	10200045		beqz	%r1, InnerLoop_End
+291	00f5	00000000		nop
+292	00f6	00000000		nop
+293	00f7	00000000		nop
+294	00f8	00000000		nop
+295			
+296				;     next_j++;
+297				; Automatically 5 NOPs removed by reduceNOPs.sh
+298	00f9	20e70004		addi	%r7, %r7, $4
+299			
+300				;     value_next_j = *next_j;
+301	00fa	00000000		nop
+302	00fb	00000000		nop
+303	00fc	00000000		nop
+304	00fd	00000000		nop
+305	00fe	8ce90000		lw	%r9, 0(%r7)
+306			
+307				;     if (value_next_j < value_j) {
+308	00ff	00000000		nop
+309	0100	00000000		nop
+310	0101	00000000		nop
+311	0102	00000000		nop
+312	0103	0128083a		sltu	%r1, %r9, %r8
+313	0104	00000000		nop
+314	0105	00000000		nop
+315	0106	00000000		nop
+316	0107	00000000		nop
+317	0108	1020001e		beqz	%r1, SkipExchange
+318	0109	00000000		nop
+319	010a	00000000		nop
+320	010b	00000000		nop
+321	010c	00000000		nop
+322			
+323				;       *j = value_next_j;
+324				; Automatically 5 NOPs removed by reduceNOPs.sh
+325	010d	aca90000		sw	0(%r5), %r9
+326			
+327				;       *next_j = value_j;
+328	010e	00000000		nop
+329	010f	00000000		nop
+330	0110	00000000		nop
+331	0111	00000000		nop
+332	0112	ace80000		sw	0(%r7), %r8
+333			
+334				;       tmp = value_j;
+335	0113	00000000		nop
+336	0114	00000000		nop
+337	0115	00000000		nop
+338	0116	00000000		nop
+339	0117	01000820		add	%r1, %r8, %r0
+340			
+341				;       value_j = value_next_j;
+342	0118	00000000		nop
+343	0119	00000000		nop
+344	011a	00000000		nop
+345	011b	00000000		nop
+346	011c	01204020		add	%r8, %r9, %r0
+347			
+348				;       value_next_j = tmp;
+349	011d	00000000		nop
+350	011e	00000000		nop
+351	011f	00000000		nop
+352	0120	00000000		nop
+353	0121	00204820		add	%r9, %r1, %r0
+354				;     }
+355			
+356	0122	00000000		nop
+357	0123	00000000		nop
+358	0124	00000000		nop
+359	0125	00000000		nop
+360			SkipExchange:
+361				;     j = next_j;
+362	0126	00000000		nop
+363	0127	00000000		nop
+364	0128	00000000		nop
+365	0129	00000000		nop
+366	012a	00e02820		add	%r5, %r7, %r0
+367			
+368				;     value_j = value_next_j;
+369	012b	00000000		nop
+370	012c	00000000		nop
+371	012d	00000000		nop
+372	012e	00000000		nop
+373	012f	01204020		add	%r8, %r9, %r0
+374			
+375	0130	00000000		nop
+376	0131	00000000		nop
+377	0132	00000000		nop
+378	0133	00000000		nop
+379	0134	0bffffb7		j	InnerLoop_Start	;   }
+380	0135	00000000		nop
+381	0136	00000000		nop
+382	0137	00000000		nop
+383	0138	00000000		nop
+384			
+385				; Automatically 5 NOPs removed by reduceNOPs.sh
+386			InnerLoop_End:
+387				;   innerLoopEnd--;
+388	0139	00000000		nop
+389	013a	00000000		nop
+390	013b	00000000		nop
+391	013c	00000000		nop
+392	013d	28c60004		subi	%r6, %r6, $4
+393			
+394				;   i++;
+395	013e	00000000		nop
+396	013f	00000000		nop
+397	0140	00000000		nop
+398	0141	00000000		nop
+399	0142	20840001		addi	%r4, %r4, $1
+400			
+401			
+402	0143	00000000		nop
+403	0144	00000000		nop
+404	0145	00000000		nop
+405	0146	00000000		nop
+406	0147	0bffff82		j	OuterLoop_Start	; }
+407	0148	00000000		nop
+408	0149	00000000		nop
+409	014a	00000000		nop
+410	014b	00000000		nop
+411			
+412				; Automatically 5 NOPs removed by reduceNOPs.sh
+413			OuterLoop_End:
+414			
+415	014c	00000000		nop
+416	014d	00000000		nop
+417	014e	00000000		nop
+418	014f	00000000		nop
+419	0150	8fbe0000		lw	%r30, 0(%r29)			; Restore frame pointer
+420	0151	00000000		nop
+421	0152	00000000		nop
+422	0153	00000000		nop
+423	0154	00000000		nop
+424	0155	8fbf0004		lw	%r31, 4(%r29)			; Restore return address
+425			
+426				; Restore the saved registers
+427	0156	00000000		nop
+428	0157	00000000		nop
+429	0158	00000000		nop
+430	0159	00000000		nop
+431	015a	8fa10008		lw	%r1, 8(%r29)
+432	015b	00000000		nop
+433	015c	00000000		nop
+434	015d	00000000		nop
+435	015e	00000000		nop
+436	015f	8fa2000c		lw	%r2, 12(%r29)
+437	0160	00000000		nop
+438	0161	00000000		nop
+439	0162	00000000		nop
+440	0163	00000000		nop
+441	0164	8fa30010		lw	%r3, 16(%r29)
+442	0165	00000000		nop
+443	0166	00000000		nop
+444	0167	00000000		nop
+445	0168	00000000		nop
+446	0169	8fa40014		lw	%r4, 20(%r29)
+447	016a	00000000		nop
+448	016b	00000000		nop
+449	016c	00000000		nop
+450	016d	00000000		nop
+451	016e	8fa50018		lw	%r5, 24(%r29)
+452	016f	00000000		nop
+453	0170	00000000		nop
+454	0171	00000000		nop
+455	0172	00000000		nop
+456	0173	8fa6001c		lw	%r6, 28(%r29)
+457	0174	00000000		nop
+458	0175	00000000		nop
+459	0176	00000000		nop
+460	0177	00000000		nop
+461	0178	8fa70020		lw	%r7, 32(%r29)
+462	0179	00000000		nop
+463	017a	00000000		nop
+464	017b	00000000		nop
+465	017c	00000000		nop
+466	017d	8fa80024		lw	%r8, 36(%r29)
+467	017e	00000000		nop
+468	017f	00000000		nop
+469	0180	00000000		nop
+470	0181	00000000		nop
+471	0182	8fa90028		lw	%r9, 40(%r29)
+472	0183	00000000		nop
+473	0184	00000000		nop
+474	0185	00000000		nop
+475	0186	00000000		nop
+476	0187	8faa0030		lw	%r10,48(%r29)
+477			
+478	0188	00000000		nop
+479	0189	00000000		nop
+480	018a	00000000		nop
+481	018b	00000000		nop
+482	018c	001ee820		add	%r29, %r0, %r30			; Restore stack pointer
+483			
+484				; Return
+485	018d	00000000		nop
+486	018e	00000000		nop
+487	018f	00000000		nop
+488	0190	00000000		nop
+489	0191	00000000		nop
+490	0192	03e00008		jr	%r31
+491	0193	00000000		nop
+492	0194	00000000		nop
+493	0195	00000000		nop
+494	0196	00000000		nop
+495			
+496			
+497				; Automatically 5 NOPs removed by reduceNOPs.sh
+498	0197	00000000	_exit:	nop
+499	0198	00000000		nop
+500	0199	00000000		nop
+501	019a	00000000		nop
+502	019b	00000000		nop
+503			
+504			
+505				; Automatically 1 NOPs removed by reduceNOPs.sh
+506				.section	.data
+507			_array:
+508	0000	0000002d		.data.32	45
+509	0004	0000004b		.data.32	75
+510	0008	00000156		.data.32	342
+511	000c	00000036		.data.32	54
+512	0010	00000007		.data.32	7
+513	0014	00000056		.data.32	86
+514	0018	0000005c		.data.32	92
+515	001c	000000eb		.data.32	235
+516	0020	00000004		.data.32	4
+517	0024	0000002a		.data.32	42
+518	0028	00000063		.data.32	99
+519	002c	0000004e		.data.32	78
+520	0030	0000003f		.data.32	63
+521	0034	00000160		.data.32	352
+522	0038	00000015		.data.32	21
+523	003c	0000027a		.data.32	634
+524	0040	00000006		.data.32	6
+525	0044	0000004d		.data.32	77
+526	0048	0000015a		.data.32	346
+527	004c	00000017		.data.32	23
+528			
+529				.section	.text
+530				.addressing	Word
+531				;.addressing	Word
+532	019c	00000000		nop
+533			exit:
+534	019d	00000000		nop
+535	019e	00000000		nop
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+InnerLoop_End	.text	0139	Label	139	386 
+exit	.text	019d	Label	19d	533 
+OuterLoop_Start	.text	00c9	Label	c9	235 
+_bubbleSort	.text	005c	Label	5c	109 
+_array	.data	0000	Label	0	507 
+_exit	.text	0197	Label	197	498 
+SkipExchange	.text	0126	Label	126	360 
+OuterLoop_End	.text	014c	Label	14c	413 
+main	.text	0021	Label	21	42 
+InnerLoop_Start	.text	00eb	Label	eb	279 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	19f 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		50 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

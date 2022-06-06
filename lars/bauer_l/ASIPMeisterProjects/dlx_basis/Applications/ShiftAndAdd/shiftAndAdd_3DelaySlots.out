@@ -1,0 +1,60 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.addressing	Word
+2			
+3				.section	.text
+4	0000	20010005	main:	addi	%r1, %r0, $5		; r1 := A;
+5	0001	20020007		addi	%r2, %r0, $7		; r2 := B;
+6	0002	00001820		add	%r3, %r0, %r0		; r3 := 0;     später gilt dann r3 := A*B;
+7	0003	00000000		sll	%r0, %r0, %r0		; NOP
+8			
+9	0004	30240001		andi	%r4, %r1, $1		; r4 merkt sich, ob A gerade oder ungerade ist.
+10	0005	00000000		sll	%r0, %r0, %r0		; NOP
+11			
+12	0006	44210001	loop:	srli	%r1, %r1, $1		; A /= 2;
+13	0007	40420001		slli	%r2, %r2, $1		; B *= 2;
+14	0008	10800004		beqz	%r4, skipAdd
+15	0009	00000000		nop
+16	000a	00000000		nop
+17	000b	00621820		add	%r3, %r3, %r2		; C := C + B'OLD;  // B'OLD deutet darauf hin, dass das letzte "B*=2" noch nicht aktiv ist.
+18			
+19	000c	1420fffa	skipAdd:bnez	%r1, loop		; repeat until A==0
+20	000d	30240001		andi	%r4, %r1, $1		; r4 merkt sich, ob A gerade oder ungerade ist.
+21	000e	00000000		nop
+22	000f	00000000		nop
+23			
+24	0010	ac030000		sw	0(%r0), %r3
+25	0011	00000000		sll	%r0, %r0, %r0		; NOP
+26	0012	00000000		sll	%r0, %r0, %r0		; NOP
+27	0013	00000000		sll	%r0, %r0, %r0		; NOP
+28			
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+loop	.text	0006	Label	6	12 
+skipAdd	.text	000c	Label	c	19 
+main	.text	0000	Label	0	4 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	14 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		0 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

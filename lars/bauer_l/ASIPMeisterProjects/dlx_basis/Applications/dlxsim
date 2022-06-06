@@ -1,0 +1,26 @@
+test -r ../../env_settings || {
+  echo
+  echo "ERROR: \"env_settings\" could not be found!"
+  echo "       Make sure, that you start this script from a subfolder"
+  echo "       of the Assembly folder."
+  echo
+  exit 1
+}
+
+source ../../env_settings
+
+LENGTH=${#PROJECT_DIR}
+if [[ ${PROJECT_DIR} != ${PWD:0:${LENGTH}} ]]; then
+  echo
+  echo "ERROR: The current directory:"
+  echo "       \"${PWD}\""
+  echo "       is not inside the current PROJECT_DIRECTORY:"
+  echo "       \"${PROJECT_DIR}\""
+  echo "       as configured in the env_settings."
+  echo
+  exit 1
+fi
+
+echo "Using dlxsim in \"$DLXSIM_DIR\" directory."
+$DLXSIM_DIR/dlxsim $*
+

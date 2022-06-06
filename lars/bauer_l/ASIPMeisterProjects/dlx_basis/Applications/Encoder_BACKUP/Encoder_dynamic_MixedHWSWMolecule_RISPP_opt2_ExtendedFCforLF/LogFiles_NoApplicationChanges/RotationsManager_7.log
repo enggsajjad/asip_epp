@@ -1,0 +1,2854 @@
+0 s: Info: RotationsManager: Cycle-time: 1 ns
+
+0 s: Info: TDLAMBDA: 
+   TD(lambda) using parameters:
+   lambda = 0
+   gamma  = 0
+   alpha  = 0
+   e_min  = 1e-05
+0 s: Info: RotationsManager: 
+   * FPGA capacity/used: 7/0
+
+
+
+0 s: Info: DECODER: Decoder ready.
+0 s: Info: MONITOR: 	Size of timeframe: 250,000
+	Extended monitoring information between cycles 0 and 1
+0 s: Info: RotationsManager: Initializing DLX Pipeline Emulator
+   * Module Name:            [Pipeline]
+   * Instruction Memory:     [/home/bauer_l/ASIPMeisterProjects/dlx_basis/Applications/Encoder_dynamic_MixedHWSWMolecule_RISPP_opt2/TestData.IM]
+   * Branch Trace:           [/home/bauer_l/ASIPMeisterProjects/dlx_basis/Applications/Encoder_dynamic_MixedHWSWMolecule_RISPP_opt2/trace.txt]
+   * DLX Opcode Definitions: [/home/bauer_l//RotationsManager_61_0/DLX/dlxops.dlx]
+
+58 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	0
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	0
+
+
+---> AFTER RESCHEDULING
+ SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	0
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	0
+ SATD_4x4_HW_00      : 1x[atom_Transform2]  (L, Execs)=	350	0
+ SATD_4x4_HW_01      : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	294	0
+ SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	0
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	0
+
+
+58 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x29a
+SysDyn:	CURRENT PREDICTION:	6633.0	0.0	0.0	0.0	0.0	0.0	0.0	25344.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/0
+
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 0/0 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 0/0 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 0/0 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 0/0 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 0/0 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 0/0 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 0/0 --> SATD_4x4_HW_04 
+================================================================================
+
+58 ns: Info: MONITOR: currently no atoms available
+
+100058 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/1 swap-in/swap-out: 1/0 running (0) --> SAD_16_HW_00 SAD_16_HW_01 
+100058 ns: Info: MONITOR: Molecule	SAD_16_SW	4673	is replaced by molecule	SAD_16_HW_00	68	and was used	21	- times.
+
+100058 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+100058 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+100058 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+100058 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+100058 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+100058 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+100058 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+100058 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+100058 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+100058 ns: Info: MONITOR: 
+
+200058 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/2 swap-in/swap-out: 2/0 --> SAD_16_HW_01 
+200058 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_HW_01	37	and was used	46	- times.
+
+200058 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+200058 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+200058 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+200058 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+200058 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+200058 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+200058 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+200058 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+200058 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+200058 ns: Info: MONITOR: 
+
+250 us: Info: MONITOR: Molecule: 	SAD_16_SW	was used	21	since in last timeframe
+250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	46	since in last timeframe
+250 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	67	since in last timeframe
+250 us: Info: MONITOR: Molecule: 	SATD_4x4_SW	was used	258	since in last timeframe
+250 us: Info: MONITOR:    SI usages in last timeframe  	134	0	0	0	0	0	0	258	0	
+
+300058 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/1 swap-in/swap-out: 1/0 --> SATD_4x4_HW_04 
+300058 ns: Info: MONITOR: Molecule	HT_4X4_SW	298	is replaced by molecule	HT_4X4_HW_00	104	and was used	0	- times.
+
+300058 ns: Info: MONITOR: Molecule	SATD_4x4_SW	544	is replaced by molecule	SATD_4x4_HW_00	350	and was used	348	- times.
+
+300058 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+300058 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+300058 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_00	104
+300058 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+300058 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+300058 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+300058 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+300058 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_00	350
+300058 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+300058 ns: Info: MONITOR: 
+
+400058 ns: Info: MONITOR: ATOM IN:	atom_PackLSBMSB	needed/available: 1/1 swap-in/swap-out: 1/0 --> SATD_4x4_HW_04 
+400058 ns: Info: MONITOR: Molecule	HT_4X4_HW_00	104	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+400058 ns: Info: MONITOR: Molecule	SATD_4x4_HW_00	350	is replaced by molecule	SATD_4x4_HW_01	294	and was used	269	- times.
+
+400058 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+400058 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+400058 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+400058 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+400058 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+400058 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+400058 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+400058 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_01	294
+400058 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+400058 ns: Info: MONITOR: 
+
+500 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	134	since in last timeframe
+500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	was used	317	since in last timeframe
+500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	was used	269	since in last timeframe
+500 us: Info: MONITOR: Molecule: 	SATD_4x4_SW	was used	90	since in last timeframe
+500 us: Info: MONITOR:    SI usages in last timeframe  	134	0	0	0	0	0	0	676	0	
+
+500058 ns: Info: MONITOR: ATOM IN:	atom_QuadSub	needed/available: 1/1 swap-in/swap-out: 1/0 --> SATD_4x4_HW_04 
+500058 ns: Info: MONITOR: Molecule	SATD_4x4_HW_01	294	is replaced by molecule	SATD_4x4_HW_02	186	and was used	317	- times.
+
+500058 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+500058 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+500058 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+500058 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+500058 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+500058 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+500058 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+500058 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+500058 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+500058 ns: Info: MONITOR: 
+
+600058 ns: Info: MONITOR: ATOM IN:	atom_SATD	needed/available: 1/1 swap-in/swap-out: 1/0 --> SATD_4x4_HW_03 SATD_4x4_HW_04 
+600058 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_HW_03	22	and was used	474	- times.
+
+600058 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+600058 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+600058 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+600058 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+600058 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+600058 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+600058 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+600058 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_03	22
+600058 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+600058 ns: Info: MONITOR: 
+
+700058 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/2 swap-in/swap-out: 2/0 --> SATD_4x4_HW_04 
+700058 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_HW_02	14	and was used	0	- times.
+
+700058 ns: Info: MONITOR: Molecule	SATD_4x4_HW_03	22	is replaced by molecule	SATD_4x4_HW_04	21	and was used	2176	- times.
+
+700058 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+700058 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+700058 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+700058 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+700058 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+700058 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+700058 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+700058 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_04	21
+700058 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+700058 ns: Info: MONITOR: 
+
+750 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1005	since in last timeframe
+750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	2176	since in last timeframe
+750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	was used	474	since in last timeframe
+750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	1148	since in last timeframe
+750 us: Info: MONITOR:    SI usages in last timeframe  	1005	0	0	0	0	0	0	3798	0	
+
+1 ms: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+1 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+1 ms: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+1250 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+1250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5623	since in last timeframe
+1250 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5623	0	
+
+1500 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+1500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+1500 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+1664238 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	0
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	0
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	0
+
+
+---> AFTER RESCHEDULING
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	0
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	0
+ MC_Hz4_HW_00        : 1x[atom_PointFilter]  (L, Execs)=	103	0
+ MC_Hz4_HW_01        : 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	26	0
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	0
+
+
+1664238 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2a7
+SysDyn:	CURRENT PREDICTION:	0.0	1584.0	2.0	9420.0	7.0	7.0	0.0	0.0	4752.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 0/0 --> HT_2X2_HW_00 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 0/0 --> DCT_4x4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 0/0 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 0/0 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 0/0 --> MC_Hz4_HW_02 
+================================================================================
+
+1664238 ns: Info: MONITOR: Molecule: 	SAD_16_SW	4673	was used	21	since last forecast
+1664238 ns: Info: MONITOR: Molecule: 	SAD_16_HW_00	68	was used	46	since last forecast
+1664238 ns: Info: MONITOR: Molecule: 	SAD_16_HW_01	37	was used	6566	since last forecast
+1664238 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	294	was used	317	since last forecast
+1664238 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	350	was used	269	since last forecast
+1664238 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	22	was used	2176	since last forecast
+1664238 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	186	was used	474	since last forecast
+1664238 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	21	was used	21760	since last forecast
+1664238 ns: Info: MONITOR: Molecule: 	SATD_4x4_SW	544	was used	348	since last forecast
+1664238 ns: Info: MONITOR: currently available Atoms: 	atom_SAD4  	2
+1664238 ns: Info: MONITOR: currently available Atoms: 	atom_Transform2  	2
+1664238 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+1664238 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+1664238 ns: Info: MONITOR: currently available Atoms: 	atom_SATD  	1
+1664238 ns: Info: MONITOR: ATOM OUT:	atom_SATD	needed/available: 0/0 swap-in/swap-out: 1/1 
+1664238 ns: Info: MONITOR: ATOM NEW:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 0/0 running (100000) --> HT_2X2_HW_00 
+1664238 ns: Info: MONITOR: Molecule	SATD_4x4_HW_04	21	is replaced by molecule	SATD_4x4_HW_02	186	and was used	21760	- times.
+
+1664238 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+1664238 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+1664238 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+1664238 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+1664238 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+1664238 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+1664238 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+1664238 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+1664238 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+1664238 ns: Info: MONITOR: 
+
+1750 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	24	since in last timeframe
+1750 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	938	since in last timeframe
+1750 us: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	192	since in last timeframe
+1750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	3745	since in last timeframe
+1750 us: Info: MONITOR: Molecule: 	DCT_4x4_SW	was used	80	since in last timeframe
+1750 us: Info: MONITOR:    SI usages in last timeframe  	938	24	0	192	0	0	0	3745	80	
+
+1764238 ns: Info: MONITOR: ATOM IN:	atom_Transform3	needed/available: 1/1 swap-in/swap-out: 1/0 --> HT_2X2_HW_00 
+1764238 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/1 swap-in/swap-out: 2/1 
+1764238 ns: Info: MONITOR: ATOM NEW:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 0/0 running (0) --> DCT_4x4_HW_02 
+1764238 ns: Info: MONITOR: Molecule	HT_2X2_SW	100	is replaced by molecule	HT_2X2_HW_00	5	and was used	32	- times.
+
+1764238 ns: Info: MONITOR: Molecule	HT_4X4_HW_02	14	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+1764238 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+1764238 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+1764238 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+1764238 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+1764238 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+1764238 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+1764238 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+1764238 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+1764238 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+1764238 ns: Info: MONITOR: 
+
+1864238 ns: Info: MONITOR: ATOM IN:	atom_Transform1	needed/available: 1/1 swap-in/swap-out: 1/0 --> DCT_4x4_HW_02 
+1864238 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/1 swap-in/swap-out: 2/1 
+1864238 ns: Info: MONITOR: ATOM NEW:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 0/0 running (0) --> MC_Hz4_HW_02 
+1864238 ns: Info: MONITOR: Molecule	SAD_16_HW_01	37	is replaced by molecule	SAD_16_HW_00	68	and was used	6566	- times.
+
+1864238 ns: Info: MONITOR: Molecule	DCT_4x4_SW	488	is replaced by molecule	DCT_4x4_HW_02	21	and was used	192	- times.
+
+1864238 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+1864238 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+1864238 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+1864238 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+1864238 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+1864238 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+1864238 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+1864238 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+1864238 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+1864238 ns: Info: MONITOR: 
+
+1964238 ns: Info: MONITOR: ATOM IN:	atom_PointFilter	needed/available: 1/1 swap-in/swap-out: 1/0 --> MC_Hz4_HW_00 MC_Hz4_HW_02 
+1964238 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/0 swap-in/swap-out: 2/2 
+1964238 ns: Info: MONITOR: ATOM NEW:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 0/0 running (0) --> MC_Hz4_HW_02 
+1964238 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_SW	4673	and was used	0	- times.
+
+1964238 ns: Info: MONITOR: Molecule	MC_Hz4_SW	215	is replaced by molecule	MC_Hz4_HW_00	103	and was used	855	- times.
+
+1964238 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+1964238 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+1964238 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+1964238 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_00	103
+1964238 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+1964238 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+1964238 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+1964238 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+1964238 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+1964238 ns: Info: MONITOR: 
+
+2 ms: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	144	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	8	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	was used	268	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	663	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	336	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	DCT_4x4_SW	was used	112	since in last timeframe
+2 ms: Info: MONITOR:    SI usages in last timeframe  	0	152	0	931	0	0	0	0	448	
+
+2064238 ns: Info: MONITOR: ATOM IN:	atom_Clip3	needed/available: 1/1 swap-in/swap-out: 1/0 --> MC_Hz4_HW_02 
+2064238 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/0 swap-in/swap-out: 2/2 
+2064238 ns: Info: MONITOR: ATOM NEW:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 0/0 running (0) --> MC_Hz4_HW_02 
+2064238 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_SW	298	and was used	0	- times.
+
+2064238 ns: Info: MONITOR: Molecule	MC_Hz4_HW_00	103	is replaced by molecule	MC_Hz4_HW_01	26	and was used	754	- times.
+
+2064238 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_SW	544	and was used	0	- times.
+
+2064238 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+2064238 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+2064238 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+2064238 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+2064238 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+2064238 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+2064238 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+2064238 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+2064238 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+2064238 ns: Info: MONITOR: 
+
+2164238 ns: Info: MONITOR: ATOM IN:	atom_BytePack	needed/available: 1/1 swap-in/swap-out: 1/0 --> MC_Hz4_HW_02 
+2164238 ns: Info: MONITOR: Molecule	MC_Hz4_HW_01	26	is replaced by molecule	MC_Hz4_HW_02	11	and was used	1799	- times.
+
+2164238 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+2164238 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+2164238 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+2164238 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+2164238 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+2164238 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+2164238 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+2164238 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+2164238 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+2164238 ns: Info: MONITOR: 
+
+2250 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	736	since in last timeframe
+2250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	1799	since in last timeframe
+2250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	was used	486	since in last timeframe
+2250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	was used	2145	since in last timeframe
+2250 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	2208	since in last timeframe
+2250 us: Info: MONITOR:    SI usages in last timeframe  	0	736	0	4430	0	0	0	0	2208	
+
+2412127 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+---> AFTER RESCHEDULING
+ LF_BS_4_4_HW_01     : 1x[atom_Cond] 1x[atom_LF]  (L, Execs)=	9	0
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+2412127 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2bb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	3168.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 0/0 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 0/0 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 0/0 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 0/0 --> LF_BS_4_4_HW_02 
+================================================================================
+
+2412127 ns: Info: MONITOR: Molecule: 	HT_2X2_HW_00	5	was used	1552	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	HT_2X2_SW	100	was used	32	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	HT_4X4_SW	298	was used	2	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	26	was used	1799	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	103	was used	754	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	11	was used	6000	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	MC_Hz4_SW	215	was used	855	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	IPred_HDC16x16_SW	249	was used	8	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	IPred_VDC16x16_SW	69	was used	8	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	21	was used	4560	since last forecast
+2412127 ns: Info: MONITOR: Molecule: 	DCT_4x4_SW	488	was used	192	since last forecast
+2412127 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+2412127 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+2412127 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+2412127 ns: Info: MONITOR: currently available Atoms: 	atom_Transform1  	1
+2412127 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+2412127 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+2412127 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+2412127 ns: Info: MONITOR: ATOM OUT:	atom_Transform1	needed/available: 0/0 swap-in/swap-out: 1/1 
+2412127 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 0/0 running (100000) --> LF_BS_4_4_HW_02 
+2412127 ns: Info: MONITOR: Molecule	DCT_4x4_HW_02	21	is replaced by molecule	DCT_4x4_SW	488	and was used	4560	- times.
+
+2412127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+2412127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+2412127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+2412127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+2412127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+2412127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+2412127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+2412127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+2412127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+2412127 ns: Info: MONITOR: 
+
+2500 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	672	since in last timeframe
+2500 us: Info: MONITOR: Molecule: 	HT_4X4_SW	was used	2	since in last timeframe
+2500 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	was used	3855	since in last timeframe
+2500 us: Info: MONITOR: Molecule: 	IPred_HDC16x16_SW	was used	8	since in last timeframe
+2500 us: Info: MONITOR: Molecule: 	IPred_VDC16x16_SW	was used	8	since in last timeframe
+2500 us: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	was used	91	since in last timeframe
+2500 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	2016	since in last timeframe
+2500 us: Info: MONITOR:    SI usages in last timeframe  	0	672	2	3855	8	8	91	0	2016	
+
+2512127 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 1/0 --> LF_BS_4_4_HW_02 
+2512127 ns: Info: MONITOR: ATOM OUT:	atom_PackLSBMSB	needed/available: 0/0 swap-in/swap-out: 1/1 
+2512127 ns: Info: MONITOR: ATOM NEW:	atom_LF	needed/available: 2/0 swap-in/swap-out: 0/0 running (0) --> LF_BS_4_4_HW_02 
+2512127 ns: Info: MONITOR: Molecule	LF_BS_4_4_SW	960	is replaced by molecule	LF_BS_4_4_HW_00	428	and was used	103	- times.
+
+2512127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+2512127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+2512127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+2512127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+2512127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+2512127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+2512127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_00	428
+2512127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+2512127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+2512127 ns: Info: MONITOR: 
+
+2612127 ns: Info: MONITOR: ATOM IN:	atom_LF	needed/available: 2/1 swap-in/swap-out: 1/0 --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+2612127 ns: Info: MONITOR: ATOM OUT:	atom_QuadSub	needed/available: 0/0 swap-in/swap-out: 1/1 
+2612127 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 1/0 running (0) --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+2612127 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_00	428	is replaced by molecule	LF_BS_4_4_HW_01	9	and was used	225	- times.
+
+2612127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+2612127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+2612127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+2612127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+2612127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+2612127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+2612127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+2612127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+2612127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+2612127 ns: Info: MONITOR: 
+
+2678527 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2cb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+================================================================================
+
+2678527 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	9	was used	2840	since last forecast
+2678527 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	428	was used	225	since last forecast
+2678527 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	960	was used	103	since last forecast
+2678527 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+2678527 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+2678527 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+2678527 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+2678527 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+2678527 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+2678546 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	6566
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	21760
+
+
+---> AFTER RESCHEDULING
+ SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	46
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	6566
+ SATD_4x4_HW_00      : 1x[atom_Transform2]  (L, Execs)=	350	269
+ SATD_4x4_HW_01      : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	294	317
+ SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	2176
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	21760
+
+
+2678546 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x29a
+SysDyn:	CURRENT PREDICTION:	6633.0	0.0	0.0	0.0	0.0	0.0	0.0	25344.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 2/2 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 2/2 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 2/2 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 1/1 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 1/1 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 1/1 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 2/2 --> SATD_4x4_HW_04 
+================================================================================
+
+2678546 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+2678546 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+2678546 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+2678546 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+2678546 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+2678546 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+2712127 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 0/1 swap-in/swap-out: 2/1 
+2712127 ns: Info: MONITOR: ATOM OUT:	atom_Cond	needed/available: 0/1 swap-in/swap-out: 2/1 
+2712127 ns: Info: MONITOR: ATOM NEW:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 2/2 running (0) --> SAD_16_HW_01 
+2712127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+2712127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+2712127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+2712127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+2712127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+2712127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+2712127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+2712127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+2712127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+2712127 ns: Info: MONITOR: 
+
+2750 us: Info: MONITOR: Molecule: 	SAD_16_SW	was used	16	since in last timeframe
+2750 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	2840	since in last timeframe
+2750 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	was used	225	since in last timeframe
+2750 us: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	was used	12	since in last timeframe
+2750 us: Info: MONITOR:    SI usages in last timeframe  	16	0	0	0	0	0	3077	0	0	
+
+2812127 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/1 swap-in/swap-out: 3/2 running (0) --> SAD_16_HW_00 SAD_16_HW_01 
+2812127 ns: Info: MONITOR: ATOM OUT:	atom_Transform3	needed/available: 0/0 swap-in/swap-out: 1/1 
+2812127 ns: Info: MONITOR: ATOM NEW:	atom_SAD4	needed/available: 2/1 swap-in/swap-out: 3/2 running (0) --> SAD_16_HW_00 SAD_16_HW_01 
+2812127 ns: Info: MONITOR: Molecule	SAD_16_SW	4673	is replaced by molecule	SAD_16_HW_00	68	and was used	28	- times.
+
+2812127 ns: Info: MONITOR: Molecule	HT_2X2_HW_00	5	is replaced by molecule	HT_2X2_SW	100	and was used	1552	- times.
+
+2812127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+2812127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+2812127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+2812127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+2812127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+2812127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+2812127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+2812127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+2812127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+2812127 ns: Info: MONITOR: 
+
+2912127 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/2 swap-in/swap-out: 4/2 --> SAD_16_HW_01 
+2912127 ns: Info: MONITOR: ATOM OUT:	atom_Cond	needed/available: 0/0 swap-in/swap-out: 2/2 
+2912127 ns: Info: MONITOR: ATOM NEW:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 2/2 running (0) --> SATD_4x4_HW_04 
+2912127 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_HW_01	37	and was used	39	- times.
+
+2912127 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_01	9	is replaced by molecule	LF_BS_4_4_SW	960	and was used	2840	- times.
+
+2912127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+2912127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+2912127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+2912127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+2912127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+2912127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+2912127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+2912127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+2912127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+2912127 ns: Info: MONITOR: 
+
+3 ms: Info: MONITOR: Molecule: 	SAD_16_SW	was used	12	since in last timeframe
+3 ms: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	39	since in last timeframe
+3 ms: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	67	since in last timeframe
+3 ms: Info: MONITOR: Molecule: 	SATD_4x4_SW	was used	328	since in last timeframe
+3 ms: Info: MONITOR:    SI usages in last timeframe  	118	0	0	0	0	0	0	328	0	
+
+3012127 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/1 swap-in/swap-out: 3/2 --> SATD_4x4_HW_00 SATD_4x4_HW_04 
+3012127 ns: Info: MONITOR: ATOM OUT:	atom_LF	needed/available: 0/0 swap-in/swap-out: 1/1 
+3012127 ns: Info: MONITOR: ATOM NEW:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 1/1 running (0) --> SATD_4x4_HW_04 
+3012127 ns: Info: MONITOR: Molecule	HT_4X4_SW	298	is replaced by molecule	HT_4X4_HW_00	104	and was used	2	- times.
+
+3012127 ns: Info: MONITOR: Molecule	SATD_4x4_SW	544	is replaced by molecule	SATD_4x4_HW_00	350	and was used	349	- times.
+
+3012127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+3012127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+3012127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_00	104
+3012127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+3012127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+3012127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+3012127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+3012127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_00	350
+3012127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+3012127 ns: Info: MONITOR: 
+
+3112127 ns: Info: MONITOR: ATOM IN:	atom_PackLSBMSB	needed/available: 1/1 swap-in/swap-out: 2/1 --> SATD_4x4_HW_04 
+3112127 ns: Info: MONITOR: ATOM OUT:	atom_BytePack	needed/available: 0/0 swap-in/swap-out: 1/1 
+3112127 ns: Info: MONITOR: ATOM NEW:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 1/1 running (0) --> SATD_4x4_HW_04 
+3112127 ns: Info: MONITOR: Molecule	HT_4X4_HW_00	104	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+3112127 ns: Info: MONITOR: Molecule	MC_Hz4_HW_02	11	is replaced by molecule	MC_Hz4_HW_01	26	and was used	6000	- times.
+
+3112127 ns: Info: MONITOR: Molecule	SATD_4x4_HW_00	350	is replaced by molecule	SATD_4x4_HW_01	294	and was used	269	- times.
+
+3112127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+3112127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+3112127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+3112127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+3112127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+3112127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+3112127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+3112127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_01	294
+3112127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+3112127 ns: Info: MONITOR: 
+
+3212127 ns: Info: MONITOR: ATOM IN:	atom_QuadSub	needed/available: 1/1 swap-in/swap-out: 2/1 --> SATD_4x4_HW_04 
+3212127 ns: Info: MONITOR: ATOM OUT:	atom_PointFilter	needed/available: 0/0 swap-in/swap-out: 1/1 
+3212127 ns: Info: MONITOR: ATOM NEW:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 1/1 running (0) --> SATD_4x4_HW_04 
+3212127 ns: Info: MONITOR: Molecule	MC_Hz4_HW_01	26	is replaced by molecule	MC_Hz4_SW	215	and was used	0	- times.
+
+3212127 ns: Info: MONITOR: Molecule	SATD_4x4_HW_01	294	is replaced by molecule	SATD_4x4_HW_02	186	and was used	317	- times.
+
+3212127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+3212127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+3212127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+3212127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+3212127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+3212127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+3212127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+3212127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+3212127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+3212127 ns: Info: MONITOR: 
+
+3250 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	201	since in last timeframe
+3250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	was used	317	since in last timeframe
+3250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	was used	269	since in last timeframe
+3250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	was used	176	since in last timeframe
+3250 us: Info: MONITOR: Molecule: 	SATD_4x4_SW	was used	21	since in last timeframe
+3250 us: Info: MONITOR:    SI usages in last timeframe  	201	0	0	0	0	0	0	783	0	
+
+3312127 ns: Info: MONITOR: ATOM IN:	atom_SATD	needed/available: 1/1 swap-in/swap-out: 2/1 --> SATD_4x4_HW_03 SATD_4x4_HW_04 
+3312127 ns: Info: MONITOR: ATOM OUT:	atom_Clip3	needed/available: 0/0 swap-in/swap-out: 1/1 
+3312127 ns: Info: MONITOR: ATOM NEW:	atom_Transform2	needed/available: 2/1 swap-in/swap-out: 3/2 running (0) --> SATD_4x4_HW_03 SATD_4x4_HW_04 
+3312127 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_HW_03	22	and was used	474	- times.
+
+3312127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+3312127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+3312127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+3312127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+3312127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+3312127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+3312127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+3312127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_03	22
+3312127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+3312127 ns: Info: MONITOR: 
+
+3412127 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/2 swap-in/swap-out: 4/2 --> SATD_4x4_HW_04 
+3412127 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_HW_02	14	and was used	0	- times.
+
+3412127 ns: Info: MONITOR: Molecule	SATD_4x4_HW_03	22	is replaced by molecule	SATD_4x4_HW_04	21	and was used	2175	- times.
+
+3412127 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+3412127 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+3412127 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+3412127 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+3412127 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+3412127 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+3412127 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+3412127 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_04	21
+3412127 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+3412127 ns: Info: MONITOR: 
+
+3500 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1139	since in last timeframe
+3500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	2175	since in last timeframe
+3500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	was used	298	since in last timeframe
+3500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	2043	since in last timeframe
+3500 us: Info: MONITOR:    SI usages in last timeframe  	1139	0	0	0	0	0	0	4516	0	
+
+3750 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+3750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+3750 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+4 ms: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+4 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5623	since in last timeframe
+4 ms: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5623	0	
+
+4250 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+4250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+4250 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+4376266 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	4560
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	6000
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	1552
+
+
+---> AFTER RESCHEDULING
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	1552
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	4560
+ MC_Hz4_HW_00        : 1x[atom_PointFilter]  (L, Execs)=	103	754
+ MC_Hz4_HW_01        : 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	26	1799
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	6000
+
+
+4376266 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2a7
+SysDyn:	CURRENT PREDICTION:	0.0	1584.0	2.0	9420.0	7.0	7.0	0.0	0.0	4752.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 1/1 --> HT_2X2_HW_00 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 1/1 --> DCT_4x4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 1/1 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 1/1 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 1/1 --> MC_Hz4_HW_02 
+================================================================================
+
+4376266 ns: Info: MONITOR: Molecule: 	SAD_16_SW	4673	was used	28	since last forecast
+4376266 ns: Info: MONITOR: Molecule: 	SAD_16_HW_00	68	was used	39	since last forecast
+4376266 ns: Info: MONITOR: Molecule: 	SAD_16_HW_01	37	was used	6566	since last forecast
+4376266 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	294	was used	317	since last forecast
+4376266 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	350	was used	269	since last forecast
+4376266 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	22	was used	2175	since last forecast
+4376266 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	186	was used	474	since last forecast
+4376266 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	21	was used	21760	since last forecast
+4376266 ns: Info: MONITOR: Molecule: 	SATD_4x4_SW	544	was used	349	since last forecast
+4376266 ns: Info: MONITOR: currently available Atoms: 	atom_SAD4  	2
+4376266 ns: Info: MONITOR: currently available Atoms: 	atom_Transform2  	2
+4376266 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+4376266 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+4376266 ns: Info: MONITOR: currently available Atoms: 	atom_SATD  	1
+4376266 ns: Info: MONITOR: ATOM OUT:	atom_SATD	needed/available: 0/0 swap-in/swap-out: 2/2 
+4376266 ns: Info: MONITOR: ATOM NEW:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 1/1 running (100000) --> HT_2X2_HW_00 
+4376266 ns: Info: MONITOR: Molecule	SATD_4x4_HW_04	21	is replaced by molecule	SATD_4x4_HW_02	186	and was used	21760	- times.
+
+4376266 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+4376266 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+4376266 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+4376266 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+4376266 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+4376266 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+4376266 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+4376266 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+4376266 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+4376266 ns: Info: MONITOR: 
+
+4476266 ns: Info: MONITOR: ATOM IN:	atom_Transform3	needed/available: 1/1 swap-in/swap-out: 2/1 --> HT_2X2_HW_00 
+4476266 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/1 swap-in/swap-out: 4/3 
+4476266 ns: Info: MONITOR: ATOM NEW:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 1/1 running (0) --> DCT_4x4_HW_02 
+4476266 ns: Info: MONITOR: Molecule	HT_2X2_SW	100	is replaced by molecule	HT_2X2_HW_00	5	and was used	32	- times.
+
+4476266 ns: Info: MONITOR: Molecule	HT_4X4_HW_02	14	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+4476266 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+4476266 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+4476266 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+4476266 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+4476266 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+4476266 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+4476266 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+4476266 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+4476266 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+4476266 ns: Info: MONITOR: 
+
+4500 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	32	since in last timeframe
+4500 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	737	since in last timeframe
+4500 us: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	288	since in last timeframe
+4500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	2850	since in last timeframe
+4500 us: Info: MONITOR: Molecule: 	DCT_4x4_SW	was used	111	since in last timeframe
+4500 us: Info: MONITOR:    SI usages in last timeframe  	737	32	0	288	0	0	0	2850	111	
+
+4576266 ns: Info: MONITOR: ATOM IN:	atom_Transform1	needed/available: 1/1 swap-in/swap-out: 2/1 --> DCT_4x4_HW_02 
+4576266 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/1 swap-in/swap-out: 4/3 
+4576266 ns: Info: MONITOR: ATOM NEW:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 1/1 running (0) --> MC_Hz4_HW_02 
+4576266 ns: Info: MONITOR: Molecule	SAD_16_HW_01	37	is replaced by molecule	SAD_16_HW_00	68	and was used	6566	- times.
+
+4576266 ns: Info: MONITOR: Molecule	DCT_4x4_SW	488	is replaced by molecule	DCT_4x4_HW_02	21	and was used	192	- times.
+
+4576266 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+4576266 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+4576266 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+4576266 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+4576266 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+4576266 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+4576266 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+4576266 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+4576266 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+4576266 ns: Info: MONITOR: 
+
+4676266 ns: Info: MONITOR: ATOM IN:	atom_PointFilter	needed/available: 1/1 swap-in/swap-out: 2/1 --> MC_Hz4_HW_00 MC_Hz4_HW_02 
+4676266 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/0 swap-in/swap-out: 4/4 
+4676266 ns: Info: MONITOR: ATOM NEW:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 1/1 running (0) --> MC_Hz4_HW_02 
+4676266 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_SW	4673	and was used	0	- times.
+
+4676266 ns: Info: MONITOR: Molecule	MC_Hz4_SW	215	is replaced by molecule	MC_Hz4_HW_00	103	and was used	855	- times.
+
+4676266 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+4676266 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+4676266 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+4676266 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_00	103
+4676266 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+4676266 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+4676266 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+4676266 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+4676266 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+4676266 ns: Info: MONITOR: 
+
+4750 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	192	since in last timeframe
+4750 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	was used	554	since in last timeframe
+4750 us: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	567	since in last timeframe
+4750 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	480	since in last timeframe
+4750 us: Info: MONITOR: Molecule: 	DCT_4x4_SW	was used	81	since in last timeframe
+4750 us: Info: MONITOR:    SI usages in last timeframe  	0	192	0	1121	0	0	0	0	561	
+
+4776266 ns: Info: MONITOR: ATOM IN:	atom_Clip3	needed/available: 1/1 swap-in/swap-out: 2/1 --> MC_Hz4_HW_02 
+4776266 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/0 swap-in/swap-out: 4/4 
+4776266 ns: Info: MONITOR: ATOM NEW:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 1/1 running (0) --> MC_Hz4_HW_02 
+4776266 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_SW	298	and was used	0	- times.
+
+4776266 ns: Info: MONITOR: Molecule	MC_Hz4_HW_00	103	is replaced by molecule	MC_Hz4_HW_01	26	and was used	754	- times.
+
+4776266 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_SW	544	and was used	0	- times.
+
+4776266 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+4776266 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+4776266 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+4776266 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+4776266 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+4776266 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+4776266 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+4776266 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+4776266 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+4776266 ns: Info: MONITOR: 
+
+4876266 ns: Info: MONITOR: ATOM IN:	atom_BytePack	needed/available: 1/1 swap-in/swap-out: 2/1 --> MC_Hz4_HW_02 
+4876266 ns: Info: MONITOR: Molecule	MC_Hz4_HW_01	26	is replaced by molecule	MC_Hz4_HW_02	11	and was used	1799	- times.
+
+4876266 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+4876266 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+4876266 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+4876266 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+4876266 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+4876266 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+4876266 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+4876266 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+4876266 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+4876266 ns: Info: MONITOR: 
+
+5 ms: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	848	since in last timeframe
+5 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	1799	since in last timeframe
+5 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	was used	200	since in last timeframe
+5 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	was used	3070	since in last timeframe
+5 ms: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	2544	since in last timeframe
+5 ms: Info: MONITOR:    SI usages in last timeframe  	0	848	0	5069	0	0	0	0	2544	
+
+5122795 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+---> AFTER RESCHEDULING
+ LF_BS_4_4_HW_01     : 1x[atom_Cond] 1x[atom_LF]  (L, Execs)=	9	2840
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+5122795 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2bb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	3168.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 2/2 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 1/1 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 2/2 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 1/1 --> LF_BS_4_4_HW_02 
+================================================================================
+
+5122795 ns: Info: MONITOR: Molecule: 	HT_2X2_HW_00	5	was used	1552	since last forecast
+5122795 ns: Info: MONITOR: Molecule: 	HT_2X2_SW	100	was used	32	since last forecast
+5122795 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	26	was used	1799	since last forecast
+5122795 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	103	was used	754	since last forecast
+5122795 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	11	was used	6096	since last forecast
+5122795 ns: Info: MONITOR: Molecule: 	MC_Hz4_SW	215	was used	855	since last forecast
+5122795 ns: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	21	was used	4560	since last forecast
+5122795 ns: Info: MONITOR: Molecule: 	DCT_4x4_SW	488	was used	192	since last forecast
+5122795 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+5122795 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+5122795 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+5122795 ns: Info: MONITOR: currently available Atoms: 	atom_Transform1  	1
+5122795 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+5122795 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+5122795 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+5122795 ns: Info: MONITOR: ATOM OUT:	atom_Transform1	needed/available: 0/0 swap-in/swap-out: 2/2 
+5122795 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 2/2 running (100000) --> LF_BS_4_4_HW_02 
+5122795 ns: Info: MONITOR: Molecule	DCT_4x4_HW_02	21	is replaced by molecule	DCT_4x4_SW	488	and was used	4560	- times.
+
+5122795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+5122795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+5122795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+5122795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+5122795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+5122795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+5122795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+5122795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+5122795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+5122795 ns: Info: MONITOR: 
+
+5222795 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 3/2 --> LF_BS_4_4_HW_02 
+5222795 ns: Info: MONITOR: ATOM OUT:	atom_PackLSBMSB	needed/available: 0/0 swap-in/swap-out: 2/2 
+5222795 ns: Info: MONITOR: ATOM NEW:	atom_LF	needed/available: 2/0 swap-in/swap-out: 1/1 running (0) --> LF_BS_4_4_HW_02 
+5222795 ns: Info: MONITOR: Molecule	LF_BS_4_4_SW	960	is replaced by molecule	LF_BS_4_4_HW_00	428	and was used	103	- times.
+
+5222795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+5222795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+5222795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+5222795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+5222795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+5222795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+5222795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_00	428
+5222795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+5222795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+5222795 ns: Info: MONITOR: 
+
+5250 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	512	since in last timeframe
+5250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	was used	3026	since in last timeframe
+5250 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	was used	61	since in last timeframe
+5250 us: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	was used	103	since in last timeframe
+5250 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1536	since in last timeframe
+5250 us: Info: MONITOR:    SI usages in last timeframe  	0	512	0	3026	0	0	164	0	1536	
+
+5322795 ns: Info: MONITOR: ATOM IN:	atom_LF	needed/available: 2/1 swap-in/swap-out: 2/1 --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+5322795 ns: Info: MONITOR: ATOM OUT:	atom_QuadSub	needed/available: 0/0 swap-in/swap-out: 2/2 
+5322795 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 3/2 running (0) --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+5322795 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_00	428	is replaced by molecule	LF_BS_4_4_HW_01	9	and was used	225	- times.
+
+5322795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+5322795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+5322795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+5322795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+5322795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+5322795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+5322795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+5322795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+5322795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+5322795 ns: Info: MONITOR: 
+
+5389192 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2cb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+================================================================================
+
+5389192 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	9	was used	2840	since last forecast
+5389192 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	428	was used	225	since last forecast
+5389192 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	960	was used	103	since last forecast
+5389192 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+5389192 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+5389192 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+5389192 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+5389192 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+5389192 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+5389214 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	13132
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	43520
+
+
+---> AFTER RESCHEDULING
+ SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	85
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	13132
+ SATD_4x4_HW_00      : 1x[atom_Transform2]  (L, Execs)=	350	538
+ SATD_4x4_HW_01      : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	294	634
+ SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	4351
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	43520
+
+
+5389214 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x29a
+SysDyn:	CURRENT PREDICTION:	6633.0	0.0	0.0	0.0	0.0	0.0	0.0	25344.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 4/4 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 4/4 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 4/4 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 2/2 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 2/2 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 2/2 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 4/4 --> SATD_4x4_HW_04 
+================================================================================
+
+5389214 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+5389214 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+5389214 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+5389214 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+5389214 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+5389214 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+5422795 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 0/1 swap-in/swap-out: 4/3 
+5422795 ns: Info: MONITOR: ATOM OUT:	atom_Cond	needed/available: 0/1 swap-in/swap-out: 4/3 
+5422795 ns: Info: MONITOR: ATOM NEW:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 4/4 running (0) --> SAD_16_HW_01 
+5422795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+5422795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+5422795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+5422795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+5422795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+5422795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+5422795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+5422795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+5422795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+5422795 ns: Info: MONITOR: 
+
+5500 us: Info: MONITOR: Molecule: 	SAD_16_SW	was used	24	since in last timeframe
+5500 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	2840	since in last timeframe
+5500 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	was used	164	since in last timeframe
+5500 us: Info: MONITOR:    SI usages in last timeframe  	24	0	0	0	0	0	3004	0	0	
+
+5522795 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/1 swap-in/swap-out: 5/4 running (0) --> SAD_16_HW_00 SAD_16_HW_01 
+5522795 ns: Info: MONITOR: ATOM OUT:	atom_Transform3	needed/available: 0/0 swap-in/swap-out: 2/2 
+5522795 ns: Info: MONITOR: ATOM NEW:	atom_SAD4	needed/available: 2/1 swap-in/swap-out: 5/4 running (0) --> SAD_16_HW_00 SAD_16_HW_01 
+5522795 ns: Info: MONITOR: Molecule	SAD_16_SW	4673	is replaced by molecule	SAD_16_HW_00	68	and was used	28	- times.
+
+5522795 ns: Info: MONITOR: Molecule	HT_2X2_HW_00	5	is replaced by molecule	HT_2X2_SW	100	and was used	1552	- times.
+
+5522795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+5522795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+5522795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+5522795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+5522795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+5522795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+5522795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+5522795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+5522795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+5522795 ns: Info: MONITOR: 
+
+5622795 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/2 swap-in/swap-out: 6/4 --> SAD_16_HW_01 
+5622795 ns: Info: MONITOR: ATOM OUT:	atom_Cond	needed/available: 0/0 swap-in/swap-out: 4/4 
+5622795 ns: Info: MONITOR: ATOM NEW:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 4/4 running (0) --> SATD_4x4_HW_04 
+5622795 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_HW_01	37	and was used	39	- times.
+
+5622795 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_01	9	is replaced by molecule	LF_BS_4_4_SW	960	and was used	2840	- times.
+
+5622795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+5622795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+5622795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+5622795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+5622795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+5622795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+5622795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+5622795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+5622795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+5622795 ns: Info: MONITOR: 
+
+5722795 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/1 swap-in/swap-out: 5/4 --> SATD_4x4_HW_00 SATD_4x4_HW_04 
+5722795 ns: Info: MONITOR: ATOM OUT:	atom_LF	needed/available: 0/0 swap-in/swap-out: 2/2 
+5722795 ns: Info: MONITOR: ATOM NEW:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 2/2 running (0) --> SATD_4x4_HW_04 
+5722795 ns: Info: MONITOR: Molecule	HT_4X4_SW	298	is replaced by molecule	HT_4X4_HW_00	104	and was used	0	- times.
+
+5722795 ns: Info: MONITOR: Molecule	SATD_4x4_SW	544	is replaced by molecule	SATD_4x4_HW_00	350	and was used	349	- times.
+
+5722795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+5722795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+5722795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_00	104
+5722795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+5722795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+5722795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+5722795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+5722795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_00	350
+5722795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+5722795 ns: Info: MONITOR: 
+
+5750 us: Info: MONITOR: Molecule: 	SAD_16_SW	was used	4	since in last timeframe
+5750 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	39	since in last timeframe
+5750 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	67	since in last timeframe
+5750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	was used	76	since in last timeframe
+5750 us: Info: MONITOR: Molecule: 	SATD_4x4_SW	was used	349	since in last timeframe
+5750 us: Info: MONITOR:    SI usages in last timeframe  	110	0	0	0	0	0	0	425	0	
+
+5822795 ns: Info: MONITOR: ATOM IN:	atom_PackLSBMSB	needed/available: 1/1 swap-in/swap-out: 3/2 --> SATD_4x4_HW_04 
+5822795 ns: Info: MONITOR: ATOM OUT:	atom_BytePack	needed/available: 0/0 swap-in/swap-out: 2/2 
+5822795 ns: Info: MONITOR: ATOM NEW:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 2/2 running (0) --> SATD_4x4_HW_04 
+5822795 ns: Info: MONITOR: Molecule	HT_4X4_HW_00	104	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+5822795 ns: Info: MONITOR: Molecule	MC_Hz4_HW_02	11	is replaced by molecule	MC_Hz4_HW_01	26	and was used	6096	- times.
+
+5822795 ns: Info: MONITOR: Molecule	SATD_4x4_HW_00	350	is replaced by molecule	SATD_4x4_HW_01	294	and was used	269	- times.
+
+5822795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+5822795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+5822795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+5822795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+5822795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+5822795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+5822795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+5822795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_01	294
+5822795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+5822795 ns: Info: MONITOR: 
+
+5922795 ns: Info: MONITOR: ATOM IN:	atom_QuadSub	needed/available: 1/1 swap-in/swap-out: 3/2 --> SATD_4x4_HW_04 
+5922795 ns: Info: MONITOR: ATOM OUT:	atom_PointFilter	needed/available: 0/0 swap-in/swap-out: 2/2 
+5922795 ns: Info: MONITOR: ATOM NEW:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 2/2 running (0) --> SATD_4x4_HW_04 
+5922795 ns: Info: MONITOR: Molecule	MC_Hz4_HW_01	26	is replaced by molecule	MC_Hz4_SW	215	and was used	0	- times.
+
+5922795 ns: Info: MONITOR: Molecule	SATD_4x4_HW_01	294	is replaced by molecule	SATD_4x4_HW_02	186	and was used	317	- times.
+
+5922795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+5922795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+5922795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+5922795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+5922795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+5922795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+5922795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+5922795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+5922795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+5922795 ns: Info: MONITOR: 
+
+6 ms: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	268	since in last timeframe
+6 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	was used	317	since in last timeframe
+6 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	was used	193	since in last timeframe
+6 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	was used	358	since in last timeframe
+6 ms: Info: MONITOR:    SI usages in last timeframe  	268	0	0	0	0	0	0	868	0	
+
+6022795 ns: Info: MONITOR: ATOM IN:	atom_SATD	needed/available: 1/1 swap-in/swap-out: 3/2 --> SATD_4x4_HW_03 SATD_4x4_HW_04 
+6022795 ns: Info: MONITOR: ATOM OUT:	atom_Clip3	needed/available: 0/0 swap-in/swap-out: 2/2 
+6022795 ns: Info: MONITOR: ATOM NEW:	atom_Transform2	needed/available: 2/1 swap-in/swap-out: 5/4 running (0) --> SATD_4x4_HW_03 SATD_4x4_HW_04 
+6022795 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_HW_03	22	and was used	474	- times.
+
+6022795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+6022795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+6022795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+6022795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+6022795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+6022795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+6022795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+6022795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_03	22
+6022795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+6022795 ns: Info: MONITOR: 
+
+6122795 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/2 swap-in/swap-out: 6/4 --> SATD_4x4_HW_04 
+6122795 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_HW_02	14	and was used	0	- times.
+
+6122795 ns: Info: MONITOR: Molecule	SATD_4x4_HW_03	22	is replaced by molecule	SATD_4x4_HW_04	21	and was used	2175	- times.
+
+6122795 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+6122795 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+6122795 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+6122795 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+6122795 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+6122795 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+6122795 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+6122795 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_04	21
+6122795 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+6122795 ns: Info: MONITOR: 
+
+6250 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1340	since in last timeframe
+6250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	2175	since in last timeframe
+6250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	was used	116	since in last timeframe
+6250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	2863	since in last timeframe
+6250 us: Info: MONITOR:    SI usages in last timeframe  	1340	0	0	0	0	0	0	5154	0	
+
+6500 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+6500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+6500 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+6750 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+6750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+6750 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+7 ms: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+7 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+7 ms: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+7086934 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	9120
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	12096
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	3104
+
+
+---> AFTER RESCHEDULING
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	3104
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	9120
+ MC_Hz4_HW_00        : 1x[atom_PointFilter]  (L, Execs)=	103	1508
+ MC_Hz4_HW_01        : 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	26	3598
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	12096
+
+
+7086934 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2a7
+SysDyn:	CURRENT PREDICTION:	0.0	1584.0	2.0	9420.0	7.0	7.0	0.0	0.0	4752.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 2/2 --> HT_2X2_HW_00 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 2/2 --> DCT_4x4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 2/2 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 2/2 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 2/2 --> MC_Hz4_HW_02 
+================================================================================
+
+7086934 ns: Info: MONITOR: Molecule: 	SAD_16_SW	4673	was used	28	since last forecast
+7086934 ns: Info: MONITOR: Molecule: 	SAD_16_HW_00	68	was used	39	since last forecast
+7086934 ns: Info: MONITOR: Molecule: 	SAD_16_HW_01	37	was used	6566	since last forecast
+7086934 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	294	was used	317	since last forecast
+7086934 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	350	was used	269	since last forecast
+7086934 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	22	was used	2175	since last forecast
+7086934 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	186	was used	474	since last forecast
+7086934 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	21	was used	21760	since last forecast
+7086934 ns: Info: MONITOR: Molecule: 	SATD_4x4_SW	544	was used	349	since last forecast
+7086934 ns: Info: MONITOR: currently available Atoms: 	atom_SAD4  	2
+7086934 ns: Info: MONITOR: currently available Atoms: 	atom_Transform2  	2
+7086934 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+7086934 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+7086934 ns: Info: MONITOR: currently available Atoms: 	atom_SATD  	1
+7086934 ns: Info: MONITOR: ATOM OUT:	atom_SATD	needed/available: 0/0 swap-in/swap-out: 3/3 
+7086934 ns: Info: MONITOR: ATOM NEW:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 2/2 running (100000) --> HT_2X2_HW_00 
+7086934 ns: Info: MONITOR: Molecule	SATD_4x4_HW_04	21	is replaced by molecule	SATD_4x4_HW_02	186	and was used	21760	- times.
+
+7086934 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+7086934 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+7086934 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+7086934 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+7086934 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+7086934 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+7086934 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+7086934 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+7086934 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+7086934 ns: Info: MONITOR: 
+
+7186934 ns: Info: MONITOR: ATOM IN:	atom_Transform3	needed/available: 1/1 swap-in/swap-out: 3/2 --> HT_2X2_HW_00 
+7186934 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/1 swap-in/swap-out: 6/5 
+7186934 ns: Info: MONITOR: ATOM NEW:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 2/2 running (0) --> DCT_4x4_HW_02 
+7186934 ns: Info: MONITOR: Molecule	HT_2X2_SW	100	is replaced by molecule	HT_2X2_HW_00	5	and was used	32	- times.
+
+7186934 ns: Info: MONITOR: Molecule	HT_4X4_HW_02	14	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+7186934 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+7186934 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+7186934 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+7186934 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+7186934 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+7186934 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+7186934 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+7186934 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+7186934 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+7186934 ns: Info: MONITOR: 
+
+7250 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	16	since in last timeframe
+7250 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	32	since in last timeframe
+7250 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	469	since in last timeframe
+7250 us: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	384	since in last timeframe
+7250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	2031	since in last timeframe
+7250 us: Info: MONITOR: Molecule: 	DCT_4x4_SW	was used	146	since in last timeframe
+7250 us: Info: MONITOR:    SI usages in last timeframe  	469	48	0	384	0	0	0	2031	146	
+
+7286934 ns: Info: MONITOR: ATOM IN:	atom_Transform1	needed/available: 1/1 swap-in/swap-out: 3/2 --> DCT_4x4_HW_02 
+7286934 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/1 swap-in/swap-out: 6/5 
+7286934 ns: Info: MONITOR: ATOM NEW:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 2/2 running (0) --> MC_Hz4_HW_02 
+7286934 ns: Info: MONITOR: Molecule	SAD_16_HW_01	37	is replaced by molecule	SAD_16_HW_00	68	and was used	6566	- times.
+
+7286934 ns: Info: MONITOR: Molecule	DCT_4x4_SW	488	is replaced by molecule	DCT_4x4_HW_02	21	and was used	192	- times.
+
+7286934 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+7286934 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+7286934 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+7286934 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+7286934 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+7286934 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+7286934 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+7286934 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+7286934 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+7286934 ns: Info: MONITOR: 
+
+7386934 ns: Info: MONITOR: ATOM IN:	atom_PointFilter	needed/available: 1/1 swap-in/swap-out: 3/2 --> MC_Hz4_HW_00 MC_Hz4_HW_02 
+7386934 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/0 swap-in/swap-out: 6/6 
+7386934 ns: Info: MONITOR: ATOM NEW:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 2/2 running (0) --> MC_Hz4_HW_02 
+7386934 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_SW	4673	and was used	0	- times.
+
+7386934 ns: Info: MONITOR: Molecule	MC_Hz4_SW	215	is replaced by molecule	MC_Hz4_HW_00	103	and was used	855	- times.
+
+7386934 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+7386934 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+7386934 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+7386934 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_00	103
+7386934 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+7386934 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+7386934 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+7386934 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+7386934 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+7386934 ns: Info: MONITOR: 
+
+7486934 ns: Info: MONITOR: ATOM IN:	atom_Clip3	needed/available: 1/1 swap-in/swap-out: 3/2 --> MC_Hz4_HW_02 
+7486934 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/0 swap-in/swap-out: 6/6 
+7486934 ns: Info: MONITOR: ATOM NEW:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 2/2 running (0) --> MC_Hz4_HW_02 
+7486934 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_SW	298	and was used	0	- times.
+
+7486934 ns: Info: MONITOR: Molecule	MC_Hz4_HW_00	103	is replaced by molecule	MC_Hz4_HW_01	26	and was used	754	- times.
+
+7486934 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_SW	544	and was used	0	- times.
+
+7486934 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+7486934 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+7486934 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+7486934 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+7486934 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+7486934 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+7486934 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+7486934 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+7486934 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+7486934 ns: Info: MONITOR: 
+
+7500 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	248	since in last timeframe
+7500 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	215	since in last timeframe
+7500 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	was used	754	since in last timeframe
+7500 us: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	471	since in last timeframe
+7500 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	719	since in last timeframe
+7500 us: Info: MONITOR: Molecule: 	DCT_4x4_SW	was used	46	since in last timeframe
+7500 us: Info: MONITOR:    SI usages in last timeframe  	0	248	0	1440	0	0	0	0	765	
+
+7586934 ns: Info: MONITOR: ATOM IN:	atom_BytePack	needed/available: 1/1 swap-in/swap-out: 3/2 --> MC_Hz4_HW_02 
+7586934 ns: Info: MONITOR: Molecule	MC_Hz4_HW_01	26	is replaced by molecule	MC_Hz4_HW_02	11	and was used	1799	- times.
+
+7586934 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+7586934 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+7586934 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+7586934 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+7586934 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+7586934 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+7586934 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+7586934 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+7586934 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+7586934 ns: Info: MONITOR: 
+
+7750 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	936	since in last timeframe
+7750 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	1584	since in last timeframe
+7750 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	was used	4062	since in last timeframe
+7750 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	2785	since in last timeframe
+7750 us: Info: MONITOR:    SI usages in last timeframe  	0	936	0	5646	0	0	0	0	2785	
+
+7833463 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+---> AFTER RESCHEDULING
+ LF_BS_4_4_HW_01     : 1x[atom_Cond] 1x[atom_LF]  (L, Execs)=	9	5680
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+7833463 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2bb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	3168.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 4/4 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 2/2 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 4/4 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 2/2 --> LF_BS_4_4_HW_02 
+================================================================================
+
+7833463 ns: Info: MONITOR: Molecule: 	HT_2X2_HW_00	5	was used	1552	since last forecast
+7833463 ns: Info: MONITOR: Molecule: 	HT_2X2_SW	100	was used	32	since last forecast
+7833463 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	26	was used	1799	since last forecast
+7833463 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	103	was used	754	since last forecast
+7833463 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	11	was used	6096	since last forecast
+7833463 ns: Info: MONITOR: Molecule: 	MC_Hz4_SW	215	was used	855	since last forecast
+7833463 ns: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	21	was used	4560	since last forecast
+7833463 ns: Info: MONITOR: Molecule: 	DCT_4x4_SW	488	was used	192	since last forecast
+7833463 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+7833463 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+7833463 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+7833463 ns: Info: MONITOR: currently available Atoms: 	atom_Transform1  	1
+7833463 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+7833463 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+7833463 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+7833463 ns: Info: MONITOR: ATOM OUT:	atom_Transform1	needed/available: 0/0 swap-in/swap-out: 3/3 
+7833463 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 4/4 running (100000) --> LF_BS_4_4_HW_02 
+7833463 ns: Info: MONITOR: Molecule	DCT_4x4_HW_02	21	is replaced by molecule	DCT_4x4_SW	488	and was used	4560	- times.
+
+7833463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+7833463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+7833463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+7833463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+7833463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+7833463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+7833463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+7833463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+7833463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+7833463 ns: Info: MONITOR: 
+
+7933463 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 5/4 --> LF_BS_4_4_HW_02 
+7933463 ns: Info: MONITOR: ATOM OUT:	atom_PackLSBMSB	needed/available: 0/0 swap-in/swap-out: 3/3 
+7933463 ns: Info: MONITOR: ATOM NEW:	atom_LF	needed/available: 2/0 swap-in/swap-out: 2/2 running (0) --> LF_BS_4_4_HW_02 
+7933463 ns: Info: MONITOR: Molecule	LF_BS_4_4_SW	960	is replaced by molecule	LF_BS_4_4_HW_00	428	and was used	103	- times.
+
+7933463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+7933463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+7933463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+7933463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+7933463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+7933463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+7933463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_00	428
+7933463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+7933463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+7933463 ns: Info: MONITOR: 
+
+8 ms: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	352	since in last timeframe
+8 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	was used	2034	since in last timeframe
+8 ms: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	was used	150	since in last timeframe
+8 ms: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	was used	103	since in last timeframe
+8 ms: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1056	since in last timeframe
+8 ms: Info: MONITOR:    SI usages in last timeframe  	0	352	0	2034	0	0	253	0	1056	
+
+8033463 ns: Info: MONITOR: ATOM IN:	atom_LF	needed/available: 2/1 swap-in/swap-out: 3/2 --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+8033463 ns: Info: MONITOR: ATOM OUT:	atom_QuadSub	needed/available: 0/0 swap-in/swap-out: 3/3 
+8033463 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 5/4 running (0) --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+8033463 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_00	428	is replaced by molecule	LF_BS_4_4_HW_01	9	and was used	225	- times.
+
+8033463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+8033463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+8033463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+8033463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+8033463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+8033463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+8033463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+8033463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+8033463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+8033463 ns: Info: MONITOR: 
+
+8099860 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2cb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+================================================================================
+
+8099860 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	9	was used	2840	since last forecast
+8099860 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	428	was used	225	since last forecast
+8099860 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	960	was used	103	since last forecast
+8099860 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+8099860 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+8099860 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+8099860 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+8099860 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+8099860 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+8099882 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	19698
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	65280
+
+
+---> AFTER RESCHEDULING
+ SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	124
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	19698
+ SATD_4x4_HW_00      : 1x[atom_Transform2]  (L, Execs)=	350	807
+ SATD_4x4_HW_01      : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	294	951
+ SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	6526
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	65280
+
+
+8099882 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x29a
+SysDyn:	CURRENT PREDICTION:	6633.0	0.0	0.0	0.0	0.0	0.0	0.0	25344.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 6/6 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 6/6 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 6/6 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 3/3 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 3/3 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 3/3 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 6/6 --> SATD_4x4_HW_04 
+================================================================================
+
+8099882 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+8099882 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+8099882 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+8099882 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+8099882 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+8099882 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+8133463 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 0/1 swap-in/swap-out: 6/5 
+8133463 ns: Info: MONITOR: ATOM OUT:	atom_Cond	needed/available: 0/1 swap-in/swap-out: 6/5 
+8133463 ns: Info: MONITOR: ATOM NEW:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 6/6 running (0) --> SAD_16_HW_01 
+8133463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+8133463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+8133463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+8133463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+8133463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+8133463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+8133463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+8133463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+8133463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+8133463 ns: Info: MONITOR: 
+
+8233463 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/1 swap-in/swap-out: 7/6 running (0) --> SAD_16_HW_00 SAD_16_HW_01 
+8233463 ns: Info: MONITOR: ATOM OUT:	atom_Transform3	needed/available: 0/0 swap-in/swap-out: 3/3 
+8233463 ns: Info: MONITOR: ATOM NEW:	atom_SAD4	needed/available: 2/1 swap-in/swap-out: 7/6 running (0) --> SAD_16_HW_00 SAD_16_HW_01 
+8233463 ns: Info: MONITOR: Molecule	SAD_16_SW	4673	is replaced by molecule	SAD_16_HW_00	68	and was used	28	- times.
+
+8233463 ns: Info: MONITOR: Molecule	HT_2X2_HW_00	5	is replaced by molecule	HT_2X2_SW	100	and was used	1552	- times.
+
+8233463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+8233463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+8233463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+8233463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+8233463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+8233463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+8233463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+8233463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+8233463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+8233463 ns: Info: MONITOR: 
+
+8250 us: Info: MONITOR: Molecule: 	SAD_16_SW	was used	28	since in last timeframe
+8250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	39	since in last timeframe
+8250 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	2840	since in last timeframe
+8250 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	was used	75	since in last timeframe
+8250 us: Info: MONITOR: Molecule: 	SATD_4x4_SW	was used	24	since in last timeframe
+8250 us: Info: MONITOR:    SI usages in last timeframe  	67	0	0	0	0	0	2915	24	0	
+
+8333463 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/2 swap-in/swap-out: 8/6 --> SAD_16_HW_01 
+8333463 ns: Info: MONITOR: ATOM OUT:	atom_Cond	needed/available: 0/0 swap-in/swap-out: 6/6 
+8333463 ns: Info: MONITOR: ATOM NEW:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 6/6 running (0) --> SATD_4x4_HW_04 
+8333463 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_HW_01	37	and was used	39	- times.
+
+8333463 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_01	9	is replaced by molecule	LF_BS_4_4_SW	960	and was used	2840	- times.
+
+8333463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+8333463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+8333463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+8333463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+8333463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+8333463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+8333463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+8333463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+8333463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+8333463 ns: Info: MONITOR: 
+
+8433463 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/1 swap-in/swap-out: 7/6 --> SATD_4x4_HW_00 SATD_4x4_HW_04 
+8433463 ns: Info: MONITOR: ATOM OUT:	atom_LF	needed/available: 0/0 swap-in/swap-out: 3/3 
+8433463 ns: Info: MONITOR: ATOM NEW:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 3/3 running (0) --> SATD_4x4_HW_04 
+8433463 ns: Info: MONITOR: Molecule	HT_4X4_SW	298	is replaced by molecule	HT_4X4_HW_00	104	and was used	0	- times.
+
+8433463 ns: Info: MONITOR: Molecule	SATD_4x4_SW	544	is replaced by molecule	SATD_4x4_HW_00	350	and was used	349	- times.
+
+8433463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+8433463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+8433463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_00	104
+8433463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+8433463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+8433463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+8433463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+8433463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_00	350
+8433463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+8433463 ns: Info: MONITOR: 
+
+8500 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	134	since in last timeframe
+8500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	was used	176	since in last timeframe
+8500 us: Info: MONITOR: Molecule: 	SATD_4x4_SW	was used	325	since in last timeframe
+8500 us: Info: MONITOR:    SI usages in last timeframe  	134	0	0	0	0	0	0	501	0	
+
+8533463 ns: Info: MONITOR: ATOM IN:	atom_PackLSBMSB	needed/available: 1/1 swap-in/swap-out: 4/3 --> SATD_4x4_HW_04 
+8533463 ns: Info: MONITOR: ATOM OUT:	atom_BytePack	needed/available: 0/0 swap-in/swap-out: 3/3 
+8533463 ns: Info: MONITOR: ATOM NEW:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 3/3 running (0) --> SATD_4x4_HW_04 
+8533463 ns: Info: MONITOR: Molecule	HT_4X4_HW_00	104	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+8533463 ns: Info: MONITOR: Molecule	MC_Hz4_HW_02	11	is replaced by molecule	MC_Hz4_HW_01	26	and was used	6096	- times.
+
+8533463 ns: Info: MONITOR: Molecule	SATD_4x4_HW_00	350	is replaced by molecule	SATD_4x4_HW_01	294	and was used	269	- times.
+
+8533463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+8533463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+8533463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+8533463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+8533463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+8533463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+8533463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+8533463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_01	294
+8533463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+8533463 ns: Info: MONITOR: 
+
+8633463 ns: Info: MONITOR: ATOM IN:	atom_QuadSub	needed/available: 1/1 swap-in/swap-out: 4/3 --> SATD_4x4_HW_04 
+8633463 ns: Info: MONITOR: ATOM OUT:	atom_PointFilter	needed/available: 0/0 swap-in/swap-out: 3/3 
+8633463 ns: Info: MONITOR: ATOM NEW:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 3/3 running (0) --> SATD_4x4_HW_04 
+8633463 ns: Info: MONITOR: Molecule	MC_Hz4_HW_01	26	is replaced by molecule	MC_Hz4_SW	215	and was used	0	- times.
+
+8633463 ns: Info: MONITOR: Molecule	SATD_4x4_HW_01	294	is replaced by molecule	SATD_4x4_HW_02	186	and was used	317	- times.
+
+8633463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+8633463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+8633463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+8633463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+8633463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+8633463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+8633463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+8633463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+8633463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+8633463 ns: Info: MONITOR: 
+
+8733463 ns: Info: MONITOR: ATOM IN:	atom_SATD	needed/available: 1/1 swap-in/swap-out: 4/3 --> SATD_4x4_HW_03 SATD_4x4_HW_04 
+8733463 ns: Info: MONITOR: ATOM OUT:	atom_Clip3	needed/available: 0/0 swap-in/swap-out: 3/3 
+8733463 ns: Info: MONITOR: ATOM NEW:	atom_Transform2	needed/available: 2/1 swap-in/swap-out: 7/6 running (0) --> SATD_4x4_HW_03 SATD_4x4_HW_04 
+8733463 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_HW_03	22	and was used	474	- times.
+
+8733463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+8733463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+8733463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+8733463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+8733463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+8733463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+8733463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+8733463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_03	22
+8733463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+8733463 ns: Info: MONITOR: 
+
+8750 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	284	since in last timeframe
+8750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	was used	317	since in last timeframe
+8750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	was used	93	since in last timeframe
+8750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	383	since in last timeframe
+8750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	was used	474	since in last timeframe
+8750 us: Info: MONITOR:    SI usages in last timeframe  	284	0	0	0	0	0	0	1267	0	
+
+8833463 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/2 swap-in/swap-out: 8/6 --> SATD_4x4_HW_04 
+8833463 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_HW_02	14	and was used	0	- times.
+
+8833463 ns: Info: MONITOR: Molecule	SATD_4x4_HW_03	22	is replaced by molecule	SATD_4x4_HW_04	21	and was used	2175	- times.
+
+8833463 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+8833463 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+8833463 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+8833463 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+8833463 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+8833463 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+8833463 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+8833463 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_04	21
+8833463 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+8833463 ns: Info: MONITOR: 
+
+9 ms: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1458	since in last timeframe
+9 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	1792	since in last timeframe
+9 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	3803	since in last timeframe
+9 ms: Info: MONITOR:    SI usages in last timeframe  	1458	0	0	0	0	0	0	5595	0	
+
+9250 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+9250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+9250 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+9500 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+9500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+9500 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+9750 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+9750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5623	since in last timeframe
+9750 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5623	0	
+
+9797602 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	13680
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	18192
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	4656
+
+
+---> AFTER RESCHEDULING
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	4656
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	13680
+ MC_Hz4_HW_00        : 1x[atom_PointFilter]  (L, Execs)=	103	2262
+ MC_Hz4_HW_01        : 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	26	5397
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	18192
+
+
+9797602 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2a7
+SysDyn:	CURRENT PREDICTION:	0.0	1584.0	2.0	9420.0	7.0	7.0	0.0	0.0	4752.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 3/3 --> HT_2X2_HW_00 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 3/3 --> DCT_4x4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 3/3 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 3/3 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 3/3 --> MC_Hz4_HW_02 
+================================================================================
+
+9797602 ns: Info: MONITOR: Molecule: 	SAD_16_SW	4673	was used	28	since last forecast
+9797602 ns: Info: MONITOR: Molecule: 	SAD_16_HW_00	68	was used	39	since last forecast
+9797602 ns: Info: MONITOR: Molecule: 	SAD_16_HW_01	37	was used	6566	since last forecast
+9797602 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	294	was used	317	since last forecast
+9797602 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	350	was used	269	since last forecast
+9797602 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	22	was used	2175	since last forecast
+9797602 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	186	was used	474	since last forecast
+9797602 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	21	was used	21760	since last forecast
+9797602 ns: Info: MONITOR: Molecule: 	SATD_4x4_SW	544	was used	349	since last forecast
+9797602 ns: Info: MONITOR: currently available Atoms: 	atom_SAD4  	2
+9797602 ns: Info: MONITOR: currently available Atoms: 	atom_Transform2  	2
+9797602 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+9797602 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+9797602 ns: Info: MONITOR: currently available Atoms: 	atom_SATD  	1
+9797602 ns: Info: MONITOR: ATOM OUT:	atom_SATD	needed/available: 0/0 swap-in/swap-out: 4/4 
+9797602 ns: Info: MONITOR: ATOM NEW:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 3/3 running (100000) --> HT_2X2_HW_00 
+9797602 ns: Info: MONITOR: Molecule	SATD_4x4_HW_04	21	is replaced by molecule	SATD_4x4_HW_02	186	and was used	21760	- times.
+
+9797602 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+9797602 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+9797602 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+9797602 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+9797602 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+9797602 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+9797602 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+9797602 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+9797602 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+9797602 ns: Info: MONITOR: 
+
+9897602 ns: Info: MONITOR: ATOM IN:	atom_Transform3	needed/available: 1/1 swap-in/swap-out: 4/3 --> HT_2X2_HW_00 
+9897602 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/1 swap-in/swap-out: 8/7 
+9897602 ns: Info: MONITOR: ATOM NEW:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 3/3 running (0) --> DCT_4x4_HW_02 
+9897602 ns: Info: MONITOR: Molecule	HT_2X2_SW	100	is replaced by molecule	HT_2X2_HW_00	5	and was used	32	- times.
+
+9897602 ns: Info: MONITOR: Molecule	HT_4X4_HW_02	14	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+9897602 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+9897602 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+9897602 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+9897602 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+9897602 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+9897602 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+9897602 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+9897602 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+9897602 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+9897602 ns: Info: MONITOR: 
+
+9997602 ns: Info: MONITOR: ATOM IN:	atom_Transform1	needed/available: 1/1 swap-in/swap-out: 4/3 --> DCT_4x4_HW_02 
+9997602 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/1 swap-in/swap-out: 8/7 
+9997602 ns: Info: MONITOR: ATOM NEW:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 3/3 running (0) --> MC_Hz4_HW_02 
+9997602 ns: Info: MONITOR: Molecule	SAD_16_HW_01	37	is replaced by molecule	SAD_16_HW_00	68	and was used	6566	- times.
+
+9997602 ns: Info: MONITOR: Molecule	DCT_4x4_SW	488	is replaced by molecule	DCT_4x4_HW_02	21	and was used	192	- times.
+
+9997602 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+9997602 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+9997602 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+9997602 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+9997602 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+9997602 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+9997602 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+9997602 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+9997602 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+9997602 ns: Info: MONITOR: 
+
+10 ms: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	32	since in last timeframe
+10 ms: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	32	since in last timeframe
+10 ms: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	268	since in last timeframe
+10 ms: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	455	since in last timeframe
+10 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	1090	since in last timeframe
+10 ms: Info: MONITOR: Molecule: 	DCT_4x4_SW	was used	192	since in last timeframe
+10 ms: Info: MONITOR:    SI usages in last timeframe  	268	64	0	455	0	0	0	1090	192	
+
+10097602 ns: Info: MONITOR: ATOM IN:	atom_PointFilter	needed/available: 1/1 swap-in/swap-out: 4/3 --> MC_Hz4_HW_00 MC_Hz4_HW_02 
+10097602 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/0 swap-in/swap-out: 8/8 
+10097602 ns: Info: MONITOR: ATOM NEW:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 3/3 running (0) --> MC_Hz4_HW_02 
+10097602 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_SW	4673	and was used	0	- times.
+
+10097602 ns: Info: MONITOR: Molecule	MC_Hz4_SW	215	is replaced by molecule	MC_Hz4_HW_00	103	and was used	855	- times.
+
+10097602 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+10097602 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+10097602 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+10097602 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_00	103
+10097602 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+10097602 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+10097602 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+10097602 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+10097602 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+10097602 ns: Info: MONITOR: 
+
+10197602 ns: Info: MONITOR: ATOM IN:	atom_Clip3	needed/available: 1/1 swap-in/swap-out: 4/3 --> MC_Hz4_HW_01 MC_Hz4_HW_02 
+10197602 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/0 swap-in/swap-out: 8/8 
+10197602 ns: Info: MONITOR: ATOM NEW:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 3/3 running (0) --> MC_Hz4_HW_02 
+10197602 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_SW	298	and was used	2	- times.
+
+10197602 ns: Info: MONITOR: Molecule	MC_Hz4_HW_00	103	is replaced by molecule	MC_Hz4_HW_01	26	and was used	712	- times.
+
+10197602 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_SW	544	and was used	0	- times.
+
+10197602 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+10197602 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+10197602 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+10197602 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+10197602 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+10197602 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+10197602 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+10197602 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+10197602 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+10197602 ns: Info: MONITOR: 
+
+10250 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	368	since in last timeframe
+10250 us: Info: MONITOR: Molecule: 	HT_4X4_HW_01	was used	2	since in last timeframe
+10250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	941	since in last timeframe
+10250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	was used	712	since in last timeframe
+10250 us: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	400	since in last timeframe
+10250 us: Info: MONITOR: Molecule: 	IPred_HDC16x16_SW	was used	8	since in last timeframe
+10250 us: Info: MONITOR: Molecule: 	IPred_VDC16x16_SW	was used	8	since in last timeframe
+10250 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1104	since in last timeframe
+10250 us: Info: MONITOR:    SI usages in last timeframe  	0	368	2	2053	8	8	0	0	1104	
+
+10297602 ns: Info: MONITOR: ATOM IN:	atom_BytePack	needed/available: 1/1 swap-in/swap-out: 4/3 --> MC_Hz4_HW_02 
+10297602 ns: Info: MONITOR: Molecule	MC_Hz4_HW_01	26	is replaced by molecule	MC_Hz4_HW_02	11	and was used	1800	- times.
+
+10297602 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+10297602 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+10297602 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+10297602 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+10297602 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+10297602 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+10297602 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+10297602 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+10297602 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+10297602 ns: Info: MONITOR: 
+
+10500 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	976	since in last timeframe
+10500 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	859	since in last timeframe
+10500 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	was used	5055	since in last timeframe
+10500 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	2928	since in last timeframe
+10500 us: Info: MONITOR:    SI usages in last timeframe  	0	976	0	5914	0	0	0	0	2928	
+
+10541086 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+---> AFTER RESCHEDULING
+ LF_BS_4_4_HW_01     : 1x[atom_Cond] 1x[atom_LF]  (L, Execs)=	9	8520
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+10541086 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2bb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	3168.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 6/6 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 3/3 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 6/6 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 3/3 --> LF_BS_4_4_HW_02 
+================================================================================
+
+10541086 ns: Info: MONITOR: Molecule: 	HT_2X2_HW_00	5	was used	1552	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	HT_2X2_SW	100	was used	32	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	HT_4X4_HW_01	16	was used	2	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	26	was used	1800	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	103	was used	712	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	11	was used	6041	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	MC_Hz4_SW	215	was used	855	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	IPred_HDC16x16_SW	249	was used	8	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	IPred_VDC16x16_SW	69	was used	8	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	21	was used	4560	since last forecast
+10541086 ns: Info: MONITOR: Molecule: 	DCT_4x4_SW	488	was used	192	since last forecast
+10541086 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+10541086 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+10541086 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+10541086 ns: Info: MONITOR: currently available Atoms: 	atom_Transform1  	1
+10541086 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+10541086 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+10541086 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+10541086 ns: Info: MONITOR: ATOM OUT:	atom_Transform1	needed/available: 0/0 swap-in/swap-out: 4/4 
+10541086 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 6/6 running (100000) --> LF_BS_4_4_HW_02 
+10541086 ns: Info: MONITOR: Molecule	DCT_4x4_HW_02	21	is replaced by molecule	DCT_4x4_SW	488	and was used	4560	- times.
+
+10541086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+10541086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+10541086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+10541086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+10541086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+10541086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+10541086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+10541086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+10541086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+10541086 ns: Info: MONITOR: 
+
+10641086 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 7/6 --> LF_BS_4_4_HW_02 
+10641086 ns: Info: MONITOR: ATOM OUT:	atom_PackLSBMSB	needed/available: 0/0 swap-in/swap-out: 4/4 
+10641086 ns: Info: MONITOR: ATOM NEW:	atom_LF	needed/available: 2/0 swap-in/swap-out: 3/3 running (0) --> LF_BS_4_4_HW_02 
+10641086 ns: Info: MONITOR: Molecule	LF_BS_4_4_SW	960	is replaced by molecule	LF_BS_4_4_HW_00	428	and was used	103	- times.
+
+10641086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+10641086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+10641086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+10641086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+10641086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+10641086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+10641086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_00	428
+10641086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+10641086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+10641086 ns: Info: MONITOR: 
+
+10741086 ns: Info: MONITOR: ATOM IN:	atom_LF	needed/available: 2/1 swap-in/swap-out: 4/3 --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+10741086 ns: Info: MONITOR: ATOM OUT:	atom_QuadSub	needed/available: 0/0 swap-in/swap-out: 4/4 
+10741086 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 7/6 running (0) --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+10741086 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_00	428	is replaced by molecule	LF_BS_4_4_HW_01	9	and was used	225	- times.
+
+10741086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+10741086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+10741086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+10741086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+10741086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+10741086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+10741086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+10741086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+10741086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+10741086 ns: Info: MONITOR: 
+
+10750 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	176	since in last timeframe
+10750 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	was used	986	since in last timeframe
+10750 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	382	since in last timeframe
+10750 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	was used	225	since in last timeframe
+10750 us: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	was used	103	since in last timeframe
+10750 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	528	since in last timeframe
+10750 us: Info: MONITOR:    SI usages in last timeframe  	0	176	0	986	0	0	710	0	528	
+
+10807483 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2cb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+================================================================================
+
+10807483 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	9	was used	2840	since last forecast
+10807483 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	428	was used	225	since last forecast
+10807483 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	960	was used	103	since last forecast
+10807483 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+10807483 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+10807483 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+10807483 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+10807483 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+10807483 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+10807505 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	26264
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	87040
+
+
+---> AFTER RESCHEDULING
+ SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	163
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	26264
+ SATD_4x4_HW_00      : 1x[atom_Transform2]  (L, Execs)=	350	1076
+ SATD_4x4_HW_01      : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	294	1268
+ SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	8701
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	87040
+
+
+10807505 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x29a
+SysDyn:	CURRENT PREDICTION:	6633.0	0.0	0.0	0.0	0.0	0.0	0.0	25344.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 8/8 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 8/8 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 8/8 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 4/4 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 4/4 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 4/4 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 8/8 --> SATD_4x4_HW_04 
+================================================================================
+
+10807505 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+10807505 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+10807505 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+10807505 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+10807505 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+10807505 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+10841086 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 0/1 swap-in/swap-out: 8/7 
+10841086 ns: Info: MONITOR: ATOM OUT:	atom_Cond	needed/available: 0/1 swap-in/swap-out: 8/7 
+10841086 ns: Info: MONITOR: ATOM NEW:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 8/8 running (0) --> SAD_16_HW_01 
+10841086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+10841086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+10841086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+10841086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+10841086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+10841086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+10841086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+10841086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+10841086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+10841086 ns: Info: MONITOR: 
+
+10941086 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/1 swap-in/swap-out: 9/8 running (0) --> SAD_16_HW_00 SAD_16_HW_01 
+10941086 ns: Info: MONITOR: ATOM OUT:	atom_Transform3	needed/available: 0/0 swap-in/swap-out: 4/4 
+10941086 ns: Info: MONITOR: ATOM NEW:	atom_SAD4	needed/available: 2/1 swap-in/swap-out: 9/8 running (0) --> SAD_16_HW_00 SAD_16_HW_01 
+10941086 ns: Info: MONITOR: Molecule	SAD_16_SW	4673	is replaced by molecule	SAD_16_HW_00	68	and was used	28	- times.
+
+10941086 ns: Info: MONITOR: Molecule	HT_2X2_HW_00	5	is replaced by molecule	HT_2X2_SW	100	and was used	1552	- times.
+
+10941086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+10941086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+10941086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+10941086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+10941086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+10941086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+10941086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+10941086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+10941086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+10941086 ns: Info: MONITOR: 
+
+11 ms: Info: MONITOR: Molecule: 	SAD_16_SW	was used	28	since in last timeframe
+11 ms: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	39	since in last timeframe
+11 ms: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	2458	since in last timeframe
+11 ms: Info: MONITOR: Molecule: 	SATD_4x4_SW	was used	101	since in last timeframe
+11 ms: Info: MONITOR:    SI usages in last timeframe  	67	0	0	0	0	0	2458	101	0	
+
+11041086 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 2/2 swap-in/swap-out: 10/8 --> SAD_16_HW_01 
+11041086 ns: Info: MONITOR: ATOM OUT:	atom_Cond	needed/available: 0/0 swap-in/swap-out: 8/8 
+11041086 ns: Info: MONITOR: ATOM NEW:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 8/8 running (0) --> SATD_4x4_HW_04 
+11041086 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_HW_01	37	and was used	39	- times.
+
+11041086 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_01	9	is replaced by molecule	LF_BS_4_4_SW	960	and was used	2840	- times.
+
+11041086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+11041086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+11041086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+11041086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+11041086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+11041086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+11041086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+11041086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+11041086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+11041086 ns: Info: MONITOR: 
+
+11141086 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/1 swap-in/swap-out: 9/8 --> SATD_4x4_HW_00 SATD_4x4_HW_04 
+11141086 ns: Info: MONITOR: ATOM OUT:	atom_LF	needed/available: 0/0 swap-in/swap-out: 4/4 
+11141086 ns: Info: MONITOR: ATOM NEW:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 4/4 running (0) --> SATD_4x4_HW_04 
+11141086 ns: Info: MONITOR: Molecule	HT_4X4_SW	298	is replaced by molecule	HT_4X4_HW_00	104	and was used	0	- times.
+
+11141086 ns: Info: MONITOR: Molecule	SATD_4x4_SW	544	is replaced by molecule	SATD_4x4_HW_00	350	and was used	349	- times.
+
+11141086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+11141086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+11141086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_00	104
+11141086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+11141086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+11141086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+11141086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+11141086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_00	350
+11141086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+11141086 ns: Info: MONITOR: 
+
+11241086 ns: Info: MONITOR: ATOM IN:	atom_PackLSBMSB	needed/available: 1/1 swap-in/swap-out: 5/4 --> SATD_4x4_HW_04 
+11241086 ns: Info: MONITOR: ATOM OUT:	atom_BytePack	needed/available: 0/0 swap-in/swap-out: 4/4 
+11241086 ns: Info: MONITOR: ATOM NEW:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 4/4 running (0) --> SATD_4x4_HW_04 
+11241086 ns: Info: MONITOR: Molecule	HT_4X4_HW_00	104	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+11241086 ns: Info: MONITOR: Molecule	MC_Hz4_HW_02	11	is replaced by molecule	MC_Hz4_HW_01	26	and was used	6041	- times.
+
+11241086 ns: Info: MONITOR: Molecule	SATD_4x4_HW_00	350	is replaced by molecule	SATD_4x4_HW_01	294	and was used	269	- times.
+
+11241086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+11241086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+11241086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+11241086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+11241086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+11241086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+11241086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+11241086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_01	294
+11241086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+11241086 ns: Info: MONITOR: 
+
+11250 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	134	since in last timeframe
+11250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	was used	29	since in last timeframe
+11250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	was used	269	since in last timeframe
+11250 us: Info: MONITOR: Molecule: 	SATD_4x4_SW	was used	248	since in last timeframe
+11250 us: Info: MONITOR:    SI usages in last timeframe  	134	0	0	0	0	0	0	546	0	
+
+11341086 ns: Info: MONITOR: ATOM IN:	atom_QuadSub	needed/available: 1/1 swap-in/swap-out: 5/4 --> SATD_4x4_HW_04 
+11341086 ns: Info: MONITOR: ATOM OUT:	atom_PointFilter	needed/available: 0/0 swap-in/swap-out: 4/4 
+11341086 ns: Info: MONITOR: ATOM NEW:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 4/4 running (0) --> SATD_4x4_HW_04 
+11341086 ns: Info: MONITOR: Molecule	MC_Hz4_HW_01	26	is replaced by molecule	MC_Hz4_SW	215	and was used	0	- times.
+
+11341086 ns: Info: MONITOR: Molecule	SATD_4x4_HW_01	294	is replaced by molecule	SATD_4x4_HW_02	186	and was used	317	- times.
+
+11341086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+11341086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+11341086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+11341086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+11341086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+11341086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+11341086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+11341086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+11341086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+11341086 ns: Info: MONITOR: 
+
+11441086 ns: Info: MONITOR: ATOM IN:	atom_SATD	needed/available: 1/1 swap-in/swap-out: 5/4 --> SATD_4x4_HW_03 SATD_4x4_HW_04 
+11441086 ns: Info: MONITOR: ATOM OUT:	atom_Clip3	needed/available: 0/0 swap-in/swap-out: 4/4 
+11441086 ns: Info: MONITOR: ATOM NEW:	atom_Transform2	needed/available: 2/1 swap-in/swap-out: 9/8 running (0) --> SATD_4x4_HW_03 SATD_4x4_HW_04 
+11441086 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_HW_03	22	and was used	474	- times.
+
+11441086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+11441086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+11441086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+11441086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+11441086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+11441086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+11441086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+11441086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_03	22
+11441086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+11441086 ns: Info: MONITOR: 
+
+11500 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	536	since in last timeframe
+11500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	was used	288	since in last timeframe
+11500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	1305	since in last timeframe
+11500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	was used	474	since in last timeframe
+11500 us: Info: MONITOR:    SI usages in last timeframe  	536	0	0	0	0	0	0	2067	0	
+
+11541086 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 2/2 swap-in/swap-out: 10/8 --> SATD_4x4_HW_04 
+11541086 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_HW_02	14	and was used	0	- times.
+
+11541086 ns: Info: MONITOR: Molecule	SATD_4x4_HW_03	22	is replaced by molecule	SATD_4x4_HW_04	21	and was used	2175	- times.
+
+11541086 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+11541086 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+11541086 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+11541086 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+11541086 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+11541086 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+11541086 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+11541086 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_04	21
+11541086 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+11541086 ns: Info: MONITOR: 
+
+11750 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+11750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	870	since in last timeframe
+11750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	4723	since in last timeframe
+11750 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5593	0	
+
+12 ms: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+12 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+12 ms: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+12250 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+12250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5623	since in last timeframe
+12250 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5623	0	
+
+12500 us: Info: MONITOR: Molecule: 	SAD_16_HW_01	was used	1474	since in last timeframe
+12500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	5622	since in last timeframe
+12500 us: Info: MONITOR:    SI usages in last timeframe  	1474	0	0	0	0	0	0	5622	0	
+
+12505225 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	18240
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	24233
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	6208
+
+
+---> AFTER RESCHEDULING
+ HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	6208
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	18240
+ MC_Hz4_HW_00        : 1x[atom_PointFilter]  (L, Execs)=	103	2974
+ MC_Hz4_HW_01        : 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	26	7197
+ MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	24233
+
+
+12505225 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2a7
+SysDyn:	CURRENT PREDICTION:	0.0	1584.0	2.0	9420.0	7.0	7.0	0.0	0.0	4752.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 4/4 --> HT_2X2_HW_00 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 4/4 --> DCT_4x4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 4/4 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 4/4 --> MC_Hz4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 4/4 --> MC_Hz4_HW_02 
+================================================================================
+
+12505225 ns: Info: MONITOR: Molecule: 	SAD_16_SW	4673	was used	28	since last forecast
+12505225 ns: Info: MONITOR: Molecule: 	SAD_16_HW_00	68	was used	39	since last forecast
+12505225 ns: Info: MONITOR: Molecule: 	SAD_16_HW_01	37	was used	6566	since last forecast
+12505225 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_01	294	was used	317	since last forecast
+12505225 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_00	350	was used	269	since last forecast
+12505225 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	22	was used	2175	since last forecast
+12505225 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_02	186	was used	474	since last forecast
+12505225 ns: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	21	was used	21760	since last forecast
+12505225 ns: Info: MONITOR: Molecule: 	SATD_4x4_SW	544	was used	349	since last forecast
+12505225 ns: Info: MONITOR: currently available Atoms: 	atom_SAD4  	2
+12505225 ns: Info: MONITOR: currently available Atoms: 	atom_Transform2  	2
+12505225 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+12505225 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+12505225 ns: Info: MONITOR: currently available Atoms: 	atom_SATD  	1
+12505225 ns: Info: MONITOR: ATOM OUT:	atom_SATD	needed/available: 0/0 swap-in/swap-out: 5/5 
+12505225 ns: Info: MONITOR: ATOM NEW:	atom_Transform3	needed/available: 1/0 swap-in/swap-out: 4/4 running (100000) --> HT_2X2_HW_00 
+12505225 ns: Info: MONITOR: Molecule	SATD_4x4_HW_04	21	is replaced by molecule	SATD_4x4_HW_02	186	and was used	21760	- times.
+
+12505225 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+12505225 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+12505225 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_02	14
+12505225 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+12505225 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+12505225 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+12505225 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+12505225 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+12505225 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+12505225 ns: Info: MONITOR: 
+
+12605225 ns: Info: MONITOR: ATOM IN:	atom_Transform3	needed/available: 1/1 swap-in/swap-out: 5/4 --> HT_2X2_HW_00 
+12605225 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/1 swap-in/swap-out: 10/9 
+12605225 ns: Info: MONITOR: ATOM NEW:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 4/4 running (0) --> DCT_4x4_HW_02 
+12605225 ns: Info: MONITOR: Molecule	HT_2X2_SW	100	is replaced by molecule	HT_2X2_HW_00	5	and was used	32	- times.
+
+12605225 ns: Info: MONITOR: Molecule	HT_4X4_HW_02	14	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+12605225 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_01	37
+12605225 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+12605225 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+12605225 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+12605225 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+12605225 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+12605225 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+12605225 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+12605225 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+12605225 ns: Info: MONITOR: 
+
+12705225 ns: Info: MONITOR: ATOM IN:	atom_Transform1	needed/available: 1/1 swap-in/swap-out: 5/4 --> DCT_4x4_HW_02 
+12705225 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/1 swap-in/swap-out: 10/9 
+12705225 ns: Info: MONITOR: ATOM NEW:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 4/4 running (0) --> MC_Hz4_HW_02 
+12705225 ns: Info: MONITOR: Molecule	SAD_16_HW_01	37	is replaced by molecule	SAD_16_HW_00	68	and was used	6566	- times.
+
+12705225 ns: Info: MONITOR: Molecule	DCT_4x4_SW	488	is replaced by molecule	DCT_4x4_HW_02	21	and was used	192	- times.
+
+12705225 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+12705225 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+12705225 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+12705225 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+12705225 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+12705225 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+12705225 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+12705225 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+12705225 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+12705225 ns: Info: MONITOR: 
+
+12750 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	64	since in last timeframe
+12750 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	32	since in last timeframe
+12750 us: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	627	since in last timeframe
+12750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_04	was used	170	since in last timeframe
+12750 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	96	since in last timeframe
+12750 us: Info: MONITOR: Molecule: 	DCT_4x4_SW	was used	192	since in last timeframe
+12750 us: Info: MONITOR:    SI usages in last timeframe  	0	96	0	627	0	0	0	170	288	
+
+12805225 ns: Info: MONITOR: ATOM IN:	atom_PointFilter	needed/available: 1/1 swap-in/swap-out: 5/4 --> MC_Hz4_HW_00 MC_Hz4_HW_02 
+12805225 ns: Info: MONITOR: ATOM OUT:	atom_SAD4	needed/available: 0/0 swap-in/swap-out: 10/10 
+12805225 ns: Info: MONITOR: ATOM NEW:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 4/4 running (0) --> MC_Hz4_HW_02 
+12805225 ns: Info: MONITOR: Molecule	SAD_16_HW_00	68	is replaced by molecule	SAD_16_SW	4673	and was used	0	- times.
+
+12805225 ns: Info: MONITOR: Molecule	MC_Hz4_SW	215	is replaced by molecule	MC_Hz4_HW_00	103	and was used	855	- times.
+
+12805225 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+12805225 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+12805225 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+12805225 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_00	103
+12805225 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+12805225 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+12805225 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+12805225 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+12805225 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+12805225 ns: Info: MONITOR: 
+
+12905225 ns: Info: MONITOR: ATOM IN:	atom_Clip3	needed/available: 1/1 swap-in/swap-out: 5/4 --> MC_Hz4_HW_02 
+12905225 ns: Info: MONITOR: ATOM OUT:	atom_Transform2	needed/available: 0/0 swap-in/swap-out: 10/10 
+12905225 ns: Info: MONITOR: ATOM NEW:	atom_BytePack	needed/available: 1/0 swap-in/swap-out: 4/4 running (0) --> MC_Hz4_HW_02 
+12905225 ns: Info: MONITOR: Molecule	HT_4X4_HW_01	16	is replaced by molecule	HT_4X4_SW	298	and was used	0	- times.
+
+12905225 ns: Info: MONITOR: Molecule	MC_Hz4_HW_00	103	is replaced by molecule	MC_Hz4_HW_01	26	and was used	754	- times.
+
+12905225 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_SW	544	and was used	0	- times.
+
+12905225 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+12905225 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+12905225 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+12905225 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+12905225 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+12905225 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+12905225 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+12905225 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+12905225 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+12905225 ns: Info: MONITOR: 
+
+13 ms: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	448	since in last timeframe
+13 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	1706	since in last timeframe
+13 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	was used	754	since in last timeframe
+13 ms: Info: MONITOR: Molecule: 	MC_Hz4_SW	was used	228	since in last timeframe
+13 ms: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1344	since in last timeframe
+13 ms: Info: MONITOR:    SI usages in last timeframe  	0	448	0	2688	0	0	0	0	1344	
+
+13005225 ns: Info: MONITOR: ATOM IN:	atom_BytePack	needed/available: 1/1 swap-in/swap-out: 5/4 --> MC_Hz4_HW_02 
+13005225 ns: Info: MONITOR: Molecule	MC_Hz4_HW_01	26	is replaced by molecule	MC_Hz4_HW_02	11	and was used	1799	- times.
+
+13005225 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+13005225 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+13005225 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+13005225 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+13005225 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+13005225 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+13005225 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+13005225 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+13005225 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+13005225 ns: Info: MONITOR: 
+
+13250 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	1024	since in last timeframe
+13250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	93	since in last timeframe
+13250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	was used	6096	since in last timeframe
+13250 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	3076	since in last timeframe
+13250 us: Info: MONITOR:    SI usages in last timeframe  	0	1024	0	6189	0	0	0	0	3076	
+
+13251754 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+---> AFTER RESCHEDULING
+ LF_BS_4_4_HW_01     : 1x[atom_Cond] 1x[atom_LF]  (L, Execs)=	9	11360
+ LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+
+
+13251754 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2bb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	3168.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/7
+
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 8/8 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 4/4 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 8/8 --> LF_BS_4_4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 2/0 swap-in/swap-out: 4/4 --> LF_BS_4_4_HW_02 
+================================================================================
+
+13251754 ns: Info: MONITOR: Molecule: 	HT_2X2_HW_00	5	was used	1552	since last forecast
+13251754 ns: Info: MONITOR: Molecule: 	HT_2X2_SW	100	was used	32	since last forecast
+13251754 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	26	was used	1799	since last forecast
+13251754 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_00	103	was used	754	since last forecast
+13251754 ns: Info: MONITOR: Molecule: 	MC_Hz4_HW_02	11	was used	6096	since last forecast
+13251754 ns: Info: MONITOR: Molecule: 	MC_Hz4_SW	215	was used	855	since last forecast
+13251754 ns: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	21	was used	4560	since last forecast
+13251754 ns: Info: MONITOR: Molecule: 	DCT_4x4_SW	488	was used	192	since last forecast
+13251754 ns: Info: MONITOR: currently available Atoms: 	atom_PackLSBMSB  	1
+13251754 ns: Info: MONITOR: currently available Atoms: 	atom_QuadSub  	1
+13251754 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+13251754 ns: Info: MONITOR: currently available Atoms: 	atom_Transform1  	1
+13251754 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+13251754 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+13251754 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+13251754 ns: Info: MONITOR: ATOM OUT:	atom_Transform1	needed/available: 0/0 swap-in/swap-out: 5/5 
+13251754 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/0 swap-in/swap-out: 8/8 running (100000) --> LF_BS_4_4_HW_02 
+13251754 ns: Info: MONITOR: Molecule	DCT_4x4_HW_02	21	is replaced by molecule	DCT_4x4_SW	488	and was used	4560	- times.
+
+13251754 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+13251754 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+13251754 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+13251754 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+13251754 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+13251754 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+13251754 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_SW	960
+13251754 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+13251754 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+13251754 ns: Info: MONITOR: 
+
+13351754 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 9/8 --> LF_BS_4_4_HW_02 
+13351754 ns: Info: MONITOR: ATOM OUT:	atom_PackLSBMSB	needed/available: 0/0 swap-in/swap-out: 5/5 
+13351754 ns: Info: MONITOR: ATOM NEW:	atom_LF	needed/available: 2/0 swap-in/swap-out: 4/4 running (0) --> LF_BS_4_4_HW_02 
+13351754 ns: Info: MONITOR: Molecule	LF_BS_4_4_SW	960	is replaced by molecule	LF_BS_4_4_HW_00	428	and was used	103	- times.
+
+13351754 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+13351754 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+13351754 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+13351754 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+13351754 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+13351754 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+13351754 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_00	428
+13351754 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+13351754 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+13351754 ns: Info: MONITOR: 
+
+13451754 ns: Info: MONITOR: ATOM IN:	atom_LF	needed/available: 2/1 swap-in/swap-out: 5/4 --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+13451754 ns: Info: MONITOR: ATOM OUT:	atom_QuadSub	needed/available: 0/0 swap-in/swap-out: 5/5 
+13451754 ns: Info: MONITOR: ATOM NEW:	atom_Cond	needed/available: 2/1 swap-in/swap-out: 9/8 running (0) --> LF_BS_4_4_HW_01 LF_BS_4_4_HW_02 
+13451754 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_00	428	is replaced by molecule	LF_BS_4_4_HW_01	9	and was used	225	- times.
+
+13451754 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+13451754 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_HW_00	5
+13451754 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+13451754 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_02	11
+13451754 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+13451754 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+13451754 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+13451754 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+13451754 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+13451754 ns: Info: MONITOR: 
+
+13500 us: Info: MONITOR: Molecule: 	HT_2X2_HW_00	was used	16	since in last timeframe
+13500 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	2065	since in last timeframe
+13500 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	was used	225	since in last timeframe
+13500 us: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	was used	103	since in last timeframe
+13500 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	44	since in last timeframe
+13500 us: Info: MONITOR:    SI usages in last timeframe  	0	16	0	0	0	0	2393	0	44	
+
+13518151 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x2cb
+SysDyn:	CURRENT PREDICTION:	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+================================================================================
+
+13518151 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	9	was used	2840	since last forecast
+13518151 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_00	428	was used	225	since last forecast
+13518151 ns: Info: MONITOR: Molecule: 	LF_BS_4_4_SW	960	was used	103	since last forecast
+13518151 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+13518151 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+13518151 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+13518151 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+13518151 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+13518151 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+13518174 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	32830
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	108800
+
+
+---> AFTER RESCHEDULING
+ SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	202
+ SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	32830
+ SATD_4x4_HW_00      : 1x[atom_Transform2]  (L, Execs)=	350	1345
+ SATD_4x4_HW_01      : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	294	1585
+ SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	10876
+ SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	108800
+
+
+13518174 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x29a
+SysDyn:	CURRENT PREDICTION:	6633.0	0.0	0.0	0.0	0.0	0.0	0.0	25344.0	0.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 7/6
+
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 10/10 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 2/0 swap-in/swap-out: 10/10 --> SAD_16_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 10/10 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 5/5 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 5/5 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 5/5 --> SATD_4x4_HW_04 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 2/0 swap-in/swap-out: 10/10 --> SATD_4x4_HW_04 
+================================================================================
+
+13518174 ns: Info: MONITOR: currently available Atoms: 	atom_Transform3  	1
+13518174 ns: Info: MONITOR: currently available Atoms: 	atom_PointFilter  	1
+13518174 ns: Info: MONITOR: currently available Atoms: 	atom_Clip3  	1
+13518174 ns: Info: MONITOR: currently available Atoms: 	atom_BytePack  	1
+13518174 ns: Info: MONITOR: currently available Atoms: 	atom_Cond  	1
+13518174 ns: Info: MONITOR: currently available Atoms: 	atom_LF  	1
+13518195 ns: Info: RotationsManager: 
+TOTAL: Branches              308284
+       Fetch Stalls:         10439132
+       Decode Stalls:        0
+       EXE Stage Stalls:     67490
+       Load/Store Stalls:    50702
+       Write Back Stalls:    0
+       Cycles (total):       13518195
+       Instructions fetched: 2960871
+
+13518195 ns: Info: RotationsManager: Gesamtdauer: 26.53 Sekunden.
+13518195 ns: Info: RotationsManager: Cleaning up Pipeline
+
+13518195 ns: Info: MONITOR: 
+PREDICTION TABLE
+Node       | Backups    | E    | Insns      | Function Type Predictions                                                                                 |
+0x29a      |          5 | 0.00 | 6633.0	0.0	0.0	0.0	0.0	0.0	0.0	25344.0	0.0	
+
+0x2a7      |          5 | 0.00 | 0.0	1584.0	2.0	9420.0	7.0	7.0	0.0	0.0	4752.0	
+
+0x2bb      |          5 | 0.00 | 0.0	0.0	0.0	0.0	0.0	0.0	3168.0	0.0	0.0	
+
+0x2cb      |          5 | 0.00 | 0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	
+
+
+
+SETTINGS
+  + slots:              7
+  + time per atom:      100000
+  + TD prediction       
+    - lambda:           0.0
+    - gamma:            0.0
+    - alpha:            0.0
+    - e_min:            0.0
+
+CYCLE COUNT
+  + fastest possible:   7234184
+  + slowest possible:   264515100
+  + this run:           13518196
+    - cycles saved (%): 250996904 (94.9 %)
+    - cycles lost (%) : 6284012 (86.9 %)
+  + basic ops:          2824295
+  + ad-hoc stalls:      11458
+    - tot. # specops:   25
+
+EXECUTION COUNT
+  + forecast bursts:    21
+  + specop execs:       254769
+    - HW executions:    246948
+    - SW executions:    7821
+    - coverage:         96.9 %
+
+ATOM SWAP-IN / SWAP-OUT
+  + swap-ins:           74
+  + swap-out:           68
+
+BRANCH AND BOUND
+  + tot. # possible:    30427
+  + tot. # checked:     94
+  + checked %:          0.3 %
+
+COUNTS PER 10000 INSTRUCTIONS
+fb: forecast bursts
+#SI: total # of Special Instructions
+#hw: # executed HW-Molecules
+#sw: # executed SW-Molecules
+la: loaded atoms (finish time [cycle])
+s-out: swapped-out atoms
+cycle	fb	#SI	#hw	#sw	la	s-out	possible	checked	adhoc_w	adhoc_t
+412477	1	858	489	369	atom_SAD4(100,059) atom_SAD4(200,059) atom_Transform2(300,059) atom_PackLSBMSB(400,059) 	 	27	9	1
+582742	0	864	864	0	atom_QuadSub(500,059) 	 	0	0	0
+628732	0	887	887	0	atom_SATD(600,059) 	 	0	0	1
+660217	0	880	880	0	 	 	0	0	0
+691834	0	864	864	0	 	 	0	0	0
+722874	0	870	870	0	atom_Transform2(700,059) 	 	0	0	0
+753508	0	898	898	0	 	 	0	0	0
+784442	0	864	864	0	 	 	0	0	0
+815416	0	864	864	0	 	 	0	0	0
+846062	0	890	890	0	 	 	0	0	0
+876901	0	877	877	0	 	 	0	0	0
+907855	0	864	864	0	 	 	0	0	0
+938668	0	873	873	0	 	 	0	0	0
+969340	0	894	894	0	 	 	0	0	0
+1000294	0	864	864	0	 	 	0	0	0
+1031209	0	862	862	0	 	 	0	0	0
+1061856	0	897	897	0	 	 	0	0	0
+1092753	0	873	873	0	 	 	0	0	0
+1123668	0	862	862	0	 	 	0	0	0
+1154462	0	879	879	0	 	 	0	0	0
+1185192	0	890	890	0	 	 	0	0	0
+1216107	0	862	862	0	 	 	0	0	0
+1247061	0	864	864	0	 	 	0	0	0
+1277686	0	900	900	0	 	 	0	0	0
+1308566	0	868	868	0	 	 	0	0	0
+1339500	0	864	864	0	 	 	0	0	0
+1370292	0	882	882	0	 	 	0	0	0
+1401025	0	886	886	0	 	 	0	0	0
+1431959	0	863	863	0	 	 	0	0	0
+1462898	0	865	865	0	 	 	0	0	0
+1493483	0	904	904	0	 	 	0	0	0
+1524398	0	862	862	0	 	 	0	0	0
+1555352	0	864	864	0	 	 	0	0	0
+1586086	0	886	886	0	 	 	0	0	0
+1616837	0	882	882	0	 	 	0	0	0
+1647811	0	864	864	0	 	 	0	0	0
+1781652	1	905	487	418	atom_Transform3(1,764,239) 	atom_SATD atom_Transform2 	6048	5	0
+1952083	0	895	288	607	atom_Transform1(1,864,239) 	atom_SAD4 	0	0	0
+2029941	0	904	850	54	atom_PointFilter(1,964,239) 	atom_SAD4 	0	0	1
+2080401	0	902	902	0	atom_Clip3(2,064,239) 	atom_Transform2 	0	0	0
+2109943	0	894	894	0	 	 	0	0	0
+2140177	0	910	910	0	 	 	0	0	0
+2168350	0	897	897	0	atom_BytePack(2,164,239) 	 	0	0	0
+2190225	0	899	899	0	 	 	0	0	0
+2211923	0	907	907	0	 	 	0	0	0
+2233724	0	895	895	0	 	 	0	0	0
+2255607	0	904	904	0	 	 	0	0	0
+2277196	0	902	902	0	 	 	0	0	0
+2302121	0	897	879	18	 	 	0	0	0
+2323962	0	895	895	0	 	 	0	0	0
+2345804	0	904	904	0	 	 	0	0	0
+2367434	0	902	902	0	 	 	0	0	0
+2389336	0	895	895	0	 	 	0	0	0
+2411089	0	907	907	0	 	 	0	0	0
+2618926	1	654	551	103	atom_Cond(2,512,128) atom_LF(2,612,128) 	atom_Transform1 atom_PackLSBMSB atom_QuadSub 	4	2	1
+2634162	0	652	652	0	 	 	0	0	0
+2649391	0	652	652	0	 	 	0	0	0
+2664627	0	652	652	0	 	 	0	0	0
+2814130	2	645	617	28	atom_SAD4(2,812,128) atom_Cond(2,712,128) 	atom_Transform3 atom_Cond 	28	10	1
+3151508	0	896	547	349	atom_SAD4(2,912,128) atom_Transform2(3,012,128) atom_PackLSBMSB(3,112,128) 	atom_BytePack atom_Cond atom_LF 	0	0	1
+3311792	0	862	862	0	atom_QuadSub(3,212,128) 	atom_PointFilter 	0	0	0
+3343712	0	864	864	0	atom_SATD(3,312,128) 	atom_Clip3 	0	0	1
+3375131	0	894	894	0	 	 	0	0	0
+3406650	0	874	874	0	 	 	0	0	0
+3437664	0	864	864	0	atom_Transform2(3,412,128) 	 	0	0	0
+3468505	0	876	876	0	 	 	0	0	0
+3499189	0	892	892	0	 	 	0	0	0
+3530123	0	863	863	0	 	 	0	0	0
+3561077	0	864	864	0	 	 	0	0	0
+3591694	0	897	897	0	 	 	0	0	0
+3622562	0	870	870	0	 	 	0	0	0
+3653516	0	864	864	0	 	 	0	0	0
+3684300	0	880	880	0	 	 	0	0	0
+3715001	0	888	888	0	 	 	0	0	0
+3745975	0	864	864	0	 	 	0	0	0
+3776890	0	862	862	0	 	 	0	0	0
+3807488	0	902	902	0	 	 	0	0	0
+3838414	0	867	867	0	 	 	0	0	0
+3869329	0	862	862	0	 	 	0	0	0
+3900094	0	885	885	0	 	 	0	0	0
+3930853	0	884	884	0	 	 	0	0	0
+3961788	0	863	863	0	 	 	0	0	0
+3992700	0	867	867	0	 	 	0	0	0
+4023312	0	902	902	0	 	 	0	0	0
+4054247	0	863	863	0	 	 	0	0	0
+4085181	0	863	863	0	 	 	0	0	0
+4115888	0	888	888	0	 	 	0	0	0
+4146705	0	881	881	0	 	 	0	0	0
+4177620	0	862	862	0	 	 	0	0	0
+4208494	0	871	871	0	 	 	0	0	0
+4239144	0	898	898	0	 	 	0	0	0
+4270059	0	863	863	0	 	 	0	0	0
+4301033	0	864	864	0	 	 	0	0	0
+4331682	0	891	891	0	 	 	0	0	0
+4362518	0	876	876	0	 	 	0	0	0
+4519520	1	890	415	475	atom_Transform3(4,476,267) 	atom_SATD atom_Transform2 	6048	5	0
+4678027	0	910	306	604	atom_Transform1(4,576,267) atom_PointFilter(4,676,267) 	atom_SAD4 atom_SAD4 	0	0	1
+4749105	0	896	896	0	 	 	0	0	0
+4794804	0	901	901	0	atom_Clip3(4,776,267) 	atom_Transform2 	0	0	0
+4825089	0	905	905	0	 	 	0	0	0
+4854690	0	895	895	0	 	 	0	0	0
+4882452	0	904	904	0	atom_BytePack(4,876,267) 	 	0	0	0
+4904072	0	902	902	0	 	 	0	0	0
+4925974	0	895	895	0	 	 	0	0	0
+4947722	0	907	907	0	 	 	0	0	0
+4969446	0	899	899	0	 	 	0	0	0
+4991347	0	895	895	0	 	 	0	0	0
+5013069	0	911	911	0	 	 	0	0	0
+5034820	0	895	895	0	 	 	0	0	0
+5056753	0	904	904	0	 	 	0	0	0
+5078292	0	902	902	0	 	 	0	0	0
+5100194	0	895	895	0	 	 	0	0	0
+5121936	0	904	904	0	 	 	0	0	0
+5329732	1	654	551	103	atom_Cond(5,222,796) atom_LF(5,322,796) 	atom_Transform1 atom_PackLSBMSB atom_QuadSub 	4	2	1
+5344968	0	652	652	0	 	 	0	0	0
+5360197	0	652	652	0	 	 	0	0	0
+5375433	0	652	652	0	 	 	0	0	0
+5525229	2	644	616	28	atom_SAD4(5,522,796) atom_Cond(5,422,796) 	atom_Transform3 atom_Cond 	28	10	1
+5864611	0	899	550	349	atom_SAD4(5,622,796) atom_Transform2(5,722,796) atom_PackLSBMSB(5,822,796) 	atom_BytePack atom_Cond atom_LF 	0	0	1
+6023063	0	864	864	0	atom_SATD(6,022,796) atom_QuadSub(5,922,796) 	atom_PointFilter atom_Clip3 	0	0	1
+6054660	0	863	863	0	 	 	0	0	0
+6086075	0	890	890	0	 	 	0	0	0
+6117597	0	878	878	0	 	 	0	0	0
+6148622	0	864	864	0	atom_Transform2(6,122,796) 	 	0	0	0
+6179449	0	872	872	0	 	 	0	0	0
+6210127	0	896	896	0	 	 	0	0	0
+6241081	0	864	864	0	 	 	0	0	0
+6271996	0	862	862	0	 	 	0	0	0
+6302637	0	895	895	0	 	 	0	0	0
+6333520	0	874	874	0	 	 	0	0	0
+6364435	0	862	862	0	 	 	0	0	0
+6395243	0	878	878	0	 	 	0	0	0
+6425959	0	892	892	0	 	 	0	0	0
+6456894	0	862	862	0	 	 	0	0	0
+6487848	0	864	864	0	 	 	0	0	0
+6518467	0	898	898	0	 	 	0	0	0
+6549333	0	869	869	0	 	 	0	0	0
+6580287	0	864	864	0	 	 	0	0	0
+6611073	0	881	881	0	 	 	0	0	0
+6641772	0	886	886	0	 	 	0	0	0
+6672726	0	864	864	0	 	 	0	0	0
+6703679	0	864	864	0	 	 	0	0	0
+6734227	0	902	902	0	 	 	0	0	0
+6765185	0	866	866	0	 	 	0	0	0
+6796139	0	864	864	0	 	 	0	0	0
+6826867	0	884	884	0	 	 	0	0	0
+6857624	0	883	883	0	 	 	0	0	0
+6888578	0	864	864	0	 	 	0	0	0
+6919473	0	867	867	0	 	 	0	0	0
+6950063	0	900	900	0	 	 	0	0	0
+6981017	0	865	865	0	 	 	0	0	0
+7011952	0	862	862	0	 	 	0	0	0
+7042662	0	889	889	0	 	 	0	0	0
+7073476	0	880	880	0	 	 	0	0	0
+7232204	1	889	405	484	atom_Transform3(7,186,935) 	atom_SATD atom_Transform2 	6048	5	0
+7388820	0	907	312	595	atom_Transform1(7,286,935) atom_PointFilter(7,386,935) 	atom_SAD4 atom_SAD4 	0	0	1
+7460781	0	899	899	0	 	 	0	0	0
+7505671	0	895	895	0	atom_Clip3(7,486,935) 	atom_Transform2 	0	0	0
+7536027	0	911	911	0	 	 	0	0	0
+7565673	0	895	895	0	 	 	0	0	0
+7593391	0	904	904	0	atom_BytePack(7,586,935) 	 	0	0	0
+7614920	0	902	902	0	 	 	0	0	0
+7636822	0	895	895	0	 	 	0	0	0
+7658574	0	904	904	0	 	 	0	0	0
+7680294	0	902	902	0	 	 	0	0	0
+7702196	0	895	895	0	 	 	0	0	0
+7724008	0	911	911	0	 	 	0	0	0
+7745668	0	895	895	0	 	 	0	0	0
+7767575	0	901	901	0	 	 	0	0	0
+7789191	0	905	905	0	 	 	0	0	0
+7811042	0	895	895	0	 	 	0	0	0
+7832874	0	904	904	0	 	 	0	0	0
+8040538	1	651	548	103	atom_Cond(7,933,464) atom_LF(8,033,464) 	atom_Transform1 atom_PackLSBMSB atom_QuadSub 	4	2	1
+8055767	0	652	652	0	 	 	0	0	0
+8071003	0	652	652	0	 	 	0	0	0
+8086239	0	652	652	0	 	 	0	0	0
+8236395	2	644	616	28	atom_SAD4(8,233,464) atom_Cond(8,133,464) 	atom_Transform3 atom_Cond 	28	10	1
+8578299	0	903	554	349	atom_SAD4(8,333,464) atom_Transform2(8,433,464) atom_PackLSBMSB(8,533,464) 	atom_BytePack atom_Cond atom_LF 	0	0	1
+8733990	0	862	862	0	atom_SATD(8,733,464) atom_QuadSub(8,633,464) 	atom_PointFilter atom_Clip3 	0	0	1
+8765607	0	864	864	0	 	 	0	0	0
+8797055	0	887	887	0	 	 	0	0	0
+8828524	0	880	880	0	 	 	0	0	0
+8859541	0	865	865	0	atom_Transform2(8,833,464) 	 	0	0	0
+8890429	0	869	869	0	 	 	0	0	0
+8921046	0	898	898	0	 	 	0	0	0
+8952000	0	864	864	0	 	 	0	0	0
+8982954	0	864	864	0	 	 	0	0	0
+9013617	0	890	890	0	 	 	0	0	0
+9044439	0	877	877	0	 	 	0	0	0
+9075393	0	864	864	0	 	 	0	0	0
+9106223	0	873	873	0	 	 	0	0	0
+9136878	0	895	895	0	 	 	0	0	0
+9167852	0	864	864	0	 	 	0	0	0
+9198767	0	862	862	0	 	 	0	0	0
+9229411	0	895	895	0	 	 	0	0	0
+9260291	0	874	874	0	 	 	0	0	0
+9291206	0	862	862	0	 	 	0	0	0
+9322017	0	878	878	0	 	 	0	0	0
+9352730	0	891	891	0	 	 	0	0	0
+9383645	0	862	862	0	 	 	0	0	0
+9414599	0	865	865	0	 	 	0	0	0
+9445205	0	898	898	0	 	 	0	0	0
+9476104	0	869	869	0	 	 	0	0	0
+9507058	0	864	864	0	 	 	0	0	0
+9537811	0	881	881	0	 	 	0	0	0
+9568543	0	886	886	0	 	 	0	0	0
+9599497	0	864	864	0	 	 	0	0	0
+9630417	0	864	864	0	 	 	0	0	0
+9661002	0	904	904	0	 	 	0	0	0
+9691936	0	864	864	0	 	 	0	0	0
+9722910	0	864	864	0	 	 	0	0	0
+9753605	0	885	885	0	 	 	0	0	0
+9784395	0	882	882	0	 	 	0	0	0
+9944888	1	890	397	493	atom_Transform3(9,897,603) 	atom_SATD atom_Transform2 	6048	5	0
+10099687	0	904	318	586	atom_Transform1(9,997,603) atom_PointFilter(10,097,603) 	atom_SAD4 atom_SAD4 	0	0	1
+10168283	0	897	881	16	 	 	0	0	0
+10215621	0	903	903	0	atom_Clip3(10,197,603) 	atom_Transform2 	0	0	1
+10245163	0	894	894	0	 	 	0	0	0
+10275150	0	905	905	0	 	 	0	0	0
+10302775	0	902	902	0	atom_BytePack(10,297,603) 	 	0	0	0
+10324667	0	894	894	0	 	 	0	0	0
+10346449	0	911	911	0	 	 	0	0	0
+10368139	0	895	895	0	 	 	0	0	0
+10390069	0	903	903	0	 	 	0	0	0
+10411632	0	903	903	0	 	 	0	0	0
+10433513	0	895	895	0	 	 	0	0	0
+10455315	0	905	905	0	 	 	0	0	0
+10476995	0	902	902	0	 	 	0	0	0
+10498887	0	894	894	0	 	 	0	0	0
+10520667	0	909	909	0	 	 	0	0	0
+10578142	1	875	837	38	 	atom_Transform1 	4	2	0
+10749537	0	652	587	65	atom_Cond(10,641,087) atom_LF(10,741,087) 	atom_PackLSBMSB atom_QuadSub 	0	0	1
+10764773	0	652	652	0	 	 	0	0	0
+10780002	0	651	651	0	 	 	0	0	0
+10795238	0	652	652	0	 	 	0	0	0
+10989724	2	672	562	110	atom_SAD4(10,941,087) atom_Cond(10,841,087) 	atom_Transform3 atom_Cond 	28	10	1
+11289699	0	872	605	267	atom_SAD4(11,041,087) atom_Transform2(11,141,087) atom_PackLSBMSB(11,241,087) 	atom_BytePack atom_Cond atom_LF 	0	0	1
+11444410	0	897	897	0	atom_SATD(11,441,087) atom_QuadSub(11,341,087) 	atom_PointFilter atom_Clip3 	0	0	1
+11475986	0	862	862	0	 	 	0	0	0
+11507603	0	865	865	0	 	 	0	0	0
+11539002	0	893	893	0	 	 	0	0	0
+11569852	0	874	874	0	atom_Transform2(11,541,087) 	 	0	0	0
+11600806	0	864	864	0	 	 	0	0	0
+11631608	0	876	876	0	 	 	0	0	0
+11662291	0	891	891	0	 	 	0	0	0
+11693245	0	864	864	0	 	 	0	0	0
+11724199	0	864	864	0	 	 	0	0	0
+11754832	0	897	897	0	 	 	0	0	0
+11785684	0	871	871	0	 	 	0	0	0
+11816658	0	864	864	0	 	 	0	0	0
+11847438	0	879	879	0	 	 	0	0	0
+11878143	0	888	888	0	 	 	0	0	0
+11909097	0	864	864	0	 	 	0	0	0
+11940012	0	862	862	0	 	 	0	0	0
+11970626	0	902	902	0	 	 	0	0	0
+12001536	0	867	867	0	 	 	0	0	0
+12032451	0	862	862	0	 	 	0	0	0
+12063232	0	885	885	0	 	 	0	0	0
+12093995	0	885	885	0	 	 	0	0	0
+12124910	0	862	862	0	 	 	0	0	0
+12155838	0	867	867	0	 	 	0	0	0
+12186434	0	902	902	0	 	 	0	0	0
+12217349	0	862	862	0	 	 	0	0	0
+12248303	0	864	864	0	 	 	0	0	0
+12279027	0	888	888	0	 	 	0	0	0
+12309808	0	880	880	0	 	 	0	0	0
+12340742	0	864	864	0	 	 	0	0	0
+12371633	0	870	870	0	 	 	0	0	0
+12402267	0	898	898	0	 	 	0	0	0
+12433201	0	863	863	0	 	 	0	0	0
+12464155	0	864	864	0	 	 	0	0	0
+12494821	0	891	891	0	 	 	0	0	0
+12678467	1	903	321	582	atom_Transform3(12,605,226) 	atom_SATD atom_Transform2 	6048	5	0
+12814118	0	895	398	497	atom_Transform1(12,705,226) atom_PointFilter(12,805,226) 	atom_SAD4 atom_SAD4 	0	0	1
+12884155	0	902	902	0	 	 	0	0	0
+12927390	0	904	904	0	atom_Clip3(12,905,226) 	atom_Transform2 	0	0	0
+12956971	0	895	895	0	 	 	0	0	0
+12986913	0	905	905	0	 	 	0	0	0
+13013623	0	902	902	0	atom_BytePack(13,005,226) 	 	0	0	0
+13035515	0	894	894	0	 	 	0	0	0
+13057290	0	909	909	0	 	 	0	0	0
+13078987	0	897	897	0	 	 	0	0	0
+13100858	0	899	899	0	 	 	0	0	0
+13122570	0	907	907	0	 	 	0	0	0
+13144361	0	895	895	0	 	 	0	0	0
+13166254	0	904	904	0	 	 	0	0	0
+13187843	0	903	903	0	 	 	0	0	0
+13209735	0	894	894	0	 	 	0	0	0
+13231456	0	905	905	0	 	 	0	0	0
+13294654	1	876	832	44	 	atom_Transform1 	4	2	0
+13460343	0	652	593	59	atom_Cond(13,351,755) atom_LF(13,451,755) 	atom_PackLSBMSB atom_QuadSub 	0	0	1
+13475572	0	651	651	0	 	 	0	0	0
+13490808	0	652	652	0	 	 	0	0	0
+13506044	0	652	652	0	 	 	0	0	0
+ATOMS
+  atom_SAD4	needed/available: 2/0 swap-in/swap-out: 10/10 --> SAD_16_HW_01 
+  atom_SATD	needed/available: 1/0 swap-in/swap-out: 5/5 --> SATD_4x4_HW_04 
+  atom_Transform1	needed/available: 0/0 swap-in/swap-out: 5/5 
+  atom_Transform2	needed/available: 2/0 swap-in/swap-out: 10/10 --> SATD_4x4_HW_04 
+  atom_Transform3	needed/available: 0/1 swap-in/swap-out: 5/4 
+  atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 5/5 --> SATD_4x4_HW_04 
+  atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 5/5 --> SATD_4x4_HW_04 
+  atom_BytePack	needed/available: 0/1 swap-in/swap-out: 5/4 
+  atom_PointFilter	needed/available: 0/1 swap-in/swap-out: 5/4 
+  atom_Clip3	needed/available: 0/1 swap-in/swap-out: 5/4 
+  atom_PackLBytes	needed/available: 0/0 swap-in/swap-out: 0/0 
+  atom_CollapseAdd	needed/available: 0/0 swap-in/swap-out: 0/0 
+  atom_Cond	needed/available: 0/1 swap-in/swap-out: 9/8 running (33560) 
+  atom_LF	needed/available: 0/1 swap-in/swap-out: 5/4 
+MOLECULES
+  <0>	 SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	202
+  <0>	 SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	32830
+  <0>	*SAD_16_SW           :  (L, Execs)=	4673	133
+  <1>	*HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	7760
+  <1>	*HT_2X2_SW           :  (L, Execs)=	100	160
+  <2>	 HT_4X4_HW_00        : 1x[atom_Transform2]  (L, Execs)=	104	0
+  <2>	 HT_4X4_HW_01        : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	16	2
+  <2>	 HT_4X4_HW_02        : 2x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	14	0
+  <2>	 HT_4X4_HW_03        : 2x[atom_Transform2] 2x[atom_PackLSBMSB]  (L, Execs)=	10	0
+  <2>	 HT_4X4_HW_04        : 4x[atom_Transform2] 4x[atom_PackLSBMSB]  (L, Execs)=	8	0
+  <2>	*HT_4X4_SW           :  (L, Execs)=	298	2
+  <3>	*MC_Hz4_HW_00        : 1x[atom_PointFilter]  (L, Execs)=	103	3728
+  <3>	*MC_Hz4_HW_01        : 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	26	8996
+  <3>	*MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	30329
+  <3>	 MC_Hz4_HW_03        : 2x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	10	0
+  <3>	 MC_Hz4_HW_04        : 2x[atom_BytePack] 2x[atom_PointFilter] 2x[atom_Clip3]  (L, Execs)=	9	0
+  <3>	 MC_Hz4_HW_05        : 3x[atom_BytePack] 2x[atom_PointFilter] 2x[atom_Clip3]  (L, Execs)=	8	0
+  <3>	*MC_Hz4_SW           :  (L, Execs)=	215	4275
+  <4>	 IPred_HDC16x16_HW_00: 1x[atom_PackLBytes]  (L, Execs)=	53	0
+  <4>	 IPred_HDC16x16_HW_01: 1x[atom_PackLBytes] 1x[atom_CollapseAdd]  (L, Execs)=	22	0
+  <4>	*IPred_HDC16x16_SW   :  (L, Execs)=	249	16
+  <5>	 IPred_VDC16x16_HW_00: 1x[atom_CollapseAdd]  (L, Execs)=	7	0
+  <5>	 IPred_VDC16x16_HW_01: 2x[atom_CollapseAdd]  (L, Execs)=	6	0
+  <5>	*IPred_VDC16x16_SW   :  (L, Execs)=	69	16
+  <6>	*LF_BS_4_4_HW_00     : 1x[atom_Cond]  (L, Execs)=	428	1125
+  <6>	*LF_BS_4_4_HW_01     : 1x[atom_Cond] 1x[atom_LF]  (L, Execs)=	9	14200
+  <6>	 LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+  <6>	*LF_BS_4_4_SW        :  (L, Execs)=	960	515
+  <7>	 SATD_4x4_HW_00      : 1x[atom_Transform2]  (L, Execs)=	350	1345
+  <7>	 SATD_4x4_HW_01      : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	294	1585
+  <7>	 SATD_4x4_HW_02      : 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	186	2370
+  <7>	 SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	10876
+  <7>	 SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	108800
+  <7>	 SATD_4x4_HW_05      : 2x[atom_SATD] 2x[atom_Transform2] 2x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	20	0
+  <7>	 SATD_4x4_HW_06      : 1x[atom_SATD] 4x[atom_Transform2] 4x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	19	0
+  <7>	 SATD_4x4_HW_07      : 2x[atom_SATD] 4x[atom_Transform2] 4x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	18	0
+  <7>	*SATD_4x4_SW         :  (L, Execs)=	544	1744
+  <8>	 DCT_4x4_HW_00       : 1x[atom_Transform1]  (L, Execs)=	216	0
+  <8>	 DCT_4x4_HW_01       : 1x[atom_Transform1] 1x[atom_PackLSBMSB]  (L, Execs)=	160	0
+  <8>	 DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	22800
+  <8>	 DCT_4x4_HW_03       : 2x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	19	0
+  <8>	 DCT_4x4_HW_04       : 2x[atom_Transform1] 2x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	18	0
+  <8>	 DCT_4x4_HW_05       : 4x[atom_Transform1] 2x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	16	0
+  <8>	 DCT_4x4_HW_06       : 4x[atom_Transform1] 4x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	15	0
+  <8>	*DCT_4x4_SW          :  (L, Execs)=	488	960
+
+The asterisk indicates the currently available Molecules (maybe multiple) for each Special Instruction
+

@@ -1,0 +1,431 @@
+	.section	.data
+	.section	.text
+print:
+L1:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	NOP		
+	subi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 9 NOPs removed by reduceNOPs.sh
+L2:
+	lb	%GPR2,0(%GPR1)	
+	NOP		;;1,4
+	NOP		;;1,4
+	NOP		;;1,4
+	lhi	%GPR3,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR3,%GPR3,$0	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	%GPR27,%GPR2,%GPR3	
+	bnez	%GPR27,L3	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L4	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L3:
+	lb	%GPR2,0(%GPR1)	
+	NOP		;;0,5
+	NOP		;;0,5
+	NOP		;;0,5
+				; Automatically 2 NOPs removed by reduceNOPs.sh
+		
+  
+    ;; asm void putChar(int ch) {...}
+    nop
+    nop
+    nop
+;    putc %GPR2
+				; Automatically 3 NOPs removed by reduceNOPs.sh
+	
+	NOP		;;5,10
+	NOP		;;5,10
+	NOP		;;5,10
+				; Automatically 2 NOPs removed by reduceNOPs.sh
+	lhi	%GPR2,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$1	
+	NOP		;;10,14
+	NOP		;;10,14
+	NOP		;;10,14
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	%GPR1,%GPR1,%GPR2	
+	j	L2	
+	NOP		
+	NOP		
+	NOP		
+L4:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L5	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L5:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	NOP		
+	NOP		
+	jr	%GPR31	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+putInt:
+L6:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	NOP		
+	subi	%GPR29,%GPR29,$40	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR2,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$0	
+	NOP		
+	NOP		
+	NOP		
+L7:
+	subi	%GPR3,%GPR30,$32	
+	NOP		;;1,4
+	NOP		;;1,4
+	NOP		;;1,4
+	lhi	%GPR4,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR4,%GPR4,$10	
+	add	%GPR3,%GPR3,%GPR2	
+	lhi	%GPR5,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR5,%GPR5,$10	
+	lhi	%GPR6,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR6,%GPR6,$32	
+	MOD	%GPR4,%GPR1,%GPR4	
+	addi	%GPR2,%GPR2,$1	
+	NOP		;;9,12
+	NOP		;;9,12
+	NOP		;;9,12
+	addi	%GPR4,%GPR4,$48	
+	div	%GPR1,%GPR1,%GPR5	
+	NOP		;;13,16
+	NOP		;;13,16
+	NOP		;;13,16
+	sb	0(%GPR3),%GPR4	
+	slt	%GPR27,%GPR2,%GPR6	
+	bnez	%GPR27,L7	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L8:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$0	
+	lhi	%GPR2,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$31	
+	NOP		
+	NOP		
+	NOP		
+L9:
+	subi	%GPR3,%GPR30,$32	
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	%GPR3,%GPR3,%GPR2	
+	lhi	%GPR4,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR4,%GPR4,$48	
+	NOP		;;5,8
+	NOP		;;5,8
+	NOP		;;5,8
+	lb	%GPR3,0(%GPR3)	
+	NOP		;;8,12
+	NOP		;;8,12
+	NOP		;;8,12
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	%GPR27,%GPR3,%GPR4	
+	bnez	%GPR27,L10	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L11	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L10:
+	subi	%GPR1,%GPR30,$32	
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	%GPR3,%GPR1,%GPR2	
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$1	
+	NOP		;;5,8
+	NOP		;;5,8
+	NOP		;;5,8
+	lb	%GPR3,0(%GPR3)	
+	NOP		;;8,13
+	NOP		;;8,13
+	NOP		;;8,13
+				; Automatically 2 NOPs removed by reduceNOPs.sh
+		
+  
+    ;; asm void putChar(int ch) {...}
+    nop
+    nop
+    nop
+;    putc %GPR3
+				; Automatically 3 NOPs removed by reduceNOPs.sh
+	
+	NOP		
+	NOP		
+	NOP		
+L11:
+	subi	%GPR2,%GPR2,$1	
+	NOP		;;1,4
+	NOP		;;1,4
+	NOP		;;1,4
+	lhi	%GPR3,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR3,%GPR3,$0	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sge	%GPR27,%GPR2,%GPR3	
+	bnez	%GPR27,L15	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L12	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L12:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR2,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$0	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	seq	%GPR27,%GPR1,%GPR2	
+	bnez	%GPR27,L13	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L14	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L13:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$48	
+		
+  
+    ;; asm void putChar(int ch) {...}
+    nop
+    nop
+    nop
+;    putc %GPR1
+				; Automatically 3 NOPs removed by reduceNOPs.sh
+	
+	NOP		
+	NOP		
+	NOP		
+L14:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L17	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L15:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR3,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR3,%GPR3,$1	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	seq	%GPR27,%GPR1,%GPR3	
+	bnez	%GPR27,L16	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L9	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L16:
+	subi	%GPR3,%GPR30,$32	
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	%GPR3,%GPR3,%GPR2	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lb	%GPR3,0(%GPR3)	
+	NOP		;;8,13
+	NOP		;;8,13
+	NOP		;;8,13
+				; Automatically 2 NOPs removed by reduceNOPs.sh
+		
+  
+    ;; asm void putChar(int ch) {...}
+    nop
+    nop
+    nop
+;    putc %GPR3
+				; Automatically 3 NOPs removed by reduceNOPs.sh
+	
+	j	L11	
+	NOP		
+	NOP		
+	NOP		
+L17:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	NOP		
+	NOP		
+	jr	%GPR31	
+	NOP		
+	NOP		
+	NOP		

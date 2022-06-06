@@ -1,0 +1,176 @@
+#### List of different label names for the same address:
+#### Syntax: #:<TAB>LabelA_Name<TAB>LabelA_JumpTarget<TAB>LabelB_Name<TAB>LabelB_JumpTarget
+#:	aes_set_key:		l17:	
+#:	aes_encrypt:		l45:	
+#:	aes_decrypt:		l51:	
+#:	main:		l57:	
+
+#### List of base blocks with number of executions and used special instructions:
+#### Syntax: startLabel<TAB>startJumpInstruction<TAB>endLabel<TAB>endJumpInstruction<TAB>
+####         startAddress<TAB>numberOfExecutions<TAB>executionTime<TAB>CSV(specialInstructions)
+start:		main:	jal	0	1	0	
+main:	jal	exit	jal	21	0	0	
+exit	jal	aes_set_key:		26	0	0	
+l17:		l21:	bnez	27	1	0	
+l21:	bnez	l18:	j	56	0	0	
+l18:	j	l18:		60	0	0	
+l18:		l25:	bnez	62	0	0	
+l25:	bnez	l19:	j	79	0	0	
+l19:	j	l19:		83	0	0	
+l19:		l20:	bnez	85	0	0	
+l20:	bnez	l26:	j	102	0	0	
+l26:	j	l20:		106	0	0	
+l20:		l22:	j	108	0	0	
+l22:	j	l21:		131	0	0	
+l21:		l22:		133	1	0	
+l22:		l23:		157	1	0	
+l23:		l24:	bnez	170	5	0	
+l24:	bnez	l33:	j	181	1	0	
+l33:	j	l24:		185	0	0	
+l24:		l23:	j	187	4	0	mac
+l23:	j	l25:		275	0	0	
+l25:		l22:	j	277	0	0	
+l22:	j	l26:		300	0	0	
+l26:		l44:	j	302	0	0	
+l44:	j	l27:		315	0	0	
+l27:		l28:		317	1	0	
+l28:		l28:	bnez	328	2	0	
+l28:	bnez	l36:	j	575	0	0	
+l36:	j	l29:		579	0	0	
+l29:		l30:		581	0	0	
+l30:		l30:	bnez	592	0	0	
+l30:	bnez	l36:	j	895	0	0	
+l36:	j	l31:		899	0	0	
+l31:		l32:		901	0	0	
+l32:		l32:	bnez	912	0	0	
+l32:	bnez	l36:	j	1373	0	0	
+l36:	j	l33:		1377	0	0	
+l33:		l27:	bnez	1379	1	0	
+l27:	bnez	l34:	j	1396	0	0	
+l34:	j	l34:		1400	0	0	
+l34:		l29:	bnez	1402	0	0	
+l29:	bnez	l35:	j	1419	0	0	
+l35:	j	l35:		1423	0	0	
+l35:		l31:	bnez	1425	0	0	
+l31:	bnez	l36:	j	1442	0	0	
+l36:	j	l36:		1446	0	0	
+l36:		l37:	bnez	1448	0	0	
+l37:	bnez	l40:	j	1472	0	0	
+l40:	j	l37:		1476	0	0	
+l37:		l38:		1478	0	0	
+l38:		l38:	bnez	1489	0	0	
+l38:	bnez	l39:	j	1708	0	0	
+l39:	j	l39:		1712	0	0	
+l39:		l40:		1714	0	0	
+l40:		l41:		1735	0	0	
+l41:		l42:	bnez	1834	0	0	
+l42:	bnez	l43:	j	1859	0	0	
+l43:	j	l42:		1863	0	0	
+l42:		l41:	j	1865	0	0	
+l41:	j	l43:		2270	0	0	
+l43:		l44:	j	2272	0	0	
+l44:	j	l44:		2362	0	0	
+l44:			return	2364	0	0	
+	return	aes_encrypt:		2379	0	0	
+l45:		l46:	bnez	2381	0	0	
+l46:	bnez	l47:	j	6080	0	0	
+l47:	j	l46:		6084	0	0	
+l46:		l47:		6086	0	0	
+l47:		l48:	bnez	6817	0	0	
+l48:	bnez	l49:	j	6850	0	0	
+l49:	j	l48:		6854	0	0	
+l48:		l49:		6856	0	0	
+l49:		l50:	j	7564	0	0	
+l50:	j	l50:		8158	0	0	
+l50:			return	8160	0	0	
+	return	aes_decrypt:		8175	0	0	
+l51:		l53:	j	8177	0	0	
+l53:	j	l52:		11913	0	0	
+l52:		l53:		11915	0	0	
+l53:		l55:	j	12674	0	0	
+l55:	j	l54:		12711	0	0	
+l54:		l55:		12713	0	0	
+l55:		l56:	j	13440	0	0	
+l56:	j	l56:		14041	0	0	
+l56:			return	14043	0	0	
+	return	main:		14058	0	0	
+l57:		l58:		14060	1	0	
+l58:		l59:		14083	1	0	
+l59:		l60:		14098	1	0	
+l60:		l60:	bnez	14109	16	0	
+l60:	bnez	l61:	j	14137	1	0	
+l61:	j	l61:		14141	0	0	
+l61:		l62:		14143	1	0	
+l62:		l64:	j	14154	17	0	mac
+l64:	j	l63:		14186	0	0	
+l63:		l62:	j	14188	16	0	
+l62:	j	l64:		14206	0	0	
+l64:		l65:		14208	1	0	
+l65:		aes_set_key:	jal	14223	1	0	mac
+aes_set_key:	jal	l66:		14251	0	0	
+l66:		l68:	j	14265	0	0	
+l68:	j	l67:		14288	0	0	
+l67:		aes_encrypt:	jal	14290	0	0	
+aes_encrypt:	jal	l68:		14303	0	0	
+l68:		l70:	j	14309	0	0	
+l70:	j	l69:		14332	0	0	
+l69:		aes_decrypt:	jal	14334	0	0	
+aes_decrypt:	jal	l70:		14347	0	0	
+l70:		l66:	bnez	14353	0	0	
+l66:	bnez	l71:	j	14372	0	0	
+l71:	j	l71:		14376	0	0	
+l71:		l75:	j	14378	0	0	
+l75:	j	l72:		14401	0	0	
+l72:		l73:		14403	0	0	
+l73:		l75:	j	14414	0	0	
+l75:	j	l74:		14433	0	0	
+l74:		l73:	j	14435	0	0	
+l73:	j	l75:		14465	0	0	
+l75:		l77:	j	14467	0	0	
+l77:	j	l76:		14490	0	0	
+l76:		aes_encrypt:	jal	14492	0	0	
+aes_encrypt:	jal	l77:		14505	0	0	
+l77:		l79:	j	14511	0	0	
+l79:	j	l78:		14534	0	0	
+l78:		aes_decrypt:	jal	14536	0	0	
+aes_decrypt:	jal	l79:		14549	0	0	
+l79:		l80:		14555	0	0	
+l80:		l80:	bnez	14566	0	0	
+l80:	bnez	l81:	j	14606	0	0	
+l81:	j	l81:		14610	0	0	
+l81:		l65:	bnez	14612	0	0	
+l65:	bnez	l82:	j	14637	0	0	
+l82:	j	l82:		14641	0	0	
+l82:		l59:	bnez	14643	0	0	
+l59:	bnez	l83:	j	14668	0	0	
+l83:	j	l83:		14672	0	0	
+l83:		l58:	bnez	14674	0	0	
+l58:	bnez	l84:	j	14699	0	0	
+l84:	j	l84:		14703	0	0	
+l84:		l85:	j	14705	0	0	
+l85:	j	l85:		14718	0	0	
+l85:			return	14720	0	0	
+	return	exit:		14735	0	0	
+exit:		l1:		14737	0	0	
+l1:		l2:		14740	0	0	
+l2:		l3:		14996	0	0	
+l3:		l4:		15252	0	0	
+l4:		l5:		15508	0	0	
+l5:		l6:		15764	0	0	
+l6:		l7:		16020	0	0	
+l7:		l8:		16276	0	0	
+l8:		l9:		16532	0	0	
+l9:		l10:		16788	0	0	
+l10:		l11:		17044	0	0	
+l11:		l12:		17300	0	0	
+l12:		l13:		17310	0	0	
+l13:		l14:		17311	0	0	
+l14:		l15:		17567	0	0	
+l15:		l16:		17823	0	0	
+l16:		finish:		18079	0	0	
+
+#### List of JumpTable Usages:
+####   Syntax is: "#;<TAB>BaseBlockLabel<TAB>CSV(JumpTargets)"
+####   "BaseBlockLabel" is the starting label of the baseBlock where the JumpTable is used, e.g. L10.
+####   Then in the above Base Block List there must be something like: "L10<TAB><TAB><TAB>jr".
+####   "CSV" are the Comma Seperated Values of the possible Jump Targets in this Jump Table

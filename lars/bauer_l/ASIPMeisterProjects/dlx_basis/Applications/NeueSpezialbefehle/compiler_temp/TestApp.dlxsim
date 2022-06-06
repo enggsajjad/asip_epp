@@ -1,0 +1,298 @@
+	.section	.text
+	.addressing	Word
+main:
+L1:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$24	
+	nop
+	nop
+	nop
+				; Automatically 9 NOPs removed by reduceNOPs.sh
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$0	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$0	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$0	
+	nop	;;8,10
+	nop	;;8,10
+	sw	-4(r30),r1	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$0	
+	nop	;;11,13
+	nop	;;11,13
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$0	
+	sw	-8(r30),r3	
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-12(r30),r4	
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-16(r30),r1	
+	forecast	$0, $100 	
+	forecast	$7, $100 	
+	forecast	$4, $100 	
+	forecast	$5, $100 	
+	forecast	$3, $100 	
+	forecast	$8, $100 	
+	forecast	$2, $100 	
+	forecast	$1, $100 	
+	forecast	$6, $100 	
+	nop	;;31,36
+	nop	;;31,36
+	nop	;;31,36
+				; Automatically 2 NOPs removed by reduceNOPs.sh
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+L2:
+	subi	r3,r30,$4	
+	subi	r4,r30,$8	
+	lw	r5,-12(r30)	
+	subi	r6,r30,$16	
+
+
+	;; SINAS: SAD_16()
+	nop
+	nop
+	nop
+	SAD16	r6, r3, r4, r5
+	nop
+	nop
+	nop
+
+	subi	r5,r30,$4	
+	lw	r4,-8(r30)	
+	subi	r3,r30,$12	
+
+
+	;; SINAS: SATD_4x4()
+	nop
+	nop
+	nop
+	satd4x4	r3, r5, r4, r3
+	nop
+	nop
+	nop
+
+	add	r2,r2,r3	
+	subi	r7,r30,$4	
+	lw	r6,-8(r30)	
+	subi	r5,r30,$12	
+	subi	r4,r30,$16	
+
+
+	;; SINAS: DCT_4x4()
+	nop
+	nop
+	nop
+	dct4x4	r4, r7, r6, r5
+	nop
+	nop
+	nop
+
+	subi	r4,r30,$4	
+	subi	r3,r30,$8	
+
+
+	;; SINAS: HT_4x4_IntraLuma()
+	nop
+	nop
+	nop
+	ht4x4il	r4, r3
+	nop
+	nop
+	nop
+
+	lw	r4,-4(r30)	
+	lw	r3,-8(r30)	
+
+
+	;; SINAS: HT_2x2_Chroma()
+	nop
+	nop
+	nop
+	ht2x2cr	r3, r4, r4, r3
+	nop
+	nop
+	nop
+
+	subi	r7,r30,$4	
+	lw	r6,-8(r30)	
+	subi	r5,r30,$12	
+	mac	r2,r3,r4	
+
+
+	;; SINAS: LoopFilter()
+	nop
+	nop
+	nop
+	LoopFilter	r5, r7, r6
+	nop
+	nop
+	nop
+
+	subi	r6,r30,$4	
+	lw	r5,-8(r30)	
+	subi	r4,r30,$12	
+	subi	r3,r30,$16	
+
+
+	;; SINAS: IPred_HDC_16x16()
+	nop
+	nop
+	nop
+	IPred_HDC16x16	r3, r4, r6, r5
+	nop
+	nop
+	nop
+
+	subi	r5,r30,$4	
+	lw	r4,-8(r30)	
+	subi	r3,r30,$12	
+
+
+	;; SINAS: IPred_VDC_16x16()
+	nop
+	nop
+	nop
+	IPred_VDC16x16	r3, r5, r4
+	nop
+	nop
+	nop
+
+	subi	r5,r30,$4	
+	lw	r4,-8(r30)	
+	subi	r3,r30,$12	
+
+
+	;; SINAS: MC_Hz_4()
+	nop
+	nop
+	nop
+	MC_Hz4	r3, r5, r4
+	nop
+	nop
+	nop
+
+	nop	;;38,40
+	nop	;;38,40
+	addi	r1,r1,$1	
+	nop	;;40,43
+	nop	;;40,43
+	nop	;;40,43
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$100	
+	nop	;;43,47
+	nop	;;43,47
+	nop	;;43,47
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	slt	r27,r1,r3	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L2	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L3	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L3:
+	forecast	$0, $0 	
+	forecast	$7, $0 	
+	forecast	$4, $0 	
+	forecast	$5, $0 	
+	forecast	$3, $0 	
+	forecast	$8, $0 	
+	forecast	$2, $0 	
+	forecast	$1, $0 	
+	forecast	$6, $0 	
+	lw	r1,-8(r30)	
+	lw	r3,-4(r30)	
+	lw	r4,-12(r30)	
+	add	r28,r2,r0	
+	lw	r5,-16(r30)	
+	mult	r1,r3,r1	
+	nop	;;14,18
+	nop	;;14,18
+	nop	;;14,18
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	mult	r1,r1,r4	
+	nop	;;18,22
+	nop	;;18,22
+	nop	;;18,22
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	mac	r28,r1,r5	
+	nop	;;22,26
+	nop	;;22,26
+	nop	;;22,26
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L4	
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L4:
+	nop
+	nop
+	nop
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data

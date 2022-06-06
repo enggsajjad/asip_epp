@@ -1,0 +1,299 @@
+#:#:#:	mul:		l2:	
+#:#:#:	addroundkey:		l10:	
+#:#:#:	shiftrows:		l18:	
+#:#:#:	substitution:		l29:	
+#:#:#:	mixcolumns:		l37:	
+#:#:#:	invmixcolumns:		l51:	
+#:#:#:	rijndaelkeysched:		l65:	
+#:#:#:	rijndaelencrypt:		l121:	
+#:#:#:	rijndaeldecrypt:		l126:	
+#:#:#:	main:		l131:	
+start:		main:	jal	1	
+main:	jal	exit	jal	0	
+exit	jal	mul:		0	
+l2:		l3:	bnez	33	
+l3:	bnez	l6:	j	0	
+l6:	j	l3:		0	
+l3:		l4:	bnez	32	
+l4:	bnez	l6:	j	0	
+l6:	j	l4:		0	
+l4:		l5:		32	
+l5:		l9:	j	32	
+l9:	j	l6:		0	
+l6:		l7:		0	
+l7:		l9:	j	0	
+l9:	j	l8:		0	
+l8:		l5:	bnez	0	
+l5:	bnez	l7:	j	0	
+l7:	j	l9:		0	
+l9:			return	32	
+	return	addroundkey:		0	
+l10:		l11:		2	
+l11:		l12:		8	
+l12:		l13:	bnez	40	
+l13:	bnez	l15:	j	8	
+l15:	j	l13:		0	
+l13:		l12:	j	32	
+l12:	j	l14:		0	
+l14:		l15:		0	
+l15:		l11:	bnez	8	
+l11:	bnez	l17:	j	2	
+l17:	j	l16:		0	
+l16:		l17:	j	0	
+l17:	j	l17:		0	
+l17:			return	2	
+	return	shiftrows:		0	
+l18:		l19:		2	
+l19:		l20:		6	
+l20:		l21:	bnez	30	
+l21:	bnez	l22:	j	6	
+l22:	j	l21:		0	
+l21:		l20:	j	24	
+l20:	j	l22:		0	
+l22:		l23:		6	
+l23:		l24:	bnez	30	
+l24:	bnez	l26:	j	6	
+l26:	j	l24:		0	
+l24:		l23:	j	24	
+l23:	j	l25:		0	
+l25:		l26:		0	
+l26:		l19:	bnez	6	
+l19:	bnez	l28:	j	2	
+l28:	j	l27:		0	
+l27:		l28:	j	0	
+l28:	j	l28:		0	
+l28:			return	2	
+	return	substitution:		0	
+l29:		l30:		2	
+l30:		l31:		8	
+l31:		l32:	bnez	40	
+l32:	bnez	l34:	j	8	
+l34:	j	l32:		0	
+l32:		l31:	j	32	
+l31:	j	l33:		0	
+l33:		l34:		0	
+l34:		l30:	bnez	8	
+l30:	bnez	l36:	j	2	
+l36:	j	l35:		0	
+l35:		l36:	j	0	
+l36:	j	l36:		0	
+l36:			return	2	
+	return	mixcolumns:		0	
+l37:		l38:		2	
+l38:		l39:	bnez	6	
+l39:	bnez	l43:	j	1	
+l43:	j	l39:		0	
+l39:		l40:		5	
+l40:		mul:	jal	17	
+mul:	jal	mul:	jal	16	
+mul:	jal	l40:	bnez	16	
+l40:	bnez	l42:	j	4	
+l42:	j	l41:		0	
+l41:		l42:		0	
+l42:		l38:	j	4	
+l38:	j	l43:		0	
+l43:		l44:		1	
+l44:		l45:		4	
+l45:		l46:	bnez	20	
+l46:	bnez	l48:	j	4	
+l48:	j	l46:		0	
+l46:		l45:	j	16	
+l45:	j	l47:		0	
+l47:		l48:		0	
+l48:		l44:	bnez	4	
+l44:	bnez	l50:	j	1	
+l50:	j	l49:		0	
+l49:		l50:	j	0	
+l50:	j	l50:		0	
+l50:			return	1	
+	return	invmixcolumns:		0	
+l51:		l52:		0	
+l52:		l53:	bnez	0	
+l53:	bnez	l57:	j	0	
+l57:	j	l53:		0	
+l53:		l54:		0	
+l54:		mul:	jal	0	
+mul:	jal	mul:	jal	0	
+mul:	jal	mul:	jal	0	
+mul:	jal	mul:	jal	0	
+mul:	jal	l54:	bnez	0	
+l54:	bnez	l56:	j	0	
+l56:	j	l55:		0	
+l55:		l56:		0	
+l56:		l52:	j	0	
+l52:	j	l57:		0	
+l57:		l58:		0	
+l58:		l59:		0	
+l59:		l60:	bnez	0	
+l60:	bnez	l62:	j	0	
+l62:	j	l60:		0	
+l60:		l59:	j	0	
+l59:	j	l61:		0	
+l61:		l62:		0	
+l62:		l58:	bnez	0	
+l58:	bnez	l64:	j	0	
+l64:	j	l63:		0	
+l63:		l64:	j	0	
+l64:	j	l64:		0	
+l64:			return	0	
+	return	rijndaelkeysched:		0	
+l65:		l66:		1	
+l66:		l67:	bnez	5	
+l67:	bnez	l71:	j	1	
+l71:	j	l67:		0	
+l67:		l68:		4	
+l68:		l68:	bnez	16	
+l68:	bnez	l70:	j	4	
+l70:	j	l69:		0	
+l69:		l70:		0	
+l70:		l66:	j	4	
+l66:	j	l71:		0	
+l71:		l72:		1	
+l72:		l73:	bnez	5	
+l73:	bnez	l77:	j	1	
+l77:	j	l73:		0	
+l73:		l74:	bnez	4	
+l74:	bnez	l77:	j	0	
+l77:	j	l74:		0	
+l74:		l75:		4	
+l75:		l76:		4	
+l76:		l76:	bnez	16	
+l76:	bnez	l80:	j	4	
+l80:	j	l77:		0	
+l77:		l82:	j	1	
+l82:	j	l78:		0	
+l78:		l75:	bnez	0	
+l75:	bnez	l82:	j	0	
+l82:	j	l79:		0	
+l79:		l80:		0	
+l80:		l72:	j	4	
+l72:	j	l81:		0	
+l81:		l82:		0	
+l82:		l83:	bnez	11	
+l83:	bnez	l119:	j	1	
+l119:	j	l83:		0	
+l83:		l84:		10	
+l84:		l84:	bnez	40	
+l84:	bnez	l85:	j	10	
+l85:	j	l85:		0	
+l85:		l86:	bnez	10	
+l86:	bnez	l93:	j	0	
+l93:	j	l86:		0	
+l86:		l87:		10	
+l87:		l88:	bnez	40	
+l88:	bnez	l108:	j	10	
+l108:	j	l88:		0	
+l88:		l89:		30	
+l89:		l89:	bnez	120	
+l89:	bnez	l91:	j	30	
+l91:	j	l90:		0	
+l90:		l91:		0	
+l91:		l87:	j	30	
+l87:	j	l92:		0	
+l92:		l108:	j	0	
+l108:	j	l93:		0	
+l93:		l94:		0	
+l94:		l95:	bnez	0	
+l95:	bnez	l99:	j	0	
+l99:	j	l95:		0	
+l95:		l96:		0	
+l96:		l96:	bnez	0	
+l96:	bnez	l98:	j	0	
+l98:	j	l97:		0	
+l97:		l98:		0	
+l98:		l94:	j	0	
+l94:	j	l99:		0	
+l99:		l100:		0	
+l100:		l100:	bnez	0	
+l100:	bnez	l101:	j	0	
+l101:	j	l101:		0	
+l101:		l102:		0	
+l102:		l103:	bnez	0	
+l103:	bnez	l108:	j	0	
+l108:	j	l103:		0	
+l103:		l104:		0	
+l104:		l104:	bnez	0	
+l104:	bnez	l106:	j	0	
+l106:	j	l105:		0	
+l105:		l106:		0	
+l106:		l102:	j	0	
+l102:	j	l107:		0	
+l107:		l108:		0	
+l108:		l109:		10	
+l109:		l110:	bnez	50	
+l110:	bnez	l114:	j	10	
+l114:	j	l110:		0	
+l110:		l111:	bnez	40	
+l111:	bnez	l114:	j	0	
+l114:	j	l111:		0	
+l111:		l112:		40	
+l112:		l113:		40	
+l113:		l113:	bnez	160	
+l113:	bnez	l117:	j	40	
+l117:	j	l114:		0	
+l114:		l82:	j	10	
+l82:	j	l115:		0	
+l115:		l112:	bnez	0	
+l112:	bnez	l82:	j	0	
+l82:	j	l116:		0	
+l116:		l117:		0	
+l117:		l109:	j	40	
+l109:	j	l118:		0	
+l118:		l82:	j	0	
+l82:	j	l119:		0	
+l119:		l120:	j	1	
+l120:	j	l120:		0	
+l120:			return	1	
+	return	rijndaelencrypt:		0	
+l121:		addroundkey:	jal	1	
+addroundkey:	jal	l122:		1	
+l122:		l123:	bnez	2	
+l123:	bnez	l124:	j	0	
+l124:	j	l123:		0	
+l123:		substitution:	jal	2	
+substitution:	jal	shiftrows:	jal	2	
+shiftrows:	jal	mixcolumns:	jal	2	
+mixcolumns:	jal	addroundkey:	jal	1	
+addroundkey:	jal	l122:	j	1	
+l122:	j	l124:		0	
+l124:		substitution:	jal	0	
+substitution:	jal	shiftrows:	jal	0	
+shiftrows:	jal	addroundkey:	jal	0	
+addroundkey:	jal	l125:	j	0	
+l125:	j	l125:		0	
+l125:			return	0	
+	return	rijndaeldecrypt:		0	
+l126:		addroundkey:	jal	0	
+addroundkey:	jal	substitution:	jal	0	
+substitution:	jal	shiftrows:	jal	0	
+shiftrows:	jal	l127:		0	
+l127:		l128:	bnez	0	
+l128:	bnez	l129:	j	0	
+l129:	j	l128:		0	
+l128:		addroundkey:	jal	0	
+addroundkey:	jal	invmixcolumns:	jal	0	
+invmixcolumns:	jal	substitution:	jal	0	
+substitution:	jal	shiftrows:	jal	0	
+shiftrows:	jal	l127:	j	0	
+l127:	j	l129:		0	
+l129:		addroundkey:	jal	0	
+addroundkey:	jal	l130:	j	0	
+l130:	j	l130:		0	
+l130:			return	0	
+	return	main:		0	
+l131:		rijndaelkeysched:	jal	1	
+rijndaelkeysched:	jal	rijndaelencrypt:	jal	1	
+rijndaelencrypt:	jal	rijndaeldecrypt:	jal	0	
+rijndaeldecrypt:	jal	l132:		0	
+l132:			return	0	
+	return	exit:		0	
+exit:		_state:		0	
+_state:		_roundkey:		0	
+_roundkey:		_logtable:		0	
+_logtable:		_alogtable:		0	
+_alogtable:		_s:		0	
+_s:		_si:		0	
+_si:		_ig:		0	
+_ig:		_rcon:		0	
+_rcon:		l1:		0	
+l1:		finish:		0	

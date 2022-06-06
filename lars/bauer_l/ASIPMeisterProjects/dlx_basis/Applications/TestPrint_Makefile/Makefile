@@ -1,0 +1,140 @@
+fpga_size = "4"
+cost_per_atom = "100000"
+basedir	= /home/kramer_s
+dlx_des_path = workspace/RotationsManager/DLX
+
+log_path     = workspace/RotationsManager
+dlx_app_path = ASIPMeisterProjects/DA_project/Applications
+app = BlowFish
+appname = BlowFishF
+profile = BlowProfil.txt
+asm_file = BlowFish.asm
+file = BlowFish.c
+
+java_path = /home/kramer_s/jdk1.5.0_07/jre/bin/
+si_predictor = workspace/SIPredictor2
+
+BlowFishApps = BlowFish BlowFishF BlowFishCF BlowFishSF
+AES_LongApps = AES_Long AES_LongF AES_Long_ConstantF AES_Long_SimpleF
+FPGA_sizes = 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+eMParams = 1 2 3 4 5 6 7 8 9 10 
+eMParams2 = 11 12 13 14 15 16 17 18 19 20 
+aFParams = 0.25 0.5 0.75 1.0 1.25 1.5 1.75 2.0 2.5 3.0 3.5 4.0 4.5 5.0
+cFParams = 0.25 0.5 0.75 1.0 1.25 1.5 1.75 2.0 2.5 3.0 3.5 4.0 4.5 5.0
+
+aFParams = 0.5 1.0 1.5 2.0 3.0 4.0 5.0
+cFParams = 0.5 1.0 1.5 2.0 3.0 4.0 5.0
+
+eM = 10
+aF = 1.0
+help:
+	@echo usage: TODO
+	@echo use "make sim" to simulate something
+	@echo options: -fpga_size=XX -cost_per_atom=YY
+	@echo
+	@echo or make BlowFishAll or make AES_LongAll 
+	@echo or make BlowFishAllSizes or make AES_LongAllSizes 
+
+
+EvalFDFParams:
+	for eM_temp in $(eMParams); do \
+	for aF_temp in $(aFParams); do \
+	for cF_temp in $(cFParams); do \
+	$(MAKE) FDFComplete eM=$$eM_temp aF=$$aF_temp cF=$$cF_temp; \
+	done; done; done
+#	$(MAKE) FDFInit eM=$$eM_temp aF=$$aF_temp cF=$$cF_temp; \
+
+EvalFDFParams2:
+	for eM_temp in $(eMParams2); do \
+	for aF_temp in $(aFParams); do \
+	for cF_temp in $(cFParams); do \
+	$(MAKE) FDFComplete eM=$$eM_temp aF=$$aF_temp cF=$$cF_temp; \
+	done; done; done
+
+FDF:
+	cd $(basedir)/$(si_predictor)/; $(java_path)java -cp .:./de/univkarlsruhe/ces/kramer/data/y.jar:./de/univkarlsruhe/ces/kramer/data/graphml.jar de/univkarlsruhe/ces/kramer/DAmain -cpa$(cost_per_atom) -pb$(basedir)/$(dlx_app_path)/$(app)/$(app)Profil.txt -asm$(basedir)/$(dlx_app_path)/$(app)/compiler_temp/$(file).asm -eM$(eM) -aF$(aF) -cF$(cF)
+	cp $(basedir)/$(dlx_app_path)/$(app)/compiler_temp/$(file).asm2 $(basedir)/$(dlx_app_path)/$(app)F/$(file)F.s
+	cd $(basedir)/$(dlx_app_path)/$(app)F; ../mkimg_fromS_remotePas $(file)F.s
+	cd $(basedir)/$(dlx_app_path)/$(app)F; ../dlxsim -da0 -f$(file)F.dlxsim -tjtrace.txt -sf../script.txt
+
+FDFInit:
+	cd $(basedir)/$(dlx_app_path)/$(app); ../mkimg_remotePas $(file).c
+	cd $(basedir)/$(dlx_app_path)/$(app); ../dlxsim -da0 -f$(file).dlxsim -pb$(app)Profil.txt -tjtrace.txt -sf../script.txt
+
+FDF_Eval:
+	$(MAKE) sim app="$$app"F
+	$(MAKE) FetchResult app="$$app"F
+
+FDFComplete:
+	$(MAKE) FDF
+	$(MAKE) FDF_Eval
+
+BlowFishAllSizes:
+	for fs in $(FPGA_sizes); do $(MAKE) BlowFishAll fpga_size="$$fs"; done	
+
+BlowFishAll:
+	for App in $(BlowFishApps); do $(MAKE) sim app=$$App appname=BlowFish; done	
+	for App in $(BlowFishApps); do $(MAKE) FetchResult app=$$App appname=BlowFish; done	
+
+AES_LongAllSizes:
+	for fs in $(FPGA_sizes); do $(MAKE) AES_LongAll fpga_size="$$fs"; done	
+
+AES_LongAll:
+	for App in $(AES_LongApps); do $(MAKE) sim app=$$App appname=AES_Long; done	
+	for App in $(AES_LongApps); do $(MAKE) FetchResult app=$$App appname=AES_Long; done	
+
+sim:
+	@echo "Sim started:"
+
+
+
+FetchResult:
+	@echo $(app) >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "CYCLE COUNT" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep fastest $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep slowest $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep this $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "cycles saved" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "cycles lost" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "EXECUTION COUNT" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "forecast bursts" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "specop execs" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "executions:" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "coverage" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "ATOM SWAP-IN / SWAP-OUT" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "* swap-ins:" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "* swap-out:" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+
+
+simFetch:
+	@echo "sd" >> conf_test.ini
+	rm conf_test.ini
+	@echo fpga_size = \"$(fpga_size)\" >> conf_test.ini
+	@echo cost_per_atom = \"$(cost_per_atom)\" >> conf_test.ini
+	@echo basedir = \"$(basedir)/\" >> conf_test.ini
+	@echo dlx_des_path = basedir + \"$(dlx_des_path)/\" >> conf_test.ini
+	@echo dlx_app_path = basedir + \"$(dlx_app_path)/$(app)/\" >> conf_test.ini
+	@echo log_path = basedir + \"$(log_path)/\" >> conf_test.ini
+	./Debug/RotationsManager conf_test.ini
+	cp RotationsManager.log  $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log
+	@echo $(app) >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "CYCLE COUNT" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep fastest $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep slowest $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep this $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "cycles saved" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "cycles lost" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "EXECUTION COUNT" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "forecast bursts" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "specop execs" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "executions:" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "coverage" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "ATOM SWAP-IN / SWAP-OUT" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "* swap-ins:" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	grep "* swap-out:" $(basedir)/$(dlx_app_path)/$(app)/RotationsManager_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).log >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt
+	@echo "" >> ./results/result_$(appname)_$(fpga_size)_$(cost_per_atom)_$(eM)_$(aF)_$(cF).txt

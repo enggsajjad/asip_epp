@@ -1,0 +1,553 @@
+	.section	.text
+	.section	.text
+	.addressing	Word
+	
+	xor	r30, r30, r30
+	xor	r29, r29, r29
+	xor	r28, r28, r28
+	nop
+	lhi	r30, $(0xFFFFC/0x10000)
+	lhi	r29, $(0xFFFFC/0x10000)
+	nop
+	nop
+	ori	r30, r30, $(0xFFFFC%0x10000)
+	ori	r29, r29, $(0xFFFFC%0x10000)
+	nop
+	nop
+	nop
+	sw	-4(r29), r30
+	sw	-8(r29), r31
+	addi	r29, r30, $-8
+	jal	main	
+	nop
+	sw	0(r29), r1
+	jal	exit	
+	nop
+	.addressing	Word
+loadByteUnsigned:
+L_loadStoreByte_1:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	andi	r2,r1,$3	
+	andi	r1,r1,$-4	
+	nop	;;4,7
+	nop	;;4,7
+	nop	;;4,7
+	addi	r2,r2,$1	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subu	r2,r0,r2	
+	lw	r1,0(r1)	
+	nop	;;8,11
+	nop	;;8,11
+	nop	;;8,11
+	slli	r2,r2,$3	
+	nop	;;11,15
+	nop	;;11,15
+	nop	;;11,15
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	srl	r1,r1,r2	
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	andi	r28,r1,$255	
+	nop	;;19,23
+	nop	;;19,23
+	nop	;;19,23
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_loadStoreByte_2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_loadStoreByte_2:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+loadByteSigned:
+L_loadStoreByte_3:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	andi	r2,r1,$3	
+	andi	r1,r1,$-4	
+	nop	;;4,7
+	nop	;;4,7
+	nop	;;4,7
+	addi	r2,r2,$1	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subu	r2,r0,r2	
+	lw	r1,0(r1)	
+	nop	;;8,11
+	nop	;;8,11
+	nop	;;8,11
+	slli	r2,r2,$3	
+	nop	;;11,15
+	nop	;;11,15
+	nop	;;11,15
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	srl	r1,r1,r2	
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	andi	r1,r1,$255	
+	nop	;;19,23
+	nop	;;19,23
+	nop	;;19,23
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	slli	r1,r1,$24	
+	nop	;;23,27
+	nop	;;23,27
+	nop	;;23,27
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	srli	r28,r1,$24	
+	nop	;;27,31
+	nop	;;27,31
+	nop	;;27,31
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_loadStoreByte_4	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_loadStoreByte_4:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+storeByte:
+L_loadStoreByte_5:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 8 NOPs removed by reduceNOPs.sh
+	andi	r3,r1,$3	
+	nop	;;4,6
+	nop	;;4,6
+	andi	r4,r1,$3	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$3	
+	andi	r1,r1,$-4	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$255	
+	addi	r4,r4,$1	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subu	r4,r0,r4	
+	sub	r3,r5,r3	
+	lw	r28,0(r1)	
+	nop	;;12,14
+	nop	;;12,14
+	slli	r4,r4,$3	
+	slli	r3,r3,$3	
+	nop	;;15,18
+	nop	;;15,18
+	nop	;;15,18
+	sll	r2,r2,r4	
+	sll	r3,r6,r3	
+	nop	;;19,23
+	nop	;;19,23
+	nop	;;19,23
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	r3,r3,$1	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subu	r3,r0,r3	
+	nop	;;23,27
+	nop	;;23,27
+	nop	;;23,27
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	and	r28,r28,r3	
+	nop	;;27,31
+	nop	;;27,31
+	nop	;;27,31
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	or	r28,r28,r2	
+	nop	;;31,35
+	nop	;;31,35
+	nop	;;31,35
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	0(r1),r28	
+	j	L_loadStoreByte_6	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_loadStoreByte_6:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	.section	.text
+	.addressing	Word
+putString:
+L_testLoadByte_1:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	nop
+	subi	r29,r29,$12	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r30),r1	
+	nop
+	nop
+	nop
+	; Automatically 3 NOPs removed by reduceNOPs.sh
+L_testLoadByte_2:
+	nop	; Automatically Added by addNopAfterLabels.pl
+	lw	r1,-4(r30)	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r3,r1,r0	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$1	
+	nop	;;5,9
+	nop	;;5,9
+	nop	;;5,9
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r2,r3,r2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r30),r2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	loadByteUnsigned	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r28,r0	
+
+
+	nop
+	nop
+	nop
+	putc	r1
+
+	nop	;;16,21
+	nop	;;16,21
+	nop	;;16,21
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$0	
+	nop	;;21,25
+	nop	;;21,25
+	nop	;;21,25
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r1,r2	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L_testLoadByte_2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_testLoadByte_3	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_testLoadByte_3:
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$0	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_testLoadByte_4	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_testLoadByte_4:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+main:
+L_testLoadByte_5:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	nop
+	subi	r29,r29,$12	
+	nop
+	nop
+	nop
+	; Automatically 4 NOPs removed by reduceNOPs.sh
+	lhi	r2,$( _signedch	/0x10000)
+	nop
+	nop
+	nop
+	ori	r2,r2,$( _signedch	%0x10000)
+	lhi	r1,$( _ch	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( _ch	%0x10000)
+	nop	;;3,6
+	nop	;;3,6
+	nop	;;3,6
+	sw	-4(r30),r2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	loadByteSigned	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r1,-4(r30)	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	0(r1),r28	
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$0	
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L_testLoadByte_6	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L_testLoadByte_6:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	NOP
+exit:
+	NOP
+	NOP
+	trap	#0	; HALT
+
+
+	.section	.data
+	.section	.data
+	;.global	_string1
+_string1:
+	.data.8	72
+	.data.8	97
+	.data.8	108
+	.data.8	108
+	.data.8	111
+	.data.8	32
+	.data.8	87
+	.data.8	101
+	.data.8	108
+	.data.8	116
+	.data.8	10
+	.space	1
+	.space	1
+	.space	1
+	.space	1
+	;.global	_string2
+_string2:
+	.data.8	71
+	.data.8	117
+	.data.8	116
+	.data.8	101
+	.data.8	110
+	.data.8	32
+	.data.8	84
+	.data.8	97
+	.data.8	103
+	.data.8	33
+	.data.8	10
+	.space	1
+	.space	1
+	.space	1
+	;.global	_ch
+_ch:
+	.data.8	-1
+	;.global	_signedch
+	.align	4
+_signedch:
+	.space	4

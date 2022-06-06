@@ -1,0 +1,426 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.section	.data
+2				;.global	_array
+3				.align	4
+4			_array:
+5	0000	0000002d		.data.32	45
+6	0004	0000004b		.data.32	75
+7	0008	00000156		.data.32	342
+8	000c	00000036		.data.32	54
+9	0010	00000007		.data.32	7
+10	0014	00000056		.data.32	86
+11	0018	0000005c		.data.32	92
+12	001c	000000eb		.data.32	235
+13	0020	00000004		.data.32	4
+14	0024	0000002a		.data.32	42
+15	0028	00000063		.data.32	99
+16	002c	0000004e		.data.32	78
+17	0030	0000003f		.data.32	63
+18	0034	00000160		.data.32	352
+19	0038	00000015		.data.32	21
+20	003c	0000027a		.data.32	634
+21	0040	00000006		.data.32	6
+22	0044	0000004d		.data.32	77
+23	0048	0000015a		.data.32	346
+24	004c	00000017		.data.32	23
+25				.section	.text
+26				.addressing	Word
+27				.section	.text
+28				.addressing	Word
+29				;.addressing	Word
+30			
+31	0000	03def026		xor	%r30, %r30, %r30
+32	0001	03bde826		xor	%r29, %r29, %r29
+33	0002	039ce026		xor	%r28, %r28, %r28
+34	0003	00000000		nop
+35	0004	3c1e000f		lhi	%r30, $(0xFFFFC/0x10000)
+36	0005	3c1d000f		lhi	%r29, $(0xFFFFC/0x10000)
+37	0006	00000000		nop
+38	0007	00000000		nop
+39	0008	37defffc		ori	%r30, %r30, $(0xFFFFC%0x10000)
+40	0009	37bdfffc		ori	%r29, %r29, $(0xFFFFC%0x10000)
+41	000a	00000000		nop
+42	000b	00000000		nop
+43	000c	00000000		nop
+44	000d	afbefffc		sw	-4(%r29), %r30
+45	000e	afbffff8		sw	-8(%r29), %r31
+46	000f	23ddfff8		addi	%r29, %r30, $-8
+47	0010	00000000		nop
+48	0011	00000000		nop
+49	0012	00000000		nop
+50	0013	0c0000d5		jal	main	
+51	0014	00000000		nop
+52	0015	00000000		nop
+53	0016	00000000		nop
+54	0017	00000000		nop
+55	0018	00000000		nop
+56	0019	afa10000		sw	0(%r29), %r1
+57	001a	0c00010c		jal	exit
+58	001b	00000000		nop
+59	001c	00000000		nop
+60			
+61				;.addressing	Word
+62			bubbleSort:
+63			L_BubbleSort_Index_1:
+64	001d	00000000		nop
+65	001e	00000000		nop
+66	001f	00000000		nop
+67				; Automatically 1 NOPs removed by reduceNOPs.sh
+68	0020	afbefffc		sw	-4(%r29),%r30	
+69	0021	afbf0000		sw	0(%r29),%r31	
+70	0022	2fbe0004		subui	%r30,%r29,$4	
+71	0023	2bbd0008		subi	%r29,%r29,$8	
+72	0024	00000000		nop
+73	0025	00000000		nop
+74	0026	00000000		nop
+75				; Automatically 11 NOPs removed by reduceNOPs.sh
+76	0027	3c030000		lhi	%r3,$0	
+77	0028	00000000		nop
+78	0029	00000000		nop
+79	002a	00000000		nop
+80				; Automatically 1 NOPs removed by reduceNOPs.sh
+81	002b	34630000		ori	%r3,%r3,$0	
+82	002c	00000000		nop
+83	002d	00000000		nop
+84	002e	00000000		nop
+85			L_BubbleSort_Index_2:
+86	002f	00412023		subu	%r4,%r2,%r1	
+87	0030	00000000		nop	;;0,4
+88	0031	00000000		nop	;;0,4
+89	0032	00000000		nop	;;0,4
+90				; Automatically 1 NOPs removed by reduceNOPs.sh
+91	0033	0064d83a		sltu	%r27,%r3,%r4	
+92	0034	00000000		nop	;;4,8
+93	0035	00000000		nop	;;4,8
+94	0036	00000000		nop	;;4,8
+95				; Automatically 1 NOPs removed by reduceNOPs.sh
+96	0037	17600008		bnez	%r27,L_BubbleSort_Index_3	
+97	0038	00000000		nop
+98	0039	00000000		nop
+99	003a	00000000		nop
+100				; Automatically 1 NOPs removed by reduceNOPs.sh
+101	003b	0800009f		j	L_BubbleSort_Index_9	
+102	003c	00000000		nop
+103	003d	00000000		nop
+104	003e	00000000		nop
+105				; Automatically 1 NOPs removed by reduceNOPs.sh
+106			L_BubbleSort_Index_3:
+107	003f	00202020		add	%r4,%r1,%r0	
+108	0040	00000000		nop
+109	0041	00000000		nop
+110	0042	00000000		nop
+111			L_BubbleSort_Index_4:
+112	0043	00432823		subu	%r5,%r2,%r3	
+113	0044	00000000		nop	;;0,4
+114	0045	00000000		nop	;;0,4
+115	0046	00000000		nop	;;0,4
+116				; Automatically 1 NOPs removed by reduceNOPs.sh
+117	0047	0085d83a		sltu	%r27,%r4,%r5	
+118	0048	00000000		nop	;;4,8
+119	0049	00000000		nop	;;4,8
+120	004a	00000000		nop	;;4,8
+121				; Automatically 1 NOPs removed by reduceNOPs.sh
+122	004b	17600008		bnez	%r27,L_BubbleSort_Index_5	
+123	004c	00000000		nop
+124	004d	00000000		nop
+125	004e	00000000		nop
+126				; Automatically 1 NOPs removed by reduceNOPs.sh
+127	004f	08000086		j	L_BubbleSort_Index_8	
+128	0050	00000000		nop
+129	0051	00000000		nop
+130	0052	00000000		nop
+131				; Automatically 1 NOPs removed by reduceNOPs.sh
+132			L_BubbleSort_Index_5:
+133	0053	24850001		addui	%r5,%r4,$1	
+134	0054	00000000		nop	;;1,3
+135	0055	00000000		nop	;;1,3
+136	0056	3c060000		lhi	%r6,$( _array	/0x10000)
+137	0057	00000000		nop
+138	0058	00000000		nop
+139	0059	00000000		nop
+140	005a	34c60000		ori	%r6,%r6,$( _array	%0x10000)
+141	005b	3c070000		lhi	%r7,$0	
+142	005c	00000000		nop
+143	005d	00000000		nop
+144	005e	00000000		nop
+145				; Automatically 1 NOPs removed by reduceNOPs.sh
+146	005f	34e70004		ori	%r7,%r7,$4	
+147	0060	3c090000		lhi	%r9,$( _array	/0x10000)
+148	0061	00000000		nop
+149	0062	00000000		nop
+150	0063	00000000		nop
+151	0064	35290000		ori	%r9,%r9,$( _array	%0x10000)
+152	0065	3c080000		lhi	%r8,$0	
+153	0066	00000000		nop
+154	0067	00000000		nop
+155	0068	00000000		nop
+156				; Automatically 1 NOPs removed by reduceNOPs.sh
+157	0069	35080004		ori	%r8,%r8,$4	
+158	006a	00000000		nop	;;6,8
+159	006b	00000000		nop	;;6,8
+160	006c	00a72819		multu	%r5,%r5,%r7	
+161	006d	00000000		nop	;;8,12
+162	006e	00000000		nop	;;8,12
+163	006f	00000000		nop	;;8,12
+164				; Automatically 1 NOPs removed by reduceNOPs.sh
+165	0070	00883819		multu	%r7,%r4,%r8	
+166	0071	00c52820		add	%r5,%r6,%r5	
+167	0072	00000000		nop	;;13,16
+168	0073	00000000		nop	;;13,16
+169	0074	00000000		nop	;;13,16
+170	0075	01273020		add	%r6,%r9,%r7	
+171	0076	8ca50000		lw	%r5,0(%r5)	
+172	0077	00000000		nop	;;17,20
+173	0078	00000000		nop	;;17,20
+174	0079	00000000		nop	;;17,20
+175	007a	8cc60000		lw	%r6,0(%r6)	
+176	007b	00000000		nop	;;20,24
+177	007c	00000000		nop	;;20,24
+178	007d	00000000		nop	;;20,24
+179				; Automatically 1 NOPs removed by reduceNOPs.sh
+180	007e	00a6d83a		sltu	%r27,%r5,%r6	
+181	007f	00000000		nop	;;24,28
+182	0080	00000000		nop	;;24,28
+183	0081	00000000		nop	;;24,28
+184				; Automatically 1 NOPs removed by reduceNOPs.sh
+185	0082	17600008		bnez	%r27,L_BubbleSort_Index_6	
+186	0083	00000000		nop
+187	0084	00000000		nop
+188	0085	00000000		nop
+189				; Automatically 1 NOPs removed by reduceNOPs.sh
+190	0086	0800004a		j	L_BubbleSort_Index_7	
+191	0087	00000000		nop
+192	0088	00000000		nop
+193	0089	00000000		nop
+194				; Automatically 1 NOPs removed by reduceNOPs.sh
+195			L_BubbleSort_Index_6:
+196	008a	00000000		nop	;;0,2
+197	008b	00000000		nop	;;0,2
+198	008c	24850001		addui	%r5,%r4,$1	
+199	008d	00000000		nop	;;2,4
+200	008e	00000000		nop	;;2,4
+201	008f	3c060000		lhi	%r6,$0	
+202	0090	00000000		nop
+203	0091	00000000		nop
+204	0092	00000000		nop
+205				; Automatically 1 NOPs removed by reduceNOPs.sh
+206	0093	34c60004		ori	%r6,%r6,$4	
+207	0094	3c070000		lhi	%r7,$0	
+208	0095	00000000		nop
+209	0096	00000000		nop
+210	0097	00000000		nop
+211				; Automatically 1 NOPs removed by reduceNOPs.sh
+212	0098	34e70004		ori	%r7,%r7,$4	
+213	0099	00000000		nop	;;5,7
+214	009a	00000000		nop	;;5,7
+215	009b	3c090000		lhi	%r9,$( _array	/0x10000)
+216	009c	00000000		nop
+217	009d	00000000		nop
+218	009e	00000000		nop
+219	009f	35290000		ori	%r9,%r9,$( _array	%0x10000)
+220	00a0	00a62819		multu	%r5,%r5,%r6	
+221	00a1	00873819		multu	%r7,%r4,%r7	
+222	00a2	3c080000		lhi	%r8,$( _array	/0x10000)
+223	00a3	00000000		nop
+224	00a4	00000000		nop
+225	00a5	00000000		nop
+226	00a6	35080000		ori	%r8,%r8,$( _array	%0x10000)
+227	00a7	248b0001		addui	%r11,%r4,$1	
+228	00a8	3c060000		lhi	%r6,$0	
+229	00a9	00000000		nop
+230	00aa	00000000		nop
+231	00ab	00000000		nop
+232				; Automatically 1 NOPs removed by reduceNOPs.sh
+233	00ac	34c60004		ori	%r6,%r6,$4	
+234	00ad	3c0c0000		lhi	%r12,$0	
+235	00ae	00000000		nop
+236	00af	00000000		nop
+237	00b0	00000000		nop
+238				; Automatically 1 NOPs removed by reduceNOPs.sh
+239	00b1	358c0004		ori	%r12,%r12,$4	
+240	00b2	01273820		add	%r7,%r9,%r7	
+241	00b3	01052820		add	%r5,%r8,%r5	
+242	00b4	00863019		multu	%r6,%r4,%r6	
+243	00b5	016c4819		multu	%r9,%r11,%r12	
+244	00b6	3c0a0000		lhi	%r10,$( _array	/0x10000)
+245	00b7	00000000		nop
+246	00b8	00000000		nop
+247	00b9	00000000		nop
+248	00ba	354a0000		ori	%r10,%r10,$( _array	%0x10000)
+249	00bb	3c080000		lhi	%r8,$( _array	/0x10000)
+250	00bc	00000000		nop
+251	00bd	00000000		nop
+252	00be	00000000		nop
+253	00bf	35080000		ori	%r8,%r8,$( _array	%0x10000)
+254	00c0	00000000		nop	;;19,21
+255	00c1	00000000		nop	;;19,21
+256	00c2	8cab0000		lw	%r11,0(%r5)	
+257	00c3	01463020		add	%r6,%r10,%r6	
+258	00c4	8ce50000		lw	%r5,0(%r7)	
+259	00c5	01093820		add	%r7,%r8,%r9	
+260	00c6	00000000		nop	;;24,26
+261	00c7	00000000		nop	;;24,26
+262	00c8	accb0000		sw	0(%r6),%r11	
+263	00c9	00000000		nop	;;26,30
+264	00ca	00000000		nop	;;26,30
+265	00cb	00000000		nop	;;26,30
+266				; Automatically 1 NOPs removed by reduceNOPs.sh
+267	00cc	ace50000		sw	0(%r7),%r5	
+268	00cd	00000000		nop
+269	00ce	00000000		nop
+270	00cf	00000000		nop
+271			L_BubbleSort_Index_7:
+272	00d0	24840001		addui	%r4,%r4,$1	
+273	00d1	0bffff72		j	L_BubbleSort_Index_4	
+274	00d2	00000000		nop
+275	00d3	00000000		nop
+276	00d4	00000000		nop
+277			L_BubbleSort_Index_8:
+278	00d5	24630001		addui	%r3,%r3,$1	
+279	00d6	0bffff59		j	L_BubbleSort_Index_2	
+280	00d7	00000000		nop
+281	00d8	00000000		nop
+282	00d9	00000000		nop
+283			L_BubbleSort_Index_9:
+284	00da	00000000		nop
+285	00db	00000000		nop
+286	00dc	00000000		nop
+287				; Automatically 1 NOPs removed by reduceNOPs.sh
+288	00dd	8fdf0004		lw	%r31,4(%r30)	
+289	00de	27dd0004		addui	%r29,%r30,$4	
+290	00df	8fde0000		lw	%r30,0(%r30)	
+291	00e0	00000000		nop
+292	00e1	00000000		nop
+293	00e2	00000000		nop
+294	00e3	00000000		nop
+295	00e4	03e00008		jr	%r31	
+296	00e5	00000000		nop
+297	00e6	00000000		nop
+298	00e7	00000000		nop
+299				; Automatically 1 NOPs removed by reduceNOPs.sh
+300			main:
+301			L_BubbleSort_Index_10:
+302	00e8	00000000		nop
+303	00e9	00000000		nop
+304	00ea	00000000		nop
+305				; Automatically 1 NOPs removed by reduceNOPs.sh
+306	00eb	afbefffc		sw	-4(%r29),%r30	
+307	00ec	afbf0000		sw	0(%r29),%r31	
+308	00ed	2fbe0004		subui	%r30,%r29,$4	
+309	00ee	2bbd0008		subi	%r29,%r29,$8	
+310	00ef	00000000		nop
+311	00f0	00000000		nop
+312	00f1	00000000		nop
+313				; Automatically 9 NOPs removed by reduceNOPs.sh
+314	00f2	3c020000		lhi	%r2,$0	
+315	00f3	00000000		nop
+316	00f4	00000000		nop
+317	00f5	00000000		nop
+318				; Automatically 1 NOPs removed by reduceNOPs.sh
+319	00f6	34420013		ori	%r2,%r2,$19	
+320	00f7	3c010000		lhi	%r1,$0	
+321	00f8	00000000		nop
+322	00f9	00000000		nop
+323	00fa	00000000		nop
+324				; Automatically 1 NOPs removed by reduceNOPs.sh
+325	00fb	34210000		ori	%r1,%r1,$0	
+326	00fc	00000000		nop
+327	00fd	00000000		nop
+328	00fe	00000000		nop
+329				; Automatically 1 NOPs removed by reduceNOPs.sh
+330	00ff	2bbd0008		subi	%r29,%r29,$8	
+331	0100	00000000		nop
+332	0101	00000000		nop
+333	0102	00000000		nop
+334				; Automatically 1 NOPs removed by reduceNOPs.sh
+335	0103	0fffff1a		jal	bubbleSort	
+336	0104	00000000		nop
+337	0105	00000000		nop
+338	0106	00000000		nop
+339				; Automatically 1 NOPs removed by reduceNOPs.sh
+340	0107	23bd0008		addi	%r29,%r29,$8	
+341	0108	00000000		nop
+342	0109	00000000		nop
+343	010a	00000000		nop
+344				; Automatically 10 NOPs removed by reduceNOPs.sh
+345	010b	3c1c0000		lhi	%r28,$0	
+346	010c	00000000		nop
+347	010d	00000000		nop
+348	010e	00000000		nop
+349				; Automatically 1 NOPs removed by reduceNOPs.sh
+350	010f	379c0000		ori	%r28,%r28,$0	
+351	0110	00000000		nop	;;13,17
+352	0111	00000000		nop	;;13,17
+353	0112	00000000		nop	;;13,17
+354				; Automatically 1 NOPs removed by reduceNOPs.sh
+355	0113	08000004		j	L_BubbleSort_Index_11	
+356	0114	00000000		nop
+357	0115	00000000		nop
+358	0116	00000000		nop
+359				; Automatically 1 NOPs removed by reduceNOPs.sh
+360			L_BubbleSort_Index_11:
+361	0117	00000000		nop
+362	0118	00000000		nop
+363	0119	00000000		nop
+364				; Automatically 1 NOPs removed by reduceNOPs.sh
+365	011a	8fdf0004		lw	%r31,4(%r30)	
+366	011b	27dd0004		addui	%r29,%r30,$4	
+367	011c	8fde0000		lw	%r30,0(%r30)	
+368	011d	00000000		nop
+369	011e	00000000		nop
+370	011f	00000000		nop
+371	0120	00000000		nop
+372	0121	03e00008		jr	%r31	
+373	0122	00000000		nop
+374	0123	00000000		nop
+375	0124	00000000		nop
+376				.section	.text
+377				.addressing	Word
+378				;.addressing	Word
+379	0125	00000000		nop
+380			exit:
+381	0126	00000000		nop
+382	0127	00000000		nop
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+L_BubbleSort_Index_1	.text	001d	Label	1d	63 
+L_BubbleSort_Index_2	.text	002f	Label	2f	85 
+L_BubbleSort_Index_3	.text	003f	Label	3f	106 
+L_BubbleSort_Index_4	.text	0043	Label	43	111 
+L_BubbleSort_Index_5	.text	0053	Label	53	132 
+L_BubbleSort_Index_6	.text	008a	Label	8a	195 
+exit	.text	0126	Label	126	380 
+L_BubbleSort_Index_7	.text	00d0	Label	d0	271 
+L_BubbleSort_Index_8	.text	00d5	Label	d5	277 
+L_BubbleSort_Index_10	.text	00e8	Label	e8	301 
+L_BubbleSort_Index_9	.text	00da	Label	da	283 
+L_BubbleSort_Index_11	.text	0117	Label	117	360 
+_array	.data	0000	Label	0	4 
+bubbleSort	.text	001d	Label	1d	62 
+main	.text	00e8	Label	e8	300 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	128 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		50 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

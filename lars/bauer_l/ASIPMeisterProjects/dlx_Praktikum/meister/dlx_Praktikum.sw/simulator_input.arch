@@ -1,0 +1,2285 @@
+mod CPU {
+  operation_length 32;
+  slots { slot1 };
+  stages {
+    IF;
+    ID : dispatch_stage, decode_stage;
+    EXE;
+    MEM;
+    WB;
+  };
+  resource PC : Prog. Counter {
+    model "pcu";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=32 increment_step=1 adder_algorithm=rca";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=32 increment_step=1 adder_algorithm=rca";
+    };
+  };
+  resource IR : Inst. Register {
+    model "register";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=32";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=32";
+    };
+  };
+  resource IMAU : Inst. Memory {
+    model "imau";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=32 address_space=32";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=32 address_space=32";
+    };
+  };
+  resource DMAU : Data Memory {
+    model "dmau";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=32 address_space=32 access_width=8";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=32 address_space=32 access_width=8";
+    };
+  };
+  resource GPR : Register File {
+    model "registerfile";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=32 num_register=32 num_read_port=2 num_write_port=1";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=32 num_register=32 num_read_port=2 num_write_port=1";
+    };
+  };
+  resource ALU0 : (unspecified) {
+    model "alu";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=32 algorithm=cla";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=32 algorithm=cla";
+    };
+  };
+  resource EXT0 : (unspecified) {
+    model "extender";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=16 bit_width_out=32";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=16 bit_width_out=32";
+    };
+  };
+  resource MUL0 : (unspecified) {
+    model "multiplier";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=32 algorithm=seq adder_algorithm=cla data_type=two_complement";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=32 algorithm=seq adder_algorithm=cla data_type=two_complement";
+    };
+  };
+  resource DIV0 : (unspecified) {
+    model "divider";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=32 algorithm=seq adder_algorithm=cla data_type=two_complement";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=32 algorithm=seq adder_algorithm=cla data_type=two_complement";
+    };
+  };
+  resource SFT0 : (unspecified) {
+    model "shifter";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=32 amount=variable";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=32 amount=variable";
+    };
+  };
+  resource EXT1 : (unspecified) {
+    model "extender";
+    for_simulation {
+      design_level "Behavior";
+      parameter "bit_width=28 bit_width_out=32";
+    };
+    for_synthesis {
+      design_level "Gate";
+      parameter "bit_width=28 bit_width_out=32";
+    };
+  };
+  resgroup ResGroup {
+    member : ;
+    read_access : PC, IR, IMAU, DMAU, GPR, ALU0, EXT0, MUL0, DIV0, SFT0, EXT1;
+    write_access : PC, IR, IMAU, DMAU, GPR, ALU0, EXT0, MUL0, DIV0, SFT0, EXT1;
+  };
+  opetype R_R{
+    opecode [31:26] opecode;
+    operand [25:21] rs0;
+    operand [20:16] rs1;
+    operand [15:11] rd;
+    opecode [10:0] func;
+  };
+  opetype R_I{
+    opecode [31:26] opecode;
+    operand [25:21] rs0;
+    operand [20:16] rd;
+    operand [15:0] const;
+  };
+  opetype L_S{
+    opecode [31:26] opecode;
+    operand [25:21] rs0;
+    operand [20:16] rd;
+    operand [15:0] const;
+  };
+  opetype B{
+    opecode [31:26] opecode;
+    operand [25:21] rs0;
+    opecode [20:16] fld_20_16;
+    operand [15:0] const;
+  };
+  opetype J{
+    opecode [31:26] opecode;
+    operand [25:0] const;
+  };
+  opetype JR{
+    opecode [31:26] fld_31_26;
+    operand [25:21] rs0;
+    opecode [20:11] fld_20_11;
+    opecode [10:0] func;
+  };
+  opetype LHI{
+    opecode [31:26] opecode;
+    opecode [25:21] fld_25_21;
+    operand [20:16] rd;
+    operand [15:0] const;
+  };
+  operation add : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000100000";
+  };
+  operation addu : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000100001";
+  };
+  operation addi : R_I{
+    opecode opecode = "001000";
+  };
+  operation addui : R_I{
+    opecode opecode = "001001";
+  };
+  operation sub : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000100010";
+  };
+  operation subu : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000100011";
+  };
+  operation subi : R_I{
+    opecode opecode = "001010";
+  };
+  operation subui : R_I{
+    opecode opecode = "001011";
+  };
+  operation mult : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000011000";
+  };
+  operation multu : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000011001";
+  };
+  operation div : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000011010";
+  };
+  operation divu : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000011011";
+  };
+  operation and : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000100100";
+  };
+  operation andi : R_I{
+    opecode opecode = "001100";
+  };
+  operation or : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000100101";
+  };
+  operation ori : R_I{
+    opecode opecode = "001101";
+  };
+  operation xor : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000100110";
+  };
+  operation xori : R_I{
+    opecode opecode = "001110";
+  };
+  operation sll : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000000000";
+  };
+  operation srl : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000000010";
+  };
+  operation sra : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000000011";
+  };
+  operation slli : R_I{
+    opecode opecode = "010000";
+  };
+  operation srli : R_I{
+    opecode opecode = "010001";
+  };
+  operation srai : R_I{
+    opecode opecode = "010010";
+  };
+  operation slt : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000101010";
+  };
+  operation sgt : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000101011";
+  };
+  operation sle : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000101100";
+  };
+  operation sge : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000101101";
+  };
+  operation seq : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000101110";
+  };
+  operation sne : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000101111";
+  };
+  operation slti : R_I{
+    opecode opecode = "011010";
+  };
+  operation sgti : R_I{
+    opecode opecode = "011011";
+  };
+  operation slei : R_I{
+    opecode opecode = "011100";
+  };
+  operation sgei : R_I{
+    opecode opecode = "011101";
+  };
+  operation seqi : R_I{
+    opecode opecode = "011110";
+  };
+  operation snei : R_I{
+    opecode opecode = "011111";
+  };
+  operation lhi : LHI{
+    opecode opecode = "001111";
+    opecode fld_25_21 = "00000";
+  };
+  operation lb : L_S{
+    opecode opecode = "100000";
+  };
+  operation lh : L_S{
+    opecode opecode = "100001";
+  };
+  operation lw : L_S{
+    opecode opecode = "100011";
+  };
+  operation lbu : L_S{
+    opecode opecode = "100100";
+  };
+  operation lhu : L_S{
+    opecode opecode = "100101";
+  };
+  operation sb : L_S{
+    opecode opecode = "101000";
+  };
+  operation sh : L_S{
+    opecode opecode = "101001";
+  };
+  operation sw : L_S{
+    opecode opecode = "101011";
+  };
+  operation beqz : B{
+    opecode opecode = "000100";
+    opecode fld_20_16 = "00000";
+  };
+  operation bnez : B{
+    opecode opecode = "000101";
+    opecode fld_20_16 = "00000";
+  };
+  operation j : J{
+    opecode opecode = "000010";
+  };
+  operation jal : J{
+    opecode opecode = "000011";
+  };
+  operation jr : JR{
+    opecode fld_31_26 = "000000";
+    opecode fld_20_11 = "0000000000";
+    opecode func = "00000001000";
+  };
+  operation jalr : JR{
+    opecode fld_31_26 = "000000";
+    opecode fld_20_11 = "0000000000";
+    opecode func = "00000001001";
+  };
+  operation MOD : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000011100";
+  };
+  operation modu : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000011110";
+  };
+  operation sltu : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000111010";
+  };
+  operation sgtu : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000111011";
+  };
+  operation sleu : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000111100";
+  };
+  operation sgeu : R_R{
+    opecode opecode = "000000";
+    opecode func = "00000111101";
+  };
+  opegroup Opegroup {
+    add, addu, addi, addui, sub, subu, subi, subui, mult, multu, div, divu, and, andi, or, ori, xor, xori, sll, srl, sra, slli, srli, srai, slt, sgt, sle, sge, seq, sne, slti, sgti, slei, sgei, seqi, snei, lhi, lb, lh, lw, lbu, lhu, sb, sh, sw, beqz, bnez, j, jal, jr, jalr, MOD, modu, sltu, sgtu, sleu, sgeu  };
+  type_spec {
+    char { alignment: 8; size: 8; };
+    short { alignment: 16; size: 16; };
+    short2 { alignment: 16; size: 16; };
+    int { alignment: 32; size: 32; };
+    long { alignment: 32; size: 32; };
+    long2 { alignment: 32; size: 32; };
+    float { alignment: 32; size: 32; };
+    double { alignment: 64; size: 64; };
+    quad { alignment: 64; size: 64; };
+    point { alignment: 32; size: 32; };
+    struct { alignment: 8; size: 0; };
+    data { alignment: 8; size: 0; };
+  };
+  behavior add  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 + rs1;
+  };
+  behavior addu  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 + rs1;
+  };
+  behavior addi  (
+    out GPR long rd,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 + const__;
+  };
+  behavior addui  (
+    out GPR unsigned long rd,
+    in #Imm16 unsigned short const__,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 + const__;
+  };
+  behavior sub  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 - rs1;
+  };
+  behavior subu  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 - rs1;
+  };
+  behavior subi  (
+    out GPR long rd,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 - const__;
+  };
+  behavior subui  (
+    out GPR unsigned long rd,
+    in #Imm16 unsigned short const__,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 - const__;
+  };
+  behavior mult  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 * rs1;
+  };
+  behavior multu  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 * rs1;
+  };
+  behavior div  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 / rs1;
+  };
+  behavior divu  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 / rs1;
+  };
+  behavior and  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 & rs1;
+  };
+  behavior andi  (
+    out GPR long rd,
+    in #Imm16 unsigned short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 & const__;
+  };
+  behavior or  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 | rs1;
+  };
+  behavior ori  (
+    out GPR long rd,
+    in #Imm16 unsigned short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 | const__;
+  };
+  behavior xor  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 ^ rs1;
+  };
+  behavior xori  (
+    out GPR long rd,
+    in #Imm16 unsigned short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 ^ const__;
+  };
+  behavior sll  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 << rs1;
+  };
+  behavior srl  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 >> rs1;
+  };
+  behavior sra  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 >> rs1;
+  };
+  behavior slli  (
+    out GPR long rd,
+    in #Imm16 unsigned short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 << const__;
+  };
+  behavior srli  (
+    out GPR unsigned long rd,
+    in #Imm16 unsigned short const__,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 >> const__;
+  };
+  behavior srai  (
+    out GPR long rd,
+    in #Imm16 unsigned short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 >> const__;
+  };
+  behavior slt  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 < rs1;
+  };
+  behavior sgt  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 > rs1;
+  };
+  behavior sle  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 <= rs1;
+  };
+  behavior sge  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 >= rs1;
+  };
+  behavior seq  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 == rs1;
+  };
+  behavior sne  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 != rs1;
+  };
+  behavior slti  (
+    out GPR long rd,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 < const__;
+  };
+  behavior sgti  (
+    out GPR long rd,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 > const__;
+  };
+  behavior slei  (
+    out GPR long rd,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 <= const__;
+  };
+  behavior sgei  (
+    out GPR long rd,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 >= const__;
+  };
+  behavior seqi  (
+    out GPR long rd,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 == const__;
+  };
+  behavior snei  (
+    out GPR long rd,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    rd = rs0 != const__;
+  };
+  behavior lhi  (
+    out GPR long rd,
+    in #Imm16 unsigned short const__  )
+  {
+    rd = const__ << 16;
+  };
+  behavior lb  (
+    out GPR char rd,
+    in [GPR, const]:[GPR, disp]:DMEM char addr  )
+  {
+    rd = addr;
+  };
+  behavior lh  (
+    out GPR short rd,
+    in [GPR, const]:[GPR, disp]:DMEM short addr  )
+  {
+    rd = addr;
+  };
+  behavior lw  (
+    out GPR long rd,
+    in [GPR, const]:[GPR, disp]:DMEM long addr  )
+  {
+    rd = addr;
+  };
+  behavior lbu  (
+    out GPR unsigned char rd,
+    in [GPR, const]:[GPR, disp]:DMEM unsigned char addr  )
+  {
+    rd = addr;
+  };
+  behavior lhu  (
+    out GPR unsigned short rd,
+    in [GPR, const]:[GPR, disp]:DMEM unsigned short addr  )
+  {
+    rd = addr;
+  };
+  behavior sb  (
+    out [GPR, const]:[GPR, disp]:DMEM int addr,
+    in GPR char rd  )
+  {
+    addr = rd;
+  };
+  behavior sh  (
+    out [GPR, const]:[GPR, disp]:DMEM int addr,
+    in GPR short rd  )
+  {
+    addr = rd;
+  };
+  behavior sw  (
+    out [GPR, const]:[GPR, disp]:DMEM int addr,
+    in GPR long rd  )
+  {
+    addr = rd;
+  };
+  behavior beqz  (
+    inout PC long PC,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    if (rs0 == 0) {
+    PC = PC + const__;
+    }
+    else {
+    }
+  };
+  behavior bnez  (
+    inout PC long PC,
+    in #Imm16 short const__,
+    in GPR long rs0  )
+  {
+    if (rs0 != 0) {
+    PC = PC + const__;
+    }
+    else {
+    }
+  };
+  behavior j  (
+    out PC int PC,
+    in #Imm26 label const__  )
+  {
+    if (1) {
+    PC = const__;
+    }
+    else {
+    }
+  };
+  behavior jal  (
+    out LINK int LINK,
+    inout PC int PC,
+    in #Imm26 label const__  )
+  {
+    if (1) {
+    LINK = PC;
+    PC = const__;
+    }
+    else {
+    }
+  };
+  behavior jr  (
+    out PC int PC,
+    in GPR int rs0  )
+  {
+    if (1) {
+    PC = rs0;
+    }
+    else {
+    }
+  };
+  behavior jalr  (
+    out LINK int LINK,
+    inout PC int PC,
+    in GPR int rs0  )
+  {
+    if (1) {
+    LINK = PC;
+    PC = rs0;
+    }
+    else {
+    }
+  };
+  behavior MOD  (
+    out GPR long rd,
+    in GPR long rs1,
+    in GPR long rs0  )
+  {
+    rd = rs0 % rs1;
+  };
+  behavior modu  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 % rs1;
+  };
+  behavior sltu  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 < rs1;
+  };
+  behavior sgtu  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 > rs1;
+  };
+  behavior sleu  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 <= rs1;
+  };
+  behavior sgeu  (
+    out GPR unsigned long rd,
+    in GPR unsigned long rs1,
+    in GPR unsigned long rs0  )
+  {
+    rd = rs0 >= rs1;
+  };
+  common_pre_dispatch {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 1 {
+wire [31:0]  inst;
+
+current_pc = PC.read();
+inst = IMAU.read(current_pc);
+null = IR.write(inst);
+null = PC.inc();    };
+    stage 2 {};
+  };
+  dispatch_table {
+    slot_opegroup {
+      {slot1: OpeGroup};
+    };
+    slot_resgroup {
+      slot1: ResGroup;
+    };
+    opegroup_resgroup {
+      OpeGroup: ResGroup;
+    };
+  };
+  micro_operation add on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.add(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation addu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.addu(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation addi on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.add(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation addui on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+wire [15:0] zero_16;
+
+source0 = GPR.read0(rs0);
+zero_16 = "0000000000000000";
+source1 = <zero_16, const>;
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.addu(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sub on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.sub(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation subu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.subu(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation subi on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.sub(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation subui on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+wire [15:0] zero_16;
+
+source0 = GPR.read0(rs0);
+zero_16 = "0000000000000000";
+source1 = <zero_16, const>;
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.subu(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation mult on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [63:0]  tmp_result;
+
+tmp_result = MUL0.mul(source0, source1);
+result = tmp_result[31:0];
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation multu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [63:0]  tmp_result;
+
+tmp_result = MUL0.mulu(source0, source1);
+result = tmp_result[31:0];
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation div on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+wire [31:0]  mod_result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire div_flag;
+
+<result, mod_result, div_flag> = DIV0.div(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation divu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+wire [31:0]  mod_result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire div_flag;
+
+<result, mod_result, div_flag> = DIV0.divu(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation and on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.and(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation andi on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+wire [15:0] zero_16;
+
+source0 = GPR.read0(rs0);
+zero_16 = "0000000000000000";
+source1 = <zero_16, const>;
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.and(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation or on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.or(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation ori on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+wire [15:0] zero_16;
+
+source0 = GPR.read0(rs0);
+zero_16 = "0000000000000000";
+source1 = <zero_16, const>;
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.or(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation xor on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.xor(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation xori on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+wire [15:0] zero_16;
+
+source0 = GPR.read0(rs0);
+zero_16 = "0000000000000000";
+source1 = <zero_16, const>;
+    };
+    stage 3 {
+wire [3:0]  flag;
+
+<result, flag> = ALU0.or(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sll on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [4:0]  shamt;
+
+shamt = source1[4:0];
+result = SFT0.sll(source0, shamt);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation srl on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [4:0]  shamt;
+
+shamt = source1[4:0];
+result = SFT0.srl(source0, shamt);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sra on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire [4:0]  shamt;
+
+shamt = source1[4:0];
+result = SFT0.sra(source0, shamt);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation slli on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+wire [15:0] zero_16;
+
+source0 = GPR.read0(rs0);
+zero_16 = "0000000000000000";
+source1 = <zero_16, const>;
+    };
+    stage 3 {
+wire [4:0]  shamt;
+
+shamt = source1[4:0];
+result = SFT0.sll(source0, shamt);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation srli on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+wire [15:0] zero_16;
+
+source0 = GPR.read0(rs0);
+zero_16 = "0000000000000000";
+source1 = <zero_16, const>;
+    };
+    stage 3 {
+wire [4:0]  shamt;
+
+shamt = source1[4:0];
+result = SFT0.srl(source0, shamt);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation srai on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0]  result;
+    stage 2 {
+wire [15:0] zero_16;
+
+source0 = GPR.read0(rs0);
+zero_16 = "0000000000000000";
+source1 = <zero_16, const>;
+    };
+    stage 3 {
+wire [4:0]  shamt;
+
+shamt = source1[4:0];
+result = SFT0.sra(source0, shamt);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation slt on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [2:0]   tmp_flag;
+wire           cond1;
+wire           cond2;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag = flag[2:0];
+cond1 = tmp_flag == "010";
+cond2 = flag         == "1001";
+cond   = cond1 | cond2;
+result = <zero31, cond>;
+null  = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sgt on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [2:0]   tmp_flag;
+wire           cond1;
+wire           cond2;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag = flag[2:0];
+cond1 = tmp_flag == "000";
+cond2 = flag         == "0011";
+cond   = cond1 | cond2;
+result = <zero31, cond>;
+null  = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sle on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [2:0]   tmp_flag;
+wire           cond1;
+wire           cond2;
+wire           cond3;
+wire           cond4;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag = flag[2:0];
+cond1 = tmp_flag == "010";
+cond2 = flag         == "1001";
+cond3 = flag         == "1100";
+cond4 = cond1 | cond2;
+cond   = cond3 | cond4;
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+  micro_operation sge on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire           cond1;
+wire           cond2;
+wire           cond3;
+wire           cond4;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+wire [2:0]   tmp_flag1;
+wire           tmp_flag2;
+wire [1:0]   tmp_flag3;
+wire [2:0]   tmp_flag4;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag1 = flag[2:0];
+tmp_flag2 = flag[3];
+tmp_flag3 = flag[1:0];
+tmp_flag4 = <tmp_flag2,tmp_flag3>;
+cond1 = tmp_flag1 == "000";
+cond2 = tmp_flag4 == "100";
+cond3 = flag           == "0011";
+cond4 = cond1 | cond2;
+cond   = cond3 | cond4;
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+  micro_operation seq on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+cond  = flag  == "1100";
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+  micro_operation sne on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+cond  = flag  != "1100";
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+  micro_operation slti on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [2:0]   tmp_flag;
+wire           cond1;
+wire           cond2;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag = flag[2:0];
+cond1 = tmp_flag == "010";
+cond2 = flag         == "1001";
+cond   = cond1 | cond2;
+result = <zero31, cond>;
+null  = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sgti on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [2:0]   tmp_flag;
+wire           cond1;
+wire           cond2;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag = flag[2:0];
+cond1 = tmp_flag == "000";
+cond2 = flag         == "0011";
+cond   = cond1 | cond2;
+result = <zero31, cond>;
+null  = GPR.write0(rd, result);
+    };
+  };
+  micro_operation slei on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [2:0]   tmp_flag;
+wire           cond1;
+wire           cond2;
+wire           cond3;
+wire           cond4;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag = flag[2:0];
+cond1 = tmp_flag == "010";
+cond2 = flag         == "1001";
+cond3 = flag         == "1100";
+cond4 = cond1 | cond2;
+cond   = cond3 | cond4;
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+  micro_operation sgei on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire           cond1;
+wire           cond2;
+wire           cond3;
+wire           cond4;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+wire [2:0]   tmp_flag1;
+wire           tmp_flag2;
+wire [1:0]   tmp_flag3;
+wire [2:0]   tmp_flag4;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag1 = flag[2:0];
+tmp_flag2 = flag[3];
+tmp_flag3 = flag[1:0];
+tmp_flag4 = <tmp_flag2,tmp_flag3>;
+cond1 = tmp_flag1 == "000";
+cond2 = tmp_flag4 == "100";
+cond3 = flag           == "0011";
+cond4 = cond1 | cond2;
+cond   = cond3 | cond4;
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+  micro_operation seqi on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+cond  = flag  == "1100";
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+  micro_operation snei on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+flag = ALU0.cmp(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+cond  = flag  != "1100";
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+  micro_operation lhi on ResGroup {
+wire [31:0]  result;
+wire [31:0] current_pc;
+    stage 2 {
+wire [15:0] zero16;
+
+zero16 = "0000000000000000";
+result = <const, zero16>;
+    };
+    stage 3 {
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation lb on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0] addr;
+wire [31:0] result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0] flag;
+
+<addr,flag> = ALU0.add(source0,source1);
+    };
+    stage 4 {
+wire addr_err;
+
+<result, addr_err> = DMAU.lb(addr);
+  /* result is 32bit data. already extended*/
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation lh on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0] addr;
+wire [31:0] result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0] flag;
+
+<addr,flag> = ALU0.add(source0,source1);
+    };
+    stage 4 {
+wire addr_err;
+
+<result, addr_err> = DMAU.lh(addr);
+  /* result is 32bit data. already extended*/
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation lw on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0] addr;
+wire [31:0] result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0] flag;
+
+<addr,flag> = ALU0.add(source0,source1);
+    };
+    stage 4 {
+wire addr_err;
+
+<result, addr_err> = DMAU.load(addr);
+  /* result is 32bit data. already extended*/
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation lbu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0] addr;
+wire [31:0] result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0] flag;
+
+<addr,flag> = ALU0.add(source0,source1);
+    };
+    stage 4 {
+wire addr_err;
+
+<result, addr_err> = DMAU.lbu(addr);
+  /* result is 32bit data. already extended*/
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation lhu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] source0;
+wire [31:0] source1;
+wire [31:0] addr;
+wire [31:0] result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0] flag;
+
+<addr,flag> = ALU0.add(source0,source1);
+    };
+    stage 4 {
+wire addr_err;
+
+<result, addr_err> = DMAU.lhu(addr);
+  /* result is 32bit data. already extended*/
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sb on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] data;
+wire [31:0] base;
+wire [31:0] offset;
+wire [31:0] addr;
+    stage 2 {
+data   = GPR.read0(rd);
+base   = GPR.read1(rs0);
+offset = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0] flag;
+
+<addr, flag> = ALU0.add(base,offset);
+    };
+    stage 4 {
+wire addr_err;
+
+addr_err = DMAU.sb(addr,data);
+    };
+    stage 5 {
+    };
+  };
+  micro_operation sh on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] data;
+wire [31:0] base;
+wire [31:0] offset;
+wire [31:0] addr;
+    stage 2 {
+data   = GPR.read0(rd);
+base   = GPR.read1(rs0);
+offset = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0] flag;
+
+<addr, flag> = ALU0.add(base,offset);
+    };
+    stage 4 {
+wire addr_err;
+
+addr_err = DMAU.sh(addr,data);
+    };
+    stage 5 {
+    };
+  };
+  micro_operation sw on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] data;
+wire [31:0] base;
+wire [31:0] offset;
+wire [31:0] addr;
+    stage 2 {
+data   = GPR.read0(rd);
+base   = GPR.read1(rs0);
+offset = EXT0.sign(const);
+    };
+    stage 3 {
+wire [3:0] flag;
+
+<addr, flag> = ALU0.add(base,offset);
+    };
+    stage 4 {
+wire addr_err;
+
+addr_err = DMAU.store(addr,data);
+    };
+    stage 5 {
+    };
+  };
+  micro_operation beqz on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] offset;
+wire [31:0] source0;
+    stage 2 {
+source0           = GPR.read0(rs0);
+offset              = EXT0.sign(const);
+    };
+    stage 3 {
+wire           cond;
+wire [31:0] target;
+wire [3:0]   flag;
+
+cond    = source0 == "00000000000000000000000000000000";
+<target,flag>   = ALU0.add(current_pc, offset);
+null      = [cond] PC.write(target);
+    };
+    stage 4 {
+    };
+    stage 5 {
+    };
+  };
+  micro_operation bnez on ResGroup {
+wire [31:0] current_pc;
+wire [31:0] offset;
+wire [31:0] source0;
+    stage 2 {
+source0           = GPR.read0(rs0);
+offset              = EXT0.sign(const);
+    };
+    stage 3 {
+wire           cond;
+wire [31:0] target;
+wire [3:0]   flag;
+
+cond    = source0 != "00000000000000000000000000000000";
+<target,flag>   = ALU0.add(current_pc, offset);
+null      = [cond] PC.write(target);
+    };
+    stage 4 {
+    };
+    stage 5 {
+    };
+  };
+  micro_operation j on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  offset;
+    stage 2 {
+wire [1:0]  zero2;
+wire [27:0]  ext_const;
+wire [31:0]  temp_offset;
+wire [1:0] first;
+wire [29:0] second;
+
+zero2 = "00";
+ext_const = <const, zero2>;
+temp_offset = EXT1.sign(ext_const);
+first = temp_offset[31:30];
+second = temp_offset [31:2];
+
+offset = <first, second>;
+    };
+    stage 3 {
+wire [31:0]  target;
+wire [3:0]  flag;
+
+<target, flag> = ALU0.add(current_pc, offset);
+null = PC.write(target);
+    };
+    stage 4 {
+    };
+    stage 5 {
+    };
+  };
+  micro_operation jal on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  link;
+wire [31:0]  offset;
+    stage 2 {
+wire [1:0]  zero2;
+wire [27:0]  ext_const;
+wire [31:0]  temp_offset;
+wire [1:0] first;
+wire [29:0] second;
+
+zero2 = "00";
+ext_const = <const, zero2>;
+temp_offset = EXT1.sign(ext_const);
+first = temp_offset[31:30];
+second = temp_offset [31:2];
+
+offset = <first, second>;
+
+
+link = PC.read();
+    };
+    stage 3 {
+wire [31:0]  target;
+wire [3:0]  flag;
+
+<target, flag> = ALU0.add(current_pc, offset);
+null = PC.write(target);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [4:0]  reg_num;
+
+reg_num = "11111";
+null = GPR.write0(reg_num, link);
+    };
+  };
+  micro_operation jr on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  target;
+    stage 2 {
+target = GPR.read0(rs0);
+    };
+    stage 3 {
+null = PC.write(target);
+    };
+    stage 4 {
+    };
+    stage 5 {
+    };
+  };
+  micro_operation jalr on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  target;
+wire [31:0]  link;
+    stage 2 {
+target = GPR.read0(rs0);
+
+
+link = PC.read();
+    };
+    stage 3 {
+null = PC.write(target);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [4:0]  reg_num;
+
+reg_num = "11111";
+null = GPR.write0(reg_num, link);
+    };
+  };
+  micro_operation MOD on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+wire [31:0]  div_result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire div_flag;
+
+<div_result, result, div_flag> = DIV0.div(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation modu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [31:0]  result;
+wire [31:0]  div_result;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+wire div_flag;
+
+<div_result, result, div_flag> = DIV0.divu(source0, source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+null = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sltu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmpu(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [2:0]   tmp_flag;
+wire           cond1;
+wire           cond2;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag = flag[2:0];
+cond1 = tmp_flag == "010";
+cond2 = flag         == "1001";
+cond   = cond1 | cond2;
+result = <zero31, cond>;
+null  = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sgtu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmpu(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [2:0]   tmp_flag;
+wire           cond1;
+wire           cond2;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag = flag[2:0];
+cond1 = tmp_flag == "000";
+cond2 = flag         == "0011";
+cond   = cond1 | cond2;
+result = <zero31, cond>;
+null  = GPR.write0(rd, result);
+    };
+  };
+  micro_operation sleu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmpu(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire [2:0]   tmp_flag;
+wire           cond1;
+wire           cond2;
+wire           cond3;
+wire           cond4;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag = flag[2:0];
+cond1 = tmp_flag == "010";
+cond2 = flag         == "1001";
+cond3 = flag         == "1100";
+cond4 = cond1 | cond2;
+cond   = cond3 | cond4;
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+  micro_operation sgeu on ResGroup {
+wire [31:0] current_pc;
+wire [31:0]  source0;
+wire [31:0]  source1;
+wire [3:0] flag;
+    stage 2 {
+source0 = GPR.read0(rs0);
+source1 = GPR.read1(rs1);
+    };
+    stage 3 {
+flag = ALU0.cmpu(source0,source1);
+    };
+    stage 4 {
+    };
+    stage 5 {
+wire           cond1;
+wire           cond2;
+wire           cond3;
+wire           cond4;
+wire           cond;
+wire [30:0] zero31;
+wire [31:0] result;
+wire [2:0]   tmp_flag1;
+wire           tmp_flag2;
+wire [1:0]   tmp_flag3;
+wire [2:0]   tmp_flag4;
+
+zero31 = "0000000000000000000000000000000";
+
+tmp_flag1 = flag[2:0];
+tmp_flag2 = flag[3];
+tmp_flag3 = flag[1:0];
+tmp_flag4 = <tmp_flag2,tmp_flag3>;
+cond1 = tmp_flag1 == "000";
+cond2 = tmp_flag4 == "100";
+cond3 = flag           == "0011";
+cond4 = cond1 | cond2;
+cond   = cond3 | cond4;
+result = <zero31, cond>;
+null    = GPR.write0(rd,result);
+    };
+  };
+}

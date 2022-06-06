@@ -1,0 +1,94 @@
+	.section	.text
+	.addressing	Word
+	xor	r30, r30, r30
+	xor	r29, r29, r29
+	xor	r28, r28, r28
+	nop
+	lhi	r30, $15
+	lhi	r29, $15
+	nop
+	nop
+	ori	r30, r30, $65532
+	ori	r29, r29, $65532
+	nop
+	nop
+	nop
+	sw	-4(r29), r30
+	sw	-8(r29), r31
+	addi	r29, r30, $-8
+	jal	main	
+	nop
+	sw	0(r29), r1
+	jal	exit	
+	nop
+main:
+L1:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 9 NOPs removed by reduceNOPs.sh
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$2	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$5	
+
+
+
+	; SINAS OUTPUT
+	max	r7, r1, r2
+	; /SINAS OUTPUT
+
+	add	r1,r1,r2	
+	nop	;;9,13
+	nop	;;9,13
+	nop	;;9,13
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r28,r1,r7	
+	nop	;;13,17
+	nop	;;13,17
+	nop	;;13,17
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L2:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+exit:
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data

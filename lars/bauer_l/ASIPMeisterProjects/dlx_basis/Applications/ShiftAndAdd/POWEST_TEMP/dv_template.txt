@@ -1,0 +1,10 @@
+Link_Library = Target_Library = {/usr/synopsys/libraries/TSMCHOME/digital/Front_End/timing_power/tcb015ghd_221a/tcb015ghdtc.db}
+
+Analyze -library WORK -format vhdl {REPLACE}
+
+elaborate CPU -architecture RTL -library DEFAULT
+uniquify
+compile
+write -hierarchy -format vhdl -output ./cpu_vhd.vhd
+write -hierarchy
+exit

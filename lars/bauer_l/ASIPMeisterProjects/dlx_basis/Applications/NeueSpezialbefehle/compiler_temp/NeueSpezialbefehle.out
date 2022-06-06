@@ -1,0 +1,370 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.section	.data
+2				.section	.text
+3				.addressing	Word
+4				.section	.text
+5				.addressing	Word
+6				;.addressing	Word
+7			
+8	0000	03def026		xor	%GPR30, %GPR30, %GPR30
+9	0001	03bde826		xor	%GPR29, %GPR29, %GPR29
+10	0002	039ce026		xor	%GPR28, %GPR28, %GPR28
+11	0003	00000000		nop
+12	0004	3c1e000f		lhi	%GPR30, $(0xFFFFC/0x10000)
+13	0005	3c1d000f		lhi	%GPR29, $(0xFFFFC/0x10000)
+14	0006	00000000		nop
+15	0007	00000000		nop
+16	0008	37defffc		ori	%GPR30, %GPR30, $(0xFFFFC%0x10000)
+17	0009	37bdfffc		ori	%GPR29, %GPR29, $(0xFFFFC%0x10000)
+18	000a	00000000		nop
+19	000b	00000000		nop
+20	000c	00000000		nop
+21	000d	afbefffc		sw	-4(%GPR29), %GPR30
+22	000e	afbffff8		sw	-8(%GPR29), %GPR31
+23	000f	23ddfff8		addi	%GPR29, %GPR30, $-8
+24	0010	00000000		nop
+25	0011	00000000		nop
+26	0012	00000000		nop
+27	0013	0c00000a		jal	main	
+28	0014	00000000		nop
+29	0015	00000000		nop
+30	0016	00000000		nop
+31	0017	00000000		nop
+32	0018	00000000		nop
+33	0019	afa10000		sw	0(%GPR29), %GPR1
+34	001a	0c0000ec		jal	exit
+35	001b	00000000		nop
+36	001c	00000000		nop
+37			
+38				;.addressing	Word
+39			main:
+40			L_TestApp_1:
+41	001d	00000000		nop
+42	001e	00000000		nop
+43	001f	00000000		nop
+44				; Automatically 1 NOPs removed by reduceNOPs.sh
+45	0020	afbefffc		sw	-4(%GPR29),%GPR30	
+46	0021	afbf0000		sw	0(%GPR29),%GPR31	
+47	0022	2fbe0004		subui	%GPR30,%GPR29,$4	
+48	0023	2bbd0018		subi	%GPR29,%GPR29,$24	
+49	0024	00000000		nop
+50	0025	00000000		nop
+51	0026	00000000		nop
+52				; Automatically 9 NOPs removed by reduceNOPs.sh
+53	0027	3c010000		lhi	%GPR1,$0	
+54	0028	00000000		nop
+55	0029	00000000		nop
+56	002a	00000000		nop
+57				; Automatically 1 NOPs removed by reduceNOPs.sh
+58	002b	34210000		ori	%GPR1,%GPR1,$0	
+59	002c	3c030000		lhi	%GPR3,$0	
+60	002d	00000000		nop
+61	002e	00000000		nop
+62	002f	00000000		nop
+63				; Automatically 1 NOPs removed by reduceNOPs.sh
+64	0030	34630000		ori	%GPR3,%GPR3,$0	
+65	0031	3c040000		lhi	%GPR4,$0	
+66	0032	00000000		nop
+67	0033	00000000		nop
+68	0034	00000000		nop
+69				; Automatically 1 NOPs removed by reduceNOPs.sh
+70	0035	34840000		ori	%GPR4,%GPR4,$0	
+71	0036	00000000		nop	;;8,10
+72	0037	00000000		nop	;;8,10
+73	0038	afc1fffc		sw	-4(%GPR30),%GPR1	
+74	0039	3c010000		lhi	%GPR1,$0	
+75	003a	00000000		nop
+76	003b	00000000		nop
+77	003c	00000000		nop
+78				; Automatically 1 NOPs removed by reduceNOPs.sh
+79	003d	34210000		ori	%GPR1,%GPR1,$0	
+80	003e	00000000		nop	;;11,13
+81	003f	00000000		nop	;;11,13
+82	0040	3c020000		lhi	%GPR2,$0	
+83	0041	00000000		nop
+84	0042	00000000		nop
+85	0043	00000000		nop
+86				; Automatically 1 NOPs removed by reduceNOPs.sh
+87	0044	34420000		ori	%GPR2,%GPR2,$0	
+88	0045	afc3fff8		sw	-8(%GPR30),%GPR3	
+89	0046	00000000		nop	;;14,18
+90	0047	00000000		nop	;;14,18
+91	0048	00000000		nop	;;14,18
+92				; Automatically 1 NOPs removed by reduceNOPs.sh
+93	0049	afc4fff4		sw	-12(%GPR30),%GPR4	
+94	004a	00000000		nop	;;18,22
+95	004b	00000000		nop	;;18,22
+96	004c	00000000		nop	;;18,22
+97				; Automatically 1 NOPs removed by reduceNOPs.sh
+98	004d	afc1fff0		sw	-16(%GPR30),%GPR1	
+99	004e	f4000064		forecast	$0, $100 	
+100	004f	f4070064		forecast	$7, $100 	
+101	0050	f4040064		forecast	$4, $100 	
+102	0051	f4050064		forecast	$5, $100 	
+103	0052	f4030064		forecast	$3, $100 	
+104	0053	f4080064		forecast	$8, $100 	
+105	0054	f4020064		forecast	$2, $100 	
+106	0055	f4010064		forecast	$1, $100 	
+107	0056	f4060064		forecast	$6, $100 	
+108	0057	00000000		nop	;;31,36
+109	0058	00000000		nop	;;31,36
+110	0059	00000000		nop	;;31,36
+111				; Automatically 2 NOPs removed by reduceNOPs.sh
+112	005a	3c010000		lhi	%GPR1,$0	
+113	005b	00000000		nop
+114	005c	00000000		nop
+115	005d	00000000		nop
+116				; Automatically 1 NOPs removed by reduceNOPs.sh
+117	005e	34210000		ori	%GPR1,%GPR1,$0	
+118	005f	00000000		nop
+119	0060	00000000		nop
+120	0061	00000000		nop
+121			L_TestApp_2:
+122	0062	2bc30004		subi	%GPR3,%GPR30,$4	
+123	0063	2bc40008		subi	%GPR4,%GPR30,$8	
+124	0064	8fc5fff4		lw	%GPR5,-12(%GPR30)	
+125	0065	2bc60010		subi	%GPR6,%GPR30,$16	
+126			
+127			
+128				;; SINAS: SAD_16()
+129	0066	00000000		nop
+130	0067	00000000		nop
+131	0068	00000000		nop
+132	0069	04642986		SAD16	%GPR6, %GPR3, %GPR4, %GPR5
+133	006a	00000000		nop
+134	006b	00000000		nop
+135	006c	00000000		nop
+136			
+137	006d	2bc50004		subi	%GPR5,%GPR30,$4	
+138	006e	8fc4fff8		lw	%GPR4,-8(%GPR30)	
+139	006f	2bc3000c		subi	%GPR3,%GPR30,$12	
+140			
+141			
+142				;; SINAS: SATD_4x4()
+143	0070	00000000		nop
+144	0071	00000000		nop
+145	0072	00000000		nop
+146	0073	04a418c3		satd4x4	%GPR3, %GPR5, %GPR4, %GPR3
+147	0074	00000000		nop
+148	0075	00000000		nop
+149	0076	00000000		nop
+150			
+151	0077	00431020		add	%GPR2,%GPR2,%GPR3	
+152	0078	2bc70004		subi	%GPR7,%GPR30,$4	
+153	0079	8fc6fff8		lw	%GPR6,-8(%GPR30)	
+154	007a	2bc5000c		subi	%GPR5,%GPR30,$12	
+155	007b	2bc40010		subi	%GPR4,%GPR30,$16	
+156			
+157			
+158				;; SINAS: DCT_4x4()
+159	007c	00000000		nop
+160	007d	00000000		nop
+161	007e	00000000		nop
+162	007f	04e62904		dct4x4	%GPR4, %GPR7, %GPR6, %GPR5
+163	0080	00000000		nop
+164	0081	00000000		nop
+165	0082	00000000		nop
+166			
+167	0083	2bc40004		subi	%GPR4,%GPR30,$4	
+168	0084	2bc30008		subi	%GPR3,%GPR30,$8	
+169			
+170			
+171				;; SINAS: HT_4x4_IntraLuma()
+172	0085	00000000		nop
+173	0086	00000000		nop
+174	0087	00000000		nop
+175	0088	04838001		ht4x4il	%GPR4, %GPR3
+176	0089	00000000		nop
+177	008a	00000000		nop
+178	008b	00000000		nop
+179			
+180	008c	8fc4fffc		lw	%GPR4,-4(%GPR30)	
+181	008d	8fc3fff8		lw	%GPR3,-8(%GPR30)	
+182			
+183			
+184				;; SINAS: HT_2x2_Chroma()
+185	008e	00000000		nop
+186	008f	00000000		nop
+187	0090	00000000		nop
+188	0091	048418c5		ht2x2cr	%GPR3, %GPR4, %GPR4, %GPR3
+189	0092	00000000		nop
+190	0093	00000000		nop
+191	0094	00000000		nop
+192			
+193	0095	2bc70004		subi	%GPR7,%GPR30,$4	
+194	0096	8fc6fff8		lw	%GPR6,-8(%GPR30)	
+195	0097	2bc5000c		subi	%GPR5,%GPR30,$12	
+196	0098	04641038		mac	%GPR2,%GPR3,%GPR4	
+197			
+198			
+199				;; SINAS: LoopFilter()
+200	0099	00000000		nop
+201	009a	00000000		nop
+202	009b	00000000		nop
+203	009c	00e62fe0		LoopFilter	%GPR5, %GPR7, %GPR6
+204	009d	00000000		nop
+205	009e	00000000		nop
+206	009f	00000000		nop
+207			
+208	00a0	2bc60004		subi	%GPR6,%GPR30,$4	
+209	00a1	8fc5fff8		lw	%GPR5,-8(%GPR30)	
+210	00a2	2bc4000c		subi	%GPR4,%GPR30,$12	
+211	00a3	2bc30010		subi	%GPR3,%GPR30,$16	
+212			
+213			
+214				;; SINAS: IPred_HDC_16x16()
+215	00a4	00000000		nop
+216	00a5	00000000		nop
+217	00a6	00000000		nop
+218	00a7	048628c2		IPred_HDC16x16	%GPR3, %GPR4, %GPR6, %GPR5
+219	00a8	00000000		nop
+220	00a9	00000000		nop
+221	00aa	00000000		nop
+222			
+223	00ab	2bc50004		subi	%GPR5,%GPR30,$4	
+224	00ac	8fc4fff8		lw	%GPR4,-8(%GPR30)	
+225	00ad	2bc3000c		subi	%GPR3,%GPR30,$12	
+226			
+227			
+228				;; SINAS: IPred_VDC_16x16()
+229	00ae	00000000		nop
+230	00af	00000000		nop
+231	00b0	00000000		nop
+232	00b1	00a41839		IPred_VDC16x16	%GPR3, %GPR5, %GPR4
+233	00b2	00000000		nop
+234	00b3	00000000		nop
+235	00b4	00000000		nop
+236			
+237	00b5	2bc50004		subi	%GPR5,%GPR30,$4	
+238	00b6	8fc4fff8		lw	%GPR4,-8(%GPR30)	
+239	00b7	2bc3000c		subi	%GPR3,%GPR30,$12	
+240			
+241			
+242				;; SINAS: MC_Hz_4()
+243	00b8	00000000		nop
+244	00b9	00000000		nop
+245	00ba	00000000		nop
+246	00bb	00a4183f		MC_Hz4	%GPR3, %GPR5, %GPR4
+247	00bc	00000000		nop
+248	00bd	00000000		nop
+249	00be	00000000		nop
+250			
+251	00bf	00000000		nop	;;38,40
+252	00c0	00000000		nop	;;38,40
+253	00c1	20210001		addi	%GPR1,%GPR1,$1	
+254	00c2	00000000		nop	;;40,43
+255	00c3	00000000		nop	;;40,43
+256	00c4	00000000		nop	;;40,43
+257	00c5	3c030000		lhi	%GPR3,$0	
+258	00c6	00000000		nop
+259	00c7	00000000		nop
+260	00c8	00000000		nop
+261				; Automatically 1 NOPs removed by reduceNOPs.sh
+262	00c9	34630064		ori	%GPR3,%GPR3,$100	
+263	00ca	00000000		nop	;;43,47
+264	00cb	00000000		nop	;;43,47
+265	00cc	00000000		nop	;;43,47
+266				; Automatically 1 NOPs removed by reduceNOPs.sh
+267	00cd	0023d82a		slt	%GPR27,%GPR1,%GPR3	
+268	00ce	00000000		nop	; Automatically added by findDataDependency.sh
+269	00cf	00000000		nop	; Automatically added by findDataDependency.sh
+270	00d0	00000000		nop	; Automatically added by findDataDependency.sh
+271	00d1	1760ff91		bnez	%GPR27,L_TestApp_2	
+272	00d2	00000000		nop
+273	00d3	00000000		nop
+274	00d4	00000000		nop
+275				; Automatically 1 NOPs removed by reduceNOPs.sh
+276	00d5	08000004		j	L_TestApp_3	
+277	00d6	00000000		nop
+278	00d7	00000000		nop
+279	00d8	00000000		nop
+280				; Automatically 1 NOPs removed by reduceNOPs.sh
+281			L_TestApp_3:
+282	00d9	f4000000		forecast	$0, $0 	
+283	00da	f4070000		forecast	$7, $0 	
+284	00db	f4040000		forecast	$4, $0 	
+285	00dc	f4050000		forecast	$5, $0 	
+286	00dd	f4030000		forecast	$3, $0 	
+287	00de	f4080000		forecast	$8, $0 	
+288	00df	f4020000		forecast	$2, $0 	
+289	00e0	f4010000		forecast	$1, $0 	
+290	00e1	f4060000		forecast	$6, $0 	
+291	00e2	8fc1fff8		lw	%GPR1,-8(%GPR30)	
+292	00e3	8fc3fffc		lw	%GPR3,-4(%GPR30)	
+293	00e4	8fc4fff4		lw	%GPR4,-12(%GPR30)	
+294	00e5	0040e020		add	%GPR28,%GPR2,%GPR0	
+295	00e6	8fc5fff0		lw	%GPR5,-16(%GPR30)	
+296	00e7	00610818		mult	%GPR1,%GPR3,%GPR1	
+297	00e8	00000000		nop	;;14,18
+298	00e9	00000000		nop	;;14,18
+299	00ea	00000000		nop	;;14,18
+300				; Automatically 1 NOPs removed by reduceNOPs.sh
+301	00eb	00240818		mult	%GPR1,%GPR1,%GPR4	
+302	00ec	00000000		nop	;;18,22
+303	00ed	00000000		nop	;;18,22
+304	00ee	00000000		nop	;;18,22
+305				; Automatically 1 NOPs removed by reduceNOPs.sh
+306	00ef	0425e038		mac	%GPR28,%GPR1,%GPR5	
+307	00f0	00000000		nop	;;22,26
+308	00f1	00000000		nop	;;22,26
+309	00f2	00000000		nop	;;22,26
+310				; Automatically 1 NOPs removed by reduceNOPs.sh
+311	00f3	08000004		j	L_TestApp_4	
+312	00f4	00000000		nop
+313	00f5	00000000		nop
+314	00f6	00000000		nop
+315				; Automatically 1 NOPs removed by reduceNOPs.sh
+316			L_TestApp_4:
+317	00f7	00000000		nop
+318	00f8	00000000		nop
+319	00f9	00000000		nop
+320				; Automatically 1 NOPs removed by reduceNOPs.sh
+321	00fa	8fdf0004		lw	%GPR31,4(%GPR30)	
+322	00fb	27dd0004		addui	%GPR29,%GPR30,$4	
+323	00fc	8fde0000		lw	%GPR30,0(%GPR30)	
+324	00fd	00000000		nop
+325	00fe	00000000		nop
+326	00ff	00000000		nop
+327	0100	00000000		nop
+328	0101	03e00008		jr	%GPR31	
+329	0102	00000000		nop
+330	0103	00000000		nop
+331	0104	00000000		nop
+332	0105	00000000		nop
+333			exit:
+334	0106	00000000		nop
+335	0107	00000000		nop
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+L_TestApp_1	.text	001d	Label	1d	40 
+L_TestApp_2	.text	0062	Label	62	121 
+L_TestApp_3	.text	00d9	Label	d9	281 
+L_TestApp_4	.text	00f7	Label	f7	316 
+exit	.text	0106	Label	106	333 
+main	.text	001d	Label	1d	39 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	108 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		0 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

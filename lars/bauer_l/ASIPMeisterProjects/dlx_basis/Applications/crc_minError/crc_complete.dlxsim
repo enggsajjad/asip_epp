@@ -1,0 +1,1235 @@
+	.section	.text
+	.addressing	Word
+_start:
+	xor	r30, r30, r30
+	xor	r29, r29, r29
+	xor	r28, r28, r28
+	nop
+	addui	r30, r30, $3
+	addui	r29, r29, $3
+	nop
+	nop
+	slli	r30, r30, $12
+	slli	r29, r29, $12
+	nop
+	nop
+	nop
+	sw	-4(r29), r30
+	sw	-8(r29), r31
+	addi	r29, r30, $-8
+	jal	main	
+	nop
+	sw	0(r29), r1
+	jal	exit	
+	nop
+icrc1:
+L4:
+	nop
+	nop
+	nop
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	slli	r3,r2,$8	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$8	
+	nop
+	nop
+	nop
+	xor	r28,r3,r1	
+	nop
+	nop
+	nop
+L5:
+	andi	r1,r28,$32768	
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$0	
+	nop
+	nop
+	nop
+	sne	r27,r1,r3	
+	nop
+	nop
+	nop
+	bnez	r27,L6	
+	nop
+	nop
+	nop
+	j	L14	
+	nop
+	nop
+	nop
+L6:
+	nop
+	nop
+	nop
+	slli	r1,r28,$1	
+	nop
+	nop
+	nop
+	xori	r1,r1,$4129	
+	nop
+	nop
+	nop
+L7:
+	andi	r3,r1,$32768	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	nop
+	nop
+	nop
+	sne	r27,r3,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L8	
+	nop
+	nop
+	nop
+	j	L15	
+	nop
+	nop
+	nop
+L8:
+	nop
+	nop
+	nop
+	slli	r1,r1,$1	
+	nop
+	nop
+	nop
+	xori	r1,r1,$4129	
+	nop
+	nop
+	nop
+L9:
+	andi	r3,r1,$32768	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	nop
+	nop
+	nop
+	sne	r27,r3,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L10	
+	nop
+	nop
+	nop
+	j	L16	
+	nop
+	nop
+	nop
+L10:
+	nop
+	nop
+	nop
+	slli	r1,r1,$1	
+	nop
+	nop
+	nop
+	xori	r1,r1,$4129	
+	nop
+	nop
+	nop
+L11:
+	andi	r3,r1,$32768	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	nop
+	nop
+	nop
+	sne	r27,r3,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L12	
+	nop
+	nop
+	nop
+	j	L17	
+	nop
+	nop
+	nop
+L12:
+	nop
+	nop
+	nop
+	slli	r1,r1,$1	
+	nop
+	nop
+	nop
+	xori	r28,r1,$4129	
+	nop
+	nop
+	nop
+L13:
+	addi	r2,r2,$-4	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sgt	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L5	
+	nop
+	nop
+	nop
+	j	L18	
+	nop
+	nop
+	nop
+L14:
+	nop
+	nop
+	nop
+	slli	r1,r28,$1	
+	j	L7	
+	nop
+	nop
+	nop
+L15:
+	nop
+	nop
+	nop
+	slli	r1,r1,$1	
+	j	L9	
+	nop
+	nop
+	nop
+L16:
+	nop
+	nop
+	nop
+	slli	r1,r1,$1	
+	j	L11	
+	nop
+	nop
+	nop
+L17:
+	nop
+	nop
+	nop
+	slli	r28,r1,$1	
+	j	L13	
+	nop
+	nop
+	nop
+L18:
+	j	L19	
+	nop
+	nop
+	nop
+L19:
+	nop
+	nop
+	nop
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+icrc:
+L20:
+	nop
+	nop
+	nop
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	add	r5,r1,r0	
+	nop
+	nop
+	nop
+	lhi	r6,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r6,r6,$( L1	%0x10000)
+	nop
+	nop
+	nop
+	lw	r1,0(r6)	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$0	
+	nop
+	nop
+	nop
+	seq	r27,r1,r7	
+	nop
+	nop
+	nop
+	bnez	r27,L21	
+	nop
+	nop
+	nop
+	j	L24	
+	nop
+	nop
+	nop
+L21:
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$1	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sw	0(r6),r7	
+	j	L23	
+	nop
+	nop
+	nop
+L22:
+	add	r8,r1,r0	
+	lhi	r9,$( _icrctb	/0x10000)
+	nop
+	nop
+	nop
+	ori	r9,r9,$( _icrctb	%0x10000)
+	lhi	r7,$( L3	/0x10000)
+	nop
+	nop
+	nop
+	ori	r7,r7,$( L3	%0x10000)
+	nop
+	nop
+	nop
+	andi	r10,r1,$15	
+	add	r11,r1,r0	
+	lhi	r12,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r12,r12,$( L2	%0x10000)
+	srli	r13,r1,$4	
+	nop
+	nop
+	nop
+	addi	r1,r1,$1	
+	nop
+	nop
+	nop
+	add	r10,r7,r10	
+	nop
+	nop
+	slli	r8,r8,$1	
+	add	r7,r7,r13	
+	nop
+	nop
+	nop
+	add	r8,r9,r8	
+	nop
+	nop
+	nop
+	sh	0(r8),r6	
+	add	r9,r12,r11	
+	nop
+	nop
+	nop
+	lb	r6,0(r10)	
+	lb	r7,0(r7)	
+	nop
+	nop
+	nop
+	slli	r6,r6,$4	
+	nop
+	nop
+	nop
+	or	r6,r6,r7	
+	nop
+	nop
+	nop
+	sb	0(r9),r6	
+	nop
+	nop
+	nop
+L23:
+	slei	r27,r1,$255	
+	nop
+	nop
+	nop
+	bnez	r1,L38	
+	nop
+	nop
+	nop
+	j	L24	
+	nop
+	nop
+	nop
+L24:
+	sgei	r27,r3,$0	
+	nop
+	nop
+	nop
+	bnez	r3,L25	
+	nop
+	nop
+	nop
+	j	L26	
+	nop
+	nop
+	nop
+L25:
+	add	r1,r3,r0	
+	nop
+	nop
+	nop
+	slli	r1,r1,$8	
+	nop
+	nop
+	nop
+	or	r5,r1,r3	
+	j	L28	
+	nop
+	nop
+	nop
+L26:
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	slt	r27,r4,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L27	
+	nop
+	nop
+	nop
+	j	L28	
+	nop
+	nop
+	nop
+L27:
+	andi	r3,r5,$255	
+	lhi	r1,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( L2	%0x10000)
+	nop
+	nop
+	nop
+	srli	r5,r5,$8	
+	nop
+	nop
+	nop
+	add	r3,r1,r3	
+	nop
+	nop
+	nop
+	lb	r3,0(r3)	
+	add	r1,r1,r5	
+	nop
+	nop
+	nop
+	lb	r1,0(r1)	
+	nop
+	nop
+	nop
+	slli	r3,r3,$8	
+	nop
+	nop
+	nop
+	or	r5,r3,r1	
+	nop
+	nop
+	nop
+L28:
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$1	
+	j	L31	
+	nop
+	nop
+	nop
+L29:
+	lhi	r6,$( _lin	/0x10000)
+	nop
+	nop
+	nop
+	ori	r6,r6,$( _lin	%0x10000)
+	add	r3,r1,r0	
+	srli	r7,r5,$8	
+	nop
+	nop
+	nop
+	add	r3,r6,r3	
+	nop
+	nop
+	nop
+	lb	r3,0(r3)	
+	nop
+	nop
+	nop
+	xor	r3,r3,r7	
+	nop
+	nop
+	nop
+L30:
+	andi	r5,r5,$255	
+	nop
+	nop
+	nop
+	lhi	r6,$( _icrctb	/0x10000)
+	nop
+	nop
+	nop
+	ori	r6,r6,$( _icrctb	%0x10000)
+	addi	r1,r1,$1	
+	nop
+	nop
+	nop
+	slli	r3,r3,$1	
+	nop
+	nop
+	nop
+	add	r3,r6,r3	
+	nop
+	nop
+	nop
+	lh	r3,0(r3)	
+	nop
+	nop
+	nop
+	slli	r5,r5,$8	
+	nop
+	nop
+	nop
+	xor	r5,r5,r3	
+	nop
+	nop
+	nop
+L31:
+	sle	r27,r1,r2	
+	nop
+	nop
+	nop
+	bnez	r27,L32	
+	nop
+	nop
+	nop
+	j	L34	
+	nop
+	nop
+	nop
+L32:
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$0	
+	nop
+	nop
+	nop
+	slt	r27,r4,r3	
+	nop
+	nop
+	nop
+	bnez	r27,L33	
+	nop
+	nop
+	nop
+	j	L29	
+	nop
+	nop
+	nop
+L33:
+	lhi	r3,$( _lin	/0x10000)
+	nop
+	nop
+	nop
+	ori	r3,r3,$( _lin	%0x10000)
+	add	r6,r1,r0	
+	lhi	r7,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r7,r7,$( L2	%0x10000)
+	nop
+	nop
+	nop
+	srli	r8,r5,$8	
+	nop
+	nop
+	nop
+	add	r3,r3,r6	
+	nop
+	nop
+	nop
+	lb	r3,0(r3)	
+	nop
+	nop
+	nop
+	add	r3,r7,r3	
+	nop
+	nop
+	nop
+	lb	r3,0(r3)	
+	nop
+	nop
+	nop
+	xor	r3,r3,r8	
+	j	L30	
+	nop
+	nop
+	nop
+L34:
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sge	r27,r4,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L35	
+	nop
+	nop
+	nop
+	j	L36	
+	nop
+	nop
+	nop
+L35:
+	add	r28,r5,r0	
+	j	L37	
+	nop
+	nop
+	nop
+L36:
+	andi	r2,r5,$255	
+	lhi	r1,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( L2	%0x10000)
+	nop
+	nop
+	nop
+	srli	r3,r5,$8	
+	nop
+	nop
+	nop
+	add	r2,r1,r2	
+	nop
+	nop
+	nop
+	lb	r2,0(r2)	
+	add	r1,r1,r3	
+	nop
+	nop
+	nop
+	lb	r1,0(r1)	
+	nop
+	nop
+	nop
+	slli	r2,r2,$8	
+	nop
+	nop
+	nop
+	or	r28,r2,r1	
+	nop
+	nop
+	nop
+L37:
+	j	L52	
+	nop
+	nop
+	nop
+L38:
+	add	r6,r1,r0	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$8	
+	nop
+	nop
+	nop
+	slli	r6,r6,$8	
+	nop
+	nop
+	nop
+L39:
+	andi	r8,r6,$32768	
+	nop
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$0	
+	nop
+	nop
+	nop
+	sne	r27,r8,r9	
+	nop
+	nop
+	nop
+	bnez	r27,L40	
+	nop
+	nop
+	nop
+	j	L48	
+	nop
+	nop
+	nop
+L40:
+	nop
+	nop
+	nop
+	slli	r6,r6,$1	
+	nop
+	nop
+	nop
+	xori	r6,r6,$4129	
+	nop
+	nop
+	nop
+L41:
+	andi	r8,r6,$32768	
+	nop
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$0	
+	nop
+	nop
+	nop
+	sne	r27,r8,r9	
+	nop
+	nop
+	nop
+	bnez	r27,L42	
+	nop
+	nop
+	nop
+	j	L49	
+	nop
+	nop
+	nop
+L42:
+	nop
+	nop
+	nop
+	slli	r6,r6,$1	
+	nop
+	nop
+	nop
+	xori	r6,r6,$4129	
+	nop
+	nop
+	nop
+L43:
+	andi	r8,r6,$32768	
+	nop
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$0	
+	nop
+	nop
+	nop
+	sne	r27,r8,r9	
+	nop
+	nop
+	nop
+	bnez	r27,L44	
+	nop
+	nop
+	nop
+	j	L50	
+	nop
+	nop
+	nop
+L44:
+	nop
+	nop
+	nop
+	slli	r6,r6,$1	
+	nop
+	nop
+	nop
+	xori	r6,r6,$4129	
+	nop
+	nop
+	nop
+L45:
+	andi	r8,r6,$32768	
+	nop
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$0	
+	nop
+	nop
+	nop
+	sne	r27,r8,r9	
+	nop
+	nop
+	nop
+	bnez	r27,L46	
+	nop
+	nop
+	nop
+	j	L51	
+	nop
+	nop
+	nop
+L46:
+	nop
+	nop
+	nop
+	slli	r6,r6,$1	
+	nop
+	nop
+	nop
+	xori	r6,r6,$4129	
+	nop
+	nop
+	nop
+L47:
+	addi	r7,r7,$-4	
+	nop
+	nop
+	nop
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$0	
+	nop
+	nop
+	nop
+	sgt	r27,r7,r8	
+	nop
+	nop
+	nop
+	bnez	r27,L39	
+	nop
+	nop
+	nop
+	j	L22	
+	nop
+	nop
+	nop
+L48:
+	nop
+	nop
+	nop
+	slli	r6,r6,$1	
+	j	L41	
+	nop
+	nop
+	nop
+L49:
+	nop
+	nop
+	nop
+	slli	r6,r6,$1	
+	j	L43	
+	nop
+	nop
+	nop
+L50:
+	nop
+	nop
+	nop
+	slli	r6,r6,$1	
+	j	L45	
+	nop
+	nop
+	nop
+L51:
+	nop
+	nop
+	nop
+	slli	r6,r6,$1	
+	j	L47	
+	nop
+	nop
+	nop
+L52:
+	nop
+	nop
+	nop
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+main:
+L53:
+	nop
+	nop
+	nop
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$20	
+	nop
+	nop
+	nop
+	lhi	r5,$( _lin	/0x10000)
+	nop
+	nop
+	nop
+	ori	r5,r5,$( _lin	%0x10000)
+	nop
+	nop
+	lhi	r1,$( _i1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( _i1	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$41	
+	nop
+	nop
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$0	
+	sw	-4(r30),r1	
+	add	r5,r5,r7	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$1	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$0	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$40	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	sw	-8(r30),r5	
+	sb	0(r5),r6	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	icrc	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+	lw	r1,-4(r30)	
+	nop
+	nop
+	nop
+	sh	0(r1),r28	
+	nop
+	nop
+	nop
+	lh	r2,0(r1)	
+	nop
+	nop
+	nop
+	srli	r3,r2,$8	
+	add	r1,r2,r0	
+	andi	r5,r2,$255	
+	lhi	r2,$( _i2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r2,r2,$( _i2	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$1	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$1	
+	nop
+	nop
+	nop
+	sw	-12(r30),r2	
+	nop
+	lw	r2,-8(r30)	
+	nop
+	nop
+	nop
+	add	r7,r2,r0	
+	sb	0(r2),r3	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$0	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$42	
+	add	r6,r7,r6	
+	nop
+	nop
+	nop
+	sb	0(r6),r5	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	icrc	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+	lw	r1,-12(r30)	
+	nop
+	nop
+	nop
+	sh	0(r1),r28	
+	nop
+	nop
+	nop
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	ori	r28,r28,$0	
+	nop
+	nop
+	nop
+	j	L54	
+	nop
+	nop
+	nop
+L54:
+	nop
+	nop
+	nop
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+exit:
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data
+	;.global	_lin
+_lin:
+	.data.8	97
+	.data.8	115
+	.data.8	100
+	.data.8	102
+	.data.8	102
+	.data.8	101
+	.data.8	97
+	.data.8	103
+	.data.8	101
+	.data.8	119
+	.data.8	97
+	.data.8	72
+	.data.8	65
+	.data.8	70
+	.data.8	69
+	.data.8	70
+	.data.8	97
+	.data.8	101
+	.data.8	68
+	.data.8	115
+	.data.8	70
+	.data.8	69
+	.data.8	97
+	.data.8	119
+	.data.8	70
+	.data.8	100
+	.data.8	115
+	.data.8	70
+	.data.8	97
+	.data.8	101
+	.data.8	102
+	.data.8	97
+	.data.8	101
+	.data.8	101
+	.data.8	114
+	.data.8	100
+	.data.8	106
+	.data.8	103
+	.data.8	112
+	.space	1
+	.space	1
+	.space	1
+	;.global	_icrctb
+	.align	2
+_icrctb:
+	.space	512
+	.align	4
+L1:
+	.space	4
+L2:
+	.space	256
+L3:
+	.space	1
+	.data.8	8
+	.data.8	4
+	.data.8	12
+	.data.8	2
+	.data.8	10
+	.data.8	6
+	.data.8	14
+	.data.8	1
+	.data.8	9
+	.data.8	5
+	.data.8	13
+	.data.8	3
+	.data.8	11
+	.data.8	7
+	.data.8	15
+	;.global	_i1
+	.align	2
+_i1:
+	.space	2
+	;.global	_i2
+	.align	2
+_i2:
+	.space	2

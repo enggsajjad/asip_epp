@@ -1,0 +1,2123 @@
+Release 9.1.02i_PR10 Map JTRS.J32
+Xilinx Mapping Report File for Design 'dlx_toplevel'
+
+Design Information
+------------------
+Command Line   : map -ise
+/home/bauer_l/ASIPMeisterProjects/dlx_basis/ISE_basis_6000/ISE_basis_6000.ise
+-intstyle ise -p xc2v6000-ff1152-5 -cm area -pr b -k 4 -c 100 -tx off -o
+dlx_toplevel_map.ncd dlx_toplevel.ngd dlx_toplevel.pcf 
+Target Device  : xc2v6000
+Target Package : ff1152
+Target Speed   : -5
+Mapper Version : virtex2 -- $Revision: 1.36 $
+Mapped Date    : Thu Jun 25 20:02:47 2009
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:   42
+Logic Utilization:
+  Total Number Slice Registers:     4,651 out of  67,584    6%
+    Number used as Flip Flops:                 4,637
+    Number used as Latches:                       14
+  Number of 4 input LUTs:           9,630 out of  67,584   14%
+Logic Distribution:
+  Number of occupied Slices:        6,196 out of  33,792   18%
+  Number of Slices containing only related logic:   6,196 out of   6,196  100%
+  Number of Slices containing unrelated logic:          0 out of   6,196    0%
+        *See NOTES below for an explanation of the effects of unrelated logic
+Total Number of 4 input LUTs:         10,293 out of  67,584   15%
+  Number used as logic:             9,630
+  Number used as a route-thru:        455
+  Number used as Shift registers:     208
+
+  Number of bonded IOBs:              312 out of     824   37%
+    IOB Flip Flops:                   183
+  Number of Block RAMs:                82 out of     144   56%
+  Number of GCLKs:                      7 out of      16   43%
+  Number of DCMs:                       1 out of      12    8%
+  Number of BSCANs:                     1 out of       1  100%
+
+   Number of RPM macros:           12
+Total equivalent gate count for design:  5,504,276
+Additional JTAG gate count for IOBs:  14,976
+Peak Memory Usage:  309 MB
+Total REAL time to MAP completion:  22 secs 
+Total CPU time to MAP completion:   20 secs 
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Modular Design Summary
+Section 11 - Timing Report
+Section 12 - Configuration String Information
+Section 13 - Control Set Information
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:LIT:243 - Logical network control0<35> has no load.
+WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 355
+   more times for the following (max. 5 shown):
+   control0<34>,
+   control0<33>,
+   control0<32>,
+   control0<31>,
+   control0<30>
+   To see the details of these warning messages, please use the -detail switch.
+WARNING:MapLib:23 - Short on signal pca9564_ce detected.
+WARNING:MapLib:23 - Short on signal pca9564_ce detected.
+WARNING:MapLib:23 - Short on signal pca9564_ce detected.
+WARNING:MapLib:23 - Short on signal pca9564_ce detected.
+WARNING:MapLib:23 - Short on signal pca9564_ce detected.
+WARNING:MapLib:23 - Short on signal pca9564_ce detected.
+WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFGMUX
+   symbol "physical_group_clk_BUFGP/clk_BUFGP/BUFG" (output signal=clk_BUFGP)
+   has a mix of clock and non-clock loads. The non-clock loads are:
+   Pin D of i_ila/ila/i_dq/g_dw/1/u_dq
+WARNING:Pack:266 - The function generator
+   cpu_i/UF_ALU0/a0/u16_1/u1/Mxor_p<2>_Result1 failed to merge with F5
+   multiplexer cpu_i/UF_ALU0/a0/carry_1_or00004117_SW1.  There is a conflict for
+   the FXMUX.  The design will exhibit suboptimal timing.
+WARNING:PhysDesignRules:367 - The signal <dip<10>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<11>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<12>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<20>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<13>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<21>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<14>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<22>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<30>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<15>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<23>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<31>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<16>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<24>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<17>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<25>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<18>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<26>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<19>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<27>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<28>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<29>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<0>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<1>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<2>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<3>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<4>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<5>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<6>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<7>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<8>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <dip<9>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+
+Section 3 - Informational
+-------------------------
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:MapLib:863 - The following Virtex BUFG(s) is/are being retargeted to
+   Virtex2 BUFGMUX(s) with input tied to I0 and Select pin tied to constant 0:
+   BUFGP symbol "clk_BUFGP" (output signal=clk_BUFGP),
+   BUFG symbol "clock_ip_IBUFG_BUFG" (output signal=clock_ip_IBUFG),
+   BUFG symbol "cpu_i/uf_dmau_req_BUFG" (output signal=cpu_i/uf_dmau_req),
+   BUFG symbol "dataack_cpu_BUFG" (output signal=dataack_cpu),
+   BUFG symbol "i2c_core/bufg_clock" (output signal=i2c_core/clock_fb),
+   BUFG symbol "i2c_core/bufg_clock_ip" (output signal=i2c_core/clock_ip_half),
+   BUFG symbol "i_icon/icon/u_icon/i_yes_bscan/u_bs/i_bufg/u_bufg" (output
+   signal=control0<0>)
+
+Section 4 - Removed Logic Summary
+---------------------------------
+ 333 block(s) removed
+ 253 block(s) optimized away
+ 434 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mcy4" (MUX)
+removed.
+ The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/carrynet<3>" is
+loadless and has been removed.
+  Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mcy3" (MUX)
+removed.
+   The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/carrynet<2>" is
+loadless and has been removed.
+    Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mcy2" (MUX)
+removed.
+     The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/carrynet<1>" is
+loadless and has been removed.
+      Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mcy1" (MUX)
+removed.
+       The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/carrynet<0>" is
+loadless and has been removed.
+        Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mfirst0" (MUX)
+removed.
+         The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<0>"
+is loadless and has been removed.
+          Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00361" (ROM)
+removed.
+       The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<1>"
+is loadless and has been removed.
+        Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00371" (ROM)
+removed.
+     The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<2>"
+is loadless and has been removed.
+      Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00381" (ROM)
+removed.
+   The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<3>"
+is loadless and has been removed.
+    Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00391" (ROM)
+removed.
+ The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<4>"
+is loadless and has been removed.
+  Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00401" (ROM)
+removed.
+Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mcy4" (MUX)
+removed.
+ The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/carrynet<3>" is
+loadless and has been removed.
+  Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mcy3" (MUX)
+removed.
+   The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/carrynet<2>" is
+loadless and has been removed.
+    Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mcy2" (MUX)
+removed.
+     The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/carrynet<1>" is
+loadless and has been removed.
+      Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mcy1" (MUX)
+removed.
+       The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/carrynet<0>" is
+loadless and has been removed.
+        Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mfirst0" (MUX)
+removed.
+         The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<0>"
+is loadless and has been removed.
+          Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00361" (ROM)
+removed.
+       The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<1>"
+is loadless and has been removed.
+        Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00371" (ROM)
+removed.
+     The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<2>"
+is loadless and has been removed.
+      Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00381" (ROM)
+removed.
+   The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<3>"
+is loadless and has been removed.
+    Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00391" (ROM)
+removed.
+ The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<4>"
+is loadless and has been removed.
+  Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00401" (ROM)
+removed.
+Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mcy4" (MUX)
+removed.
+ The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/carrynet<3>" is
+loadless and has been removed.
+  Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mcy3" (MUX)
+removed.
+   The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/carrynet<2>" is
+loadless and has been removed.
+    Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mcy2" (MUX)
+removed.
+     The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/carrynet<1>" is
+loadless and has been removed.
+      Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mcy1" (MUX)
+removed.
+       The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/carrynet<0>" is
+loadless and has been removed.
+        Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mfirst0" (MUX)
+removed.
+         The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<0>"
+is loadless and has been removed.
+          Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00361" (ROM)
+removed.
+       The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<1>"
+is loadless and has been removed.
+        Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00371" (ROM)
+removed.
+     The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<2>"
+is loadless and has been removed.
+      Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00381" (ROM)
+removed.
+   The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<3>"
+is loadless and has been removed.
+    Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00391" (ROM)
+removed.
+ The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<4>"
+is loadless and has been removed.
+  Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00401" (ROM)
+removed.
+Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mcy4" (MUX)
+removed.
+ The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/carrynet<3>" is
+loadless and has been removed.
+  Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mcy3" (MUX)
+removed.
+   The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/carrynet<2>" is
+loadless and has been removed.
+    Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mcy2" (MUX)
+removed.
+     The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/carrynet<1>" is
+loadless and has been removed.
+      Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mcy1" (MUX)
+removed.
+       The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/carrynet<0>" is
+loadless and has been removed.
+        Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mfirst0" (MUX)
+removed.
+         The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<0>"
+is loadless and has been removed.
+          Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00361" (ROM)
+removed.
+       The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<1>"
+is loadless and has been removed.
+        Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00371" (ROM)
+removed.
+     The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<2>"
+is loadless and has been removed.
+      Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00381" (ROM)
+removed.
+   The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<3>"
+is loadless and has been removed.
+    Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00391" (ROM)
+removed.
+ The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<4>"
+is loadless and has been removed.
+  Loadless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00401" (ROM)
+removed.
+Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mcy4" (MUX)
+removed.
+ The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/carrynet<3>" is
+loadless and has been removed.
+  Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mcy3" (MUX)
+removed.
+   The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/carrynet<2>" is
+loadless and has been removed.
+    Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mcy2" (MUX)
+removed.
+     The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/carrynet<1>" is
+loadless and has been removed.
+      Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mcy1" (MUX)
+removed.
+       The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/carrynet<0>" is
+loadless and has been removed.
+        Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/mfirst0" (MUX)
+removed.
+         The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<0>"
+is loadless and has been removed.
+          Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00361" (ROM)
+removed.
+       The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<1>"
+is loadless and has been removed.
+        Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00371" (ROM)
+removed.
+     The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<2>"
+is loadless and has been removed.
+      Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00381" (ROM)
+removed.
+   The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<3>"
+is loadless and has been removed.
+    Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00391" (ROM)
+removed.
+ The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/v1<4>"
+is loadless and has been removed.
+  Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae1/_n00401" (ROM)
+removed.
+Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mcy4" (MUX)
+removed.
+ The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/carrynet<3>" is
+loadless and has been removed.
+  Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mcy3" (MUX)
+removed.
+   The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/carrynet<2>" is
+loadless and has been removed.
+    Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mcy2" (MUX)
+removed.
+     The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/carrynet<1>" is
+loadless and has been removed.
+      Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mcy1" (MUX)
+removed.
+       The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/carrynet<0>" is
+loadless and has been removed.
+        Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/mfirst0" (MUX)
+removed.
+         The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<0>"
+is loadless and has been removed.
+          Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00361" (ROM)
+removed.
+       The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<1>"
+is loadless and has been removed.
+        Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00371" (ROM)
+removed.
+     The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<2>"
+is loadless and has been removed.
+      Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00381" (ROM)
+removed.
+   The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<3>"
+is loadless and has been removed.
+    Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00391" (ROM)
+removed.
+ The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/v1<4>"
+is loadless and has been removed.
+  Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aelogic/cae2/_n00401" (ROM)
+removed.
+Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mcy4" (MUX)
+removed.
+ The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/carrynet<3>" is
+loadless and has been removed.
+  Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mcy3" (MUX)
+removed.
+   The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/carrynet<2>" is
+loadless and has been removed.
+    Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mcy2" (MUX)
+removed.
+     The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/carrynet<1>" is
+loadless and has been removed.
+      Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mcy1" (MUX)
+removed.
+       The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/carrynet<0>" is
+loadless and has been removed.
+        Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/mfirst0" (MUX)
+removed.
+         The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<0>"
+is loadless and has been removed.
+          Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00361" (ROM)
+removed.
+       The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<1>"
+is loadless and has been removed.
+        Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00371" (ROM)
+removed.
+     The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<2>"
+is loadless and has been removed.
+      Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00381" (ROM)
+removed.
+   The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<3>"
+is loadless and has been removed.
+    Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00391" (ROM)
+removed.
+ The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/v1<4>"
+is loadless and has been removed.
+  Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf1/_n00401" (ROM)
+removed.
+Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mcy4" (MUX)
+removed.
+ The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/carrynet<3>" is
+loadless and has been removed.
+  Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mcy3" (MUX)
+removed.
+   The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/carrynet<2>" is
+loadless and has been removed.
+    Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mcy2" (MUX)
+removed.
+     The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/carrynet<1>" is
+loadless and has been removed.
+      Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mcy1" (MUX)
+removed.
+       The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/carrynet<0>" is
+loadless and has been removed.
+        Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/mfirst0" (MUX)
+removed.
+         The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<0>"
+is loadless and has been removed.
+          Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00361" (ROM)
+removed.
+       The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<1>"
+is loadless and has been removed.
+        Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00371" (ROM)
+removed.
+     The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<2>"
+is loadless and has been removed.
+      Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00381" (ROM)
+removed.
+   The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<3>"
+is loadless and has been removed.
+    Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00391" (ROM)
+removed.
+ The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/v1<4>"
+is loadless and has been removed.
+  Loadless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/thrmod/aflogic/caf2/_n00401" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/1/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/10/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/11/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/12/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/13/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/14/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/2/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/3/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/4/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/5/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/6/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/7/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/8/u_lut" (ROM)
+removed.
+Loadless block "i_icon/icon/u_icon/u_cmd/u_core_id_sel/i4/fi/9/u_lut" (ROM)
+removed.
+Loadless block "i_ila/ila/i_yes_d/u_ila/u_stat/u_dsr" (ROM) removed.
+Loadless block "i_ila/ila/i_yes_d/u_ila/u_trig/u_tc/i_storage_qual/u_cap_b"
+(ROM) removed.
+The signal "control0<35>" is sourceless and has been removed.
+The signal "control0<34>" is sourceless and has been removed.
+The signal "control0<33>" is sourceless and has been removed.
+The signal "control0<32>" is sourceless and has been removed.
+The signal "control0<31>" is sourceless and has been removed.
+The signal "control0<30>" is sourceless and has been removed.
+The signal "control0<29>" is sourceless and has been removed.
+The signal "control0<28>" is sourceless and has been removed.
+The signal "control0<27>" is sourceless and has been removed.
+The signal "control0<26>" is sourceless and has been removed.
+The signal "control0<25>" is sourceless and has been removed.
+The signal "control0<24>" is sourceless and has been removed.
+The signal "control0<23>" is sourceless and has been removed.
+The signal "control0<22>" is sourceless and has been removed.
+The signal "control0<21>" is sourceless and has been removed.
+The signal "control0<19>" is sourceless and has been removed.
+The signal "control0<18>" is sourceless and has been removed.
+The signal "control0<17>" is sourceless and has been removed.
+The signal "control0<16>" is sourceless and has been removed.
+The signal "control0<15>" is sourceless and has been removed.
+The signal "control0<11>" is sourceless and has been removed.
+The signal "control0<10>" is sourceless and has been removed.
+The signal "control0<7>" is sourceless and has been removed.
+The signal "i_brom_im/dout<35>" is sourceless and has been removed.
+The signal "i_brom_im/dout<34>" is sourceless and has been removed.
+The signal "i_brom_im/dout<33>" is sourceless and has been removed.
+The signal "i_brom_im/dout<32>" is sourceless and has been removed.
+The signal "i_brom_im/N2585" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3733" (ROM) removed.
+  The signal "i_brom_im/N83587" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3739" (MUX) removed.
+    The signal "i_brom_im/N83552" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU3752" (MUX) removed.
+      The signal "i_brom_im/N83294" is sourceless and has been removed.
+       Sourceless block "i_brom_im/BU3780" (MUX) removed.
+        The signal "i_brom_im/N82712" is sourceless and has been removed.
+         Sourceless block "i_brom_im/BU3838" (MUX) removed.
+The signal "i_brom_im/N2584" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3846" (ROM) removed.
+  The signal "i_brom_im/N84603" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3852" (MUX) removed.
+    The signal "i_brom_im/N84568" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU3865" (MUX) removed.
+      The signal "i_brom_im/N84310" is sourceless and has been removed.
+       Sourceless block "i_brom_im/BU3893" (MUX) removed.
+        The signal "i_brom_im/N83728" is sourceless and has been removed.
+         Sourceless block "i_brom_im/BU3951" (MUX) removed.
+The signal "i_brom_im/N2583" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3959" (ROM) removed.
+  The signal "i_brom_im/N85619" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3965" (MUX) removed.
+    The signal "i_brom_im/N85584" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU3978" (MUX) removed.
+      The signal "i_brom_im/N85326" is sourceless and has been removed.
+       Sourceless block "i_brom_im/BU4006" (MUX) removed.
+        The signal "i_brom_im/N84744" is sourceless and has been removed.
+         Sourceless block "i_brom_im/BU4064" (MUX) removed.
+The signal "i_brom_im/N2582" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4072" (ROM) removed.
+  The signal "i_brom_im/N86635" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4078" (MUX) removed.
+    The signal "i_brom_im/N86600" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU4091" (MUX) removed.
+      The signal "i_brom_im/N86342" is sourceless and has been removed.
+       Sourceless block "i_brom_im/BU4119" (MUX) removed.
+        The signal "i_brom_im/N85760" is sourceless and has been removed.
+         Sourceless block "i_brom_im/BU4177" (MUX) removed.
+The signal "i_brom_im/N2549" is sourceless and has been removed.
+The signal "i_brom_im/N2548" is sourceless and has been removed.
+The signal "i_brom_im/N2547" is sourceless and has been removed.
+The signal "i_brom_im/N2546" is sourceless and has been removed.
+The signal "i_brom_im/N2513" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3737" (ROM) removed.
+  The signal "i_brom_im/N83588" is sourceless and has been removed.
+The signal "i_brom_im/N2512" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3850" (ROM) removed.
+  The signal "i_brom_im/N84604" is sourceless and has been removed.
+The signal "i_brom_im/N2511" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3963" (ROM) removed.
+  The signal "i_brom_im/N85620" is sourceless and has been removed.
+The signal "i_brom_im/N2510" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4076" (ROM) removed.
+  The signal "i_brom_im/N86636" is sourceless and has been removed.
+The signal "i_brom_im/N2477" is sourceless and has been removed.
+The signal "i_brom_im/N2476" is sourceless and has been removed.
+The signal "i_brom_im/N2475" is sourceless and has been removed.
+The signal "i_brom_im/N2474" is sourceless and has been removed.
+The signal "i_brom_im/N2441" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3744" (ROM) removed.
+  The signal "i_brom_im/N83659" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3750" (MUX) removed.
+    The signal "i_brom_im/N83554" is sourceless and has been removed.
+The signal "i_brom_im/N2440" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3857" (ROM) removed.
+  The signal "i_brom_im/N84675" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3863" (MUX) removed.
+    The signal "i_brom_im/N84570" is sourceless and has been removed.
+The signal "i_brom_im/N2439" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3970" (ROM) removed.
+  The signal "i_brom_im/N85691" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3976" (MUX) removed.
+    The signal "i_brom_im/N85586" is sourceless and has been removed.
+The signal "i_brom_im/N2438" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4083" (ROM) removed.
+  The signal "i_brom_im/N86707" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4089" (MUX) removed.
+    The signal "i_brom_im/N86602" is sourceless and has been removed.
+The signal "i_brom_im/N2405" is sourceless and has been removed.
+The signal "i_brom_im/N2404" is sourceless and has been removed.
+The signal "i_brom_im/N2403" is sourceless and has been removed.
+The signal "i_brom_im/N2402" is sourceless and has been removed.
+The signal "i_brom_im/N2369" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3748" (ROM) removed.
+  The signal "i_brom_im/N83660" is sourceless and has been removed.
+The signal "i_brom_im/N2368" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3861" (ROM) removed.
+  The signal "i_brom_im/N84676" is sourceless and has been removed.
+The signal "i_brom_im/N2367" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3974" (ROM) removed.
+  The signal "i_brom_im/N85692" is sourceless and has been removed.
+The signal "i_brom_im/N2366" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4087" (ROM) removed.
+  The signal "i_brom_im/N86708" is sourceless and has been removed.
+The signal "i_brom_im/N2333" is sourceless and has been removed.
+The signal "i_brom_im/N2332" is sourceless and has been removed.
+The signal "i_brom_im/N2331" is sourceless and has been removed.
+The signal "i_brom_im/N2330" is sourceless and has been removed.
+The signal "i_brom_im/N2297" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3758" (ROM) removed.
+  The signal "i_brom_im/N83408" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3764" (MUX) removed.
+    The signal "i_brom_im/N83373" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU3777" (MUX) removed.
+      The signal "i_brom_im/N83295" is sourceless and has been removed.
+The signal "i_brom_im/N2296" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3871" (ROM) removed.
+  The signal "i_brom_im/N84424" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3877" (MUX) removed.
+    The signal "i_brom_im/N84389" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU3890" (MUX) removed.
+      The signal "i_brom_im/N84311" is sourceless and has been removed.
+The signal "i_brom_im/N2295" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3984" (ROM) removed.
+  The signal "i_brom_im/N85440" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3990" (MUX) removed.
+    The signal "i_brom_im/N85405" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU4003" (MUX) removed.
+      The signal "i_brom_im/N85327" is sourceless and has been removed.
+The signal "i_brom_im/N2294" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4097" (ROM) removed.
+  The signal "i_brom_im/N86456" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4103" (MUX) removed.
+    The signal "i_brom_im/N86421" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU4116" (MUX) removed.
+      The signal "i_brom_im/N86343" is sourceless and has been removed.
+The signal "i_brom_im/N2261" is sourceless and has been removed.
+The signal "i_brom_im/N2260" is sourceless and has been removed.
+The signal "i_brom_im/N2259" is sourceless and has been removed.
+The signal "i_brom_im/N2258" is sourceless and has been removed.
+The signal "i_brom_im/N2225" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3762" (ROM) removed.
+  The signal "i_brom_im/N83409" is sourceless and has been removed.
+The signal "i_brom_im/N2224" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3875" (ROM) removed.
+  The signal "i_brom_im/N84425" is sourceless and has been removed.
+The signal "i_brom_im/N2223" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3988" (ROM) removed.
+  The signal "i_brom_im/N85441" is sourceless and has been removed.
+The signal "i_brom_im/N2222" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4101" (ROM) removed.
+  The signal "i_brom_im/N86457" is sourceless and has been removed.
+The signal "i_brom_im/N2189" is sourceless and has been removed.
+The signal "i_brom_im/N2188" is sourceless and has been removed.
+The signal "i_brom_im/N2187" is sourceless and has been removed.
+The signal "i_brom_im/N2186" is sourceless and has been removed.
+The signal "i_brom_im/N2153" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3769" (ROM) removed.
+  The signal "i_brom_im/N83480" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3775" (MUX) removed.
+    The signal "i_brom_im/N83375" is sourceless and has been removed.
+The signal "i_brom_im/N2152" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3882" (ROM) removed.
+  The signal "i_brom_im/N84496" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3888" (MUX) removed.
+    The signal "i_brom_im/N84391" is sourceless and has been removed.
+The signal "i_brom_im/N2151" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3995" (ROM) removed.
+  The signal "i_brom_im/N85512" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4001" (MUX) removed.
+    The signal "i_brom_im/N85407" is sourceless and has been removed.
+The signal "i_brom_im/N2150" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4108" (ROM) removed.
+  The signal "i_brom_im/N86528" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4114" (MUX) removed.
+    The signal "i_brom_im/N86423" is sourceless and has been removed.
+The signal "i_brom_im/N2117" is sourceless and has been removed.
+The signal "i_brom_im/N2116" is sourceless and has been removed.
+The signal "i_brom_im/N2115" is sourceless and has been removed.
+The signal "i_brom_im/N2114" is sourceless and has been removed.
+The signal "i_brom_im/N2081" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3773" (ROM) removed.
+  The signal "i_brom_im/N83481" is sourceless and has been removed.
+The signal "i_brom_im/N2080" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3886" (ROM) removed.
+  The signal "i_brom_im/N84497" is sourceless and has been removed.
+The signal "i_brom_im/N2079" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3999" (ROM) removed.
+  The signal "i_brom_im/N85513" is sourceless and has been removed.
+The signal "i_brom_im/N2078" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4112" (ROM) removed.
+  The signal "i_brom_im/N86529" is sourceless and has been removed.
+The signal "i_brom_im/N2045" is sourceless and has been removed.
+The signal "i_brom_im/N2044" is sourceless and has been removed.
+The signal "i_brom_im/N2043" is sourceless and has been removed.
+The signal "i_brom_im/N2042" is sourceless and has been removed.
+The signal "i_brom_im/N2009" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3788" (ROM) removed.
+  The signal "i_brom_im/N83148" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3794" (MUX) removed.
+    The signal "i_brom_im/N83113" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU3807" (MUX) removed.
+      The signal "i_brom_im/N82855" is sourceless and has been removed.
+       Sourceless block "i_brom_im/BU3835" (MUX) removed.
+        The signal "i_brom_im/N82710" is sourceless and has been removed.
+The signal "i_brom_im/N2008" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3901" (ROM) removed.
+  The signal "i_brom_im/N84164" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3907" (MUX) removed.
+    The signal "i_brom_im/N84129" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU3920" (MUX) removed.
+      The signal "i_brom_im/N83871" is sourceless and has been removed.
+       Sourceless block "i_brom_im/BU3948" (MUX) removed.
+        The signal "i_brom_im/N83726" is sourceless and has been removed.
+The signal "i_brom_im/N2007" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4014" (ROM) removed.
+  The signal "i_brom_im/N85180" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4020" (MUX) removed.
+    The signal "i_brom_im/N85145" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU4033" (MUX) removed.
+      The signal "i_brom_im/N84887" is sourceless and has been removed.
+       Sourceless block "i_brom_im/BU4061" (MUX) removed.
+        The signal "i_brom_im/N84742" is sourceless and has been removed.
+The signal "i_brom_im/N2006" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4127" (ROM) removed.
+  The signal "i_brom_im/N86196" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4133" (MUX) removed.
+    The signal "i_brom_im/N86161" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU4146" (MUX) removed.
+      The signal "i_brom_im/N85903" is sourceless and has been removed.
+       Sourceless block "i_brom_im/BU4174" (MUX) removed.
+        The signal "i_brom_im/N85758" is sourceless and has been removed.
+The signal "i_brom_im/N1973" is sourceless and has been removed.
+The signal "i_brom_im/N1972" is sourceless and has been removed.
+The signal "i_brom_im/N1971" is sourceless and has been removed.
+The signal "i_brom_im/N1970" is sourceless and has been removed.
+The signal "i_brom_im/N1937" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3792" (ROM) removed.
+  The signal "i_brom_im/N83149" is sourceless and has been removed.
+The signal "i_brom_im/N1936" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3905" (ROM) removed.
+  The signal "i_brom_im/N84165" is sourceless and has been removed.
+The signal "i_brom_im/N1935" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4018" (ROM) removed.
+  The signal "i_brom_im/N85181" is sourceless and has been removed.
+The signal "i_brom_im/N1934" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4131" (ROM) removed.
+  The signal "i_brom_im/N86197" is sourceless and has been removed.
+The signal "i_brom_im/N1901" is sourceless and has been removed.
+The signal "i_brom_im/N1900" is sourceless and has been removed.
+The signal "i_brom_im/N1899" is sourceless and has been removed.
+The signal "i_brom_im/N1898" is sourceless and has been removed.
+The signal "i_brom_im/N1865" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3799" (ROM) removed.
+  The signal "i_brom_im/N83220" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3805" (MUX) removed.
+    The signal "i_brom_im/N83115" is sourceless and has been removed.
+The signal "i_brom_im/N1864" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3912" (ROM) removed.
+  The signal "i_brom_im/N84236" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3918" (MUX) removed.
+    The signal "i_brom_im/N84131" is sourceless and has been removed.
+The signal "i_brom_im/N1863" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4025" (ROM) removed.
+  The signal "i_brom_im/N85252" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4031" (MUX) removed.
+    The signal "i_brom_im/N85147" is sourceless and has been removed.
+The signal "i_brom_im/N1862" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4138" (ROM) removed.
+  The signal "i_brom_im/N86268" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4144" (MUX) removed.
+    The signal "i_brom_im/N86163" is sourceless and has been removed.
+The signal "i_brom_im/N1829" is sourceless and has been removed.
+The signal "i_brom_im/N1828" is sourceless and has been removed.
+The signal "i_brom_im/N1827" is sourceless and has been removed.
+The signal "i_brom_im/N1826" is sourceless and has been removed.
+The signal "i_brom_im/N1793" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3803" (ROM) removed.
+  The signal "i_brom_im/N83221" is sourceless and has been removed.
+The signal "i_brom_im/N1792" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3916" (ROM) removed.
+  The signal "i_brom_im/N84237" is sourceless and has been removed.
+The signal "i_brom_im/N1791" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4029" (ROM) removed.
+  The signal "i_brom_im/N85253" is sourceless and has been removed.
+The signal "i_brom_im/N1790" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4142" (ROM) removed.
+  The signal "i_brom_im/N86269" is sourceless and has been removed.
+The signal "i_brom_im/N1757" is sourceless and has been removed.
+The signal "i_brom_im/N1756" is sourceless and has been removed.
+The signal "i_brom_im/N1755" is sourceless and has been removed.
+The signal "i_brom_im/N1754" is sourceless and has been removed.
+The signal "i_brom_im/N1721" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3813" (ROM) removed.
+  The signal "i_brom_im/N82969" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3819" (MUX) removed.
+    The signal "i_brom_im/N82934" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU3832" (MUX) removed.
+      The signal "i_brom_im/N82856" is sourceless and has been removed.
+The signal "i_brom_im/N1720" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3926" (ROM) removed.
+  The signal "i_brom_im/N83985" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3932" (MUX) removed.
+    The signal "i_brom_im/N83950" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU3945" (MUX) removed.
+      The signal "i_brom_im/N83872" is sourceless and has been removed.
+The signal "i_brom_im/N1719" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4039" (ROM) removed.
+  The signal "i_brom_im/N85001" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4045" (MUX) removed.
+    The signal "i_brom_im/N84966" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU4058" (MUX) removed.
+      The signal "i_brom_im/N84888" is sourceless and has been removed.
+The signal "i_brom_im/N1718" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4152" (ROM) removed.
+  The signal "i_brom_im/N86017" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4158" (MUX) removed.
+    The signal "i_brom_im/N85982" is sourceless and has been removed.
+     Sourceless block "i_brom_im/BU4171" (MUX) removed.
+      The signal "i_brom_im/N85904" is sourceless and has been removed.
+The signal "i_brom_im/N1685" is sourceless and has been removed.
+The signal "i_brom_im/N1684" is sourceless and has been removed.
+The signal "i_brom_im/N1683" is sourceless and has been removed.
+The signal "i_brom_im/N1682" is sourceless and has been removed.
+The signal "i_brom_im/N1649" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3817" (ROM) removed.
+  The signal "i_brom_im/N82970" is sourceless and has been removed.
+The signal "i_brom_im/N1648" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3930" (ROM) removed.
+  The signal "i_brom_im/N83986" is sourceless and has been removed.
+The signal "i_brom_im/N1647" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4043" (ROM) removed.
+  The signal "i_brom_im/N85002" is sourceless and has been removed.
+The signal "i_brom_im/N1646" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4156" (ROM) removed.
+  The signal "i_brom_im/N86018" is sourceless and has been removed.
+The signal "i_brom_im/N1613" is sourceless and has been removed.
+The signal "i_brom_im/N1612" is sourceless and has been removed.
+The signal "i_brom_im/N1611" is sourceless and has been removed.
+The signal "i_brom_im/N1610" is sourceless and has been removed.
+The signal "i_brom_im/N1577" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3824" (ROM) removed.
+  The signal "i_brom_im/N83041" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3830" (MUX) removed.
+    The signal "i_brom_im/N82936" is sourceless and has been removed.
+The signal "i_brom_im/N1576" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU3937" (ROM) removed.
+  The signal "i_brom_im/N84057" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU3943" (MUX) removed.
+    The signal "i_brom_im/N83952" is sourceless and has been removed.
+The signal "i_brom_im/N1575" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4050" (ROM) removed.
+  The signal "i_brom_im/N85073" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4056" (MUX) removed.
+    The signal "i_brom_im/N84968" is sourceless and has been removed.
+The signal "i_brom_im/N1574" is sourceless and has been removed.
+ Sourceless block "i_brom_im/BU4163" (ROM) removed.
+  The signal "i_brom_im/N86089" is sourceless and has been removed.
+   Sourceless block "i_brom_im/BU4169" (MUX) removed.
+    The signal "i_brom_im/N85984" is sourceless and has been removed.
+The signal "i_brom_im/N1541" is sourceless and has been removed.
+The signal "i_brom_im/N1540" is sourceless and has been removed.
+The signal "i_brom_im/N1539" is sourceless and has been removed.
+The signal "i_brom_im/N1538" is sourceless and has been removed.
+The signal "i_brom_im/N83042" is sourceless and has been removed.
+The signal "i_brom_im/N84058" is sourceless and has been removed.
+The signal "i_brom_im/N85074" is sourceless and has been removed.
+The signal "i_brom_im/N86090" is sourceless and has been removed.
+The signal "i_icon/u_icon/icommand_sel_12" is sourceless and has been removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/3/u_lce" (ROM)
+removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/3/u_hce" (ROM)
+removed.
+The signal "i_icon/u_icon/icommand_sel_9" is sourceless and has been removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/6/u_lce" (ROM)
+removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/6/u_hce" (ROM)
+removed.
+The signal "i_icon/u_icon/icommand_sel_8" is sourceless and has been removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/7/u_lce" (ROM)
+removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/7/u_hce" (ROM)
+removed.
+The signal "i_icon/u_icon/icommand_sel_4" is sourceless and has been removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/11/u_lce" (ROM)
+removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/11/u_hce" (ROM)
+removed.
+The signal "i_icon/u_icon/icommand_sel_3" is sourceless and has been removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/12/u_lce" (ROM)
+removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/12/u_hce" (ROM)
+removed.
+The signal "i_icon/u_icon/icommand_sel_2" is sourceless and has been removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/13/u_lce" (ROM)
+removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/13/u_hce" (ROM)
+removed.
+The signal "i_icon/u_icon/icommand_sel_1" is sourceless and has been removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/14/u_lce" (ROM)
+removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/14/u_hce" (ROM)
+removed.
+The signal "i_icon/u_icon/icommand_sel_0" is sourceless and has been removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/15/u_lce" (ROM)
+removed.
+ Sourceless block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/15/u_hce" (ROM)
+removed.
+The signal "i2c_core/input_fifo[1].input_fifo_asynch/wr_ack" is sourceless and
+has been removed.
+The signal "AudioR/AudioOutFIFO_Instance/wr_data_count<7>" is sourceless and has
+been removed.
+The signal "AudioR/AudioOutFIFO_Instance/wr_data_count<6>" is sourceless and has
+been removed.
+The signal "AudioR/AudioOutFIFO_Instance/wr_data_count<5>" is sourceless and has
+been removed.
+The signal "AudioR/AudioOutFIFO_Instance/wr_data_count<4>" is sourceless and has
+been removed.
+The signal "AudioR/AudioOutFIFO_Instance/wr_data_count<3>" is sourceless and has
+been removed.
+The signal "AudioR/AudioOutFIFO_Instance/wr_data_count<2>" is sourceless and has
+been removed.
+The signal "AudioR/AudioOutFIFO_Instance/wr_data_count<1>" is sourceless and has
+been removed.
+The signal "AudioR/AudioOutFIFO_Instance/wr_data_count<0>" is sourceless and has
+been removed.
+The signal "AudioR/AudioOutFIFO_Instance/dout<7>" is sourceless and has been
+removed.
+The signal "AudioR/AudioOutFIFO_Instance/dout<6>" is sourceless and has been
+removed.
+The signal "AudioR/AudioOutFIFO_Instance/dout<5>" is sourceless and has been
+removed.
+The signal "AudioR/AudioOutFIFO_Instance/dout<4>" is sourceless and has been
+removed.
+The signal "AudioR/AudioOutFIFO_Instance/dout<3>" is sourceless and has been
+removed.
+The signal "AudioR/AudioOutFIFO_Instance/dout<2>" is sourceless and has been
+removed.
+The signal "AudioR/AudioOutFIFO_Instance/dout<1>" is sourceless and has been
+removed.
+The signal "AudioR/AudioOutFIFO_Instance/dout<0>" is sourceless and has been
+removed.
+The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<2>" is
+sourceless and has been removed.
+ Sourceless block "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_2"
+(FF) removed.
+The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<3>" is
+sourceless and has been removed.
+ Sourceless block "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_3"
+(FF) removed.
+The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<4>" is
+sourceless and has been removed.
+ Sourceless block "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_4"
+(FF) removed.
+The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<5>" is
+sourceless and has been removed.
+ Sourceless block "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_5"
+(FF) removed.
+The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<6>" is
+sourceless and has been removed.
+ Sourceless block "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_6"
+(FF) removed.
+The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<7>" is
+sourceless and has been removed.
+ Sourceless block "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_7"
+(FF) removed.
+The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<8>" is
+sourceless and has been removed.
+ Sourceless block "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_8"
+(FF) removed.
+The signal "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<9>" is
+sourceless and has been removed.
+ Sourceless block "AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_9"
+(FF) removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<0>_cyo" is
+sourceless and has been removed.
+ Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<1>cy" (MUX)
+removed.
+  The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<1>_cyo" is
+sourceless and has been removed.
+   Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>cy" (MUX)
+removed.
+    The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>_cyo" is
+sourceless and has been removed.
+     Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>cy" (MUX)
+removed.
+      The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>_cyo" is
+sourceless and has been removed.
+       Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>cy" (MUX)
+removed.
+        The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>_cyo" is
+sourceless and has been removed.
+         Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>cy" (MUX)
+removed.
+          The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>_cyo" is
+sourceless and has been removed.
+           Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>cy" (MUX)
+removed.
+            The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>_cyo" is
+sourceless and has been removed.
+             Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>cy" (MUX)
+removed.
+              The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>_cyo" is
+sourceless and has been removed.
+               Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>cy" (MUX)
+removed.
+                The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>_cyo" is
+sourceless and has been removed.
+                 Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<9>_xor"
+(XOR) removed.
+               Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>_xor"
+(XOR) removed.
+             Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>_xor"
+(XOR) removed.
+           Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>_xor"
+(XOR) removed.
+         Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>_xor"
+(XOR) removed.
+       Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>_xor"
+(XOR) removed.
+     Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>_xor"
+(XOR) removed.
+   Sourceless block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>_xor"
+(XOR) removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<0>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<1>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<9>lut/O" is
+sourceless and has been removed.
+The signal "AudioL/AudioOutFIFO_Instance/wr_data_count<7>" is sourceless and has
+been removed.
+The signal "AudioL/AudioOutFIFO_Instance/wr_data_count<6>" is sourceless and has
+been removed.
+The signal "AudioL/AudioOutFIFO_Instance/wr_data_count<5>" is sourceless and has
+been removed.
+The signal "AudioL/AudioOutFIFO_Instance/wr_data_count<4>" is sourceless and has
+been removed.
+The signal "AudioL/AudioOutFIFO_Instance/wr_data_count<3>" is sourceless and has
+been removed.
+The signal "AudioL/AudioOutFIFO_Instance/wr_data_count<2>" is sourceless and has
+been removed.
+The signal "AudioL/AudioOutFIFO_Instance/wr_data_count<1>" is sourceless and has
+been removed.
+The signal "AudioL/AudioOutFIFO_Instance/wr_data_count<0>" is sourceless and has
+been removed.
+The signal "AudioL/AudioOutFIFO_Instance/dout<7>" is sourceless and has been
+removed.
+The signal "AudioL/AudioOutFIFO_Instance/dout<6>" is sourceless and has been
+removed.
+The signal "AudioL/AudioOutFIFO_Instance/dout<5>" is sourceless and has been
+removed.
+The signal "AudioL/AudioOutFIFO_Instance/dout<4>" is sourceless and has been
+removed.
+The signal "AudioL/AudioOutFIFO_Instance/dout<3>" is sourceless and has been
+removed.
+The signal "AudioL/AudioOutFIFO_Instance/dout<2>" is sourceless and has been
+removed.
+The signal "AudioL/AudioOutFIFO_Instance/dout<1>" is sourceless and has been
+removed.
+The signal "AudioL/AudioOutFIFO_Instance/dout<0>" is sourceless and has been
+removed.
+The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<2>" is
+sourceless and has been removed.
+ Sourceless block "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_2"
+(FF) removed.
+The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<3>" is
+sourceless and has been removed.
+ Sourceless block "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_3"
+(FF) removed.
+The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<4>" is
+sourceless and has been removed.
+ Sourceless block "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_4"
+(FF) removed.
+The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<5>" is
+sourceless and has been removed.
+ Sourceless block "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_5"
+(FF) removed.
+The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<6>" is
+sourceless and has been removed.
+ Sourceless block "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_6"
+(FF) removed.
+The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<7>" is
+sourceless and has been removed.
+ Sourceless block "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_7"
+(FF) removed.
+The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<8>" is
+sourceless and has been removed.
+ Sourceless block "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_8"
+(FF) removed.
+The signal "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/tmp_pntr_w_diff<9>" is
+sourceless and has been removed.
+ Sourceless block "AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/WR_DATA_COUNT_9"
+(FF) removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<0>_cyo" is
+sourceless and has been removed.
+ Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<1>cy" (MUX)
+removed.
+  The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<1>_cyo" is
+sourceless and has been removed.
+   Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>cy" (MUX)
+removed.
+    The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>_cyo" is
+sourceless and has been removed.
+     Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>cy" (MUX)
+removed.
+      The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>_cyo" is
+sourceless and has been removed.
+       Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>cy" (MUX)
+removed.
+        The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>_cyo" is
+sourceless and has been removed.
+         Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>cy" (MUX)
+removed.
+          The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>_cyo" is
+sourceless and has been removed.
+           Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>cy" (MUX)
+removed.
+            The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>_cyo" is
+sourceless and has been removed.
+             Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>cy" (MUX)
+removed.
+              The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>_cyo" is
+sourceless and has been removed.
+               Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>cy" (MUX)
+removed.
+                The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>_cyo" is
+sourceless and has been removed.
+                 Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<9>_xor"
+(XOR) removed.
+               Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>_xor"
+(XOR) removed.
+             Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>_xor"
+(XOR) removed.
+           Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>_xor"
+(XOR) removed.
+         Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>_xor"
+(XOR) removed.
+       Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>_xor"
+(XOR) removed.
+     Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>_xor"
+(XOR) removed.
+   Sourceless block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>_xor"
+(XOR) removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<0>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<1>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>lut/O" is
+sourceless and has been removed.
+The signal
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<9>lut/O" is
+sourceless and has been removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<0>lut" (ROM)
+removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<1>lut" (ROM)
+removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>lut" (ROM)
+removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>lut" (ROM)
+removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>lut" (ROM)
+removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>lut" (ROM)
+removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>lut" (ROM)
+removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>lut" (ROM)
+removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>lut" (ROM)
+removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<9>lut" (ROM)
+removed.
+Unused block "AudioL/AudioOutFIFO_Instance/GND" (ZERO) removed.
+Unused block "AudioL/AudioOutFIFO_Instance/VCC" (ONE) removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<0>lut" (ROM)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<1>lut" (ROM)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<2>lut" (ROM)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<3>lut" (ROM)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<4>lut" (ROM)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<5>lut" (ROM)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<6>lut" (ROM)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<7>lut" (ROM)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<8>lut" (ROM)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<9>lut" (ROM)
+removed.
+Unused block "AudioR/AudioOutFIFO_Instance/GND" (ZERO) removed.
+Unused block "AudioR/AudioOutFIFO_Instance/VCC" (ONE) removed.
+Unused block
+"i2c_core/input_fifo[1].input_fifo_asynch/BU2/U0/olblk/wrackl/WR_ACK" (FF)
+removed.
+Unused block "i2c_core/input_fifo[1].input_fifo_asynch/GND" (ZERO) removed.
+Unused block "i2c_core/input_fifo[1].input_fifo_asynch/VCC" (ONE) removed.
+Unused block "i2c_core/output_fifo[1].output_fifo_asynch/GND" (ZERO) removed.
+Unused block "i2c_core/output_fifo[1].output_fifo_asynch/VCC" (ONE) removed.
+Unused block "i2c_interface/input_fifo/GND" (ZERO) removed.
+Unused block "i2c_interface/input_fifo/VCC" (ONE) removed.
+Unused block "i_brom_im/BU3828" (ROM) removed.
+Unused block "i_brom_im/BU3941" (ROM) removed.
+Unused block "i_brom_im/BU4054" (ROM) removed.
+Unused block "i_brom_im/BU4167" (ROM) removed.
+Unused block "i_icon/icon/u_icon/u_cmd/u_command_sel/i4/fi/11/u_lut" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_cmd/u_command_sel/i4/fi/12/u_lut" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_cmd/u_command_sel/i4/fi/13/u_lut" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_cmd/u_command_sel/i4/fi/14/u_lut" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_cmd/u_command_sel/i4/fi/15/u_lut" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_cmd/u_command_sel/i4/fi/3/u_lut" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_cmd/u_command_sel/i4/fi/6/u_lut" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_cmd/u_command_sel/i4/fi/7/u_lut" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/1/u_hce" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/10/u_hce" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/2/u_hce" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/4/u_hce" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/5/u_hce" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/8/u_hce" (ROM)
+removed.
+Unused block "i_icon/icon/u_icon/u_ctrl_out/f_ncp/0/f_cmd/9/u_hce" (ROM)
+removed.
+Unused block "pca9564_ce_PULLUP" (PULLUP) removed.
+Unused block
+"AudioL/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<0>cy" (MUX)
+removed.
+Unused block
+"AudioR/AudioOutFIFO_Instance/BU2/U0/flblk/logic_as_tmp_pntr_w_diff<0>cy" (MUX)
+removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		AudioL/AudioOutFIFO_Instance/BU2/U0/XST_GND
+VCC 		AudioL/AudioOutFIFO_Instance/BU2/U0/XST_VCC
+GND
+		AudioL/AudioOutFIFO_Instance/BU2/U0/memblk/audio_out_fifo_fifo_generator_v2_1_
+as_1_coreinst/GND
+VCC
+		AudioL/AudioOutFIFO_Instance/BU2/U0/memblk/audio_out_fifo_fifo_generator_v2_1_
+as_1_coreinst/VCC
+GND 		AudioR/AudioOutFIFO_Instance/BU2/U0/XST_GND
+VCC 		AudioR/AudioOutFIFO_Instance/BU2/U0/XST_VCC
+GND
+		AudioR/AudioOutFIFO_Instance/BU2/U0/memblk/audio_out_fifo_fifo_generator_v2_1_
+as_1_coreinst/GND
+VCC
+		AudioR/AudioOutFIFO_Instance/BU2/U0/memblk/audio_out_fifo_fifo_generator_v2_1_
+as_1_coreinst/VCC
+GND 		XST_GND
+VCC 		XST_VCC
+GND 		i2c_core/input_fifo[1].input_fifo_asynch/BU2/U0/XST_GND
+GND
+		i2c_core/input_fifo[1].input_fifo_asynch/BU2/U0/memblk/fifo_generator_v2_1_fif
+o_generator_v2_1_as_1_coreinst/GND
+VCC
+		i2c_core/input_fifo[1].input_fifo_asynch/BU2/U0/memblk/fifo_generator_v2_1_fif
+o_generator_v2_1_as_1_coreinst/VCC
+GND 		i2c_core/output_fifo[1].output_fifo_asynch/BU2/U0/XST_GND
+GND
+		i2c_core/output_fifo[1].output_fifo_asynch/BU2/U0/memblk/fifo_generator_v2_1_f
+ifo_generator_v2_1_as_1_coreinst/GND
+VCC
+		i2c_core/output_fifo[1].output_fifo_asynch/BU2/U0/memblk/fifo_generator_v2_1_f
+ifo_generator_v2_1_as_1_coreinst/VCC
+GND 		i2c_interface/input_fifo/BU2/U0/XST_GND
+GND
+		i2c_interface/input_fifo/BU2/U0/memblk/fifo_generator_v2_1_fifo_generator_v2_1
+_as_1_coreinst/GND
+VCC
+		i2c_interface/input_fifo/BU2/U0/memblk/fifo_generator_v2_1_fifo_generator_v2_1
+_as_1_coreinst/VCC
+LUT4 		i_bram_dm/BU1003
+LUT4 		i_bram_dm/BU1116
+LUT4 		i_bram_dm/BU1229
+LUT4 		i_bram_dm/BU1342
+LUT4 		i_bram_dm/BU1455
+LUT4 		i_bram_dm/BU1568
+LUT4 		i_bram_dm/BU1681
+LUT4 		i_bram_dm/BU1794
+LUT4 		i_bram_dm/BU1907
+LUT4 		i_bram_dm/BU2020
+LUT4 		i_bram_dm/BU212
+LUT4 		i_bram_dm/BU2133
+LUT4 		i_bram_dm/BU2246
+LUT4 		i_bram_dm/BU2359
+LUT4 		i_bram_dm/BU2472
+LUT4 		i_bram_dm/BU2585
+LUT4 		i_bram_dm/BU2698
+LUT4 		i_bram_dm/BU2811
+LUT4 		i_bram_dm/BU2924
+LUT4 		i_bram_dm/BU3037
+LUT4 		i_bram_dm/BU3150
+LUT4 		i_bram_dm/BU325
+LUT4 		i_bram_dm/BU3263
+LUT4 		i_bram_dm/BU3376
+LUT4 		i_bram_dm/BU3489
+LUT4 		i_bram_dm/BU3602
+LUT4 		i_bram_dm/BU3715
+LUT4 		i_bram_dm/BU438
+LUT4 		i_bram_dm/BU551
+LUT4 		i_bram_dm/BU664
+LUT4 		i_bram_dm/BU777
+LUT4 		i_bram_dm/BU890
+GND 		i_bram_dm/GND
+VCC 		i_bram_dm/VCC
+LUT4 		i_brom_im/BU1003
+LUT4 		i_brom_im/BU1116
+LUT4 		i_brom_im/BU1229
+LUT4 		i_brom_im/BU1342
+LUT4 		i_brom_im/BU1455
+LUT4 		i_brom_im/BU1568
+LUT4 		i_brom_im/BU1681
+LUT4 		i_brom_im/BU1794
+LUT4 		i_brom_im/BU1907
+LUT4 		i_brom_im/BU2020
+LUT4 		i_brom_im/BU212
+LUT4 		i_brom_im/BU2133
+LUT4 		i_brom_im/BU2246
+LUT4 		i_brom_im/BU2359
+LUT4 		i_brom_im/BU2472
+LUT4 		i_brom_im/BU2585
+LUT4 		i_brom_im/BU2698
+LUT4 		i_brom_im/BU2811
+LUT4 		i_brom_im/BU2924
+LUT4 		i_brom_im/BU3037
+LUT4 		i_brom_im/BU3150
+LUT4 		i_brom_im/BU325
+LUT4 		i_brom_im/BU3263
+LUT4 		i_brom_im/BU3376
+LUT4 		i_brom_im/BU3489
+LUT4 		i_brom_im/BU3602
+LUT4 		i_brom_im/BU3715
+LUT4 		i_brom_im/BU438
+LUT4 		i_brom_im/BU551
+LUT4 		i_brom_im/BU664
+LUT4 		i_brom_im/BU777
+LUT4 		i_brom_im/BU890
+GND 		i_brom_im/GND
+VCC 		i_brom_im/VCC
+GND 		i_icon/GND
+VCC 		i_icon/VCC
+LUT4 		i_icon/icon/u_icon/u_stat/f_stat/3/u_stat
+LUT3 		i_icon/icon/u_icon/u_tdo_mux/no_lut6/i4/fj/1/u_lut3
+LUT3 		i_icon/icon/u_icon/u_tdo_mux/no_lut6/i4/fj/2/u_lut3
+LUT3 		i_icon/icon/u_icon/u_tdo_mux/no_lut6/i4/fj/3/u_lut3
+LUT3 		i_icon/icon/u_icon/u_tdo_mux/no_lut6/i4/fj/4/u_lut3
+LUT3 		i_icon/icon/u_icon/u_tdo_mux/no_lut6/i4/fj/5/u_lut3
+LUT3 		i_icon/icon/u_icon/u_tdo_mux/no_lut6/i4/fj/6/u_lut3
+GND 		i_ila/GND
+VCC 		i_ila/VCC
+LUT4 		i_ila/ila/i_yes_d/u_ila/u_stat/f_sstat/7/i_stat/u_stat
+LUT4 		i_ila/ila/i_yes_d/u_ila/u_stat/f_sstat/8/i_stat/u_stat
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_dmux5/no_lut6/i3/fj/3/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/10/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/11/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/12/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/13/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/14/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/15/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/16/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/17/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/18/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/19/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/20/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/21/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/22/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/23/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/24/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/25/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/26/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/27/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/28/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/29/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/30/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/31/u_lut3
+LUT3 		i_ila/ila/i_yes_d/u_ila/u_stat/u_smux/no_lut6/i6/fj/7/u_lut3
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type    | Direction | IO Standard | Drive    | Slew | Reg (s)  | Resistor | IOB   |
+|                                    |         |           |             | Strength | Rate |          |          | Delay |
++------------------------------------------------------------------------------------------------------------------------+
+| Ad<0>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<1>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<2>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<3>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<4>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<5>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<6>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<7>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<8>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<9>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<10>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<11>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<12>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<13>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<14>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<15>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<16>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<17>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<18>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ad<19>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<0>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<1>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<2>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<3>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<4>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<5>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<6>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<7>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<8>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<9>                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<10>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<11>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<12>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<13>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<14>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<15>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<16>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<17>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<18>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| Ai<19>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     |          |       |
+| AudioL_Out                         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| AudioR_Out                         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| BHE_a1                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| BHE_a2                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| BHE_b1                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| BHE_b2                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| BLE_a1                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| BLE_a2                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| BLE_b1                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| BLE_b2                             | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| DP1<0>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<1>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<2>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<3>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<4>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<5>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<6>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<7>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<8>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<9>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<10>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<11>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<12>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<13>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<14>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP1<15>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<0>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<1>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<2>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<3>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<4>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<5>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<6>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<7>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<8>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<9>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<10>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<11>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<12>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<13>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<14>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DP2<15>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<0>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<1>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<2>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<3>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<4>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<5>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<6>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<7>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<8>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<9>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<10>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<11>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<12>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<13>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<14>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ1<15>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<0>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<1>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<2>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<3>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<4>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<5>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<6>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<7>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<8>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<9>                             | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<10>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<11>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<12>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<13>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<14>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| DQ2<15>                            | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | INFF1    |          | IFD   |
+|                                    |         |           |             |          |      | OFF1     |          |       |
+| MictorObenLinks_evenPOD<0>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<1>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<2>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<3>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<4>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<5>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<6>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<7>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<8>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<9>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<10>        | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<11>        | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<12>        | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<13>        | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<14>        | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_evenPOD<15>        | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<0>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<1>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<2>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<3>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<4>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<5>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<6>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<7>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<8>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<9>          | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<10>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<11>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<12>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<13>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<14>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorObenLinks_oddPOD<15>         | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<0>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<1>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<2>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<3>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<4>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<5>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<6>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<7>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<8>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<9>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<10>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<11>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<12>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<13>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<14>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_evenPOD<15>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<0>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<1>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<2>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<3>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<4>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<5>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<6>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<7>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<8>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<9>               | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<10>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<11>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<12>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<13>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<14>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorOben_oddPOD<15>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<0>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<1>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<2>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<3>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<4>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<5>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<6>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<7>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<8>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<9>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<10>            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<11>            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<12>            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<13>            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<14>            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_evenPOD<15>            | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<0>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<1>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<2>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<3>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<4>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<5>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<6>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<7>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<8>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<9>              | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<10>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<11>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<12>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<13>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<14>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| MictorUnten_oddPOD<15>             | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| OE_a1                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| OE_a2                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| OE_b1                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| OE_b2                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| WE_a1                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| WE_a2                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| WE_b1                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| WE_b2                              | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| clk                                | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
+| clock_ip                           | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
+| dip<0>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<1>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<2>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<3>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<4>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<5>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<6>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<7>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<8>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<9>                             | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<10>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<11>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<12>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<13>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<14>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<15>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<16>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<17>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<18>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<19>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<20>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<21>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<22>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<23>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<24>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<25>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<26>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<27>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<28>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<29>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<30>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| dip<31>                            | IOB     | INPUT     | LVCMOS33    |          |      |          | PULLDOWN |       |
+| led<0>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<1>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<2>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<3>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<4>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<5>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<6>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<7>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<8>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<9>                             | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<10>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<11>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<12>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<13>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<14>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<15>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<16>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<17>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<18>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<19>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<20>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<21>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<22>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<23>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<24>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<25>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<26>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<27>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<28>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<29>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<30>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led<31>                            | IOB     | OUTPUT    | LVCMOS33    | 12       | SLOW |          |          |       |
+| led_buildin<0>                     | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led_buildin<1>                     | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led_buildin<2>                     | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led_buildin<3>                     | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led_buildin<4>                     | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led_buildin<5>                     | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led_buildin<6>                     | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| led_buildin<7>                     | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
+| pca9564_address<0>                 | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_address<1>                 | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_ce                         | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| pca9564_data<0>                    | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_data<1>                    | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_data<2>                    | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_data<3>                    | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_data<4>                    | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_data<5>                    | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_data<6>                    | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_data<7>                    | IOB     | BIDIR     | LVCMOS33    | 12       | FAST | OFF1     | PULLUP   |       |
+| pca9564_int                        | IOB     | INPUT     | LVCMOS33    |          |      |          |          |       |
+| pca9564_rd                         | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| pca9564_reset                      | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| pca9564_wr                         | IOB     | OUTPUT    | LVCMOS33    | 12       | FAST |          |          |       |
+| reset                              | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          | IFD   |
+| serial0_in                         | IOB     | INPUT     | LVTTL       |          |      | INFF1    |          | IFD   |
+| serial0_out                        | IOB     | OUTPUT    | LVTTL       | 12       | SLOW | OFF1     |          |       |
+| serial1_in                         | IOB     | INPUT     | LVTTL       |          |      |          |          |       |
+| serial1_out                        | IOB     | OUTPUT    | LVTTL       | 12       | SLOW |          |          |       |
++------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+i_ila/ila/i_yes_d/u_ila/u_trig/u_tm/g_nmu/0/u_m/u_mu/i_mut_gand/u_match/i_srl16/u_gand_srl16/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/u_cap_addrgen/u_wcnt_lcmp/i_srl16/u_gand_srl16/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/u_cap_addrgen/u_wcnt_hcmp/i_srl16/u_gand_srl16/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/u_cap_addrgen/u_scnt_cmp/i_srl16/u_gand_srl16/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/i_srlt_ne_1/u_wlcmpce/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/i_srlt_ne_1/u_whcmpce/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/i_srlt_ne_1/u_scrst/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/i_srlt_ne_1/u_scmpce/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/i_srlt_ne_1/u_ns1/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/i_srlt_ne_1/u_ns0/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/i_srlt_ne_1/u_cmpreset/pd_rpm
+i_ila/ila/i_yes_d/u_ila/u_g2_sq/u_capctrl/i_srlt_ne_1/u_cdone/pd_rpm
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Modular Design Summary
+-----------------------------------
+Modular Design not used for this design.
+
+Section 11 - Timing Report
+--------------------------
+This design was not run using timing mode.
+
+Section 12 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 13 - Control Set Information
+------------------------------------
+No control set information for this architecture.

@@ -1,0 +1,119 @@
+#### List of different label names for the same address:
+#### Syntax: #:<TAB>LabelA_Name<TAB>LabelA_JumpTarget<TAB>LabelB_Name<TAB>LabelB_JumpTarget
+#:	jal	exit:	jumptable:	
+#:	jumptable:		l4:	
+#:	jumptable2:		l21:	
+#:	jumptable3:		l33:	
+#:	main:		l45:	
+
+#### List of base blocks with number of executions and used special instructions:
+#### Syntax: startLabel<TAB>startJumpInstruction<TAB>endLabel<TAB>endJumpInstruction<TAB>
+####         startAddress<TAB>numberOfExecutions<TAB>executionTime<TAB>CSV{specialInstructions}<TAB>
+####         CSV{SuccessingBaseBlocks(StartingAddress, Counter)}
+start:		main:	jal	0	1	20		645:1
+main:	jal	exit:	jal	18	1	5		693:1
+l4:		l5:	bnez	21	0	0		
+l5:	bnez	l19:	j	50	0	0		
+l19:	j	l5:		54	0	0		
+l5:		l6:	bnez	56	0	0		
+l6:	bnez	l19:	j	73	0	0		
+l19:	j	l6:		77	0	0		
+l6:		l7:	bnez	79	0	0		
+l7:	bnez	l18:	j	97	0	0		
+l18:	j	l7:		101	0	0		
+l7:		l8:	bnez	103	0	0		
+l8:	bnez	l18:	j	120	0	0		
+l18:	j	l8:		124	0	0		
+l8:			jr	126	0	0		
+	jr	l9:		146	0	0		
+l9:		l19:	j	148	0	0		
+l19:	j	l10:		158	0	0		
+l10:		l19:	j	160	0	0		
+l19:	j	l11:		170	0	0		
+l11:		l19:	j	172	0	0		
+l19:	j	l12:		182	0	0		
+l12:		l19:	j	184	0	0		
+l19:	j	l13:		194	0	0		
+l13:		l19:	j	196	0	0		
+l19:	j	l14:		206	0	0		
+l14:		l19:	j	208	0	0		
+l19:	j	l15:		211	0	0		
+l15:		l19:	j	213	0	0		
+l19:	j	l16:		223	0	0		
+l16:		l19:	j	225	0	0		
+l19:	j	l17:		235	0	0		
+l17:		l19:	j	237	0	0		
+l19:	j	l18:		247	0	0		
+l18:		l19:		249	0	0		
+l19:		l20:	j	260	0	0		
+l20:	j	l20:		262	0	0		
+l20:			return	264	0	0		
+	return	jumptable2:		275	0	0		
+l21:		l22:	bnez	277	0	0		
+l22:	bnez	l30:	j	301	0	0		
+l30:	j	l22:		305	0	0		
+l22:		l23:	bnez	307	0	0		
+l23:	bnez	l30:	j	324	0	0		
+l30:	j	l23:		328	0	0		
+l23:			jr	330	0	0		
+	jr	l24:		359	0	0		
+l24:		l31:	j	361	0	0		
+l31:	j	l25:		371	0	0		
+l25:		l31:	j	373	0	0		
+l31:	j	l26:		383	0	0		
+l26:		l31:	j	385	0	0		
+l31:	j	l27:		395	0	0		
+l27:		l31:	j	397	0	0		
+l31:	j	l28:		407	0	0		
+l28:		l31:	j	409	0	0		
+l31:	j	l29:		419	0	0		
+l29:		l31:	j	421	0	0		
+l31:	j	l30:		431	0	0		
+l30:		l31:		433	0	0		
+l31:		l32:	j	444	0	0		
+l32:	j	l32:		446	0	0		
+l32:			return	448	0	0		
+	return	jumptable3:		459	0	0		
+l33:		l34:	bnez	461	0	0		
+l34:	bnez	l42:	j	485	0	0		
+l42:	j	l34:		489	0	0		
+l34:		l35:	bnez	491	0	0		
+l35:	bnez	l42:	j	508	0	0		
+l42:	j	l35:		512	0	0		
+l35:			jr	514	0	0		
+	jr	l36:		543	0	0		
+l36:		l43:	j	545	0	0		
+l43:	j	l37:		555	0	0		
+l37:		l43:	j	557	0	0		
+l43:	j	l38:		567	0	0		
+l38:		l43:	j	569	0	0		
+l43:	j	l39:		579	0	0		
+l39:		l43:	j	581	0	0		
+l43:	j	l40:		591	0	0		
+l40:		l43:	j	593	0	0		
+l43:	j	l41:		603	0	0		
+l41:		l43:	j	605	0	0		
+l43:	j	l42:		615	0	0		
+l42:		l43:		617	0	0		
+l43:		l44:	j	628	0	0		
+l44:	j	l44:		630	0	0		
+l44:			return	632	0	0		
+	return	main:		643	0	0		
+l45:		l46:	j	645	1	37		680:1
+l46:	j	l46:		678	0	0		
+l46:			return	680	1	14		18:1
+	return	exit:		691	0	0		
+exit:		_globalvar:		693	1	0		
+_globalvar:		l1:		696	0	0		
+l1:		l2:		697	0	0		
+l2:		l3:		707	0	0		
+l3:		finish:		718	0	0		
+
+#### List of JumpTable Usages:
+####   Syntax is: "#;<TAB>BaseBlockLabel<TAB>CSV(JumpTargets)"
+####   "BaseBlockLabel" is the starting label of the baseBlock where the JumpTable is used, e.g. L10.
+####   Then in the above Base Block List there must be something like: "L10<TAB><TAB><TAB>jr".
+####   "CSV" are the Comma Seperated Values of the possible Jump Targets in this Jump Table
+#;	l8	l9, l10, l11, l12, l18, l13, l14, l15, l16, l17
+#;	l23	l24, l25, l26, l27, l28, l29
+#;	l35	l36, l37, l38, l39, l40, l41

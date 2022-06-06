@@ -1,0 +1,582 @@
+	.section	.data
+	;.global	_c
+	.align	4
+_c:
+	.space	4
+	;.global	_isPrim
+	.align	4
+_isPrim:
+	.data.32	-1
+	.section	.text
+	.section	.text
+	.addressing	Word
+	
+	xor	%GPR30, %GPR30, %GPR30
+	xor	%GPR29, %GPR29, %GPR29
+	xor	%GPR28, %GPR28, %GPR28
+	nop
+	lhi	%GPR30, $(0xFFFFC/0x10000)
+	lhi	%GPR29, $(0xFFFFC/0x10000)
+	nop
+	nop
+	ori	%GPR30, %GPR30, $(0xFFFFC%0x10000)
+	ori	%GPR29, %GPR29, $(0xFFFFC%0x10000)
+	nop
+	nop
+	nop
+	sw	-4(%GPR29), %GPR30
+	sw	-8(%GPR29), %GPR31
+	addi	%GPR29, %GPR30, $-8
+	nop
+	nop
+	nop
+	jal	main	
+	nop
+	nop
+	nop
+				; Automatically 2 NOPs removed by reduceNOPs.sh
+	sw	0(%GPR29), %GPR1
+	jal	exit
+	nop
+	nop
+
+foo:
+L1:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 6 NOPs removed by reduceNOPs.sh
+	add	%GPR28,%GPR3,%GPR0	
+	NOP		;;3,7
+	NOP		;;3,7
+	NOP		;;3,7
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	mac	%GPR28,%GPR1,%GPR2	
+	NOP		;;7,11
+	NOP		;;7,11
+	NOP		;;7,11
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L2	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L2:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	NOP		
+	NOP		
+	jr	%GPR31	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+prim:
+L3:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 11 NOPs removed by reduceNOPs.sh
+	lhi	%GPR2,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$2	
+	NOP		
+	NOP		
+	NOP		
+L4:
+	slt	%GPR27,%GPR2,%GPR1	
+	bnez	%GPR27,L5	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L12	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L5:
+	MOD	%GPR3,%GPR1,%GPR2	
+	NOP		;;1,4
+	NOP		;;1,4
+	NOP		;;1,4
+	lhi	%GPR4,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR4,%GPR4,$0	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	seq	%GPR27,%GPR3,%GPR4	
+	bnez	%GPR27,L6	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L7	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L6:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L13	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L7:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR3,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR3,%GPR3,$2	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	seq	%GPR27,%GPR2,%GPR3	
+	bnez	%GPR27,L8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L9	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L8:
+	addi	%GPR2,%GPR2,$1	
+	j	L4	
+	NOP		
+	NOP		
+	NOP		
+L9:
+	addi	%GPR2,%GPR2,$2	
+	j	L4	
+	NOP		
+	NOP		
+	NOP		
+L10:
+	j	L4	
+	NOP		
+	NOP		
+	NOP		
+L11:
+	j	L4	
+	NOP		
+	NOP		
+	NOP		
+L12:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR28,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$1	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L13	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L13:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	NOP		
+	NOP		
+	jr	%GPR31	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+main:
+L14:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$36	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 9 NOPs removed by reduceNOPs.sh
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$0	
+	NOP		;;6,10
+	NOP		;;6,10
+	NOP		;;6,10
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR30),%GPR1	
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$0	
+	NOP		;;11,15
+	NOP		;;11,15
+	NOP		;;11,15
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$1	
+	NOP		;;15,19
+	NOP		;;15,19
+	NOP		;;15,19
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-8(%GPR30),%GPR1	
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$1	
+	NOP		;;20,24
+	NOP		;;20,24
+	NOP		;;20,24
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-12(%GPR30),%GPR1	
+	NOP		
+	NOP		
+	NOP		
+L15:
+	LI	%GPR1, *_c	
+	LI	%GPR2, *_c	
+	NOP		;;1,4
+	NOP		;;1,4
+	NOP		;;1,4
+	lw	%GPR3,0(%GPR1)	
+	NOP	; Automatically added by findLoadStoreProblem.sh
+	sw	-16(%GPR30),%GPR2	
+	NOP	; Automatically added by findLoadStoreProblem.sh
+	lw	%GPR1,-12(%GPR30)	
+	lw	%GPR2,-8(%GPR30)	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	foo	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR2,-8(%GPR30)	
+	lw	%GPR1,-12(%GPR30)	
+	NOP		;;10,14
+	NOP		;;10,14
+	NOP		;;10,14
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	avg	%GPR1,%GPR1,%GPR2	
+	NOP		;;14,18
+	NOP		;;14,18
+	NOP		;;14,18
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-20(%GPR30),%GPR1	
+	NOP	; Automatically added by findLoadStoreProblem.sh
+	lw	%GPR1,-4(%GPR30)	
+	NOP		;;19,23
+	NOP		;;19,23
+	NOP		;;19,23
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR1,%GPR1,$1	
+	NOP		;;23,27
+	NOP		;;23,27
+	NOP		;;23,27
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR30),%GPR1	
+	add	%GPR1,%GPR2,%GPR0	
+	lw	%GPR2,-12(%GPR30)	
+	NOP		;;29,32
+	NOP		;;29,32
+	NOP		;;29,32
+	addi	%GPR1,%GPR1,$1	
+	addi	%GPR2,%GPR2,$1	
+	NOP		;;33,36
+	NOP		;;33,36
+	NOP		;;33,36
+	sw	-8(%GPR30),%GPR1	
+	sw	-12(%GPR30),%GPR2	
+	NOP	; Automatically added by findLoadStoreProblem.sh
+	lw	%GPR2,-16(%GPR30)	
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$10000	
+	NOP		;;39,42
+	NOP		;;39,42
+	NOP		;;39,42
+	sw	0(%GPR2),%GPR28	
+	NOP	; Automatically added by findLoadStoreProblem.sh
+	lw	%GPR2,-4(%GPR30)	
+	NOP		;;43,47
+	NOP		;;43,47
+	NOP		;;43,47
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	slt	%GPR27,%GPR2,%GPR1	
+	bnez	%GPR27,L15	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L16	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L16:
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$0	
+	NOP		;;4,8
+	NOP		;;4,8
+	NOP		;;4,8
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR30),%GPR1	
+	NOP		
+	NOP		
+	NOP		
+L17:
+	LI	%GPR1, *_c	
+	LI	%GPR2, *_c	
+	NOP		;;1,4
+	NOP		;;1,4
+	NOP		;;1,4
+	lw	%GPR3,0(%GPR1)	
+	NOP	; Automatically added by findLoadStoreProblem.sh
+	sw	-24(%GPR30),%GPR2	
+	NOP	; Automatically added by findLoadStoreProblem.sh
+	lw	%GPR1,-12(%GPR30)	
+	lw	%GPR2,-8(%GPR30)	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	foo	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR2,-24(%GPR30)	
+	LI	%GPR1, *_c	
+	NOP		;;10,13
+	NOP		;;10,13
+	NOP		;;10,13
+	sw	0(%GPR2),%GPR28	
+	NOP	; Automatically added by findLoadStoreProblem.sh
+	lw	%GPR2,-20(%GPR30)	
+	NOP		;;14,17
+	NOP		;;14,17
+	NOP		;;14,17
+	lw	%GPR1,0(%GPR1)	
+		
+  
+  nop
+  nop
+  nop
+  xchg %GPR2, %GPR1
+  nop
+  nop
+  nop
+	
+	lw	%GPR1,-4(%GPR30)	
+	NOP		;;19,23
+	NOP		;;19,23
+	NOP		;;19,23
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR1,%GPR1,$1	
+	NOP		;;23,27
+	NOP		;;23,27
+	NOP		;;23,27
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	%GPR2,%GPR1,%GPR0	
+	sw	-4(%GPR30),%GPR1	
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$10200	
+	NOP		;;29,33
+	NOP		;;29,33
+	NOP		;;29,33
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	slt	%GPR27,%GPR2,%GPR1	
+	bnez	%GPR27,L17	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L18	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L18:
+	LI	%GPR1, *_isPrim	
+	NOP		;;0,4
+	NOP		;;0,4
+	NOP		;;0,4
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-28(%GPR30),%GPR1	
+	lhi	%GPR1,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR1,%GPR1,$1999	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	prim	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR1,-28(%GPR30)	
+	NOP		;;7,11
+	NOP		;;7,11
+	NOP		;;7,11
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	0(%GPR1),%GPR28	
+	lhi	%GPR28,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR28,%GPR28,$0	
+	NOP		;;12,16
+	NOP		;;12,16
+	NOP		;;12,16
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L19	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L19:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	NOP		
+	NOP		
+	jr	%GPR31	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 2 NOPs removed by reduceNOPs.sh
+exit:
+	NOP
+	NOP

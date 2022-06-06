@@ -1,0 +1,141 @@
+00000000	3c1d0000		lhi	%r29, $(((1024-4)*65536)&0xffff)	; MemSize is 1024
+00000001	00000000		nop
+00000002	00000000		nop
+00000003	00000000		nop
+00000004	27bd03fc		addui	%r29, %r29, $((1024-4)&0xffff)
+00000005	00000000		nop
+00000006	00000000		nop
+00000007	00000000		nop
+00000008	2bbd000c		subi	%r29, %r29, $12		; Adjust Stack Pointer
+00000009	00000000		nop
+0000000a	00000000		nop
+0000000b	00000000		nop
+0000000c	afbe0000		sw	0(%r29), %r30		; Save the old frame pointer
+0000000d	afbf0004		sw	4(%r29), %r31		; Save the return address
+0000000e	afa10008		sw	8(%r29), %r1		; Save r1, which is used in main.
+0000000f	001df020		add	%r30, %r0, %r29		; Establish new frame pointer
+00000010	2bbd0008		subi	%r29, %r29, $8		; create place for the parameters
+00000011	00000000		nop
+00000012	00000000		nop
+00000013	20010013		addi	%r1, %r0, $19
+00000014	afa00000		sw	0(%r29), %r0		; "const unsigned int startIndex"
+00000015	00000000		nop
+00000016	00000000		nop
+00000017	afa10004		sw	4(%r29), %r1		; "const unsigned int endIndex"
+00000018	0c00000c		jal	_bubbleSort
+00000019	00000000		nop
+0000001a	23bd0008		addi	%r29, %r29, $8
+0000001b	00000000		nop
+0000001c	00000000		nop
+0000001d	00000000		nop
+0000001e	8fbe0000		lw	%r30, 0(%r29)		; Restore frame pointer
+0000001f	8fbf0004		lw	%r31, 4(%r29)		; Restore return address
+00000020	8fa10008		lw	%r1,  8(%r29)		; Restore r1
+00000021	001ee820		add	%r29, %r0, %r30		; Restore stack pointer
+00000022	0c000068		jal	_exit
+00000023	00000000		nop
+00000024	001df020		add	%r30, %r0, %r29		; Establish new frame pointer
+00000025	2bbd0030		subi	%r29, %r29, $(8 + 10*4)	; Adjust Stack Pointer; 8 for oldFP+RET and x*4 for saved Registers
+00000026	00000000		nop
+00000027	00000000		nop
+00000028	00000000		nop
+00000029	afbe0000		sw	0(%r29), %r30		; Save the frame pointer
+0000002a	afbf0004		sw	4(%r29), %r31		; Save the return address
+0000002b	afa10008		sw	 8(%r29), %r1		; r1 is used for comparing-results and for temporary stuff.
+0000002c	afa2000c		sw	12(%r29), %r2		; r2 is the parameter value "startIndex".
+0000002d	afa30010		sw	16(%r29), %r3		; r3 is the parameter value "endIndex".
+0000002e	afa40014		sw	20(%r29), %r4		; r4 is the loop-variable "i".
+0000002f	afa50018		sw	24(%r29), %r5		; r5 is the loop-variable "j".
+00000030	afa6001c		sw	28(%r29), %r6		; r6 is the loop-end "innerLoopEnd".
+00000031	afa70020		sw	32(%r29), %r7		; r7 is "next_j".
+00000032	afa80024		sw	36(%r29), %r8		; r8 is "value_j".
+00000033	afa90028		sw	40(%r29), %r9		; r9 is "value_next_j".
+00000034	afaa002c		sw	44(%r29), %r10		; r10 is the start address of 'array'.
+00000035	00000000		nop
+00000036	8fc20000		lw	%r2, 0(%r30)
+00000037	8fc30004		lw	%r3, 4(%r30)
+00000038	3c0a0000		lhi	%r10, $(_array*65536)&0xffff
+00000039	00000000		nop
+0000003a	00000000		nop
+0000003b	00000000		nop
+0000003c	254a0000		addui	%r10, %r10, $(_array&0xffff)
+0000003d	40770002		slli %r23, %r3, $2		; r23 = endindex * 4
+0000003e	40530002		slli %r19, %r2, $2		; r19 = startindex * 4	
+0000003f	20160001		addi %r22,%r0,$1			; r22 = 1
+00000040	0000a820		add %r21,%r0,%r0			; r21 = 0
+00000041	01573020		add %r6, %r10, %r23		; r6 = *array + (endindex*4) 
+00000042	00000000		nop
+00000043	00000000		nop
+00000044	00000000		nop
+00000045	20c60004		addi %r6,%r6,$4
+00000046	01532820		add %r5, %r10, %r19		; r5 = *array + (startindex *4)
+00000047	fab60034		bgeu %r21,%r22, _EndLoop
+00000048	00000000		nop
+00000049	28c60004		subi %r6, %r6, $4
+0000004a	8ca80000		lw %r8, 0(%r5)
+0000004b	8ca90004		lw %r9, 4(%r5)		
+0000004c	08000004		j _InnerLoop
+0000004d	20150001		addi %r21,%r0,$1			; r21 = 1
+0000004e	01204020		add %r8, %r9, %r0
+0000004f	00000000		nop
+00000050	f8a6fff6		bgeu %r5, %r6, _OuterLoop
+00000051	20a50004		addi %r5, %r5, $4
+00000052	f928fffc		bgeu %r9, %r8, _dontchange	; if r9 >= r8 goto _dontchange
+00000053	8ca90008		lw %r9, 8(%r5)
+00000054	0000a820		add %r21,%r0,%r0			; r21 = 0
+00000055	aca9fffc		sw -4(%r5), %r9			; tauschen
+00000056	aca80000		sw 0(%r5), %r8			
+00000057	f8a6ffef		bgeu %r5, %r6, _OuterLoop
+00000058	20a50004		addi %r5, %r5, $4
+00000059	f928fff5		bgeu %r9, %r8, _dontchange
+0000005a	8ca90008		lw %r9, 8(%r5)
+0000005b	0000a820		add %r21,%r0,%r0			; r21 = 0
+0000005c	aca9fffc		sw -4(%r5), %r9			; tauschen
+0000005d	aca80000		sw 0(%r5), %r8			
+0000005e	f8a6ffe8		bgeu %r5, %r6, _OuterLoop
+0000005f	20a50004		addi %r5, %r5, $4
+00000060	f928ffee		bgeu %r9, %r8, _dontchange
+00000061	8ca90008		lw %r9, 8(%r5)
+00000062	0000a820		add %r21,%r0,%r0			; r21 = 0
+00000063	aca9fffc		sw -4(%r5), %r9			; tauschen
+00000064	aca80000		sw 0(%r5), %r8			
+00000065	f8a6ffe1		bgeu %r5, %r6, _OuterLoop
+00000066	20a50004		addi %r5, %r5, $4
+00000067	f928ffe7		bgeu %r9, %r8, _dontchange
+00000068	8ca90008		lw %r9, 8(%r5)
+00000069	0000a820		add %r21,%r0,%r0			; r21 = 0
+0000006a	aca9fffc		sw -4(%r5), %r9			; tauschen
+0000006b	aca80000		sw 0(%r5), %r8			
+0000006c	f8a6ffda		bgeu %r5, %r6, _OuterLoop
+0000006d	20a50004		addi %r5, %r5, $4
+0000006e	f928ffe0		bgeu %r9, %r8, _dontchange
+0000006f	8ca90008		lw %r9, 8(%r5)
+00000070	0000a820		add %r21,%r0,%r0			; r21 = 0
+00000071	aca9fffc		sw -4(%r5), %r9			; tauschen
+00000072	aca80000		sw 0(%r5), %r8			
+00000073	f8a6ffd3		bgeu %r5, %r6, _OuterLoop
+00000074	20a50004		addi %r5, %r5, $4
+00000075	f928ffd9		bgeu %r9, %r8, _dontchange
+00000076	8ca90008		lw %r9, 8(%r5)
+00000077	0000a820		add %r21,%r0,%r0			; r21 = 0
+00000078	aca9fffc		sw -4(%r5), %r9			; tauschen
+00000079	0bffffd7		j _InnerLoop
+0000007a	aca80000		sw 0(%r5), %r8			
+0000007b	8fbe0000		lw	%r30, 0(%r29)		; Restore frame pointer
+0000007c	8fbf0004		lw	%r31, 4(%r29)		; Restore return address
+0000007d	8fa10008		lw	%r1, 8(%r29)
+0000007e	8fa2000c		lw	%r2, 12(%r29)
+0000007f	8fa30010		lw	%r3, 16(%r29)
+00000080	8fa40014		lw	%r4, 20(%r29)
+00000081	8fa50018		lw	%r5, 24(%r29)
+00000082	8fa6001c		lw	%r6, 28(%r29)
+00000083	8fa70020		lw	%r7, 32(%r29)
+00000084	8fa80024		lw	%r8, 36(%r29)
+00000085	8fa90028		lw	%r9, 40(%r29)
+00000086	8faa0030		lw	%r10,48(%r29)
+00000087	001ee820		add	%r29, %r0, %r30		; Restore stack pointer
+00000088	03e00008		jr	%r31
+00000089	00000000		nop
+0000008a	00000000	_exit:	nop
+0000008b	00000000		nop
+0000008c	ffffffff	; ----- HALT for simulator -----

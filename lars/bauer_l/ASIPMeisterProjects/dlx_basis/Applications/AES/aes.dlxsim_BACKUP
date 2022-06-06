@@ -1,0 +1,13420 @@
+	.section	.text
+	.addressing	Word
+_start:
+	xor	r30, r30, r30
+	xor	r29, r29, r29
+	xor	r28, r28, r28
+	nop
+	addui	r30, r30, $3
+	addui	r29, r29, $3
+	nop
+	nop
+	slli	r30, r30, $12
+	slli	r29, r29, $12
+	nop
+	nop
+	nop
+	sw	-4(r29), r30
+	sw	-8(r29), r31
+	addi	r29, r30, $-8
+	jal	main	
+	nop
+	sw	0(r29), r1
+	jal	exit	
+	nop
+aes_set_key:
+L17:
+	nop
+	nop
+	nop
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	add	r4,r3,r0	
+	add	r3,r2,r0	
+	nop
+	nop
+	nop
+	add	r2,r4,r0	
+	nop
+	nop
+	nop
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$128	
+	nop
+	nop
+	nop
+	seq	r27,r2,r5	
+	nop
+	nop
+	nop
+	bnez	r27,L21	
+	nop
+	nop
+	nop
+	j	L18	
+	nop
+	nop
+	nop
+L18:
+	nop
+	nop
+	nop
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$192	
+	nop
+	nop
+	nop
+	seq	r27,r2,r5	
+	nop
+	nop
+	nop
+	bnez	r27,L23	
+	nop
+	nop
+	nop
+	j	L19	
+	nop
+	nop
+	nop
+L19:
+	nop
+	nop
+	nop
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$256	
+	nop
+	nop
+	nop
+	seq	r27,r2,r5	
+	nop
+	nop
+	nop
+	bnez	r27,L20	
+	nop
+	nop
+	nop
+	j	L24	
+	nop
+	nop
+	nop
+L20:
+	nop
+	nop
+	nop
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$512	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$14	
+	nop
+	nop
+	nop
+	add	r2,r1,r2	
+	nop
+	nop
+	nop
+	sw	0(r2),r5	
+	j	L22	
+	nop
+	nop
+	nop
+L21:
+	nop
+	nop
+	nop
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$512	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$10	
+	nop
+	nop
+	nop
+	add	r2,r1,r2	
+	nop
+	nop
+	nop
+	sw	0(r2),r5	
+	nop
+	nop
+	nop
+L22:
+	add	r2,r1,r0	
+	nop
+	nop
+	nop
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$0	
+	j	L40	
+	nop
+	nop
+	nop
+L23:
+	nop
+	nop
+	nop
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$512	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$12	
+	nop
+	nop
+	nop
+	add	r2,r1,r2	
+	nop
+	nop
+	nop
+	sw	0(r2),r5	
+	j	L22	
+	nop
+	nop
+	nop
+L24:
+	nop
+	nop
+	nop
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	ori	r28,r28,$1	
+	nop
+	nop
+	nop
+	j	L47	
+	nop
+	nop
+	nop
+L25:
+	lhi	r5,$( L11	/0x10000)
+	nop
+	nop
+	nop
+	ori	r5,r5,$( L11	%0x10000)
+	nop
+	nop
+	lw	r3,0(r2)	
+	lhi	r4,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r4,r4,$( L1	%0x10000)
+	nop
+	nop
+	nop
+	lw	r6,0(r5)	
+	nop
+	nop
+	nop
+	xor	r6,r3,r6	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$12	
+	nop
+	nop
+	nop
+	add	r3,r2,r3	
+	nop
+	nop
+	nop
+	lw	r3,0(r3)	
+	nop
+	nop
+	nop
+	srai	r7,r3,$16	
+	srai	r8,r3,$8	
+	add	r9,r3,r0	
+	nop
+	nop
+	nop
+	srai	r10,r3,$24	
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$16	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$4	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$16	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$20	
+	add	r11,r2,r3	
+	add	r12,r2,r12	
+	add	r13,r2,r13	
+	add	r14,r2,r14	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$20	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$8	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$24	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$12	
+	add	r16,r2,r16	
+	add	r15,r2,r3	
+	add	r17,r2,r17	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$24	
+	add	r18,r2,r18	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$28	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$16	
+	add	r20,r2,r3	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$4	
+	nop
+	nop
+	nop
+	add	r21,r2,r21	
+	add	r2,r2,r19	
+	add	r5,r5,r22	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$9	
+	nop
+	nop
+	nop
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	slli	r9,r9,$2	
+	nop
+	nop
+	add	r7,r4,r7	
+	add	r8,r4,r8	
+	add	r9,r4,r9	
+	slli	r10,r10,$2	
+	lw	r7,0(r7)	
+	lw	r8,0(r8)	
+	lw	r9,0(r9)	
+	add	r10,r4,r10	
+	slli	r7,r7,$24	
+	slli	r8,r8,$16	
+	slli	r9,r9,$8	
+	lw	r10,0(r10)	
+	xor	r6,r7,r6	
+	nop
+	nop
+	nop
+	xor	r6,r6,r8	
+	nop
+	nop
+	nop
+	xor	r6,r6,r9	
+	nop
+	nop
+	nop
+	xor	r6,r6,r10	
+	nop
+	nop
+	nop
+	sw	0(r11),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r12)	
+	lw	r7,0(r13)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r14),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r15)	
+	lw	r7,0(r16)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r17),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r18)	
+	lw	r7,0(r20)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r21),r6	
+	nop
+	nop
+	nop
+L26:
+	lw	r6,0(r2)	
+	lw	r7,0(r5)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$12	
+	nop
+	nop
+	nop
+	add	r7,r2,r7	
+	nop
+	nop
+	nop
+	lw	r7,0(r7)	
+	nop
+	nop
+	nop
+	srai	r27,r7,$16	
+	srai	r24,r7,$8	
+	add	r25,r7,r0	
+	nop
+	nop
+	nop
+	srai	r26,r7,$24	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$16	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$4	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$16	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$20	
+	add	r7,r2,r7	
+	add	r8,r2,r8	
+	add	r9,r2,r9	
+	add	r10,r2,r10	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$8	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$20	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$24	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$12	
+	add	r11,r2,r11	
+	add	r12,r2,r12	
+	add	r13,r2,r13	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$24	
+	add	r14,r2,r14	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$28	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$28	
+	add	r15,r2,r15	
+	nop
+	nop
+	nop
+	add	r16,r2,r16	
+	add	r17,r2,r17	
+	nop
+	nop
+	nop
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$16	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$4	
+	nop
+	nop
+	nop
+	add	r18,r2,r18	
+	add	r19,r5,r19	
+	nop
+	nop
+	nop
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$32	
+	nop
+	nop
+	nop
+	slli	r27,r27,$2	
+	slli	r24,r24,$2	
+	slli	r25,r25,$2	
+	nop
+	nop
+	add	r27,r4,r27	
+	add	r24,r4,r24	
+	add	r25,r4,r25	
+	slli	r26,r26,$2	
+	lw	r27,0(r27)	
+	lw	r24,0(r24)	
+	lw	r25,0(r25)	
+	add	r26,r4,r26	
+	slli	r27,r27,$24	
+	slli	r24,r24,$16	
+	slli	r25,r25,$8	
+	lw	r26,0(r26)	
+	xor	r6,r27,r6	
+	nop
+	nop
+	nop
+	xor	r6,r6,r24	
+	nop
+	nop
+	nop
+	xor	r6,r6,r25	
+	nop
+	nop
+	nop
+	xor	r6,r6,r26	
+	nop
+	nop
+	nop
+	sw	0(r7),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r8)	
+	lw	r7,0(r9)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r10),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r11)	
+	lw	r7,0(r12)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r13),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r14)	
+	lw	r7,0(r15)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r16),r6	
+	nop
+	nop
+	nop
+	lw	r9,0(r17)	
+	nop
+	nop
+	nop
+	srai	r6,r9,$16	
+	srai	r7,r9,$8	
+	add	r8,r9,r0	
+	nop
+	nop
+	nop
+	srai	r9,r9,$24	
+	nop
+	nop
+	nop
+	lw	r11,0(r18)	
+	lw	r12,0(r19)	
+	add	r20,r2,r20	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$20	
+	nop
+	nop
+	xor	r11,r11,r12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$32	
+	add	r22,r2,r22	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$36	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$24	
+	add	r23,r2,r23	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$36	
+	add	r10,r2,r21	
+	add	r12,r2,r13	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$40	
+	add	r13,r2,r14	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$28	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$40	
+	add	r14,r2,r15	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$44	
+	add	r15,r2,r16	
+	nop
+	nop
+	nop
+	add	r16,r2,r17	
+	add	r17,r2,r18	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$44	
+	nop
+	nop
+	nop
+	add	r18,r2,r19	
+	nop
+	nop
+	nop
+	slli	r6,r6,$2	
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	nop
+	nop
+	add	r6,r4,r6	
+	add	r7,r4,r7	
+	add	r8,r4,r8	
+	slli	r9,r9,$2	
+	lw	r6,0(r6)	
+	lw	r7,0(r7)	
+	lw	r8,0(r8)	
+	add	r9,r4,r9	
+	slli	r6,r6,$24	
+	slli	r7,r7,$16	
+	slli	r8,r8,$8	
+	lw	r9,0(r9)	
+	xor	r6,r6,r11	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	xor	r6,r6,r8	
+	nop
+	nop
+	nop
+	xor	r6,r6,r9	
+	nop
+	nop
+	nop
+	sw	0(r20),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r22)	
+	lw	r7,0(r23)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r10),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r12)	
+	lw	r7,0(r13)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r14),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r15)	
+	lw	r7,0(r16)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r17),r6	
+	nop
+	nop
+	nop
+	lw	r9,0(r18)	
+	nop
+	nop
+	nop
+	srai	r6,r9,$16	
+	srai	r7,r9,$8	
+	add	r8,r9,r0	
+	nop
+	nop
+	nop
+	srai	r9,r9,$24	
+	nop
+	nop
+	nop
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$8	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$32	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$48	
+	nop
+	nop
+	add	r11,r5,r11	
+	add	r13,r2,r10	
+	add	r10,r2,r12	
+	nop
+	nop
+	lw	r11,0(r11)	
+	lw	r12,0(r13)	
+	nop
+	nop
+	nop
+	xor	r11,r12,r11	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$36	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$48	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$40	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$52	
+	add	r12,r2,r13	
+	add	r13,r2,r14	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$52	
+	add	r15,r2,r15	
+	nop
+	nop
+	nop
+	add	r14,r2,r14	
+	add	r16,r2,r16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$56	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$44	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$56	
+	addi	r3,r3,$-3	
+	add	r17,r2,r17	
+	add	r19,r2,r19	
+	add	r20,r2,r20	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$60	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$48	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$12	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$0	
+	add	r21,r2,r21	
+	add	r2,r2,r18	
+	add	r5,r5,r23	
+	nop
+	nop
+	nop
+	slli	r6,r6,$2	
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	nop
+	nop
+	add	r6,r4,r6	
+	add	r7,r4,r7	
+	add	r8,r4,r8	
+	slli	r9,r9,$2	
+	lw	r6,0(r6)	
+	lw	r7,0(r7)	
+	lw	r8,0(r8)	
+	add	r9,r4,r9	
+	slli	r6,r6,$24	
+	slli	r7,r7,$16	
+	slli	r8,r8,$8	
+	lw	r9,0(r9)	
+	xor	r6,r6,r11	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	xor	r6,r6,r8	
+	nop
+	nop
+	nop
+	xor	r6,r6,r9	
+	nop
+	nop
+	nop
+	sw	0(r10),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r12)	
+	lw	r7,0(r13)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r14),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r15)	
+	lw	r7,0(r16)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r17),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r19)	
+	lw	r7,0(r20)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r21),r6	
+	sgt	r27,r3,r22	
+	nop
+	nop
+	nop
+	bnez	r27,L26	
+	nop
+	nop
+	nop
+	j	L27	
+	nop
+	nop
+	nop
+L27:
+	lhi	r3,$( L12	/0x10000)
+	nop
+	nop
+	nop
+	ori	r3,r3,$( L12	%0x10000)
+	nop
+	nop
+	nop
+	lw	r3,0(r3)	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	nop
+	nop
+	nop
+	sne	r27,r3,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L28	
+	nop
+	nop
+	nop
+	j	L31	
+	nop
+	nop
+	nop
+L28:
+	lhi	r5,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r5,r5,$( L1	%0x10000)
+	lhi	r6,$( L13	/0x10000)
+	nop
+	nop
+	nop
+	ori	r6,r6,$( L13	%0x10000)
+	lhi	r7,$( L14	/0x10000)
+	nop
+	nop
+	nop
+	ori	r7,r7,$( L14	%0x10000)
+	lhi	r8,$( L15	/0x10000)
+	nop
+	nop
+	nop
+	ori	r8,r8,$( L15	%0x10000)
+	lhi	r9,$( L7	/0x10000)
+	nop
+	nop
+	nop
+	ori	r9,r9,$( L7	%0x10000)
+	lhi	r10,$( L8	/0x10000)
+	nop
+	nop
+	nop
+	ori	r10,r10,$( L8	%0x10000)
+	lhi	r11,$( L9	/0x10000)
+	nop
+	nop
+	nop
+	ori	r11,r11,$( L9	%0x10000)
+	lhi	r13,$( L10	/0x10000)
+	nop
+	nop
+	nop
+	ori	r13,r13,$( L10	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r12,$( L16	/0x10000)
+	nop
+	nop
+	nop
+	ori	r12,r12,$( L16	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$256	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	nop
+	nop
+	nop
+L29:
+	lw	r14,0(r5)	
+	nop
+	nop
+	nop
+	slli	r14,r14,$2	
+	nop
+	nop
+	nop
+	add	r15,r9,r14	
+	add	r16,r10,r14	
+	add	r17,r11,r14	
+	nop
+	nop
+	lw	r15,0(r15)	
+	nop
+	nop
+	nop
+	sw	0(r6),r15	
+	add	r15,r13,r14	
+	nop
+	nop
+	nop
+	lw	r14,0(r16)	
+	slli	r16,r4,$2	
+	nop
+	nop
+	nop
+	sw	0(r7),r14	
+	add	r14,r12,r16	
+	nop
+	nop
+	nop
+	lw	r16,0(r17)	
+	nop
+	nop
+	nop
+	sw	0(r8),r16	
+	nop
+	nop
+	nop
+	lw	r15,0(r15)	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$4	
+	nop
+	nop
+	nop
+	sw	0(r14),r15	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$4	
+	add	r18,r5,r16	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$4	
+	nop
+	nop
+	add	r17,r6,r15	
+	lw	r15,0(r18)	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$4	
+	nop
+	nop
+	nop
+	slli	r15,r15,$2	
+	add	r16,r7,r16	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$4	
+	nop
+	nop
+	add	r19,r9,r15	
+	add	r18,r10,r15	
+	nop
+	nop
+	nop
+	lw	r22,0(r19)	
+	add	r19,r11,r15	
+	add	r15,r13,r15	
+	nop
+	nop
+	sw	0(r17),r22	
+	add	r17,r8,r21	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$8	
+	nop
+	nop
+	lw	r21,0(r18)	
+	add	r18,r14,r20	
+	nop
+	nop
+	nop
+	sw	0(r16),r21	
+	add	r20,r5,r22	
+	nop
+	nop
+	nop
+	lw	r16,0(r19)	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$8	
+	nop
+	nop
+	nop
+	sw	0(r17),r16	
+	add	r16,r6,r19	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$8	
+	nop
+	nop
+	lw	r15,0(r15)	
+	nop
+	nop
+	add	r17,r7,r17	
+	nop
+	nop
+	sw	0(r18),r15	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$8	
+	nop
+	nop
+	nop
+	lw	r15,0(r20)	
+	add	r18,r8,r18	
+	nop
+	nop
+	nop
+	slli	r15,r15,$2	
+	nop
+	nop
+	nop
+	add	r20,r9,r15	
+	add	r21,r10,r15	
+	add	r19,r11,r15	
+	nop
+	nop
+	lw	r20,0(r20)	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$8	
+	add	r15,r13,r15	
+	nop
+	nop
+	sw	0(r16),r20	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$12	
+	nop
+	nop
+	nop
+	lw	r16,0(r21)	
+	nop
+	nop
+	nop
+	sw	0(r17),r16	
+	add	r16,r14,r22	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	nop
+	nop
+	lw	r19,0(r19)	
+	nop
+	nop
+	add	r17,r5,r17	
+	nop
+	nop
+	sw	0(r18),r19	
+	add	r18,r6,r20	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$12	
+	nop
+	nop
+	lw	r20,0(r15)	
+	nop
+	nop
+	add	r15,r7,r19	
+	nop
+	nop
+	sw	0(r16),r20	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$12	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$12	
+	nop
+	nop
+	lw	r17,0(r17)	
+	add	r19,r8,r19	
+	nop
+	nop
+	nop
+	slli	r21,r17,$2	
+	add	r14,r14,r16	
+	addi	r3,r3,$-4	
+	nop
+	nop
+	add	r22,r9,r21	
+	add	r17,r10,r21	
+	add	r20,r11,r21	
+	nop
+	nop
+	lw	r22,0(r22)	
+	add	r21,r13,r21	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$16	
+	nop
+	nop
+	sw	0(r18),r22	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$16	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$16	
+	nop
+	nop
+	lw	r24,0(r17)	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$0	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$16	
+	nop
+	nop
+	sw	0(r15),r24	
+	addi	r4,r4,$4	
+	add	r5,r5,r16	
+	add	r6,r6,r18	
+	lw	r15,0(r20)	
+	add	r8,r8,r22	
+	add	r7,r7,r17	
+	nop
+	nop
+	sw	0(r19),r15	
+	nop
+	nop
+	nop
+	lw	r15,0(r21)	
+	nop
+	nop
+	nop
+	sw	0(r14),r15	
+	sgt	r27,r3,r23	
+	nop
+	nop
+	nop
+	bnez	r27,L29	
+	nop
+	nop
+	nop
+	j	L30	
+	nop
+	nop
+	nop
+L30:
+	lhi	r3,$( L12	/0x10000)
+	nop
+	nop
+	nop
+	ori	r3,r3,$( L12	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	nop
+	nop
+	nop
+	sw	0(r3),r4	
+	nop
+	nop
+	nop
+L31:
+	nop
+	nop
+	nop
+	lw	r4,0(r2)	
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$256	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$4	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$4	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$4	
+	add	r3,r1,r3	
+	add	r2,r2,r5	
+	nop
+	nop
+	nop
+	sw	0(r3),r4	
+	add	r3,r3,r6	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$4	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$4	
+	lw	r5,0(r2)	
+	add	r2,r2,r7	
+	add	r4,r3,r4	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$512	
+	sw	0(r3),r5	
+	add	r3,r2,r6	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$4	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$4	
+	lw	r6,0(r2)	
+	nop
+	nop
+	add	r2,r4,r5	
+	add	r5,r1,r7	
+	sw	0(r4),r6	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$1	
+	add	r8,r2,r8	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$4	
+	lw	r9,0(r3)	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$1	
+	nop
+	nop
+	add	r3,r3,r4	
+	sw	0(r2),r9	
+	nop
+	nop
+	nop
+	lw	r2,0(r5)	
+	nop
+	nop
+	nop
+	sgt	r27,r2,r6	
+	nop
+	nop
+	nop
+	bnez	r27,L32	
+	nop
+	nop
+	nop
+	j	L34	
+	nop
+	nop
+	nop
+L32:
+	lhi	r12,$( L13	/0x10000)
+	nop
+	nop
+	nop
+	ori	r12,r12,$( L13	%0x10000)
+	lhi	r13,$( L14	/0x10000)
+	nop
+	nop
+	nop
+	ori	r13,r13,$( L14	%0x10000)
+	lhi	r14,$( L15	/0x10000)
+	nop
+	nop
+	nop
+	ori	r14,r14,$( L15	%0x10000)
+	lhi	r15,$( L16	/0x10000)
+	nop
+	nop
+	nop
+	ori	r15,r15,$( L16	%0x10000)
+	nop
+	nop
+	nop
+L33:
+	nop
+	nop
+	nop
+	lhi	r2,$65535	
+	nop
+	nop
+	nop
+	ori	r2,r2,$-32	
+	nop
+	nop
+	nop
+	add	r3,r3,r2	
+	nop
+	nop
+	nop
+	lw	r2,0(r3)	
+	nop
+	nop
+	nop
+	srai	r16,r2,$24	
+	srai	r17,r2,$16	
+	srai	r18,r2,$8	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$4	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$4	
+	nop
+	nop
+	nop
+	add	r4,r3,r4	
+	nop
+	nop
+	nop
+	add	r5,r4,r5	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$4	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$4	
+	nop
+	nop
+	nop
+	add	r9,r8,r3	
+	add	r6,r5,r6	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$4	
+	nop
+	nop
+	nop
+	add	r10,r9,r3	
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$4	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$4	
+	nop
+	nop
+	nop
+	add	r11,r10,r3	
+	add	r3,r6,r21	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$512	
+	addi	r7,r7,$1	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$4	
+	nop
+	nop
+	add	r20,r1,r20	
+	nop
+	nop
+	nop
+	slli	r2,r2,$2	
+	slli	r16,r16,$2	
+	slli	r17,r17,$2	
+	slli	r18,r18,$2	
+	add	r2,r15,r2	
+	add	r16,r12,r16	
+	add	r17,r13,r17	
+	add	r18,r14,r18	
+	lw	r2,0(r2)	
+	lw	r16,0(r16)	
+	lw	r17,0(r17)	
+	lw	r18,0(r18)	
+	nop
+	nop
+	nop
+	xor	r16,r16,r17	
+	nop
+	nop
+	nop
+	xor	r16,r16,r18	
+	nop
+	nop
+	nop
+	xor	r2,r16,r2	
+	nop
+	nop
+	nop
+	sw	0(r8),r2	
+	nop
+	nop
+	nop
+	lw	r2,0(r4)	
+	nop
+	nop
+	nop
+	srai	r16,r2,$16	
+	srai	r4,r2,$24	
+	srai	r17,r2,$8	
+	nop
+	nop
+	nop
+	add	r8,r11,r19	
+	nop
+	nop
+	nop
+	slli	r2,r2,$2	
+	slli	r16,r16,$2	
+	slli	r4,r4,$2	
+	slli	r17,r17,$2	
+	add	r2,r15,r2	
+	add	r16,r13,r16	
+	add	r4,r12,r4	
+	add	r17,r14,r17	
+	lw	r2,0(r2)	
+	lw	r16,0(r16)	
+	lw	r4,0(r4)	
+	lw	r17,0(r17)	
+	nop
+	nop
+	nop
+	xor	r4,r4,r16	
+	nop
+	nop
+	nop
+	xor	r4,r4,r17	
+	nop
+	nop
+	nop
+	xor	r2,r4,r2	
+	nop
+	nop
+	nop
+	sw	0(r9),r2	
+	nop
+	nop
+	nop
+	lw	r2,0(r5)	
+	nop
+	nop
+	nop
+	srai	r4,r2,$24	
+	srai	r5,r2,$16	
+	srai	r9,r2,$8	
+	nop
+	nop
+	nop
+	slli	r2,r2,$2	
+	slli	r4,r4,$2	
+	slli	r5,r5,$2	
+	slli	r9,r9,$2	
+	add	r2,r15,r2	
+	add	r4,r12,r4	
+	add	r5,r13,r5	
+	add	r9,r14,r9	
+	lw	r2,0(r2)	
+	lw	r4,0(r4)	
+	lw	r5,0(r5)	
+	lw	r9,0(r9)	
+	nop
+	nop
+	nop
+	xor	r4,r4,r5	
+	nop
+	nop
+	nop
+	xor	r4,r4,r9	
+	nop
+	nop
+	nop
+	xor	r2,r4,r2	
+	nop
+	nop
+	nop
+	sw	0(r10),r2	
+	nop
+	nop
+	nop
+	lw	r2,0(r6)	
+	nop
+	nop
+	nop
+	srai	r4,r2,$24	
+	srai	r5,r2,$16	
+	srai	r6,r2,$8	
+	nop
+	nop
+	nop
+	slli	r2,r2,$2	
+	slli	r4,r4,$2	
+	slli	r5,r5,$2	
+	slli	r6,r6,$2	
+	add	r2,r15,r2	
+	add	r4,r12,r4	
+	add	r5,r13,r5	
+	add	r6,r14,r6	
+	lw	r2,0(r2)	
+	lw	r4,0(r4)	
+	lw	r5,0(r5)	
+	lw	r6,0(r6)	
+	nop
+	nop
+	nop
+	xor	r4,r4,r5	
+	nop
+	nop
+	nop
+	xor	r4,r4,r6	
+	nop
+	nop
+	nop
+	xor	r2,r4,r2	
+	nop
+	nop
+	nop
+	sw	0(r11),r2	
+	nop
+	nop
+	nop
+	lw	r2,0(r20)	
+	nop
+	nop
+	nop
+	slt	r27,r7,r2	
+	nop
+	nop
+	nop
+	bnez	r27,L33	
+	nop
+	nop
+	nop
+	j	L34	
+	nop
+	nop
+	nop
+L34:
+	nop
+	nop
+	nop
+	lhi	r1,$65535	
+	nop
+	nop
+	nop
+	ori	r1,r1,$-32	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$4	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$4	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$4	
+	add	r1,r3,r1	
+	nop
+	nop
+	add	r3,r8,r4	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$4	
+	lw	r6,0(r1)	
+	add	r1,r1,r2	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$4	
+	add	r4,r3,r4	
+	sw	0(r8),r6	
+	add	r2,r1,r5	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$4	
+	nop
+	nop
+	lw	r6,0(r1)	
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	ori	r28,r28,$0	
+	add	r1,r2,r5	
+	nop
+	nop
+	sw	0(r3),r6	
+	add	r3,r4,r7	
+	nop
+	nop
+	nop
+	lw	r2,0(r2)	
+	nop
+	nop
+	nop
+	sw	0(r4),r2	
+	nop
+	nop
+	nop
+	lw	r1,0(r1)	
+	nop
+	nop
+	nop
+	sw	0(r3),r1	
+	j	L47	
+	nop
+	nop
+	nop
+L35:
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$128	
+	nop
+	nop
+	nop
+	seq	r27,r4,r3	
+	nop
+	nop
+	nop
+	bnez	r27,L25	
+	nop
+	nop
+	nop
+	j	L36	
+	nop
+	nop
+	nop
+L36:
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$192	
+	nop
+	nop
+	nop
+	seq	r27,r4,r3	
+	nop
+	nop
+	nop
+	bnez	r27,L45	
+	nop
+	nop
+	nop
+	j	L37	
+	nop
+	nop
+	nop
+L37:
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$256	
+	nop
+	nop
+	nop
+	seq	r27,r4,r3	
+	nop
+	nop
+	nop
+	bnez	r27,L38	
+	nop
+	nop
+	nop
+	j	L27	
+	nop
+	nop
+	nop
+L38:
+	lhi	r5,$( L11	/0x10000)
+	nop
+	nop
+	nop
+	ori	r5,r5,$( L11	%0x10000)
+	nop
+	nop
+	lhi	r4,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r4,r4,$( L1	%0x10000)
+	lw	r3,0(r2)	
+	nop
+	nop
+	nop
+	lw	r6,0(r5)	
+	nop
+	nop
+	nop
+	xor	r3,r3,r6	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$28	
+	nop
+	nop
+	nop
+	add	r6,r2,r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r6)	
+	nop
+	nop
+	nop
+	add	r23,r6,r0	
+	srai	r21,r6,$16	
+	srai	r22,r6,$8	
+	srai	r24,r6,$24	
+	nop
+	nop
+	nop
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$32	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$4	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$32	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$36	
+	add	r6,r2,r6	
+	add	r7,r2,r7	
+	add	r8,r2,r8	
+	add	r9,r2,r9	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$8	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$36	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$40	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$12	
+	add	r10,r2,r10	
+	add	r11,r2,r11	
+	add	r12,r2,r12	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$40	
+	add	r13,r2,r13	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$44	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$44	
+	add	r14,r2,r14	
+	nop
+	nop
+	add	r15,r2,r15	
+	add	r16,r2,r16	
+	nop
+	nop
+	nop
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$16	
+	nop
+	nop
+	nop
+	add	r17,r2,r17	
+	nop
+	nop
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$48	
+	nop
+	nop
+	nop
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$20	
+	add	r18,r2,r18	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$48	
+	nop
+	nop
+	add	r19,r2,r19	
+	nop
+	nop
+	add	r20,r2,r20	
+	nop
+	nop
+	nop
+	slli	r23,r23,$2	
+	slli	r21,r21,$2	
+	slli	r22,r22,$2	
+	slli	r24,r24,$2	
+	add	r23,r4,r23	
+	add	r21,r4,r21	
+	add	r22,r4,r22	
+	add	r24,r4,r24	
+	lw	r23,0(r23)	
+	lw	r25,0(r21)	
+	lw	r26,0(r22)	
+	lw	r22,0(r24)	
+	slli	r21,r23,$8	
+	slli	r23,r25,$24	
+	slli	r24,r26,$16	
+	nop
+	nop
+	nop
+	xor	r3,r23,r3	
+	nop
+	nop
+	nop
+	xor	r3,r3,r24	
+	nop
+	nop
+	nop
+	xor	r3,r3,r21	
+	nop
+	nop
+	nop
+	xor	r3,r3,r22	
+	nop
+	nop
+	nop
+	sw	0(r6),r3	
+	nop
+	nop
+	nop
+	lw	r3,0(r7)	
+	lw	r6,0(r8)	
+	nop
+	nop
+	nop
+	xor	r3,r3,r6	
+	nop
+	nop
+	nop
+	sw	0(r9),r3	
+	nop
+	nop
+	nop
+	lw	r3,0(r10)	
+	lw	r6,0(r11)	
+	nop
+	nop
+	nop
+	xor	r3,r3,r6	
+	nop
+	nop
+	nop
+	sw	0(r12),r3	
+	nop
+	nop
+	nop
+	lw	r3,0(r13)	
+	lw	r6,0(r14)	
+	nop
+	nop
+	nop
+	xor	r3,r3,r6	
+	nop
+	nop
+	nop
+	sw	0(r15),r3	
+	nop
+	nop
+	nop
+	lw	r6,0(r16)	
+	nop
+	nop
+	nop
+	srai	r7,r6,$24	
+	srai	r8,r6,$16	
+	srai	r9,r6,$8	
+	nop
+	nop
+	nop
+	lw	r10,0(r17)	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$52	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$24	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$52	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$56	
+	add	r11,r2,r3	
+	add	r12,r2,r12	
+	add	r13,r2,r13	
+	add	r14,r2,r14	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$56	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$28	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$60	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$4	
+	add	r17,r2,r17	
+	add	r16,r2,r3	
+	add	r21,r2,r21	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$32	
+	add	r5,r5,r22	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$6	
+	nop
+	nop
+	add	r2,r2,r15	
+	nop
+	nop
+	nop
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	slli	r9,r9,$2	
+	slli	r6,r6,$2	
+	add	r7,r4,r7	
+	add	r8,r4,r8	
+	add	r9,r4,r9	
+	add	r6,r4,r6	
+	lw	r7,0(r7)	
+	lw	r8,0(r8)	
+	lw	r9,0(r9)	
+	lw	r6,0(r6)	
+	slli	r7,r7,$24	
+	slli	r8,r8,$16	
+	slli	r9,r9,$8	
+	nop
+	nop
+	xor	r7,r7,r10	
+	nop
+	nop
+	nop
+	xor	r7,r7,r8	
+	nop
+	nop
+	nop
+	xor	r7,r7,r9	
+	nop
+	nop
+	nop
+	xor	r6,r7,r6	
+	nop
+	nop
+	nop
+	sw	0(r18),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r19)	
+	lw	r7,0(r20)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r11),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r12)	
+	lw	r7,0(r13)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r14),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r16)	
+	lw	r7,0(r17)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r21),r6	
+	nop
+	nop
+	nop
+L39:
+	lw	r6,0(r2)	
+	lw	r7,0(r5)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$28	
+	nop
+	nop
+	nop
+	add	r7,r2,r7	
+	nop
+	nop
+	nop
+	lw	r7,0(r7)	
+	nop
+	nop
+	nop
+	srai	r24,r7,$16	
+	srai	r25,r7,$8	
+	add	r26,r7,r0	
+	nop
+	nop
+	nop
+	srai	r27,r7,$24	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$32	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$4	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$32	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$36	
+	add	r7,r2,r7	
+	add	r8,r2,r8	
+	add	r9,r2,r9	
+	add	r10,r2,r10	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$8	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$36	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$40	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$12	
+	add	r11,r2,r11	
+	add	r12,r2,r12	
+	add	r13,r2,r13	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$40	
+	add	r14,r2,r14	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$44	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$44	
+	add	r15,r2,r15	
+	nop
+	nop
+	nop
+	add	r16,r2,r16	
+	add	r17,r2,r17	
+	nop
+	nop
+	nop
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$16	
+	nop
+	nop
+	nop
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$24	
+	add	r18,r2,r18	
+	nop
+	nop
+	nop
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$48	
+	nop
+	nop
+	nop
+	slli	r24,r24,$2	
+	slli	r25,r25,$2	
+	slli	r26,r26,$2	
+	nop
+	nop
+	add	r24,r4,r24	
+	add	r25,r4,r25	
+	add	r26,r4,r26	
+	slli	r27,r27,$2	
+	lw	r24,0(r24)	
+	lw	r25,0(r25)	
+	lw	r26,0(r26)	
+	add	r27,r4,r27	
+	slli	r24,r24,$24	
+	slli	r25,r25,$16	
+	slli	r26,r26,$8	
+	lw	r27,0(r27)	
+	xor	r6,r24,r6	
+	nop
+	nop
+	nop
+	xor	r6,r6,r25	
+	nop
+	nop
+	nop
+	xor	r6,r6,r26	
+	nop
+	nop
+	nop
+	xor	r6,r6,r27	
+	nop
+	nop
+	nop
+	sw	0(r7),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r8)	
+	lw	r7,0(r9)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r10),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r11)	
+	lw	r7,0(r12)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r13),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r14)	
+	lw	r7,0(r15)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r16),r6	
+	nop
+	nop
+	nop
+	lw	r17,0(r17)	
+	nop
+	nop
+	nop
+	srai	r24,r17,$24	
+	srai	r25,r17,$16	
+	srai	r26,r17,$8	
+	nop
+	nop
+	nop
+	lw	r6,0(r18)	
+	add	r7,r2,r22	
+	add	r19,r2,r19	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$20	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$48	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$52	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$52	
+	add	r20,r2,r20	
+	add	r21,r2,r21	
+	add	r23,r2,r23	
+	add	r8,r2,r8	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$56	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$28	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$56	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$60	
+	add	r9,r2,r9	
+	add	r10,r2,r10	
+	add	r11,r2,r11	
+	add	r12,r2,r12	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$60	
+	nop
+	nop
+	nop
+	add	r13,r2,r13	
+	nop
+	nop
+	nop
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$32	
+	nop
+	nop
+	nop
+	slli	r27,r17,$2	
+	slli	r17,r24,$2	
+	slli	r18,r25,$2	
+	slli	r22,r26,$2	
+	add	r24,r4,r27	
+	add	r17,r4,r17	
+	add	r25,r4,r18	
+	add	r22,r4,r22	
+	lw	r18,0(r24)	
+	lw	r17,0(r17)	
+	lw	r24,0(r25)	
+	lw	r22,0(r22)	
+	nop
+	nop
+	slli	r17,r17,$24	
+	slli	r24,r24,$16	
+	slli	r22,r22,$8	
+	nop
+	nop
+	xor	r6,r17,r6	
+	nop
+	nop
+	nop
+	xor	r6,r6,r24	
+	nop
+	nop
+	nop
+	xor	r6,r6,r22	
+	nop
+	nop
+	nop
+	xor	r6,r6,r18	
+	nop
+	nop
+	nop
+	sw	0(r19),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r20)	
+	lw	r17,0(r21)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r17	
+	nop
+	nop
+	nop
+	sw	0(r23),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r7)	
+	lw	r7,0(r8)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r9),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r10)	
+	lw	r7,0(r11)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r12),r6	
+	nop
+	nop
+	nop
+	lw	r9,0(r13)	
+	nop
+	nop
+	nop
+	srai	r6,r9,$16	
+	srai	r7,r9,$8	
+	add	r8,r9,r0	
+	nop
+	nop
+	nop
+	srai	r9,r9,$24	
+	nop
+	nop
+	nop
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$4	
+	add	r15,r2,r15	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$64	
+	nop
+	nop
+	add	r16,r5,r16	
+	lw	r11,0(r15)	
+	add	r10,r2,r14	
+	nop
+	nop
+	lw	r12,0(r16)	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$36	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$64	
+	nop
+	nop
+	xor	r11,r11,r12	
+	add	r12,r2,r13	
+	add	r13,r2,r14	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$68	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$40	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$68	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$72	
+	add	r14,r2,r15	
+	add	r15,r2,r16	
+	add	r16,r2,r17	
+	nop
+	nop
+	nop
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$44	
+	add	r17,r2,r18	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$72	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$76	
+	add	r18,r2,r19	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$76	
+	add	r19,r2,r20	
+	add	r20,r2,r21	
+	nop
+	nop
+	add	r21,r2,r22	
+	nop
+	nop
+	nop
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$48	
+	nop
+	nop
+	nop
+	slli	r6,r6,$2	
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	nop
+	nop
+	add	r6,r4,r6	
+	add	r7,r4,r7	
+	add	r8,r4,r8	
+	slli	r9,r9,$2	
+	lw	r6,0(r6)	
+	lw	r7,0(r7)	
+	lw	r8,0(r8)	
+	add	r9,r4,r9	
+	slli	r6,r6,$24	
+	slli	r7,r7,$16	
+	slli	r8,r8,$8	
+	lw	r9,0(r9)	
+	xor	r6,r6,r11	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	xor	r6,r6,r8	
+	nop
+	nop
+	nop
+	xor	r6,r6,r9	
+	nop
+	nop
+	nop
+	sw	0(r10),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r12)	
+	lw	r7,0(r13)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r14),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r15)	
+	lw	r7,0(r16)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r17),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r18)	
+	lw	r7,0(r19)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r20),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r21)	
+	nop
+	nop
+	nop
+	srai	r7,r6,$24	
+	srai	r8,r6,$16	
+	srai	r9,r6,$8	
+	nop
+	nop
+	nop
+	add	r22,r2,r22	
+	nop
+	nop
+	nop
+	lw	r10,0(r22)	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$80	
+	nop
+	nop
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$52	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$80	
+	add	r11,r2,r11	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$84	
+	add	r12,r2,r12	
+	add	r13,r2,r13	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$56	
+	add	r14,r2,r14	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$84	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$88	
+	add	r15,r2,r15	
+	nop
+	nop
+	add	r16,r2,r16	
+	add	r17,r2,r17	
+	nop
+	nop
+	nop
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$60	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$88	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$92	
+	nop
+	nop
+	add	r18,r2,r18	
+	add	r19,r2,r19	
+	add	r20,r2,r20	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$92	
+	nop
+	nop
+	nop
+	add	r21,r2,r21	
+	nop
+	nop
+	nop
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	slli	r9,r9,$2	
+	slli	r6,r6,$2	
+	add	r7,r4,r7	
+	add	r8,r4,r8	
+	add	r9,r4,r9	
+	add	r6,r4,r6	
+	lw	r7,0(r7)	
+	lw	r8,0(r8)	
+	lw	r9,0(r9)	
+	lw	r6,0(r6)	
+	slli	r7,r7,$24	
+	slli	r8,r8,$16	
+	slli	r9,r9,$8	
+	nop
+	nop
+	xor	r7,r7,r10	
+	nop
+	nop
+	nop
+	xor	r7,r7,r8	
+	nop
+	nop
+	nop
+	xor	r7,r7,r9	
+	nop
+	nop
+	nop
+	xor	r6,r7,r6	
+	nop
+	nop
+	nop
+	sw	0(r11),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r12)	
+	lw	r7,0(r13)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r14),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r15)	
+	lw	r7,0(r16)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r17),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r18)	
+	lw	r7,0(r19)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r20),r6	
+	nop
+	nop
+	nop
+	lw	r9,0(r21)	
+	nop
+	nop
+	nop
+	srai	r6,r9,$16	
+	srai	r7,r9,$8	
+	add	r8,r9,r0	
+	nop
+	nop
+	nop
+	srai	r9,r9,$24	
+	nop
+	nop
+	nop
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$64	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$8	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$96	
+	nop
+	nop
+	add	r13,r2,r10	
+	add	r11,r5,r11	
+	add	r10,r2,r12	
+	nop
+	nop
+	lw	r12,0(r13)	
+	lw	r11,0(r11)	
+	nop
+	nop
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$68	
+	nop
+	nop
+	xor	r11,r12,r11	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$96	
+	add	r12,r2,r13	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$72	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$100	
+	add	r13,r2,r14	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$100	
+	add	r15,r2,r15	
+	add	r16,r2,r16	
+	nop
+	nop
+	nop
+	add	r14,r2,r14	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$104	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$76	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$104	
+	nop
+	nop
+	add	r17,r2,r17	
+	add	r18,r2,r18	
+	add	r19,r2,r19	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$108	
+	nop
+	nop
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$108	
+	nop
+	nop
+	add	r20,r2,r20	
+	nop
+	nop
+	add	r21,r2,r21	
+	nop
+	nop
+	nop
+	slli	r6,r6,$2	
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	nop
+	nop
+	add	r6,r4,r6	
+	add	r7,r4,r7	
+	add	r8,r4,r8	
+	slli	r9,r9,$2	
+	lw	r6,0(r6)	
+	lw	r7,0(r7)	
+	lw	r8,0(r8)	
+	add	r9,r4,r9	
+	slli	r6,r6,$24	
+	slli	r7,r7,$16	
+	slli	r8,r8,$8	
+	lw	r9,0(r9)	
+	xor	r6,r6,r11	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	xor	r6,r6,r8	
+	nop
+	nop
+	nop
+	xor	r6,r6,r9	
+	nop
+	nop
+	nop
+	sw	0(r10),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r12)	
+	lw	r7,0(r13)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r14),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r15)	
+	lw	r7,0(r16)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r17),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r18)	
+	lw	r7,0(r19)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r20),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r21)	
+	nop
+	nop
+	nop
+	srai	r7,r6,$24	
+	srai	r8,r6,$16	
+	srai	r9,r6,$8	
+	nop
+	nop
+	nop
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$80	
+	nop
+	nop
+	nop
+	add	r22,r2,r22	
+	nop
+	nop
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$112	
+	nop
+	nop
+	lw	r10,0(r22)	
+	nop
+	nop
+	nop
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$84	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$112	
+	add	r11,r2,r11	
+	nop
+	nop
+	add	r12,r2,r12	
+	add	r13,r2,r13	
+	addi	r3,r3,$-3	
+	nop
+	nop
+	nop
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$116	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$88	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$116	
+	nop
+	nop
+	add	r14,r2,r14	
+	add	r15,r2,r15	
+	add	r16,r2,r16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$120	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$92	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$120	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$124	
+	add	r17,r2,r17	
+	add	r18,r2,r18	
+	add	r19,r2,r19	
+	add	r20,r2,r20	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$96	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$12	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$0	
+	nop
+	nop
+	add	r2,r2,r22	
+	add	r5,r5,r23	
+	nop
+	nop
+	nop
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	slli	r9,r9,$2	
+	slli	r6,r6,$2	
+	add	r7,r4,r7	
+	add	r8,r4,r8	
+	add	r9,r4,r9	
+	add	r6,r4,r6	
+	lw	r7,0(r7)	
+	lw	r8,0(r8)	
+	lw	r9,0(r9)	
+	lw	r6,0(r6)	
+	slli	r7,r7,$24	
+	slli	r8,r8,$16	
+	slli	r9,r9,$8	
+	nop
+	nop
+	xor	r7,r7,r10	
+	nop
+	nop
+	nop
+	xor	r7,r7,r8	
+	nop
+	nop
+	nop
+	xor	r7,r7,r9	
+	nop
+	nop
+	nop
+	xor	r6,r7,r6	
+	nop
+	nop
+	nop
+	sw	0(r11),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r12)	
+	lw	r7,0(r13)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r14),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r15)	
+	lw	r7,0(r16)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r17),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r18)	
+	lw	r7,0(r19)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r20),r6	
+	sgt	r27,r3,r21	
+	nop
+	nop
+	nop
+	bnez	r27,L39	
+	nop
+	nop
+	nop
+	j	L27	
+	nop
+	nop
+	nop
+L40:
+	srli	r6,r4,$5	
+	nop
+	nop
+	nop
+	slt	r27,r5,r6	
+	nop
+	nop
+	nop
+	bnez	r27,L41	
+	nop
+	nop
+	nop
+	j	L35	
+	nop
+	nop
+	nop
+L41:
+	srli	r6,r4,$5	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$4	
+	nop
+	nop
+	nop
+	MOD	r6,r6,r7	
+	nop
+	nop
+	nop
+	slt	r27,r5,r6	
+	nop
+	nop
+	nop
+	bnez	r27,L42	
+	nop
+	nop
+	nop
+	j	L43	
+	nop
+	nop
+	nop
+L42:
+	nop
+	nop
+	slli	r6,r5,$2	
+	nop
+	nop
+	nop
+	add	r7,r3,r6	
+	nop
+	nop
+	nop
+	lbu	r8,0(r7)	
+	nop
+	nop
+	nop
+	add	r6,r2,r6	
+	addi	r5,r5,$1	
+	nop
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$1	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$2	
+	nop
+	nop
+	nop
+	add	r9,r7,r9	
+	add	r10,r7,r10	
+	nop
+	nop
+	nop
+	lbu	r9,0(r9)	
+	lbu	r10,0(r10)	
+	nop
+	nop
+	nop
+	slli	r8,r8,$24	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$3	
+	nop
+	nop
+	nop
+	add	r7,r7,r11	
+	nop
+	nop
+	nop
+	lbu	r7,0(r7)	
+	nop
+	nop
+	nop
+	slli	r9,r9,$16	
+	slli	r10,r10,$8	
+	nop
+	nop
+	nop
+	or	r8,r9,r8	
+	nop
+	nop
+	nop
+	or	r8,r8,r10	
+	nop
+	nop
+	nop
+	or	r7,r8,r7	
+	nop
+	nop
+	nop
+	sw	0(r6),r7	
+	j	L40	
+	nop
+	nop
+	nop
+L43:
+	srli	r6,r4,$5	
+	nop
+	nop
+	nop
+	slt	r27,r5,r6	
+	nop
+	nop
+	nop
+	bnez	r27,L44	
+	nop
+	nop
+	nop
+	j	L35	
+	nop
+	nop
+	nop
+L44:
+	nop
+	nop
+	addi	r10,r5,$2	
+	slli	r6,r5,$2	
+	nop
+	nop
+	nop
+	slli	r15,r10,$2	
+	add	r13,r3,r6	
+	nop
+	nop
+	nop
+	lbu	r12,0(r13)	
+	addi	r7,r5,$1	
+	nop
+	nop
+	nop
+	slli	r7,r7,$2	
+	add	r8,r2,r6	
+	nop
+	nop
+	nop
+	add	r6,r3,r7	
+	nop
+	nop
+	nop
+	add	r9,r2,r7	
+	add	r7,r3,r15	
+	nop
+	nop
+	nop
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$1	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$2	
+	nop
+	nop
+	nop
+	add	r10,r13,r10	
+	add	r11,r13,r11	
+	nop
+	nop
+	nop
+	lbu	r10,0(r10)	
+	lbu	r11,0(r11)	
+	nop
+	nop
+	nop
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$3	
+	slli	r12,r12,$24	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$1	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$2	
+	add	r13,r13,r14	
+	nop
+	nop
+	add	r19,r6,r16	
+	add	r20,r6,r18	
+	lbu	r21,0(r13)	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$3	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$1	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$2	
+	nop
+	nop
+	add	r22,r6,r13	
+	add	r13,r7,r14	
+	add	r14,r7,r16	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$3	
+	nop
+	nop
+	nop
+	add	r16,r7,r16	
+	addi	r17,r5,$3	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$1	
+	add	r15,r2,r15	
+	nop
+	nop
+	slli	r17,r17,$2	
+	nop
+	nop
+	nop
+	slli	r10,r10,$16	
+	slli	r11,r11,$8	
+	nop
+	nop
+	nop
+	or	r10,r10,r12	
+	nop
+	nop
+	nop
+	or	r10,r10,r11	
+	nop
+	nop
+	nop
+	or	r10,r10,r21	
+	nop
+	nop
+	nop
+	sw	0(r8),r10	
+	nop
+	nop
+	nop
+	lbu	r11,0(r6)	
+	lbu	r10,0(r19)	
+	lbu	r12,0(r20)	
+	nop
+	nop
+	nop
+	lbu	r6,0(r22)	
+	add	r18,r3,r17	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$2	
+	nop
+	nop
+	nop
+	add	r23,r18,r23	
+	add	r24,r18,r24	
+	add	r8,r2,r17	
+	addi	r5,r5,$4	
+	nop
+	nop
+	nop
+	slli	r11,r11,$24	
+	slli	r10,r10,$16	
+	slli	r12,r12,$8	
+	nop
+	nop
+	nop
+	or	r10,r10,r11	
+	nop
+	nop
+	nop
+	or	r10,r10,r12	
+	nop
+	nop
+	nop
+	or	r6,r10,r6	
+	nop
+	nop
+	nop
+	sw	0(r9),r6	
+	nop
+	nop
+	nop
+	lbu	r6,0(r13)	
+	lbu	r7,0(r7)	
+	lbu	r9,0(r14)	
+	nop
+	nop
+	nop
+	lbu	r10,0(r16)	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$3	
+	nop
+	nop
+	nop
+	add	r11,r18,r11	
+	nop
+	nop
+	nop
+	slli	r6,r6,$16	
+	slli	r7,r7,$24	
+	slli	r9,r9,$8	
+	nop
+	nop
+	nop
+	or	r6,r6,r7	
+	nop
+	nop
+	nop
+	or	r6,r6,r9	
+	nop
+	nop
+	nop
+	or	r6,r6,r10	
+	nop
+	nop
+	nop
+	sw	0(r15),r6	
+	nop
+	nop
+	nop
+	lbu	r6,0(r23)	
+	lbu	r7,0(r18)	
+	lbu	r9,0(r24)	
+	nop
+	nop
+	nop
+	lbu	r10,0(r11)	
+	nop
+	nop
+	nop
+	slli	r6,r6,$16	
+	slli	r7,r7,$24	
+	slli	r9,r9,$8	
+	nop
+	nop
+	nop
+	or	r6,r6,r7	
+	nop
+	nop
+	nop
+	or	r6,r6,r9	
+	nop
+	nop
+	nop
+	or	r6,r6,r10	
+	nop
+	nop
+	nop
+	sw	0(r8),r6	
+	j	L43	
+	nop
+	nop
+	nop
+L45:
+	lhi	r5,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r5,r5,$( L1	%0x10000)
+	lhi	r4,$( L11	/0x10000)
+	nop
+	nop
+	nop
+	ori	r4,r4,$( L11	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$8	
+	nop
+	nop
+	nop
+L46:
+	lw	r6,0(r2)	
+	lw	r7,0(r4)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$20	
+	nop
+	nop
+	nop
+	add	r7,r2,r7	
+	nop
+	nop
+	nop
+	lw	r7,0(r7)	
+	nop
+	nop
+	nop
+	srai	r27,r7,$16	
+	srai	r28,r7,$8	
+	add	r25,r7,r0	
+	nop
+	nop
+	nop
+	srai	r26,r7,$24	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$24	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$4	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$24	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$28	
+	add	r7,r2,r7	
+	add	r8,r2,r8	
+	add	r9,r2,r9	
+	add	r10,r2,r10	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$8	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$28	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$32	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$12	
+	add	r11,r2,r11	
+	add	r12,r2,r12	
+	add	r13,r2,r13	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$32	
+	add	r14,r2,r14	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$36	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$16	
+	add	r15,r2,r15	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$36	
+	nop
+	nop
+	nop
+	add	r16,r2,r16	
+	add	r17,r2,r17	
+	add	r18,r2,r18	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$40	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$20	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$40	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$44	
+	add	r19,r2,r19	
+	add	r20,r2,r20	
+	add	r21,r2,r21	
+	add	r22,r2,r22	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$44	
+	nop
+	nop
+	nop
+	add	r23,r2,r23	
+	nop
+	nop
+	nop
+	slli	r27,r27,$2	
+	slli	r28,r28,$2	
+	slli	r25,r25,$2	
+	nop
+	nop
+	add	r27,r5,r27	
+	add	r28,r5,r28	
+	add	r25,r5,r25	
+	slli	r26,r26,$2	
+	lw	r27,0(r27)	
+	lw	r28,0(r28)	
+	lw	r25,0(r25)	
+	add	r26,r5,r26	
+	slli	r27,r27,$24	
+	slli	r28,r28,$16	
+	slli	r25,r25,$8	
+	lw	r26,0(r26)	
+	xor	r6,r27,r6	
+	nop
+	nop
+	nop
+	xor	r6,r6,r28	
+	nop
+	nop
+	nop
+	xor	r6,r6,r25	
+	nop
+	nop
+	nop
+	xor	r6,r6,r26	
+	nop
+	nop
+	nop
+	sw	0(r7),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r8)	
+	lw	r7,0(r9)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r10),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r11)	
+	lw	r7,0(r12)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r13),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r14)	
+	lw	r7,0(r15)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r16),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r17)	
+	lw	r7,0(r18)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r19),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r20)	
+	lw	r7,0(r21)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r22),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r23)	
+	nop
+	nop
+	nop
+	add	r26,r6,r0	
+	srai	r23,r6,$16	
+	srai	r25,r6,$8	
+	srai	r6,r6,$24	
+	nop
+	nop
+	nop
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$24	
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$4	
+	nop
+	nop
+	add	r8,r2,r24	
+	nop
+	nop
+	add	r7,r4,r7	
+	nop
+	nop
+	lw	r8,0(r8)	
+	nop
+	nop
+	lw	r7,0(r7)	
+	nop
+	nop
+	nop
+	xor	r7,r8,r7	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$48	
+	nop
+	nop
+	nop
+	add	r8,r2,r9	
+	nop
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$28	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$48	
+	nop
+	nop
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$52	
+	add	r9,r2,r9	
+	add	r10,r2,r10	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$32	
+	add	r11,r2,r11	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$52	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$56	
+	add	r12,r2,r12	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$36	
+	add	r13,r2,r13	
+	add	r14,r2,r14	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$56	
+	add	r15,r2,r15	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$60	
+	nop
+	nop
+	add	r16,r2,r16	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$40	
+	add	r17,r2,r17	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$60	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$64	
+	add	r18,r2,r18	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$44	
+	add	r19,r2,r19	
+	add	r20,r2,r20	
+	nop
+	nop
+	nop
+	slli	r26,r26,$2	
+	slli	r23,r23,$2	
+	slli	r24,r25,$2	
+	slli	r6,r6,$2	
+	add	r25,r5,r26	
+	add	r23,r5,r23	
+	add	r24,r5,r24	
+	add	r26,r5,r6	
+	lw	r25,0(r25)	
+	lw	r27,0(r23)	
+	lw	r24,0(r24)	
+	lw	r23,0(r26)	
+	slli	r6,r25,$8	
+	slli	r25,r27,$24	
+	slli	r24,r24,$16	
+	nop
+	nop
+	nop
+	xor	r7,r25,r7	
+	nop
+	nop
+	nop
+	xor	r7,r7,r24	
+	nop
+	nop
+	nop
+	xor	r6,r7,r6	
+	nop
+	nop
+	nop
+	xor	r6,r6,r23	
+	nop
+	nop
+	nop
+	sw	0(r8),r6	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$64	
+	nop
+	nop
+	nop
+	lw	r8,0(r9)	
+	lw	r9,0(r10)	
+	add	r6,r2,r21	
+	nop
+	nop
+	nop
+	xor	r8,r8,r9	
+	nop
+	nop
+	nop
+	sw	0(r11),r8	
+	add	r7,r2,r22	
+	nop
+	nop
+	nop
+	lw	r9,0(r12)	
+	lw	r10,0(r13)	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$68	
+	nop
+	nop
+	nop
+	xor	r9,r9,r10	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$68	
+	nop
+	nop
+	nop
+	sw	0(r14),r9	
+	add	r9,r2,r10	
+	add	r8,r2,r8	
+	nop
+	nop
+	lw	r11,0(r16)	
+	lw	r10,0(r15)	
+	nop
+	nop
+	nop
+	xor	r10,r10,r11	
+	nop
+	nop
+	nop
+	sw	0(r17),r10	
+	nop
+	nop
+	nop
+	lw	r10,0(r18)	
+	lw	r11,0(r19)	
+	nop
+	nop
+	nop
+	xor	r10,r10,r11	
+	nop
+	nop
+	nop
+	sw	0(r20),r10	
+	nop
+	nop
+	nop
+	lw	r6,0(r6)	
+	lw	r7,0(r7)	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	nop
+	nop
+	nop
+	sw	0(r8),r6	
+	nop
+	nop
+	nop
+	lw	r6,0(r9)	
+	nop
+	nop
+	nop
+	add	r14,r6,r0	
+	srai	r12,r6,$16	
+	srai	r13,r6,$8	
+	srai	r15,r6,$24	
+	nop
+	nop
+	nop
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$48	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$8	
+	add	r6,r2,r6	
+	nop
+	nop
+	nop
+	add	r7,r4,r7	
+	nop
+	nop
+	nop
+	lw	r6,0(r6)	
+	lw	r7,0(r7)	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$72	
+	nop
+	nop
+	nop
+	xor	r16,r6,r7	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$72	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$52	
+	add	r19,r2,r8	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$76	
+	add	r17,r2,r6	
+	add	r18,r2,r7	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$56	
+	add	r20,r2,r9	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$76	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$80	
+	add	r6,r2,r6	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$60	
+	add	r7,r2,r7	
+	add	r8,r2,r8	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$80	
+	add	r9,r2,r9	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$84	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$64	
+	add	r10,r2,r10	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$84	
+	add	r11,r2,r11	
+	nop
+	nop
+	nop
+	slli	r14,r14,$2	
+	slli	r12,r12,$2	
+	slli	r13,r13,$2	
+	slli	r15,r15,$2	
+	add	r14,r5,r14	
+	add	r12,r5,r12	
+	add	r13,r5,r13	
+	add	r15,r5,r15	
+	lw	r14,0(r14)	
+	lw	r23,0(r12)	
+	lw	r24,0(r13)	
+	lw	r13,0(r15)	
+	slli	r12,r14,$8	
+	slli	r14,r23,$24	
+	slli	r15,r24,$16	
+	nop
+	nop
+	nop
+	xor	r16,r14,r16	
+	nop
+	nop
+	nop
+	xor	r15,r16,r15	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$88	
+	nop
+	nop
+	nop
+	xor	r15,r15,r12	
+	add	r12,r2,r16	
+	nop
+	nop
+	nop
+	xor	r13,r15,r13	
+	add	r14,r2,r22	
+	nop
+	nop
+	nop
+	sw	0(r17),r13	
+	add	r21,r2,r21	
+	nop
+	nop
+	nop
+	lw	r15,0(r18)	
+	lw	r16,0(r19)	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$68	
+	nop
+	nop
+	nop
+	xor	r15,r15,r16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$88	
+	nop
+	nop
+	nop
+	sw	0(r20),r15	
+	add	r15,r2,r17	
+	nop
+	nop
+	nop
+	lw	r6,0(r6)	
+	lw	r7,0(r7)	
+	add	r13,r2,r13	
+	nop
+	nop
+	nop
+	xor	r6,r6,r7	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$92	
+	nop
+	nop
+	nop
+	sw	0(r8),r6	
+	add	r7,r2,r16	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$92	
+	nop
+	nop
+	lw	r8,0(r9)	
+	lw	r9,0(r10)	
+	add	r6,r2,r6	
+	nop
+	nop
+	nop
+	xor	r8,r8,r9	
+	nop
+	nop
+	nop
+	sw	0(r11),r8	
+	nop
+	nop
+	nop
+	lw	r8,0(r21)	
+	lw	r9,0(r14)	
+	nop
+	nop
+	nop
+	xor	r8,r8,r9	
+	nop
+	nop
+	nop
+	sw	0(r12),r8	
+	nop
+	nop
+	nop
+	lw	r8,0(r13)	
+	lw	r9,0(r15)	
+	nop
+	nop
+	nop
+	xor	r8,r8,r9	
+	nop
+	nop
+	nop
+	sw	0(r7),r8	
+	nop
+	nop
+	nop
+	lw	r6,0(r6)	
+	nop
+	nop
+	nop
+	add	r11,r6,r0	
+	srai	r9,r6,$16	
+	srai	r10,r6,$8	
+	srai	r12,r6,$24	
+	nop
+	nop
+	nop
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$72	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$12	
+	add	r6,r2,r6	
+	nop
+	nop
+	nop
+	add	r7,r4,r7	
+	nop
+	nop
+	nop
+	lw	r6,0(r6)	
+	lw	r7,0(r7)	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$96	
+	nop
+	nop
+	nop
+	xor	r13,r6,r7	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$96	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$76	
+	add	r16,r2,r8	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$100	
+	add	r14,r2,r6	
+	add	r15,r2,r7	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$80	
+	add	r17,r2,r17	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$100	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$104	
+	add	r18,r2,r6	
+	nop
+	nop
+	add	r19,r2,r7	
+	nop
+	nop
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$84	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$104	
+	add	r20,r2,r8	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$108	
+	add	r6,r2,r6	
+	add	r7,r2,r7	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$88	
+	nop
+	nop
+	nop
+	slli	r11,r11,$2	
+	slli	r9,r9,$2	
+	slli	r10,r10,$2	
+	slli	r12,r12,$2	
+	add	r11,r5,r11	
+	add	r9,r5,r9	
+	add	r10,r5,r10	
+	add	r12,r5,r12	
+	lw	r11,0(r11)	
+	lw	r22,0(r9)	
+	lw	r23,0(r10)	
+	lw	r10,0(r12)	
+	slli	r9,r11,$8	
+	slli	r11,r22,$24	
+	slli	r12,r23,$16	
+	nop
+	nop
+	nop
+	xor	r11,r11,r13	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$108	
+	nop
+	nop
+	nop
+	xor	r12,r11,r12	
+	add	r8,r2,r8	
+	nop
+	nop
+	nop
+	xor	r12,r12,r9	
+	add	r9,r2,r13	
+	nop
+	nop
+	nop
+	xor	r10,r12,r10	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$112	
+	nop
+	nop
+	nop
+	sw	0(r14),r10	
+	add	r10,r2,r12	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$92	
+	nop
+	nop
+	lw	r13,0(r16)	
+	lw	r12,0(r15)	
+	add	r11,r2,r21	
+	nop
+	nop
+	nop
+	xor	r12,r12,r13	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$112	
+	nop
+	nop
+	nop
+	sw	0(r17),r12	
+	add	r12,r2,r14	
+	nop
+	nop
+	nop
+	lw	r15,0(r19)	
+	lw	r14,0(r18)	
+	add	r13,r2,r13	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$116	
+	nop
+	nop
+	xor	r14,r14,r15	
+	addi	r3,r3,$-4	
+	nop
+	nop
+	nop
+	sw	0(r20),r14	
+	add	r14,r2,r16	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$96	
+	nop
+	nop
+	lw	r7,0(r7)	
+	lw	r17,0(r6)	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$16	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$0	
+	nop
+	nop
+	xor	r7,r17,r7	
+	add	r2,r2,r15	
+	add	r4,r4,r16	
+	nop
+	nop
+	sw	0(r8),r7	
+	nop
+	nop
+	nop
+	lw	r7,0(r11)	
+	lw	r8,0(r9)	
+	nop
+	nop
+	nop
+	xor	r7,r7,r8	
+	nop
+	nop
+	nop
+	sw	0(r10),r7	
+	nop
+	nop
+	nop
+	lw	r7,0(r12)	
+	lw	r8,0(r13)	
+	nop
+	nop
+	nop
+	xor	r7,r7,r8	
+	nop
+	nop
+	nop
+	sw	0(r14),r7	
+	sgt	r27,r3,r6	
+	nop
+	nop
+	nop
+	bnez	r27,L46	
+	nop
+	nop
+	nop
+	j	L27	
+	nop
+	nop
+	nop
+L47:
+	nop
+	nop
+	nop
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+aes_encrypt:
+L48:
+	nop
+	nop
+	nop
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$12	
+	nop
+	nop
+	nop
+	add	r6,r2,r0	
+	nop
+	nop
+	nop
+	lbu	r19,0(r6)	
+	nop
+	nop
+	nop
+	lhi	r4,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r4,r4,$( L2	%0x10000)
+	lhi	r5,$( L3	/0x10000)
+	nop
+	nop
+	nop
+	ori	r5,r5,$( L3	%0x10000)
+	add	r2,r1,r0	
+	nop
+	nop
+	nop
+	lw	r7,0(r2)	
+	nop
+	nop
+	nop
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$12	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$13	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$8	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$9	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$4	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$5	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$1	
+	add	r21,r6,r13	
+	add	r20,r6,r12	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$10	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$14	
+	add	r23,r6,r15	
+	add	r22,r6,r14	
+	add	r13,r6,r8	
+	add	r12,r6,r16	
+	add	r14,r6,r9	
+	add	r15,r6,r10	
+	add	r16,r6,r11	
+	lbu	r8,0(r20)	
+	lbu	r9,0(r21)	
+	lbu	r10,0(r22)	
+	lbu	r11,0(r23)	
+	nop
+	nop
+	nop
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$2	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$6	
+	lbu	r13,0(r13)	
+	lbu	r12,0(r12)	
+	lbu	r14,0(r14)	
+	add	r18,r6,r18	
+	nop
+	nop
+	nop
+	add	r17,r6,r17	
+	lbu	r15,0(r15)	
+	lbu	r16,0(r16)	
+	lbu	r18,0(r18)	
+	lbu	r17,0(r17)	
+	nop
+	nop
+	nop
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$15	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$7	
+	slli	r19,r19,$24	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$11	
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$3	
+	add	r20,r6,r20	
+	lhi	r26,$0	
+	nop
+	nop
+	nop
+	ori	r26,r26,$12	
+	add	r24,r6,r24	
+	add	r22,r6,r22	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$8	
+	add	r6,r6,r25	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	add	r26,r2,r26	
+	slli	r8,r8,$16	
+	slli	r9,r9,$24	
+	slli	r10,r10,$16	
+	slli	r11,r11,$24	
+	lbu	r20,0(r20)	
+	or	r8,r9,r8	
+	add	r21,r2,r21	
+	or	r9,r11,r10	
+	lbu	r22,0(r22)	
+	add	r23,r2,r23	
+	slli	r13,r13,$24	
+	slli	r12,r12,$16	
+	slli	r14,r14,$16	
+	lbu	r6,0(r6)	
+	lw	r25,0(r26)	
+	or	r10,r13,r12	
+	or	r11,r19,r14	
+	lw	r21,0(r21)	
+	slli	r12,r15,$8	
+	slli	r13,r16,$8	
+	slli	r15,r18,$8	
+	slli	r14,r17,$8	
+	or	r8,r8,r12	
+	or	r9,r9,r13	
+	lbu	r16,0(r24)	
+	or	r12,r10,r14	
+	or	r11,r11,r15	
+	or	r10,r8,r20	
+	or	r9,r9,r22	
+	or	r8,r12,r16	
+	or	r6,r11,r6	
+	lw	r23,0(r23)	
+	xor	r12,r10,r25	
+	xor	r13,r9,r21	
+	xor	r15,r6,r7	
+	lhi	r6,$( L4	/0x10000)
+	nop
+	nop
+	nop
+	ori	r6,r6,$( L4	%0x10000)
+	lhi	r7,$( L5	/0x10000)
+	nop
+	nop
+	nop
+	ori	r7,r7,$( L5	%0x10000)
+	xor	r14,r8,r23	
+	srai	r20,r12,$24	
+	srai	r26,r13,$24	
+	srai	r25,r15,$24	
+	srai	r27,r14,$24	
+	nop
+	nop
+	nop
+	srai	r21,r12,$16	
+	srai	r22,r13,$16	
+	srai	r23,r14,$16	
+	srai	r24,r15,$16	
+	nop
+	nop
+	nop
+	srai	r11,r15,$8	
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r10,r14,$8	
+	nop
+	nop
+	nop
+	srai	r9,r13,$8	
+	nop
+	nop
+	nop
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$16	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$12	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$8	
+	nop
+	nop
+	add	r2,r2,r19	
+	nop
+	nop
+	nop
+	add	r19,r2,r16	
+	add	r18,r2,r18	
+	nop
+	nop
+	nop
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$4	
+	nop
+	nop
+	nop
+	lw	r19,0(r19)	
+	add	r17,r2,r17	
+	lw	r18,0(r18)	
+	lw	r16,0(r2)	
+	nop
+	nop
+	lw	r17,0(r17)	
+	nop
+	nop
+	nop
+	slli	r20,r20,$2	
+	slli	r26,r26,$2	
+	slli	r25,r25,$2	
+	slli	r27,r27,$2	
+	add	r20,r4,r20	
+	add	r26,r4,r26	
+	add	r25,r4,r25	
+	add	r27,r4,r27	
+	slli	r21,r21,$2	
+	slli	r22,r22,$2	
+	slli	r23,r23,$2	
+	lw	r20,0(r20)	
+	slli	r24,r24,$2	
+	add	r21,r5,r21	
+	lw	r26,0(r26)	
+	add	r22,r5,r22	
+	slli	r11,r11,$2	
+	slli	r8,r8,$2	
+	lw	r25,0(r25)	
+	lw	r27,0(r27)	
+	add	r23,r5,r23	
+	xor	r19,r20,r19	
+	slli	r12,r12,$2	
+	lw	r20,0(r21)	
+	slli	r10,r10,$2	
+	slli	r13,r13,$2	
+	add	r24,r5,r24	
+	xor	r18,r26,r18	
+	lw	r21,0(r22)	
+	slli	r14,r14,$2	
+	add	r11,r6,r11	
+	xor	r16,r25,r16	
+	xor	r17,r27,r17	
+	lw	r22,0(r23)	
+	slli	r15,r15,$2	
+	add	r8,r6,r8	
+	add	r12,r7,r12	
+	lw	r23,0(r24)	
+	slli	r9,r9,$2	
+	add	r10,r6,r10	
+	add	r13,r7,r13	
+	xor	r18,r18,r20	
+	add	r14,r7,r14	
+	lw	r11,0(r11)	
+	xor	r20,r16,r22	
+	xor	r17,r17,r21	
+	add	r15,r7,r15	
+	lw	r8,0(r8)	
+	lw	r16,0(r12)	
+	xor	r19,r19,r23	
+	lw	r12,0(r13)	
+	add	r9,r6,r9	
+	lw	r10,0(r10)	
+	xor	r11,r18,r11	
+	lw	r13,0(r14)	
+	xor	r8,r17,r8	
+	lw	r14,0(r15)	
+	xor	r17,r19,r10	
+	lw	r9,0(r9)	
+	xor	r10,r11,r13	
+	xor	r11,r8,r14	
+	xor	r12,r17,r12	
+	xor	r9,r20,r9	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	srai	r14,r12,$24	
+	xor	r13,r9,r16	
+	nop
+	nop
+	nop
+	srai	r18,r10,$16	
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	srai	r9,r13,$8	
+	srai	r19,r11,$16	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	slli	r17,r14,$2	
+	add	r23,r2,r23	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	add	r24,r2,r24	
+	slli	r18,r18,$2	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r23,0(r23)	
+	lw	r15,0(r15)	
+	add	r18,r5,r18	
+	slli	r8,r8,$2	
+	slli	r9,r9,$2	
+	lw	r14,0(r14)	
+	lw	r24,0(r24)	
+	add	r20,r5,r20	
+	slli	r19,r19,$2	
+	add	r22,r4,r22	
+	slli	r27,r27,$2	
+	slli	r10,r10,$2	
+	lw	r25,0(r25)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	xor	r15,r15,r23	
+	slli	r13,r13,$2	
+	lw	r18,0(r18)	
+	add	r8,r6,r8	
+	xor	r14,r14,r24	
+	slli	r11,r11,$2	
+	add	r9,r6,r9	
+	lw	r20,0(r20)	
+	lw	r17,0(r2)	
+	slli	r12,r12,$2	
+	slli	r26,r26,$2	
+	add	r19,r5,r19	
+	lw	r22,0(r22)	
+	xor	r16,r16,r25	
+	add	r27,r6,r27	
+	add	r10,r7,r10	
+	lw	r21,0(r21)	
+	xor	r15,r15,r18	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r18,r14,r20	
+	add	r11,r7,r11	
+	lw	r9,0(r9)	
+	xor	r17,r22,r17	
+	add	r12,r7,r12	
+	add	r26,r6,r26	
+	lw	r19,0(r19)	
+	xor	r20,r16,r21	
+	lw	r23,0(r27)	
+	lw	r14,0(r10)	
+	xor	r8,r15,r8	
+	lw	r10,0(r13)	
+	xor	r9,r18,r9	
+	lw	r11,0(r11)	
+	lw	r22,0(r26)	
+	xor	r17,r17,r19	
+	lw	r16,0(r12)	
+	xor	r12,r20,r23	
+	xor	r10,r8,r10	
+	xor	r11,r9,r11	
+	xor	r13,r17,r22	
+	xor	r12,r12,r14	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r16	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r18,r10,$16	
+	srai	r9,r13,$8	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r23,r2,r23	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r24,r2,r24	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r23,0(r23)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r18,r18,$2	
+	slli	r9,r9,$2	
+	lw	r15,0(r15)	
+	lw	r24,0(r24)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r25,0(r25)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r23	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r18,r5,r18	
+	add	r9,r6,r9	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r25	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r18,0(r18)	
+	lw	r9,0(r9)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r23,r2,r23	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r24,r2,r24	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r23,0(r23)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r9,r9,$2	
+	slli	r18,r18,$2	
+	lw	r15,0(r15)	
+	lw	r24,0(r24)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r25,0(r25)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r23	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r9,r6,r9	
+	add	r18,r5,r18	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r25	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r9,0(r9)	
+	lw	r18,0(r18)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r23,r2,r23	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r24,r2,r24	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r23,0(r23)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r9,r9,$2	
+	slli	r18,r18,$2	
+	lw	r15,0(r15)	
+	lw	r24,0(r24)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r25,0(r25)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r23	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r9,r6,r9	
+	add	r18,r5,r18	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r25	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r9,0(r9)	
+	lw	r18,0(r18)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r23,r2,r23	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r24,r2,r24	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r23,0(r23)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r9,r9,$2	
+	slli	r18,r18,$2	
+	lw	r15,0(r15)	
+	lw	r24,0(r24)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r25,0(r25)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r23	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r9,r6,r9	
+	add	r18,r5,r18	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r25	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r9,0(r9)	
+	lw	r18,0(r18)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r23,r2,r23	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r24,r2,r24	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r23,0(r23)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r9,r9,$2	
+	slli	r18,r18,$2	
+	lw	r15,0(r15)	
+	lw	r24,0(r24)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r25,0(r25)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r23	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r9,r6,r9	
+	add	r18,r5,r18	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r25	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r9,0(r9)	
+	lw	r18,0(r18)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	add	r23,r2,r23	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r24,r2,r24	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	lw	r23,0(r23)	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r14,0(r14)	
+	add	r19,r5,r19	
+	slli	r8,r8,$2	
+	lw	r24,0(r24)	
+	slli	r9,r9,$2	
+	lw	r15,0(r15)	
+	add	r20,r5,r20	
+	slli	r18,r18,$2	
+	add	r22,r4,r22	
+	lw	r25,0(r25)	
+	slli	r26,r26,$2	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	xor	r14,r14,r23	
+	slli	r13,r13,$2	
+	lw	r19,0(r19)	
+	add	r8,r6,r8	
+	xor	r15,r15,r24	
+	slli	r10,r10,$2	
+	add	r9,r6,r9	
+	lw	r20,0(r20)	
+	lw	r17,0(r2)	
+	slli	r27,r27,$2	
+	add	r18,r5,r18	
+	lw	r22,0(r22)	
+	xor	r16,r16,r25	
+	slli	r11,r11,$2	
+	add	r26,r6,r26	
+	lw	r21,0(r21)	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	add	r10,r7,r10	
+	lw	r9,0(r9)	
+	xor	r17,r22,r17	
+	slli	r12,r12,$2	
+	add	r27,r6,r27	
+	lw	r18,0(r18)	
+	xor	r16,r16,r21	
+	lw	r22,0(r26)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r13,0(r13)	
+	xor	r15,r15,r9	
+	lw	r10,0(r10)	
+	lw	r23,0(r27)	
+	xor	r17,r17,r18	
+	add	r12,r7,r12	
+	xor	r16,r16,r22	
+	lw	r11,0(r11)	
+	xor	r9,r8,r13	
+	xor	r10,r15,r10	
+	xor	r17,r17,r23	
+	lw	r12,0(r12)	
+	xor	r11,r16,r11	
+	srai	r14,r9,$24	
+	srai	r21,r10,$24	
+	xor	r12,r17,r12	
+	srai	r13,r11,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r15,r12,$24	
+	srai	r20,r12,$16	
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	nop
+	srai	r18,r10,$16	
+	nop
+	nop
+	srai	r17,r9,$16	
+	srai	r25,r9,$8	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$16	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$8	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$4	
+	add	r2,r2,r24	
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	ori	r28,r28,$512	
+	nop
+	nop
+	nop
+	add	r24,r2,r16	
+	add	r23,r2,r23	
+	slli	r14,r14,$2	
+	slli	r21,r21,$2	
+	add	r22,r2,r22	
+	slli	r16,r13,$2	
+	add	r13,r4,r14	
+	add	r14,r4,r21	
+	slli	r19,r19,$2	
+	lw	r23,0(r23)	
+	slli	r21,r15,$2	
+	add	r15,r4,r16	
+	slli	r20,r20,$2	
+	slli	r8,r8,$2	
+	lw	r14,0(r14)	
+	add	r19,r5,r19	
+	add	r21,r4,r21	
+	slli	r18,r18,$2	
+	slli	r17,r17,$2	
+	xor	r14,r14,r23	
+	slli	r9,r9,$2	
+	slli	r25,r25,$2	
+	lw	r24,0(r24)	
+	lw	r15,0(r15)	
+	lw	r16,0(r2)	
+	add	r20,r5,r20	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r21,0(r21)	
+	slli	r26,r26,$2	
+	slli	r27,r27,$2	
+	lw	r22,0(r22)	
+	lw	r13,0(r13)	
+	add	r18,r5,r18	
+	add	r17,r5,r17	
+	sw	-4(r30),r28	
+	xor	r15,r15,r24	
+	xor	r14,r14,r19	
+	xor	r16,r21,r16	
+	add	r9,r7,r9	
+	lw	r20,0(r20)	
+	lw	r8,0(r8)	
+	add	r25,r6,r25	
+	xor	r13,r13,r22	
+	slli	r12,r12,$2	
+	slli	r10,r10,$2	
+	slli	r11,r11,$2	
+	add	r27,r6,r27	
+	lw	r18,0(r18)	
+	lw	r17,0(r17)	
+	lw	r21,-4(r30)	
+	add	r26,r6,r26	
+	xor	r15,r15,r20	
+	xor	r8,r14,r8	
+	lw	r9,0(r9)	
+	lw	r22,0(r25)	
+	xor	r13,r13,r18	
+	xor	r16,r16,r17	
+	add	r12,r7,r12	
+	add	r10,r7,r10	
+	add	r11,r7,r11	
+	lw	r24,0(r27)	
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	ori	r28,r28,$10	
+	add	r21,r1,r21	
+	lw	r23,0(r26)	
+	xor	r14,r15,r22	
+	xor	r19,r8,r9	
+	lw	r12,0(r12)	
+	xor	r15,r16,r23	
+	lw	r10,0(r10)	
+	lw	r11,0(r11)	
+	xor	r13,r13,r24	
+	lw	r20,0(r21)	
+	add	r8,r28,r0	
+	xor	r16,r14,r10	
+	xor	r17,r15,r11	
+	xor	r18,r13,r12	
+	sgt	r27,r20,r8	
+	nop
+	nop
+	nop
+	bnez	r27,L49	
+	nop
+	nop
+	nop
+	j	L50	
+	nop
+	nop
+	nop
+L49:
+	srai	r24,r17,$24	
+	srai	r25,r18,$24	
+	srai	r26,r19,$24	
+	srai	r8,r18,$16	
+	nop
+	nop
+	nop
+	srai	r27,r16,$24	
+	srai	r9,r19,$16	
+	srai	r10,r16,$16	
+	srai	r12,r19,$8	
+	nop
+	nop
+	nop
+	srai	r11,r17,$16	
+	srai	r13,r16,$8	
+	srai	r14,r17,$8	
+	nop
+	nop
+	nop
+	srai	r15,r18,$8	
+	nop
+	nop
+	nop
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$16	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$4	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$8	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$12	
+	add	r2,r2,r22	
+	nop
+	nop
+	nop
+	add	r22,r2,r21	
+	add	r23,r2,r23	
+	slli	r24,r24,$2	
+	slli	r25,r25,$2	
+	slli	r26,r26,$2	
+	slli	r8,r8,$2	
+	add	r24,r4,r24	
+	add	r25,r4,r25	
+	add	r26,r4,r26	
+	lw	r21,0(r2)	
+	slli	r27,r27,$2	
+	slli	r9,r9,$2	
+	slli	r10,r10,$2	
+	add	r8,r5,r8	
+	slli	r12,r12,$2	
+	lw	r24,0(r24)	
+	add	r20,r2,r20	
+	add	r27,r4,r27	
+	add	r9,r5,r9	
+	slli	r11,r11,$2	
+	slli	r13,r13,$2	
+	lw	r22,0(r22)	
+	lw	r25,0(r25)	
+	add	r10,r5,r10	
+	slli	r14,r14,$2	
+	lw	r23,0(r23)	
+	lw	r26,0(r26)	
+	add	r12,r6,r12	
+	xor	r21,r24,r21	
+	lw	r8,0(r8)	
+	add	r11,r5,r11	
+	add	r13,r6,r13	
+	xor	r22,r25,r22	
+	slli	r15,r15,$2	
+	lw	r20,0(r20)	
+	lw	r27,0(r27)	
+	lw	r9,0(r9)	
+	add	r14,r6,r14	
+	xor	r23,r26,r23	
+	slli	r18,r18,$2	
+	lw	r10,0(r10)	
+	slli	r16,r16,$2	
+	xor	r8,r21,r8	
+	slli	r17,r17,$2	
+	lw	r12,0(r12)	
+	xor	r21,r22,r9	
+	add	r15,r6,r15	
+	xor	r20,r27,r20	
+	slli	r19,r19,$2	
+	lw	r11,0(r11)	
+	lw	r13,0(r13)	
+	xor	r22,r23,r10	
+	add	r18,r7,r18	
+	lw	r14,0(r14)	
+	add	r16,r7,r16	
+	add	r17,r7,r17	
+	xor	r8,r8,r12	
+	xor	r12,r21,r13	
+	add	r19,r7,r19	
+	xor	r20,r20,r11	
+	lw	r15,0(r15)	
+	xor	r13,r22,r14	
+	lw	r10,0(r18)	
+	lw	r16,0(r16)	
+	lw	r9,0(r17)	
+	xor	r14,r20,r15	
+	lw	r11,0(r19)	
+	xor	r17,r13,r10	
+	xor	r15,r8,r16	
+	xor	r16,r12,r9	
+	xor	r18,r14,r11	
+	srai	r25,r17,$24	
+	srai	r23,r15,$24	
+	srai	r21,r16,$24	
+	srai	r24,r18,$24	
+	nop
+	nop
+	nop
+	srai	r27,r15,$16	
+	srai	r8,r16,$16	
+	srai	r9,r17,$16	
+	srai	r10,r18,$16	
+	nop
+	nop
+	nop
+	srai	r13,r17,$8	
+	nop
+	nop
+	srai	r12,r16,$8	
+	nop
+	nop
+	nop
+	srai	r11,r15,$8	
+	nop
+	nop
+	nop
+	srai	r14,r18,$8	
+	nop
+	nop
+	nop
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$16	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$8	
+	lhi	r26,$0	
+	nop
+	nop
+	nop
+	ori	r26,r26,$12	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$4	
+	add	r2,r2,r19	
+	nop
+	nop
+	nop
+	add	r28,r2,r22	
+	add	r22,r2,r26	
+	slli	r25,r25,$2	
+	slli	r26,r23,$2	
+	slli	r23,r21,$2	
+	slli	r24,r24,$2	
+	add	r25,r4,r25	
+	add	r26,r4,r26	
+	add	r23,r4,r23	
+	add	r4,r4,r24	
+	slli	r27,r27,$2	
+	slli	r8,r8,$2	
+	slli	r9,r9,$2	
+	slli	r10,r10,$2	
+	add	r20,r2,r20	
+	lw	r24,0(r25)	
+	add	r8,r5,r8	
+	add	r9,r5,r9	
+	add	r25,r5,r27	
+	add	r5,r5,r10	
+	slli	r10,r15,$2	
+	lw	r19,0(r2)	
+	lw	r26,0(r26)	
+	slli	r15,r16,$2	
+	lw	r20,0(r20)	
+	lw	r23,0(r23)	
+	slli	r16,r17,$2	
+	slli	r13,r13,$2	
+	slli	r12,r12,$2	
+	slli	r11,r11,$2	
+	lw	r21,0(r28)	
+	slli	r17,r18,$2	
+	slli	r14,r14,$2	
+	lw	r4,0(r4)	
+	lw	r22,0(r22)	
+	xor	r18,r26,r19	
+	xor	r19,r23,r20	
+	add	r13,r6,r13	
+	add	r12,r6,r12	
+	add	r11,r6,r11	
+	xor	r20,r24,r21	
+	add	r6,r6,r14	
+	lw	r8,0(r8)	
+	lw	r9,0(r9)	
+	lw	r5,0(r5)	
+	xor	r4,r4,r22	
+	lw	r21,0(r25)	
+	add	r14,r7,r15	
+	add	r15,r7,r16	
+	add	r10,r7,r10	
+	xor	r8,r18,r8	
+	add	r7,r7,r17	
+	lw	r6,0(r6)	
+	xor	r5,r20,r5	
+	xor	r4,r4,r21	
+	xor	r9,r19,r9	
+	lw	r13,0(r13)	
+	lw	r12,0(r12)	
+	lw	r11,0(r11)	
+	lw	r14,0(r14)	
+	lw	r15,0(r15)	
+	xor	r4,r4,r12	
+	xor	r5,r5,r11	
+	lw	r10,0(r10)	
+	lw	r7,0(r7)	
+	xor	r6,r9,r6	
+	xor	r8,r8,r13	
+	xor	r16,r4,r15	
+	xor	r19,r5,r14	
+	xor	r18,r6,r10	
+	xor	r17,r8,r7	
+	nop
+	nop
+	nop
+L50:
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$512	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$12	
+	nop
+	nop
+	nop
+	add	r1,r1,r4	
+	nop
+	nop
+	nop
+	lw	r1,0(r1)	
+	nop
+	nop
+	nop
+	sgt	r27,r1,r5	
+	nop
+	nop
+	nop
+	bnez	r27,L51	
+	nop
+	nop
+	nop
+	j	L52	
+	nop
+	nop
+	nop
+L51:
+	srai	r1,r17,$24	
+	srai	r4,r18,$24	
+	srai	r5,r19,$24	
+	srai	r6,r16,$24	
+	nop
+	nop
+	nop
+	srai	r7,r18,$16	
+	srai	r8,r19,$16	
+	srai	r9,r16,$16	
+	srai	r10,r17,$16	
+	nop
+	nop
+	nop
+	srai	r11,r19,$8	
+	srai	r12,r16,$8	
+	nop
+	nop
+	srai	r13,r17,$8	
+	nop
+	nop
+	nop
+	srai	r14,r18,$8	
+	add	r21,r18,r0	
+	add	r22,r19,r0	
+	lhi	r15,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r15,r15,$( L2	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r18,$( L3	/0x10000)
+	nop
+	nop
+	nop
+	ori	r18,r18,$( L3	%0x10000)
+	lhi	r19,$( L4	/0x10000)
+	nop
+	nop
+	nop
+	ori	r19,r19,$( L4	%0x10000)
+	nop
+	nop
+	lhi	r20,$( L5	/0x10000)
+	nop
+	nop
+	nop
+	ori	r20,r20,$( L5	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r26,$0	
+	nop
+	nop
+	nop
+	ori	r26,r26,$16	
+	nop
+	nop
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	add	r2,r2,r26	
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$12	
+	slli	r1,r1,$2	
+	slli	r4,r4,$2	
+	slli	r5,r5,$2	
+	slli	r6,r6,$2	
+	add	r1,r15,r1	
+	add	r26,r2,r23	
+	add	r4,r15,r4	
+	add	r27,r2,r24	
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	add	r5,r15,r5	
+	slli	r9,r9,$2	
+	add	r23,r2,r25	
+	lw	r24,0(r2)	
+	add	r6,r15,r6	
+	lw	r1,0(r1)	
+	slli	r10,r10,$2	
+	lw	r25,0(r26)	
+	add	r7,r18,r7	
+	lw	r4,0(r4)	
+	slli	r11,r11,$2	
+	lw	r26,0(r27)	
+	add	r8,r18,r8	
+	lw	r5,0(r5)	
+	slli	r12,r12,$2	
+	add	r9,r18,r9	
+	lw	r23,0(r23)	
+	lw	r6,0(r6)	
+	slli	r13,r13,$2	
+	add	r10,r18,r10	
+	lw	r7,0(r7)	
+	slli	r14,r14,$2	
+	xor	r1,r1,r24	
+	add	r11,r19,r11	
+	lw	r8,0(r8)	
+	slli	r16,r16,$2	
+	xor	r4,r4,r25	
+	add	r12,r19,r12	
+	lw	r9,0(r9)	
+	slli	r17,r17,$2	
+	xor	r5,r5,r26	
+	add	r13,r19,r13	
+	lw	r10,0(r10)	
+	slli	r21,r21,$2	
+	xor	r6,r6,r23	
+	add	r14,r19,r14	
+	lw	r11,0(r11)	
+	slli	r22,r22,$2	
+	xor	r7,r1,r7	
+	add	r16,r20,r16	
+	lw	r12,0(r12)	
+	xor	r8,r4,r8	
+	add	r17,r20,r17	
+	lw	r13,0(r13)	
+	xor	r5,r5,r9	
+	add	r21,r20,r21	
+	lw	r14,0(r14)	
+	lw	r9,0(r16)	
+	xor	r6,r6,r10	
+	add	r22,r20,r22	
+	lw	r10,0(r17)	
+	xor	r7,r7,r11	
+	xor	r11,r8,r12	
+	lw	r1,0(r21)	
+	lw	r4,0(r22)	
+	xor	r5,r5,r13	
+	xor	r6,r6,r14	
+	xor	r8,r7,r9	
+	xor	r9,r11,r10	
+	xor	r10,r5,r1	
+	xor	r11,r6,r4	
+	srai	r13,r8,$24	
+	srai	r17,r9,$24	
+	srai	r16,r10,$24	
+	srai	r21,r11,$24	
+	nop
+	nop
+	nop
+	srai	r24,r8,$16	
+	srai	r25,r9,$16	
+	srai	r26,r10,$16	
+	srai	r1,r11,$16	
+	nop
+	nop
+	nop
+	srai	r5,r9,$8	
+	srai	r7,r11,$8	
+	srai	r4,r8,$8	
+	srai	r6,r10,$8	
+	nop
+	nop
+	nop
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$16	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$4	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$8	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$12	
+	add	r2,r2,r22	
+	nop
+	nop
+	nop
+	add	r22,r2,r12	
+	add	r14,r2,r14	
+	add	r23,r2,r23	
+	slli	r27,r13,$2	
+	lw	r13,0(r22)	
+	slli	r17,r17,$2	
+	slli	r22,r16,$2	
+	slli	r21,r21,$2	
+	add	r16,r15,r27	
+	add	r17,r15,r17	
+	add	r22,r15,r22	
+	add	r21,r15,r21	
+	lw	r15,0(r16)	
+	slli	r24,r24,$2	
+	lw	r16,0(r17)	
+	slli	r25,r25,$2	
+	lw	r17,0(r22)	
+	slli	r26,r26,$2	
+	slli	r1,r1,$2	
+	add	r22,r18,r24	
+	add	r24,r18,r25	
+	lw	r12,0(r2)	
+	add	r25,r18,r26	
+	lw	r14,0(r14)	
+	lw	r23,0(r23)	
+	lw	r21,0(r21)	
+	slli	r5,r5,$2	
+	slli	r7,r7,$2	
+	slli	r4,r4,$2	
+	slli	r6,r6,$2	
+	add	r26,r18,r1	
+	lw	r1,0(r22)	
+	lw	r18,0(r24)	
+	lw	r22,0(r25)	
+	xor	r12,r15,r12	
+	lw	r24,0(r26)	
+	xor	r15,r21,r23	
+	xor	r13,r16,r13	
+	xor	r14,r17,r14	
+	add	r5,r19,r5	
+	add	r7,r19,r7	
+	add	r4,r19,r4	
+	add	r6,r19,r6	
+	slli	r9,r9,$2	
+	slli	r11,r11,$2	
+	slli	r8,r8,$2	
+	slli	r10,r10,$2	
+	lw	r5,0(r5)	
+	lw	r7,0(r7)	
+	lw	r4,0(r4)	
+	lw	r6,0(r6)	
+	xor	r12,r12,r18	
+	xor	r1,r15,r1	
+	xor	r13,r13,r22	
+	xor	r14,r14,r24	
+	add	r9,r20,r9	
+	add	r11,r20,r11	
+	add	r8,r20,r8	
+	add	r10,r20,r10	
+	lw	r9,0(r9)	
+	lw	r11,0(r11)	
+	lw	r8,0(r8)	
+	lw	r10,0(r10)	
+	xor	r6,r12,r6	
+	xor	r1,r1,r5	
+	xor	r7,r13,r7	
+	xor	r4,r14,r4	
+	xor	r17,r6,r11	
+	xor	r16,r1,r10	
+	xor	r18,r7,r8	
+	xor	r19,r4,r9	
+	nop
+	nop
+	nop
+L52:
+	srai	r8,r17,$24	
+	srai	r20,r18,$16	
+	lhi	r1,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( L1	%0x10000)
+	add	r23,r16,r0	
+	nop
+	nop
+	nop
+	srai	r22,r18,$24	
+	nop
+	nop
+	srai	r21,r19,$8	
+	srai	r7,r19,$16	
+	nop
+	nop
+	srai	r12,r16,$8	
+	nop
+	nop
+	nop
+	srai	r14,r16,$16	
+	nop
+	nop
+	srai	r13,r19,$24	
+	srai	r15,r17,$8	
+	nop
+	nop
+	srai	r4,r17,$16	
+	nop
+	nop
+	nop
+	srai	r5,r18,$8	
+	nop
+	nop
+	add	r9,r17,r0	
+	add	r10,r18,r0	
+	nop
+	nop
+	add	r11,r19,r0	
+	nop
+	nop
+	nop
+	srai	r16,r16,$24	
+	nop
+	nop
+	nop
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$4	
+	nop
+	nop
+	nop
+	add	r6,r2,r6	
+	nop
+	nop
+	nop
+	add	r18,r6,r17	
+	slli	r17,r8,$2	
+	slli	r20,r20,$2	
+	slli	r8,r23,$2	
+	lw	r19,0(r6)	
+	add	r17,r1,r17	
+	add	r23,r1,r20	
+	slli	r20,r22,$2	
+	slli	r21,r21,$2	
+	lw	r22,0(r17)	
+	lw	r23,0(r23)	
+	slli	r17,r7,$2	
+	add	r21,r1,r21	
+	slli	r7,r22,$24	
+	add	r8,r1,r8	
+	add	r20,r1,r20	
+	lw	r21,0(r21)	
+	slli	r22,r23,$16	
+	xor	r23,r7,r19	
+	lw	r7,0(r8)	
+	lw	r8,0(r20)	
+	slli	r19,r21,$8	
+	xor	r20,r23,r22	
+	nop
+	nop
+	add	r21,r1,r17	
+	slli	r12,r12,$2	
+	slli	r14,r14,$2	
+	slli	r13,r13,$2	
+	slli	r15,r15,$2	
+	slli	r4,r4,$2	
+	slli	r5,r5,$2	
+	slli	r9,r9,$2	
+	slli	r10,r10,$2	
+	slli	r11,r11,$2	
+	slli	r16,r16,$2	
+	xor	r17,r20,r19	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	nop
+	nop
+	add	r12,r1,r12	
+	add	r14,r1,r14	
+	add	r13,r1,r13	
+	add	r15,r1,r15	
+	add	r4,r1,r4	
+	add	r5,r1,r5	
+	add	r9,r1,r9	
+	add	r10,r1,r10	
+	add	r11,r1,r11	
+	add	r16,r1,r16	
+	xor	r1,r17,r7	
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$12	
+	add	r2,r6,r24	
+	lw	r19,0(r21)	
+	lw	r18,0(r18)	
+	add	r6,r6,r25	
+	srai	r7,r1,$24	
+	slli	r8,r8,$24	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$1	
+	lw	r12,0(r12)	
+	lw	r14,0(r14)	
+	lw	r13,0(r13)	
+	lw	r15,0(r15)	
+	lw	r4,0(r4)	
+	lw	r5,0(r5)	
+	lw	r9,0(r9)	
+	lw	r10,0(r10)	
+	lw	r2,0(r2)	
+	lw	r6,0(r6)	
+	lw	r11,0(r11)	
+	lw	r16,0(r16)	
+	nop
+	sb	0(r3),r7	
+	nop
+	nop
+	slli	r17,r19,$16	
+	xor	r8,r8,r18	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$2	
+	add	r19,r3,r20	
+	srai	r18,r1,$16	
+	srai	r21,r1,$8	
+	add	r7,r3,r7	
+	nop
+	nop
+	sb	0(r19),r18	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$3	
+	xor	r8,r8,r17	
+	slli	r12,r12,$8	
+	sb	0(r7),r21	
+	add	r7,r3,r20	
+	nop
+	nop
+	xor	r8,r8,r12	
+	nop
+	nop
+	sb	0(r7),r1	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$4	
+	xor	r1,r8,r9	
+	slli	r7,r13,$24	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$5	
+	add	r13,r3,r17	
+	srai	r8,r1,$24	
+	xor	r2,r7,r2	
+	nop
+	nop
+	srai	r7,r1,$16	
+	sb	0(r13),r8	
+	add	r8,r3,r12	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$6	
+	slli	r14,r14,$16	
+	nop
+	nop
+	sb	0(r8),r7	
+	slli	r13,r15,$8	
+	add	r7,r3,r9	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$7	
+	srai	r15,r1,$8	
+	xor	r2,r2,r14	
+	nop
+	nop
+	add	r9,r3,r12	
+	sb	0(r7),r15	
+	xor	r2,r2,r13	
+	nop
+	nop
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$8	
+	sb	0(r9),r1	
+	xor	r1,r2,r10	
+	slli	r12,r16,$24	
+	add	r8,r3,r8	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$9	
+	srai	r2,r1,$24	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$10	
+	slli	r4,r4,$16	
+	add	r7,r3,r7	
+	sb	0(r8),r2	
+	xor	r2,r12,r6	
+	srai	r6,r1,$16	
+	srai	r10,r1,$8	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$11	
+	xor	r2,r2,r4	
+	sb	0(r7),r6	
+	add	r6,r3,r9	
+	slli	r5,r5,$8	
+	add	r7,r3,r8	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$12	
+	sb	0(r6),r10	
+	xor	r2,r2,r5	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$13	
+	add	r4,r3,r4	
+	sb	0(r7),r1	
+	xor	r1,r2,r11	
+	add	r5,r3,r5	
+	nop
+	nop
+	nop
+	srai	r2,r1,$24	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$14	
+	srai	r7,r1,$16	
+	nop
+	nop
+	sb	0(r4),r2	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$15	
+	add	r6,r3,r6	
+	srai	r4,r1,$8	
+	sb	0(r5),r7	
+	add	r2,r3,r2	
+	nop
+	nop
+	nop
+	sb	0(r6),r4	
+	nop
+	nop
+	nop
+	sb	0(r2),r1	
+	j	L53	
+	nop
+	nop
+	nop
+L53:
+	nop
+	nop
+	nop
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+aes_decrypt:
+L54:
+	nop
+	nop
+	nop
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$12	
+	nop
+	nop
+	nop
+	lbu	r18,0(r2)	
+	nop
+	nop
+	nop
+	lhi	r4,$( L7	/0x10000)
+	nop
+	nop
+	nop
+	ori	r4,r4,$( L7	%0x10000)
+	lhi	r5,$( L8	/0x10000)
+	nop
+	nop
+	nop
+	ori	r5,r5,$( L8	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$12	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$13	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$8	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$9	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$4	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	ori	r15,r15,$5	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$14	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$1	
+	add	r12,r2,r12	
+	add	r11,r2,r11	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$6	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$10	
+	add	r14,r2,r14	
+	add	r13,r2,r13	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$2	
+	add	r16,r2,r16	
+	add	r15,r2,r15	
+	add	r19,r2,r7	
+	add	r17,r2,r6	
+	add	r21,r2,r9	
+	add	r20,r2,r8	
+	lbu	r7,0(r12)	
+	lbu	r6,0(r11)	
+	add	r22,r2,r10	
+	lbu	r9,0(r14)	
+	nop
+	nop
+	nop
+	lbu	r8,0(r13)	
+	nop
+	nop
+	lbu	r11,0(r16)	
+	lbu	r10,0(r15)	
+	nop
+	nop
+	lbu	r12,0(r17)	
+	nop
+	nop
+	nop
+	lbu	r13,0(r19)	
+	nop
+	nop
+	lbu	r14,0(r20)	
+	lbu	r16,0(r22)	
+	nop
+	nop
+	lbu	r15,0(r21)	
+	nop
+	nop
+	nop
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$15	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$11	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$3	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$7	
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$256	
+	slli	r18,r18,$24	
+	add	r19,r2,r19	
+	add	r20,r2,r20	
+	add	r22,r2,r22	
+	add	r21,r2,r21	
+	add	r2,r1,r25	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	lbu	r19,0(r19)	
+	slli	r7,r7,$24	
+	slli	r6,r6,$16	
+	add	r17,r2,r17	
+	slli	r9,r9,$24	
+	lbu	r20,0(r20)	
+	or	r6,r7,r6	
+	slli	r8,r8,$16	
+	add	r23,r2,r23	
+	slli	r11,r11,$24	
+	slli	r10,r10,$16	
+	or	r7,r9,r8	
+	slli	r12,r12,$16	
+	add	r24,r2,r24	
+	or	r8,r11,r10	
+	slli	r11,r13,$8	
+	or	r9,r18,r12	
+	slli	r12,r14,$8	
+	slli	r14,r16,$8	
+	or	r6,r6,r11	
+	slli	r13,r15,$8	
+	or	r7,r7,r12	
+	or	r12,r9,r14	
+	lbu	r15,0(r22)	
+	or	r11,r8,r13	
+	lbu	r21,0(r21)	
+	or	r9,r6,r19	
+	lw	r17,0(r17)	
+	or	r8,r7,r20	
+	or	r6,r12,r15	
+	or	r7,r11,r21	
+	lw	r18,0(r24)	
+	lw	r16,0(r23)	
+	xor	r12,r9,r17	
+	lw	r10,0(r2)	
+	xor	r13,r8,r18	
+	xor	r14,r7,r16	
+	lhi	r7,$( L10	/0x10000)
+	nop
+	nop
+	nop
+	ori	r7,r7,$( L10	%0x10000)
+	srai	r25,r12,$24	
+	srai	r27,r13,$24	
+	srai	r20,r14,$24	
+	xor	r15,r6,r10	
+	lhi	r6,$( L9	/0x10000)
+	nop
+	nop
+	nop
+	ori	r6,r6,$( L9	%0x10000)
+	nop
+	nop
+	nop
+	srai	r24,r15,$24	
+	srai	r21,r12,$16	
+	srai	r28,r13,$16	
+	srai	r22,r14,$16	
+	nop
+	nop
+	nop
+	srai	r23,r15,$16	
+	srai	r10,r14,$8	
+	srai	r11,r15,$8	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	nop
+	nop
+	nop
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$16	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$12	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	ori	r18,r18,$8	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$4	
+	add	r2,r2,r19	
+	nop
+	nop
+	nop
+	add	r19,r2,r16	
+	add	r18,r2,r18	
+	nop
+	nop
+	nop
+	add	r17,r2,r17	
+	nop
+	nop
+	nop
+	lw	r19,0(r19)	
+	lw	r18,0(r18)	
+	lw	r16,0(r2)	
+	lw	r17,0(r17)	
+	nop
+	nop
+	nop
+	slli	r26,r25,$2	
+	slli	r25,r27,$2	
+	slli	r20,r20,$2	
+	nop
+	nop
+	add	r27,r4,r26	
+	add	r25,r4,r25	
+	add	r26,r4,r20	
+	slli	r24,r24,$2	
+	lw	r20,0(r27)	
+	slli	r27,r21,$2	
+	slli	r21,r28,$2	
+	slli	r22,r22,$2	
+	add	r24,r4,r24	
+	lw	r25,0(r25)	
+	add	r21,r5,r21	
+	slli	r23,r23,$2	
+	slli	r10,r10,$2	
+	slli	r11,r11,$2	
+	add	r22,r5,r22	
+	add	r27,r5,r27	
+	lw	r24,0(r24)	
+	slli	r14,r14,$2	
+	lw	r26,0(r26)	
+	slli	r8,r8,$2	
+	add	r23,r5,r23	
+	xor	r19,r20,r19	
+	slli	r15,r15,$2	
+	lw	r21,0(r21)	
+	add	r10,r6,r10	
+	xor	r18,r25,r18	
+	slli	r12,r12,$2	
+	add	r11,r6,r11	
+	lw	r22,0(r22)	
+	xor	r16,r24,r16	
+	lw	r20,0(r27)	
+	slli	r9,r9,$2	
+	xor	r17,r26,r17	
+	slli	r13,r13,$2	
+	add	r14,r7,r14	
+	add	r8,r6,r8	
+	lw	r23,0(r23)	
+	xor	r19,r19,r21	
+	add	r15,r7,r15	
+	lw	r10,0(r10)	
+	xor	r18,r18,r22	
+	add	r12,r7,r12	
+	lw	r11,0(r11)	
+	xor	r20,r16,r20	
+	add	r9,r6,r9	
+	xor	r17,r17,r23	
+	lw	r16,0(r14)	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r10,r19,r10	
+	lw	r14,0(r15)	
+	xor	r11,r18,r11	
+	lw	r12,0(r12)	
+	lw	r9,0(r9)	
+	xor	r8,r17,r8	
+	lw	r13,0(r13)	
+	xor	r10,r10,r14	
+	xor	r11,r11,r12	
+	xor	r9,r20,r9	
+	xor	r12,r8,r13	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r9,r16	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r18,r10,$16	
+	srai	r9,r13,$8	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	nop
+	nop
+	nop
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	nop
+	nop
+	add	r25,r2,r17	
+	add	r24,r2,r24	
+	add	r23,r2,r23	
+	nop
+	nop
+	lw	r25,0(r25)	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	lw	r24,0(r24)	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	lw	r23,0(r23)	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r14,0(r14)	
+	add	r19,r5,r19	
+	slli	r8,r8,$2	
+	lw	r15,0(r15)	
+	slli	r18,r18,$2	
+	slli	r9,r9,$2	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r25	
+	slli	r13,r13,$2	
+	lw	r19,0(r19)	
+	add	r8,r6,r8	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r18,r5,r18	
+	add	r9,r6,r9	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r23	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r18,0(r18)	
+	lw	r9,0(r9)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r24,r2,r24	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r23,r2,r23	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r25,0(r25)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r9,r9,$2	
+	slli	r18,r18,$2	
+	lw	r24,0(r24)	
+	lw	r15,0(r15)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r23,0(r23)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r25	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r9,r6,r9	
+	add	r18,r5,r18	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r23	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r9,0(r9)	
+	lw	r18,0(r18)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r24,r2,r24	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r23,r2,r23	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r25,0(r25)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r9,r9,$2	
+	slli	r18,r18,$2	
+	lw	r24,0(r24)	
+	lw	r15,0(r15)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r23,0(r23)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r25	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r9,r6,r9	
+	add	r18,r5,r18	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r23	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r9,0(r9)	
+	lw	r18,0(r18)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r24,r2,r24	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r23,r2,r23	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r25,0(r25)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r9,r9,$2	
+	slli	r18,r18,$2	
+	lw	r24,0(r24)	
+	lw	r15,0(r15)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r23,0(r23)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r25	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r9,r6,r9	
+	add	r18,r5,r18	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r23	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r9,0(r9)	
+	lw	r18,0(r18)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r24,r2,r24	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r23,r2,r23	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r25,0(r25)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r9,r9,$2	
+	slli	r18,r18,$2	
+	lw	r24,0(r24)	
+	lw	r15,0(r15)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r23,0(r23)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r25	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r9,r6,r9	
+	add	r18,r5,r18	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r23	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r9,0(r9)	
+	lw	r18,0(r18)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r24,r2,r24	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	add	r23,r2,r23	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r25,0(r25)	
+	lw	r14,0(r14)	
+	slli	r8,r8,$2	
+	add	r19,r5,r19	
+	slli	r9,r9,$2	
+	slli	r18,r18,$2	
+	lw	r24,0(r24)	
+	lw	r15,0(r15)	
+	add	r20,r5,r20	
+	add	r22,r4,r22	
+	lw	r23,0(r23)	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	slli	r10,r10,$2	
+	slli	r26,r26,$2	
+	xor	r14,r14,r25	
+	slli	r13,r13,$2	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r17,0(r2)	
+	xor	r15,r15,r24	
+	add	r9,r6,r9	
+	add	r18,r5,r18	
+	lw	r20,0(r20)	
+	lw	r22,0(r22)	
+	xor	r16,r16,r23	
+	slli	r12,r12,$2	
+	slli	r27,r27,$2	
+	lw	r21,0(r21)	
+	slli	r11,r11,$2	
+	add	r10,r7,r10	
+	add	r26,r6,r26	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	xor	r17,r22,r17	
+	lw	r9,0(r9)	
+	lw	r18,0(r18)	
+	xor	r19,r16,r21	
+	add	r12,r7,r12	
+	add	r27,r6,r27	
+	lw	r22,0(r26)	
+	lw	r16,0(r10)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r10,0(r13)	
+	xor	r20,r17,r18	
+	xor	r9,r15,r9	
+	lw	r23,0(r27)	
+	lw	r18,0(r12)	
+	xor	r12,r19,r22	
+	lw	r17,0(r11)	
+	xor	r10,r8,r10	
+	xor	r11,r9,r16	
+	xor	r13,r20,r23	
+	xor	r12,r12,r17	
+	srai	r15,r10,$24	
+	srai	r22,r11,$24	
+	xor	r13,r13,r18	
+	srai	r14,r12,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r20,r12,$16	
+	srai	r16,r13,$24	
+	nop
+	nop
+	srai	r21,r13,$16	
+	nop
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	srai	r9,r13,$8	
+	srai	r18,r10,$16	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	nop
+	nop
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$12	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	add	r2,r2,r25	
+	nop
+	nop
+	nop
+	add	r25,r2,r17	
+	add	r24,r2,r24	
+	slli	r15,r15,$2	
+	slli	r22,r22,$2	
+	add	r23,r2,r23	
+	slli	r17,r14,$2	
+	add	r14,r4,r15	
+	add	r15,r4,r22	
+	slli	r19,r19,$2	
+	lw	r25,0(r25)	
+	slli	r20,r20,$2	
+	slli	r22,r16,$2	
+	add	r16,r4,r17	
+	slli	r21,r21,$2	
+	lw	r14,0(r14)	
+	add	r19,r5,r19	
+	slli	r8,r8,$2	
+	lw	r24,0(r24)	
+	slli	r9,r9,$2	
+	lw	r15,0(r15)	
+	add	r20,r5,r20	
+	slli	r18,r18,$2	
+	add	r22,r4,r22	
+	lw	r23,0(r23)	
+	slli	r26,r26,$2	
+	lw	r16,0(r16)	
+	add	r21,r5,r21	
+	xor	r14,r14,r25	
+	slli	r13,r13,$2	
+	lw	r19,0(r19)	
+	add	r8,r6,r8	
+	xor	r15,r15,r24	
+	slli	r10,r10,$2	
+	add	r9,r6,r9	
+	lw	r20,0(r20)	
+	lw	r17,0(r2)	
+	slli	r27,r27,$2	
+	add	r18,r5,r18	
+	lw	r22,0(r22)	
+	xor	r16,r16,r23	
+	slli	r11,r11,$2	
+	add	r26,r6,r26	
+	lw	r21,0(r21)	
+	xor	r14,r14,r19	
+	add	r13,r7,r13	
+	lw	r8,0(r8)	
+	xor	r15,r15,r20	
+	add	r10,r7,r10	
+	lw	r9,0(r9)	
+	xor	r17,r22,r17	
+	slli	r12,r12,$2	
+	add	r27,r6,r27	
+	lw	r18,0(r18)	
+	xor	r16,r16,r21	
+	lw	r22,0(r26)	
+	add	r11,r7,r11	
+	xor	r8,r14,r8	
+	lw	r13,0(r13)	
+	xor	r15,r15,r9	
+	lw	r10,0(r10)	
+	lw	r23,0(r27)	
+	xor	r17,r17,r18	
+	add	r12,r7,r12	
+	xor	r16,r16,r22	
+	lw	r11,0(r11)	
+	xor	r9,r8,r13	
+	xor	r10,r15,r10	
+	xor	r17,r17,r23	
+	lw	r12,0(r12)	
+	xor	r11,r16,r11	
+	srai	r14,r9,$24	
+	srai	r21,r10,$24	
+	xor	r12,r17,r12	
+	srai	r13,r11,$24	
+	nop
+	nop
+	nop
+	srai	r19,r11,$16	
+	nop
+	nop
+	srai	r15,r12,$24	
+	srai	r20,r12,$16	
+	nop
+	nop
+	srai	r8,r12,$8	
+	nop
+	nop
+	nop
+	srai	r18,r10,$16	
+	nop
+	nop
+	srai	r17,r9,$16	
+	srai	r25,r9,$8	
+	nop
+	nop
+	nop
+	srai	r26,r10,$8	
+	srai	r27,r11,$8	
+	nop
+	nop
+	nop
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$16	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	ori	r16,r16,$12	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$8	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$4	
+	add	r2,r2,r24	
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	ori	r28,r28,$512	
+	nop
+	nop
+	nop
+	add	r24,r2,r16	
+	add	r23,r2,r23	
+	slli	r14,r14,$2	
+	slli	r21,r21,$2	
+	add	r22,r2,r22	
+	slli	r16,r13,$2	
+	add	r13,r4,r14	
+	add	r14,r4,r21	
+	slli	r19,r19,$2	
+	lw	r23,0(r23)	
+	slli	r21,r15,$2	
+	add	r15,r4,r16	
+	slli	r20,r20,$2	
+	slli	r8,r8,$2	
+	lw	r14,0(r14)	
+	add	r19,r5,r19	
+	add	r21,r4,r21	
+	slli	r18,r18,$2	
+	slli	r17,r17,$2	
+	xor	r14,r14,r23	
+	slli	r9,r9,$2	
+	slli	r25,r25,$2	
+	lw	r22,0(r22)	
+	lw	r15,0(r15)	
+	lw	r16,0(r2)	
+	add	r20,r5,r20	
+	add	r8,r6,r8	
+	lw	r19,0(r19)	
+	lw	r21,0(r21)	
+	slli	r26,r26,$2	
+	slli	r27,r27,$2	
+	lw	r24,0(r24)	
+	lw	r13,0(r13)	
+	add	r18,r5,r18	
+	add	r17,r5,r17	
+	sw	-4(r30),r28	
+	xor	r15,r15,r22	
+	xor	r14,r14,r19	
+	xor	r16,r21,r16	
+	add	r9,r7,r9	
+	lw	r20,0(r20)	
+	lw	r8,0(r8)	
+	add	r25,r6,r25	
+	xor	r13,r13,r24	
+	slli	r12,r12,$2	
+	slli	r10,r10,$2	
+	slli	r11,r11,$2	
+	add	r27,r6,r27	
+	lw	r18,0(r18)	
+	lw	r17,0(r17)	
+	lw	r21,-4(r30)	
+	add	r26,r6,r26	
+	xor	r15,r15,r20	
+	xor	r8,r14,r8	
+	lw	r9,0(r9)	
+	lw	r22,0(r25)	
+	xor	r13,r13,r18	
+	xor	r16,r16,r17	
+	add	r12,r7,r12	
+	add	r10,r7,r10	
+	add	r11,r7,r11	
+	lw	r24,0(r27)	
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	ori	r28,r28,$10	
+	add	r21,r1,r21	
+	lw	r23,0(r26)	
+	xor	r14,r15,r22	
+	xor	r17,r8,r9	
+	lw	r12,0(r12)	
+	xor	r15,r16,r23	
+	lw	r10,0(r10)	
+	lw	r11,0(r11)	
+	xor	r13,r13,r24	
+	lw	r20,0(r21)	
+	add	r8,r28,r0	
+	xor	r16,r14,r10	
+	xor	r19,r15,r11	
+	xor	r18,r13,r12	
+	sgt	r27,r20,r8	
+	nop
+	nop
+	nop
+	bnez	r27,L55	
+	nop
+	nop
+	nop
+	j	L56	
+	nop
+	nop
+	nop
+L55:
+	srai	r24,r19,$24	
+	srai	r25,r16,$24	
+	srai	r26,r17,$24	
+	srai	r8,r18,$16	
+	nop
+	nop
+	nop
+	srai	r27,r18,$24	
+	srai	r9,r19,$16	
+	srai	r10,r16,$16	
+	srai	r12,r17,$8	
+	nop
+	nop
+	nop
+	srai	r11,r17,$16	
+	srai	r13,r18,$8	
+	srai	r14,r19,$8	
+	nop
+	nop
+	nop
+	srai	r15,r16,$8	
+	nop
+	nop
+	nop
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$16	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	ori	r21,r21,$4	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$8	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$12	
+	add	r2,r2,r22	
+	nop
+	nop
+	nop
+	add	r22,r2,r21	
+	add	r23,r2,r23	
+	slli	r24,r24,$2	
+	slli	r25,r25,$2	
+	slli	r26,r26,$2	
+	slli	r8,r8,$2	
+	add	r24,r4,r24	
+	add	r25,r4,r25	
+	add	r26,r4,r26	
+	lw	r21,0(r2)	
+	slli	r27,r27,$2	
+	slli	r9,r9,$2	
+	slli	r10,r10,$2	
+	add	r8,r5,r8	
+	slli	r12,r12,$2	
+	lw	r24,0(r24)	
+	add	r20,r2,r20	
+	add	r27,r4,r27	
+	add	r9,r5,r9	
+	slli	r11,r11,$2	
+	slli	r13,r13,$2	
+	lw	r22,0(r22)	
+	lw	r25,0(r25)	
+	add	r10,r5,r10	
+	slli	r14,r14,$2	
+	lw	r23,0(r23)	
+	lw	r26,0(r26)	
+	add	r12,r6,r12	
+	xor	r21,r24,r21	
+	lw	r8,0(r8)	
+	add	r11,r5,r11	
+	add	r13,r6,r13	
+	xor	r22,r25,r22	
+	slli	r15,r15,$2	
+	lw	r20,0(r20)	
+	lw	r27,0(r27)	
+	lw	r9,0(r9)	
+	add	r14,r6,r14	
+	xor	r23,r26,r23	
+	slli	r18,r18,$2	
+	lw	r10,0(r10)	
+	slli	r16,r16,$2	
+	xor	r8,r21,r8	
+	slli	r17,r17,$2	
+	lw	r12,0(r12)	
+	xor	r21,r22,r9	
+	add	r15,r6,r15	
+	xor	r20,r27,r20	
+	slli	r19,r19,$2	
+	lw	r11,0(r11)	
+	lw	r13,0(r13)	
+	xor	r22,r23,r10	
+	add	r18,r7,r18	
+	lw	r14,0(r14)	
+	add	r16,r7,r16	
+	add	r17,r7,r17	
+	xor	r8,r8,r12	
+	xor	r12,r21,r13	
+	add	r19,r7,r19	
+	xor	r20,r20,r11	
+	lw	r15,0(r15)	
+	xor	r13,r22,r14	
+	lw	r10,0(r18)	
+	lw	r16,0(r16)	
+	lw	r9,0(r17)	
+	xor	r14,r20,r15	
+	lw	r11,0(r19)	
+	xor	r17,r13,r10	
+	xor	r15,r8,r16	
+	xor	r16,r12,r9	
+	xor	r18,r14,r11	
+	srai	r25,r17,$24	
+	srai	r23,r15,$24	
+	srai	r21,r16,$24	
+	srai	r24,r18,$24	
+	nop
+	nop
+	nop
+	srai	r27,r15,$16	
+	srai	r8,r16,$16	
+	srai	r9,r17,$16	
+	srai	r10,r18,$16	
+	nop
+	nop
+	nop
+	srai	r13,r17,$8	
+	nop
+	nop
+	srai	r12,r16,$8	
+	nop
+	nop
+	nop
+	srai	r11,r15,$8	
+	nop
+	nop
+	nop
+	srai	r14,r18,$8	
+	nop
+	nop
+	nop
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$16	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$8	
+	lhi	r26,$0	
+	nop
+	nop
+	nop
+	ori	r26,r26,$12	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$4	
+	add	r2,r2,r19	
+	nop
+	nop
+	nop
+	add	r28,r2,r22	
+	add	r22,r2,r26	
+	slli	r25,r25,$2	
+	slli	r26,r23,$2	
+	slli	r23,r21,$2	
+	slli	r24,r24,$2	
+	add	r25,r4,r25	
+	add	r26,r4,r26	
+	add	r23,r4,r23	
+	add	r4,r4,r24	
+	slli	r27,r27,$2	
+	slli	r8,r8,$2	
+	slli	r9,r9,$2	
+	slli	r10,r10,$2	
+	add	r20,r2,r20	
+	lw	r24,0(r25)	
+	add	r8,r5,r8	
+	add	r9,r5,r9	
+	add	r25,r5,r27	
+	add	r5,r5,r10	
+	slli	r10,r15,$2	
+	lw	r19,0(r2)	
+	lw	r26,0(r26)	
+	slli	r15,r16,$2	
+	lw	r20,0(r20)	
+	lw	r23,0(r23)	
+	slli	r16,r17,$2	
+	slli	r13,r13,$2	
+	slli	r12,r12,$2	
+	slli	r11,r11,$2	
+	lw	r21,0(r28)	
+	slli	r17,r18,$2	
+	slli	r14,r14,$2	
+	lw	r4,0(r4)	
+	lw	r22,0(r22)	
+	xor	r18,r26,r19	
+	xor	r19,r23,r20	
+	add	r13,r6,r13	
+	add	r12,r6,r12	
+	add	r11,r6,r11	
+	xor	r20,r24,r21	
+	add	r6,r6,r14	
+	lw	r8,0(r8)	
+	lw	r9,0(r9)	
+	lw	r5,0(r5)	
+	xor	r4,r4,r22	
+	lw	r21,0(r25)	
+	add	r14,r7,r15	
+	add	r10,r7,r10	
+	add	r15,r7,r16	
+	xor	r5,r18,r5	
+	xor	r4,r4,r9	
+	xor	r16,r19,r21	
+	add	r7,r7,r17	
+	lw	r6,0(r6)	
+	xor	r8,r20,r8	
+	lw	r13,0(r13)	
+	lw	r12,0(r12)	
+	lw	r11,0(r11)	
+	lw	r9,0(r10)	
+	lw	r10,0(r14)	
+	xor	r5,r5,r13	
+	xor	r4,r4,r12	
+	xor	r6,r16,r6	
+	lw	r7,0(r7)	
+	xor	r8,r8,r11	
+	lw	r14,0(r15)	
+	xor	r19,r5,r10	
+	xor	r18,r4,r9	
+	xor	r17,r8,r7	
+	xor	r16,r6,r14	
+	nop
+	nop
+	nop
+L56:
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$512	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$12	
+	nop
+	nop
+	nop
+	add	r1,r1,r4	
+	nop
+	nop
+	nop
+	lw	r1,0(r1)	
+	nop
+	nop
+	nop
+	sgt	r27,r1,r5	
+	nop
+	nop
+	nop
+	bnez	r27,L57	
+	nop
+	nop
+	nop
+	j	L58	
+	nop
+	nop
+	nop
+L57:
+	srai	r1,r19,$24	
+	srai	r4,r16,$24	
+	srai	r5,r17,$24	
+	srai	r6,r18,$24	
+	nop
+	nop
+	nop
+	srai	r7,r18,$16	
+	srai	r8,r19,$16	
+	srai	r9,r16,$16	
+	srai	r10,r17,$16	
+	nop
+	nop
+	nop
+	srai	r11,r17,$8	
+	srai	r12,r18,$8	
+	nop
+	nop
+	srai	r13,r19,$8	
+	nop
+	nop
+	nop
+	srai	r14,r16,$8	
+	nop
+	nop
+	nop
+	add	r21,r18,r0	
+	nop
+	nop
+	add	r22,r19,r0	
+	lhi	r15,$( L7	/0x10000)
+	nop
+	nop
+	nop
+	ori	r15,r15,$( L7	%0x10000)
+	nop
+	nop
+	lhi	r18,$( L8	/0x10000)
+	nop
+	nop
+	nop
+	ori	r18,r18,$( L8	%0x10000)
+	nop
+	nop
+	lhi	r19,$( L9	/0x10000)
+	nop
+	nop
+	nop
+	ori	r19,r19,$( L9	%0x10000)
+	nop
+	nop
+	lhi	r20,$( L10	/0x10000)
+	nop
+	nop
+	nop
+	ori	r20,r20,$( L10	%0x10000)
+	nop
+	nop
+	nop
+	lhi	r26,$0	
+	nop
+	nop
+	nop
+	ori	r26,r26,$16	
+	nop
+	nop
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$4	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	ori	r24,r24,$8	
+	add	r2,r2,r26	
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$12	
+	slli	r1,r1,$2	
+	slli	r4,r4,$2	
+	slli	r5,r5,$2	
+	slli	r6,r6,$2	
+	add	r1,r15,r1	
+	add	r26,r2,r23	
+	add	r4,r15,r4	
+	add	r27,r2,r24	
+	slli	r7,r7,$2	
+	slli	r8,r8,$2	
+	add	r5,r15,r5	
+	slli	r9,r9,$2	
+	add	r23,r2,r25	
+	lw	r24,0(r2)	
+	add	r6,r15,r6	
+	lw	r1,0(r1)	
+	slli	r10,r10,$2	
+	lw	r25,0(r26)	
+	add	r7,r18,r7	
+	lw	r4,0(r4)	
+	slli	r11,r11,$2	
+	lw	r26,0(r27)	
+	add	r8,r18,r8	
+	lw	r5,0(r5)	
+	slli	r12,r12,$2	
+	add	r9,r18,r9	
+	lw	r23,0(r23)	
+	lw	r6,0(r6)	
+	slli	r13,r13,$2	
+	add	r10,r18,r10	
+	lw	r7,0(r7)	
+	slli	r14,r14,$2	
+	xor	r1,r1,r24	
+	add	r11,r19,r11	
+	lw	r8,0(r8)	
+	slli	r16,r16,$2	
+	xor	r4,r4,r25	
+	add	r12,r19,r12	
+	lw	r9,0(r9)	
+	slli	r17,r17,$2	
+	xor	r5,r5,r26	
+	add	r13,r19,r13	
+	lw	r10,0(r10)	
+	slli	r21,r21,$2	
+	xor	r6,r6,r23	
+	add	r14,r19,r14	
+	lw	r11,0(r11)	
+	slli	r22,r22,$2	
+	xor	r7,r1,r7	
+	add	r16,r20,r16	
+	lw	r12,0(r12)	
+	xor	r8,r4,r8	
+	add	r17,r20,r17	
+	lw	r13,0(r13)	
+	xor	r5,r5,r9	
+	add	r21,r20,r21	
+	lw	r14,0(r14)	
+	lw	r9,0(r16)	
+	xor	r6,r6,r10	
+	add	r22,r20,r22	
+	lw	r10,0(r17)	
+	xor	r7,r7,r11	
+	xor	r11,r8,r12	
+	lw	r1,0(r21)	
+	lw	r4,0(r22)	
+	xor	r5,r5,r13	
+	xor	r6,r6,r14	
+	xor	r8,r7,r9	
+	xor	r9,r11,r10	
+	xor	r10,r5,r1	
+	xor	r11,r6,r4	
+	srai	r13,r8,$24	
+	srai	r17,r9,$24	
+	srai	r16,r10,$24	
+	srai	r21,r11,$24	
+	nop
+	nop
+	nop
+	srai	r24,r8,$16	
+	srai	r25,r9,$16	
+	srai	r26,r10,$16	
+	srai	r1,r11,$16	
+	nop
+	nop
+	nop
+	srai	r5,r9,$8	
+	srai	r7,r11,$8	
+	srai	r4,r8,$8	
+	srai	r6,r10,$8	
+	nop
+	nop
+	nop
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	ori	r22,r22,$16	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	ori	r12,r12,$4	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	ori	r14,r14,$8	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	ori	r23,r23,$12	
+	add	r2,r2,r22	
+	nop
+	nop
+	nop
+	add	r22,r2,r12	
+	add	r14,r2,r14	
+	add	r23,r2,r23	
+	slli	r27,r13,$2	
+	lw	r13,0(r22)	
+	slli	r17,r17,$2	
+	slli	r22,r16,$2	
+	slli	r21,r21,$2	
+	add	r16,r15,r27	
+	add	r17,r15,r17	
+	add	r22,r15,r22	
+	add	r21,r15,r21	
+	lw	r15,0(r16)	
+	slli	r24,r24,$2	
+	lw	r16,0(r17)	
+	slli	r25,r25,$2	
+	lw	r17,0(r22)	
+	slli	r26,r26,$2	
+	slli	r1,r1,$2	
+	add	r22,r18,r24	
+	add	r24,r18,r25	
+	lw	r12,0(r2)	
+	lw	r14,0(r14)	
+	add	r25,r18,r26	
+	lw	r23,0(r23)	
+	lw	r21,0(r21)	
+	slli	r5,r5,$2	
+	slli	r7,r7,$2	
+	slli	r4,r4,$2	
+	slli	r6,r6,$2	
+	add	r26,r18,r1	
+	lw	r1,0(r22)	
+	lw	r18,0(r24)	
+	xor	r13,r16,r13	
+	lw	r22,0(r25)	
+	xor	r12,r15,r12	
+	xor	r14,r17,r14	
+	lw	r24,0(r26)	
+	xor	r15,r21,r23	
+	add	r5,r19,r5	
+	add	r7,r19,r7	
+	add	r4,r19,r4	
+	add	r6,r19,r6	
+	slli	r9,r9,$2	
+	slli	r11,r11,$2	
+	slli	r8,r8,$2	
+	slli	r10,r10,$2	
+	xor	r1,r13,r1	
+	xor	r13,r14,r18	
+	lw	r5,0(r5)	
+	lw	r7,0(r7)	
+	lw	r4,0(r4)	
+	lw	r6,0(r6)	
+	xor	r14,r15,r22	
+	xor	r12,r12,r24	
+	add	r9,r20,r9	
+	add	r11,r20,r11	
+	add	r8,r20,r8	
+	add	r10,r20,r10	
+	lw	r9,0(r9)	
+	lw	r11,0(r11)	
+	lw	r8,0(r8)	
+	lw	r10,0(r10)	
+	xor	r1,r1,r7	
+	xor	r4,r13,r4	
+	xor	r5,r14,r5	
+	xor	r6,r12,r6	
+	xor	r16,r1,r10	
+	xor	r17,r4,r11	
+	xor	r18,r5,r8	
+	xor	r19,r6,r9	
+	nop
+	nop
+	nop
+L58:
+	srai	r9,r19,$24	
+	srai	r21,r18,$16	
+	lhi	r1,$( L6	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( L6	%0x10000)
+	srai	r22,r17,$8	
+	nop
+	nop
+	nop
+	srai	r23,r16,$24	
+	nop
+	nop
+	srai	r8,r19,$16	
+	add	r24,r16,r0	
+	nop
+	nop
+	srai	r20,r19,$8	
+	nop
+	nop
+	nop
+	srai	r13,r18,$8	
+	nop
+	nop
+	srai	r14,r17,$24	
+	srai	r15,r16,$16	
+	nop
+	nop
+	srai	r4,r18,$24	
+	nop
+	nop
+	nop
+	srai	r5,r17,$16	
+	nop
+	nop
+	srai	r6,r16,$8	
+	add	r10,r17,r0	
+	nop
+	nop
+	add	r11,r18,r0	
+	nop
+	nop
+	nop
+	add	r12,r19,r0	
+	nop
+	nop
+	nop
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$16	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$4	
+	nop
+	nop
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	ori	r19,r19,$8	
+	add	r7,r2,r7	
+	nop
+	nop
+	nop
+	add	r18,r7,r17	
+	slli	r17,r9,$2	
+	add	r2,r7,r19	
+	slli	r19,r21,$2	
+	slli	r21,r22,$2	
+	add	r17,r1,r17	
+	lw	r16,0(r7)	
+	add	r22,r1,r19	
+	slli	r19,r23,$2	
+	lw	r23,0(r17)	
+	add	r21,r1,r21	
+	slli	r17,r8,$2	
+	lw	r22,0(r22)	
+	slli	r8,r23,$24	
+	lw	r21,0(r21)	
+	slli	r9,r24,$2	
+	slli	r22,r22,$16	
+	xor	r16,r8,r16	
+	add	r23,r1,r19	
+	slli	r19,r21,$8	
+	add	r9,r1,r9	
+	xor	r21,r16,r22	
+	slli	r16,r20,$2	
+	nop
+	nop
+	add	r20,r1,r17	
+	lw	r8,0(r9)	
+	slli	r13,r13,$2	
+	slli	r14,r14,$2	
+	slli	r15,r15,$2	
+	slli	r4,r4,$2	
+	slli	r5,r5,$2	
+	slli	r6,r6,$2	
+	slli	r10,r10,$2	
+	slli	r11,r11,$2	
+	slli	r12,r12,$2	
+	xor	r17,r21,r19	
+	nop
+	nop
+	add	r16,r1,r16	
+	add	r13,r1,r13	
+	add	r14,r1,r14	
+	add	r15,r1,r15	
+	add	r4,r1,r4	
+	add	r5,r1,r5	
+	add	r6,r1,r6	
+	add	r10,r1,r10	
+	add	r11,r1,r11	
+	add	r12,r1,r12	
+	lw	r9,0(r23)	
+	xor	r1,r17,r8	
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	ori	r25,r25,$12	
+	lw	r19,0(r20)	
+	lw	r18,0(r18)	
+	srai	r8,r1,$24	
+	add	r7,r7,r25	
+	slli	r9,r9,$24	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$1	
+	lw	r2,0(r2)	
+	lw	r16,0(r16)	
+	lw	r13,0(r13)	
+	lw	r14,0(r14)	
+	lw	r15,0(r15)	
+	lw	r4,0(r4)	
+	lw	r5,0(r5)	
+	lw	r6,0(r6)	
+	lw	r10,0(r10)	
+	lw	r7,0(r7)	
+	lw	r11,0(r11)	
+	lw	r12,0(r12)	
+	nop
+	sb	0(r3),r8	
+	nop
+	nop
+	slli	r17,r19,$16	
+	xor	r9,r9,r18	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$2	
+	add	r19,r3,r20	
+	srai	r18,r1,$16	
+	srai	r21,r1,$8	
+	add	r8,r3,r8	
+	nop
+	nop
+	sb	0(r19),r18	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	ori	r20,r20,$3	
+	xor	r9,r9,r17	
+	slli	r13,r13,$8	
+	sb	0(r8),r21	
+	add	r8,r3,r20	
+	nop
+	nop
+	xor	r9,r9,r13	
+	nop
+	nop
+	sb	0(r8),r1	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	ori	r17,r17,$4	
+	xor	r1,r9,r10	
+	slli	r8,r14,$24	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$5	
+	add	r14,r3,r17	
+	srai	r9,r1,$24	
+	xor	r2,r8,r2	
+	nop
+	nop
+	srai	r8,r1,$16	
+	sb	0(r14),r9	
+	add	r9,r3,r13	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$6	
+	slli	r15,r15,$16	
+	nop
+	nop
+	sb	0(r9),r8	
+	slli	r14,r16,$8	
+	add	r8,r3,r10	
+	srai	r16,r1,$8	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	ori	r13,r13,$7	
+	xor	r2,r2,r15	
+	nop
+	nop
+	sb	0(r8),r16	
+	add	r10,r3,r13	
+	xor	r2,r2,r14	
+	nop
+	nop
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$8	
+	sb	0(r10),r1	
+	xor	r1,r2,r11	
+	slli	r4,r4,$24	
+	add	r9,r3,r9	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$9	
+	srai	r2,r1,$24	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$10	
+	slli	r5,r5,$16	
+	add	r8,r3,r8	
+	sb	0(r9),r2	
+	xor	r2,r4,r7	
+	srai	r4,r1,$16	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$11	
+	srai	r9,r1,$8	
+	xor	r2,r2,r5	
+	sb	0(r8),r4	
+	add	r4,r3,r10	
+	slli	r6,r6,$8	
+	add	r7,r3,r7	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$12	
+	sb	0(r4),r9	
+	xor	r2,r2,r6	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$13	
+	add	r5,r3,r5	
+	sb	0(r7),r1	
+	xor	r1,r2,r12	
+	add	r4,r3,r4	
+	nop
+	nop
+	nop
+	srai	r2,r1,$24	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$14	
+	srai	r7,r1,$16	
+	nop
+	nop
+	sb	0(r5),r2	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	ori	r2,r2,$15	
+	add	r6,r3,r6	
+	srai	r5,r1,$8	
+	sb	0(r4),r7	
+	add	r2,r3,r2	
+	nop
+	nop
+	nop
+	sb	0(r6),r5	
+	nop
+	nop
+	nop
+	sb	0(r2),r1	
+	j	L59	
+	nop
+	nop
+	nop
+L59:
+	nop
+	nop
+	nop
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+main:
+L60:
+	nop
+	nop
+	nop
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$584	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sw	-568(r30),r1	
+	nop
+	nop
+	nop
+L61:
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sw	-572(r30),r1	
+	nop
+	nop
+	nop
+L62:
+	subi	r2,r30,$532	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$16	
+	nop
+	nop
+	nop
+L63:
+	nop
+	nop
+	nop
+	addi	r1,r1,$-4	
+	nop
+	nop
+	nop
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$0	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$1	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$0	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$2	
+	sb	0(r2),r3	
+	add	r3,r2,r4	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$3	
+	add	r6,r2,r6	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	sb	0(r3),r5	
+	add	r7,r2,r7	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$0	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$4	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	ori	r3,r3,$0	
+	sb	0(r6),r4	
+	nop
+	nop
+	add	r2,r2,r5	
+	nop
+	nop
+	sb	0(r7),r3	
+	sgt	r27,r1,r8	
+	nop
+	nop
+	nop
+	bnez	r27,L63	
+	nop
+	nop
+	nop
+	j	L64	
+	nop
+	nop
+	nop
+L64:
+	nop
+	nop
+	lw	r1,-572(r30)	
+	subi	r2,r30,$564	
+	nop
+	nop
+	nop
+	slli	r1,r1,$3	
+	nop
+	nop
+	nop
+	addi	r3,r1,$16	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sgt	r27,r3,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L94	
+	nop
+	nop
+	nop
+	j	L67	
+	nop
+	nop
+	nop
+L65:
+	slt	r27,r1,r3	
+	nop
+	nop
+	nop
+	bnez	r27,L66	
+	nop
+	nop
+	nop
+	j	L67	
+	nop
+	nop
+	nop
+L66:
+	nop
+	nop
+	nop
+	addi	r1,r1,$4	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$1	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$0	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$2	
+	sb	0(r2),r4	
+	add	r4,r2,r5	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$3	
+	add	r7,r2,r7	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$0	
+	sb	0(r4),r6	
+	add	r8,r2,r8	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$4	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	sb	0(r7),r5	
+	nop
+	nop
+	add	r2,r2,r6	
+	nop
+	nop
+	sb	0(r8),r4	
+	slt	r27,r1,r3	
+	nop
+	nop
+	nop
+	bnez	r27,L66	
+	nop
+	nop
+	nop
+	j	L67	
+	nop
+	nop
+	nop
+L67:
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$400	
+	nop
+	nop
+	nop
+	sw	-576(r30),r1	
+	j	L75	
+	nop
+	nop
+	nop
+L68:
+	lw	r2,-568(r30)	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	seq	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L69	
+	nop
+	nop
+	nop
+	j	L70	
+	nop
+	nop
+	nop
+L69:
+	subi	r3,r30,$532	
+	subi	r2,r30,$532	
+	subi	r1,r30,$516	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	aes_encrypt	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+L70:
+	lw	r2,-568(r30)	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$1	
+	nop
+	nop
+	nop
+	seq	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L71	
+	nop
+	nop
+	nop
+	j	L72	
+	nop
+	nop
+	nop
+L71:
+	subi	r3,r30,$532	
+	subi	r2,r30,$532	
+	subi	r1,r30,$516	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	aes_decrypt	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+L72:
+	lw	r2,-572(r30)	
+	subi	r1,r30,$564	
+	subi	r3,r30,$532	
+	nop
+	nop
+	slli	r2,r2,$3	
+	nop
+	nop
+	nop
+	add	r2,r1,r2	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$16	
+	nop
+	nop
+	nop
+L73:
+	nop
+	nop
+	nop
+	lbu	r4,0(r2)	
+	lbu	r5,0(r3)	
+	nop
+	nop
+	nop
+	xor	r4,r4,r5	
+	addi	r1,r1,$-4	
+	nop
+	nop
+	nop
+	sb	0(r2),r4	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$1	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$1	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$2	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$2	
+	add	r8,r3,r4	
+	add	r4,r2,r5	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$3	
+	add	r5,r2,r7	
+	lbu	r8,0(r8)	
+	lbu	r9,0(r4)	
+	add	r6,r3,r6	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$3	
+	nop
+	nop
+	xor	r8,r9,r8	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$0	
+	add	r7,r3,r7	
+	nop
+	nop
+	sb	0(r4),r8	
+	add	r4,r2,r10	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$4	
+	nop
+	nop
+	lbu	r6,0(r6)	
+	lbu	r10,0(r5)	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$4	
+	add	r2,r2,r9	
+	nop
+	nop
+	xor	r6,r10,r6	
+	add	r3,r3,r8	
+	nop
+	nop
+	nop
+	sb	0(r5),r6	
+	nop
+	nop
+	nop
+	lbu	r5,0(r4)	
+	lbu	r6,0(r7)	
+	nop
+	nop
+	nop
+	xor	r5,r5,r6	
+	nop
+	nop
+	nop
+	sb	0(r4),r5	
+	sgt	r27,r1,r11	
+	nop
+	nop
+	nop
+	bnez	r27,L73	
+	nop
+	nop
+	nop
+	j	L74	
+	nop
+	nop
+	nop
+L74:
+	lw	r1,-576(r30)	
+	nop
+	nop
+	nop
+	addi	r1,r1,$-1	
+	nop
+	nop
+	nop
+	add	r2,r1,r0	
+	sw	-576(r30),r1	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sgt	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L75	
+	nop
+	nop
+	nop
+	j	L91	
+	nop
+	nop
+	nop
+L75:
+	lw	r1,-572(r30)	
+	subi	r2,r30,$564	
+	nop
+	nop
+	nop
+	slli	r3,r1,$6	
+	subi	r1,r30,$516	
+	nop
+	nop
+	nop
+	addi	r3,r3,$128	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	aes_set_key	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	ori	r28,r28,$9999	
+	nop
+	nop
+	nop
+L76:
+	lw	r2,-568(r30)	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	seq	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L77	
+	nop
+	nop
+	nop
+	j	L78	
+	nop
+	nop
+	nop
+L77:
+	subi	r3,r30,$532	
+	subi	r2,r30,$532	
+	subi	r1,r30,$516	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	aes_encrypt	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+L78:
+	lw	r2,-568(r30)	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$1	
+	nop
+	nop
+	nop
+	seq	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L79	
+	nop
+	nop
+	nop
+	j	L80	
+	nop
+	nop
+	nop
+L79:
+	subi	r3,r30,$532	
+	subi	r2,r30,$532	
+	subi	r1,r30,$516	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	aes_decrypt	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+L80:
+	lw	r2,-568(r30)	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	seq	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L81	
+	nop
+	nop
+	nop
+	j	L82	
+	nop
+	nop
+	nop
+L81:
+	subi	r3,r30,$532	
+	subi	r2,r30,$532	
+	subi	r1,r30,$516	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	aes_encrypt	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+L82:
+	lw	r2,-568(r30)	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$1	
+	nop
+	nop
+	nop
+	seq	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L83	
+	nop
+	nop
+	nop
+	j	L84	
+	nop
+	nop
+	nop
+L83:
+	subi	r3,r30,$532	
+	subi	r2,r30,$532	
+	subi	r1,r30,$516	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	aes_decrypt	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+L84:
+	lw	r2,-568(r30)	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	seq	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L85	
+	nop
+	nop
+	nop
+	j	L86	
+	nop
+	nop
+	nop
+L85:
+	subi	r3,r30,$532	
+	subi	r2,r30,$532	
+	subi	r1,r30,$516	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	aes_encrypt	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+L86:
+	lw	r2,-568(r30)	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$1	
+	nop
+	nop
+	nop
+	seq	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L87	
+	nop
+	nop
+	nop
+	j	L88	
+	nop
+	nop
+	nop
+L87:
+	subi	r3,r30,$532	
+	subi	r2,r30,$532	
+	subi	r1,r30,$516	
+	nop
+	nop
+	nop
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	jal	aes_decrypt	
+	nop
+	nop
+	nop
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+L88:
+	addi	r28,r28,$-3	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sgt	r27,r28,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L76	
+	nop
+	nop
+	nop
+	j	L89	
+	nop
+	nop
+	nop
+L89:
+	lw	r2,-572(r30)	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sgt	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L90	
+	nop
+	nop
+	nop
+	j	L68	
+	nop
+	nop
+	nop
+L90:
+	nop
+	nop
+	lw	r1,-572(r30)	
+	subi	r4,r30,$532	
+	subi	r2,r30,$564	
+	nop
+	nop
+	slli	r3,r1,$3	
+	nop
+	nop
+	nop
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$16	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$0	
+	nop
+	nop
+	nop
+	sub	r3,r5,r3	
+	nop
+	nop
+	nop
+	add	r3,r4,r3	
+	j	L96	
+	nop
+	nop
+	nop
+L91:
+	lw	r1,-572(r30)	
+	nop
+	nop
+	nop
+	addi	r1,r1,$1	
+	nop
+	nop
+	nop
+	add	r2,r1,r0	
+	sw	-572(r30),r1	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$3	
+	nop
+	nop
+	nop
+	slt	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L62	
+	nop
+	nop
+	nop
+	j	L92	
+	nop
+	nop
+	nop
+L92:
+	lw	r1,-568(r30)	
+	nop
+	nop
+	nop
+	addi	r1,r1,$1	
+	nop
+	nop
+	nop
+	add	r2,r1,r0	
+	sw	-568(r30),r1	
+	nop
+	nop
+	nop
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	ori	r1,r1,$2	
+	nop
+	nop
+	nop
+	slt	r27,r2,r1	
+	nop
+	nop
+	nop
+	bnez	r27,L61	
+	nop
+	nop
+	nop
+	j	L93	
+	nop
+	nop
+	nop
+L93:
+	nop
+	nop
+	nop
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	ori	r28,r28,$0	
+	nop
+	nop
+	nop
+	j	L101	
+	nop
+	nop
+	nop
+L94:
+	nop
+	nop
+	addi	r1,r1,$1	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$0	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$1	
+	nop
+	nop
+	nop
+	sb	0(r2),r4	
+	add	r2,r2,r5	
+	slt	r27,r1,r3	
+	nop
+	nop
+	nop
+	bnez	r27,L95	
+	nop
+	nop
+	nop
+	j	L67	
+	nop
+	nop
+	nop
+L95:
+	addi	r4,r3,$-1	
+	nop
+	nop
+	nop
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$4	
+	nop
+	nop
+	nop
+	MOD	r4,r4,r5	
+	nop
+	nop
+	nop
+	addi	r4,r4,$1	
+	nop
+	nop
+	nop
+	slt	r27,r1,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L94	
+	nop
+	nop
+	nop
+	j	L65	
+	nop
+	nop
+	nop
+L96:
+	lw	r4,-572(r30)	
+	nop
+	nop
+	nop
+	slli	r4,r4,$3	
+	nop
+	nop
+	nop
+	slt	r27,r1,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L97	
+	nop
+	nop
+	nop
+	j	L68	
+	nop
+	nop
+	nop
+L97:
+	lw	r4,-572(r30)	
+	nop
+	nop
+	nop
+	slli	r4,r4,$3	
+	nop
+	nop
+	nop
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$4	
+	nop
+	nop
+	nop
+	MOD	r4,r4,r5	
+	nop
+	nop
+	nop
+	slt	r27,r1,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L98	
+	nop
+	nop
+	nop
+	j	L99	
+	nop
+	nop
+	nop
+L98:
+	nop
+	nop
+	lbu	r4,0(r2)	
+	lbu	r5,0(r3)	
+	addi	r1,r1,$1	
+	nop
+	nop
+	nop
+	xor	r4,r4,r5	
+	nop
+	nop
+	nop
+	sb	0(r2),r4	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$1	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$1	
+	nop
+	nop
+	nop
+	add	r2,r2,r4	
+	add	r3,r3,r5	
+	j	L96	
+	nop
+	nop
+	nop
+L99:
+	lw	r4,-572(r30)	
+	nop
+	nop
+	nop
+	slli	r4,r4,$3	
+	nop
+	nop
+	nop
+	slt	r27,r1,r4	
+	nop
+	nop
+	nop
+	bnez	r27,L100	
+	nop
+	nop
+	nop
+	j	L68	
+	nop
+	nop
+	nop
+L100:
+	nop
+	nop
+	nop
+	lbu	r4,0(r2)	
+	lbu	r5,0(r3)	
+	nop
+	nop
+	nop
+	xor	r4,r4,r5	
+	addi	r1,r1,$4	
+	nop
+	nop
+	nop
+	sb	0(r2),r4	
+	nop
+	nop
+	nop
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	ori	r4,r4,$1	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$1	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$1	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	ori	r7,r7,$2	
+	add	r4,r2,r4	
+	add	r5,r3,r5	
+	add	r6,r2,r6	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	ori	r8,r8,$2	
+	lbu	r4,0(r4)	
+	lbu	r5,0(r5)	
+	add	r7,r2,r7	
+	add	r8,r3,r8	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	ori	r9,r9,$2	
+	xor	r4,r4,r5	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	ori	r5,r5,$3	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$3	
+	add	r9,r2,r9	
+	sb	0(r6),r4	
+	add	r4,r2,r5	
+	add	r5,r3,r10	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	ori	r6,r6,$3	
+	lbu	r7,0(r7)	
+	lbu	r8,0(r8)	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	ori	r11,r11,$4	
+	add	r6,r2,r6	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	ori	r10,r10,$4	
+	xor	r7,r7,r8	
+	add	r3,r3,r11	
+	nop
+	nop
+	add	r2,r2,r10	
+	sb	0(r9),r7	
+	nop
+	nop
+	nop
+	lbu	r4,0(r4)	
+	lbu	r5,0(r5)	
+	nop
+	nop
+	nop
+	xor	r4,r4,r5	
+	nop
+	nop
+	nop
+	sb	0(r6),r4	
+	j	L99	
+	nop
+	nop
+	nop
+L101:
+	nop
+	nop
+	nop
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+exit:
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data
+	.align	4
+L1:
+	.data.32	99
+	.data.32	124
+	.data.32	119
+	.data.32	123
+	.data.32	242
+	.data.32	107
+	.data.32	111
+	.data.32	197
+	.data.32	48
+	.data.32	1
+	.data.32	103
+	.data.32	43
+	.data.32	254
+	.data.32	215
+	.data.32	171
+	.data.32	118
+	.data.32	202
+	.data.32	130
+	.data.32	201
+	.data.32	125
+	.data.32	250
+	.data.32	89
+	.data.32	71
+	.data.32	240
+	.data.32	173
+	.data.32	212
+	.data.32	162
+	.data.32	175
+	.data.32	156
+	.data.32	164
+	.data.32	114
+	.data.32	192
+	.data.32	183
+	.data.32	253
+	.data.32	147
+	.data.32	38
+	.data.32	54
+	.data.32	63
+	.data.32	247
+	.data.32	204
+	.data.32	52
+	.data.32	165
+	.data.32	229
+	.data.32	241
+	.data.32	113
+	.data.32	216
+	.data.32	49
+	.data.32	21
+	.data.32	4
+	.data.32	199
+	.data.32	35
+	.data.32	195
+	.data.32	24
+	.data.32	150
+	.data.32	5
+	.data.32	154
+	.data.32	7
+	.data.32	18
+	.data.32	128
+	.data.32	226
+	.data.32	235
+	.data.32	39
+	.data.32	178
+	.data.32	117
+	.data.32	9
+	.data.32	131
+	.data.32	44
+	.data.32	26
+	.data.32	27
+	.data.32	110
+	.data.32	90
+	.data.32	160
+	.data.32	82
+	.data.32	59
+	.data.32	214
+	.data.32	179
+	.data.32	41
+	.data.32	227
+	.data.32	47
+	.data.32	132
+	.data.32	83
+	.data.32	209
+	.space	4
+	.data.32	237
+	.data.32	32
+	.data.32	252
+	.data.32	177
+	.data.32	91
+	.data.32	106
+	.data.32	203
+	.data.32	190
+	.data.32	57
+	.data.32	74
+	.data.32	76
+	.data.32	88
+	.data.32	207
+	.data.32	208
+	.data.32	239
+	.data.32	170
+	.data.32	251
+	.data.32	67
+	.data.32	77
+	.data.32	51
+	.data.32	133
+	.data.32	69
+	.data.32	249
+	.data.32	2
+	.data.32	127
+	.data.32	80
+	.data.32	60
+	.data.32	159
+	.data.32	168
+	.data.32	81
+	.data.32	163
+	.data.32	64
+	.data.32	143
+	.data.32	146
+	.data.32	157
+	.data.32	56
+	.data.32	245
+	.data.32	188
+	.data.32	182
+	.data.32	218
+	.data.32	33
+	.data.32	16
+	.data.32	255
+	.data.32	243
+	.data.32	210
+	.data.32	205
+	.data.32	12
+	.data.32	19
+	.data.32	236
+	.data.32	95
+	.data.32	151
+	.data.32	68
+	.data.32	23
+	.data.32	196
+	.data.32	167
+	.data.32	126
+	.data.32	61
+	.data.32	100
+	.data.32	93
+	.data.32	25
+	.data.32	115
+	.data.32	96
+	.data.32	129
+	.data.32	79
+	.data.32	220
+	.data.32	34
+	.data.32	42
+	.data.32	144
+	.data.32	136
+	.data.32	70
+	.data.32	238
+	.data.32	184
+	.data.32	20
+	.data.32	222
+	.data.32	94
+	.data.32	11
+	.data.32	219
+	.data.32	224
+	.data.32	50
+	.data.32	58
+	.data.32	10
+	.data.32	73
+	.data.32	6
+	.data.32	36
+	.data.32	92
+	.data.32	194
+	.data.32	211
+	.data.32	172
+	.data.32	98
+	.data.32	145
+	.data.32	149
+	.data.32	228
+	.data.32	121
+	.data.32	231
+	.data.32	200
+	.data.32	55
+	.data.32	109
+	.data.32	141
+	.data.32	213
+	.data.32	78
+	.data.32	169
+	.data.32	108
+	.data.32	86
+	.data.32	244
+	.data.32	234
+	.data.32	101
+	.data.32	122
+	.data.32	174
+	.data.32	8
+	.data.32	186
+	.data.32	120
+	.data.32	37
+	.data.32	46
+	.data.32	28
+	.data.32	166
+	.data.32	180
+	.data.32	198
+	.data.32	232
+	.data.32	221
+	.data.32	116
+	.data.32	31
+	.data.32	75
+	.data.32	189
+	.data.32	139
+	.data.32	138
+	.data.32	112
+	.data.32	62
+	.data.32	181
+	.data.32	102
+	.data.32	72
+	.data.32	3
+	.data.32	246
+	.data.32	14
+	.data.32	97
+	.data.32	53
+	.data.32	87
+	.data.32	185
+	.data.32	134
+	.data.32	193
+	.data.32	29
+	.data.32	158
+	.data.32	225
+	.data.32	248
+	.data.32	152
+	.data.32	17
+	.data.32	105
+	.data.32	217
+	.data.32	142
+	.data.32	148
+	.data.32	155
+	.data.32	30
+	.data.32	135
+	.data.32	233
+	.data.32	206
+	.data.32	85
+	.data.32	40
+	.data.32	223
+	.data.32	140
+	.data.32	161
+	.data.32	137
+	.data.32	13
+	.data.32	191
+	.data.32	230
+	.data.32	66
+	.data.32	104
+	.data.32	65
+	.data.32	153
+	.data.32	45
+	.data.32	15
+	.data.32	176
+	.data.32	84
+	.data.32	187
+	.data.32	22
+	.align	4
+L2:
+	.data.32	3328402341
+	.data.32	4168907908
+	.data.32	4000806809
+	.data.32	4135287693
+	.data.32	4294111757
+	.data.32	3597364157
+	.data.32	3731845041
+	.data.32	2445657428
+	.data.32	1613770832
+	.data.32	33620227
+	.data.32	3462883241
+	.data.32	1445669757
+	.data.32	3892248089
+	.data.32	3050821474
+	.data.32	1303096294
+	.data.32	3967186586
+	.data.32	2412431941
+	.data.32	528646813
+	.data.32	2311702848
+	.data.32	4202528135
+	.data.32	4026202645
+	.data.32	2992200171
+	.data.32	2387036105
+	.data.32	4226871307
+	.data.32	1101901292
+	.data.32	3017069671
+	.data.32	1604494077
+	.data.32	1169141738
+	.data.32	597466303
+	.data.32	1403299063
+	.data.32	3832705686
+	.data.32	2613100635
+	.data.32	1974974402
+	.data.32	3791519004
+	.data.32	1033081774
+	.data.32	1277568618
+	.data.32	1815492186
+	.data.32	2118074177
+	.data.32	4126668546
+	.data.32	2211236943
+	.data.32	1748251740
+	.data.32	1369810420
+	.data.32	3521504564
+	.data.32	4193382664
+	.data.32	3799085459
+	.data.32	2883115123
+	.data.32	1647391059
+	.data.32	706024767
+	.data.32	134480908
+	.data.32	2512897874
+	.data.32	1176707941
+	.data.32	2646852446
+	.data.32	806885416
+	.data.32	932615841
+	.data.32	168101135
+	.data.32	798661301
+	.data.32	235341577
+	.data.32	605164086
+	.data.32	461406363
+	.data.32	3756188221
+	.data.32	3454790438
+	.data.32	1311188841
+	.data.32	2142417613
+	.data.32	3933566367
+	.data.32	302582043
+	.data.32	495158174
+	.data.32	1479289972
+	.data.32	874125870
+	.data.32	907746093
+	.data.32	3698224818
+	.data.32	3025820398
+	.data.32	1537253627
+	.data.32	2756858614
+	.data.32	1983593293
+	.data.32	3084310113
+	.data.32	2108928974
+	.data.32	1378429307
+	.data.32	3722699582
+	.data.32	1580150641
+	.data.32	327451799
+	.data.32	2790478837
+	.data.32	3117535592
+	.space	4
+	.data.32	3253595436
+	.data.32	1075847264
+	.data.32	3825007647
+	.data.32	2041688520
+	.data.32	3059440621
+	.data.32	3563743934
+	.data.32	2378943302
+	.data.32	1740553945
+	.data.32	1916352843
+	.data.32	2487896798
+	.data.32	2555137236
+	.data.32	2958579944
+	.data.32	2244988746
+	.data.32	3151024235
+	.data.32	3320835882
+	.data.32	1336584933
+	.data.32	3992714006
+	.data.32	2252555205
+	.data.32	2588757463
+	.data.32	1714631509
+	.data.32	293963156
+	.data.32	2319795663
+	.data.32	3925473552
+	.data.32	67240454
+	.data.32	4269768577
+	.data.32	2689618160
+	.data.32	2017213508
+	.data.32	631218106
+	.data.32	1269344483
+	.data.32	2723238387
+	.data.32	1571005438
+	.data.32	2151694528
+	.data.32	93294474
+	.data.32	1066570413
+	.data.32	563977660
+	.data.32	1882732616
+	.data.32	4059428100
+	.data.32	1673313503
+	.data.32	2008463041
+	.data.32	2950355573
+	.data.32	1109467491
+	.data.32	537923632
+	.data.32	3858759450
+	.data.32	4260623118
+	.data.32	3218264685
+	.data.32	2177748300
+	.data.32	403442708
+	.data.32	638784309
+	.data.32	3287084079
+	.data.32	3193921505
+	.data.32	899127202
+	.data.32	2286175436
+	.data.32	773265209
+	.data.32	2479146071
+	.data.32	1437050866
+	.data.32	4236148354
+	.data.32	2050833735
+	.data.32	3362022572
+	.data.32	3126681063
+	.data.32	840505643
+	.data.32	3866325909
+	.data.32	3227541664
+	.data.32	427917720
+	.data.32	2655997905
+	.data.32	2749160575
+	.data.32	1143087718
+	.data.32	1412049534
+	.data.32	999329963
+	.data.32	193497219
+	.data.32	2353415882
+	.data.32	3354324521
+	.data.32	1807268051
+	.data.32	672404540
+	.data.32	2816401017
+	.data.32	3160301282
+	.data.32	369822493
+	.data.32	2916866934
+	.data.32	3688947771
+	.data.32	1681011286
+	.data.32	1949973070
+	.data.32	336202270
+	.data.32	2454276571
+	.data.32	201721354
+	.data.32	1210328172
+	.data.32	3093060836
+	.data.32	2680341085
+	.data.32	3184776046
+	.data.32	1135389935
+	.data.32	3294782118
+	.data.32	965841320
+	.data.32	831886756
+	.data.32	3554993207
+	.data.32	4068047243
+	.data.32	3588745010
+	.data.32	2345191491
+	.data.32	1849112409
+	.data.32	3664604599
+	.data.32	26054028
+	.data.32	2983581028
+	.data.32	2622377682
+	.data.32	1235855840
+	.data.32	3630984372
+	.data.32	2891339514
+	.data.32	4092916743
+	.data.32	3488279077
+	.data.32	3395642799
+	.data.32	4101667470
+	.data.32	1202630377
+	.data.32	268961816
+	.data.32	1874508501
+	.data.32	4034427016
+	.data.32	1243948399
+	.data.32	1546530418
+	.data.32	941366308
+	.data.32	1470539505
+	.data.32	1941222599
+	.data.32	2546386513
+	.data.32	3421038627
+	.data.32	2715671932
+	.data.32	3899946140
+	.data.32	1042226977
+	.data.32	2521517021
+	.data.32	1639824860
+	.data.32	227249030
+	.data.32	260737669
+	.data.32	3765465232
+	.data.32	2084453954
+	.data.32	1907733956
+	.data.32	3429263018
+	.data.32	2420656344
+	.data.32	100860677
+	.data.32	4160157185
+	.data.32	470683154
+	.data.32	3261161891
+	.data.32	1781871967
+	.data.32	2924959737
+	.data.32	1773779408
+	.data.32	394692241
+	.data.32	2579611992
+	.data.32	974986535
+	.data.32	664706745
+	.data.32	3655459128
+	.data.32	3958962195
+	.data.32	731420851
+	.data.32	571543859
+	.data.32	3530123707
+	.data.32	2849626480
+	.data.32	126783113
+	.data.32	865375399
+	.data.32	765172662
+	.data.32	1008606754
+	.data.32	361203602
+	.data.32	3387549984
+	.data.32	2278477385
+	.data.32	2857719295
+	.data.32	1344809080
+	.data.32	2782912378
+	.data.32	59542671
+	.data.32	1503764984
+	.data.32	160008576
+	.data.32	437062935
+	.data.32	1707065306
+	.data.32	3622233649
+	.data.32	2218934982
+	.data.32	3496503480
+	.data.32	2185314755
+	.data.32	697932208
+	.data.32	1512910199
+	.data.32	504303377
+	.data.32	2075177163
+	.data.32	2824099068
+	.data.32	1841019862
+	.data.32	739644986
+	.align	4
+L3:
+	.data.32	2781242211
+	.data.32	2230877308
+	.data.32	2582542199
+	.data.32	2381740923
+	.data.32	234877682
+	.data.32	3184946027
+	.data.32	2984144751
+	.data.32	1418839493
+	.data.32	1348481072
+	.data.32	50462977
+	.data.32	2848876391
+	.data.32	2102799147
+	.data.32	434634494
+	.data.32	1656084439
+	.data.32	3863849899
+	.data.32	2599188086
+	.data.32	1167051466
+	.data.32	2636087938
+	.data.32	1082771913
+	.data.32	2281340285
+	.data.32	368048890
+	.data.32	3954334041
+	.data.32	3381544775
+	.data.32	201060592
+	.data.32	3963727277
+	.data.32	1739838676
+	.data.32	4250903202
+	.data.32	3930435503
+	.data.32	3206782108
+	.data.32	4149453988
+	.data.32	2531553906
+	.data.32	1536934080
+	.data.32	3262494647
+	.data.32	484572669
+	.data.32	2923271059
+	.data.32	1783375398
+	.data.32	1517041206
+	.data.32	1098792767
+	.data.32	49674231
+	.data.32	1334037708
+	.data.32	1550332980
+	.data.32	4098991525
+	.data.32	886171109
+	.data.32	150598129
+	.data.32	2481090929
+	.data.32	1940642008
+	.data.32	1398944049
+	.data.32	1059722517
+	.data.32	201851908
+	.data.32	1385547719
+	.data.32	1699095331
+	.data.32	1587397571
+	.data.32	674240536
+	.data.32	2704774806
+	.data.32	252314885
+	.data.32	3039795866
+	.data.32	151914247
+	.data.32	908333586
+	.data.32	2602270848
+	.data.32	1038082786
+	.data.32	651029483
+	.data.32	1766729511
+	.data.32	3447698098
+	.data.32	2682942837
+	.data.32	454166793
+	.data.32	2652734339
+	.data.32	1951935532
+	.data.32	775166490
+	.data.32	758520603
+	.data.32	3000790638
+	.data.32	4004797018
+	.data.32	4217086112
+	.data.32	4137964114
+	.data.32	1299594043
+	.data.32	1639438038
+	.data.32	3464344499
+	.data.32	2068982057
+	.data.32	1054729187
+	.data.32	1901997871
+	.data.32	2534638724
+	.data.32	4121318227
+	.data.32	1757008337
+	.space	4
+	.data.32	750906861
+	.data.32	1614815264
+	.data.32	535035132
+	.data.32	3363418545
+	.data.32	3988151131
+	.data.32	3201591914
+	.data.32	1183697867
+	.data.32	3647454910
+	.data.32	1265776953
+	.data.32	3734260298
+	.data.32	3566750796
+	.data.32	3903871064
+	.data.32	1250283471
+	.data.32	1807470800
+	.data.32	717615087
+	.data.32	3847203498
+	.data.32	384695291
+	.data.32	3313910595
+	.data.32	3617213773
+	.data.32	1432761139
+	.data.32	2484176261
+	.data.32	3481945413
+	.data.32	283769337
+	.data.32	100925954
+	.data.32	2180939647
+	.data.32	4037038160
+	.data.32	1148730428
+	.data.32	3123027871
+	.data.32	3813386408
+	.data.32	4087501137
+	.data.32	4267549603
+	.data.32	3229630528
+	.data.32	2315620239
+	.data.32	2906624658
+	.data.32	3156319645
+	.data.32	1215313976
+	.data.32	82966005
+	.data.32	3747855548
+	.data.32	3245848246
+	.data.32	1974459098
+	.data.32	1665278241
+	.data.32	807407632
+	.data.32	451280895
+	.data.32	251524083
+	.data.32	1841287890
+	.data.32	1283575245
+	.data.32	337120268
+	.data.32	891687699
+	.data.32	801369324
+	.data.32	3787349855
+	.data.32	2721421207
+	.data.32	3431482436
+	.data.32	959321879
+	.data.32	1469301956
+	.data.32	4065699751
+	.data.32	2197585534
+	.data.32	1199193405
+	.data.32	2898814052
+	.data.32	3887750493
+	.data.32	724703513
+	.data.32	2514908019
+	.data.32	2696962144
+	.data.32	2551808385
+	.data.32	3516813135
+	.data.32	2141445340
+	.data.32	1715741218
+	.data.32	2119445034
+	.data.32	2872807568
+	.data.32	2198571144
+	.data.32	3398190662
+	.data.32	700968686
+	.data.32	3547052216
+	.data.32	1009259540
+	.data.32	2041044702
+	.data.32	3803995742
+	.data.32	487983883
+	.data.32	1991105499
+	.data.32	1004265696
+	.data.32	1449407026
+	.data.32	1316239930
+	.data.32	504629770
+	.data.32	3683797321
+	.data.32	168560134
+	.data.32	1816667172
+	.data.32	3837287516
+	.data.32	1570751170
+	.data.32	1857934291
+	.data.32	4014189740
+	.data.32	2797888098
+	.data.32	2822345105
+	.data.32	2754712981
+	.data.32	936633572
+	.data.32	2347923833
+	.data.32	852879335
+	.data.32	1133234376
+	.data.32	1500395319
+	.data.32	3084545389
+	.data.32	2348912013
+	.data.32	1689376213
+	.data.32	3533459022
+	.data.32	3762923945
+	.data.32	3034082412
+	.data.32	4205598294
+	.data.32	133428468
+	.data.32	634383082
+	.data.32	2949277029
+	.data.32	2398386810
+	.data.32	3913789102
+	.data.32	403703816
+	.data.32	3580869306
+	.data.32	2297460856
+	.data.32	1867130149
+	.data.32	1918643758
+	.data.32	607656988
+	.data.32	4049053350
+	.data.32	3346248884
+	.data.32	1368901318
+	.data.32	600565992
+	.data.32	2090982877
+	.data.32	2632479860
+	.data.32	557719327
+	.data.32	3717614411
+	.data.32	3697393085
+	.data.32	2249034635
+	.data.32	2232388234
+	.data.32	2430627952
+	.data.32	1115438654
+	.data.32	3295786421
+	.data.32	2865522278
+	.data.32	3633334344
+	.data.32	84280067
+	.data.32	33027830
+	.data.32	303828494
+	.data.32	2747425121
+	.data.32	1600795957
+	.data.32	4188952407
+	.data.32	3496589753
+	.data.32	2434238086
+	.data.32	1486471617
+	.data.32	658119965
+	.data.32	3106381470
+	.data.32	953803233
+	.data.32	334231800
+	.data.32	3005978776
+	.data.32	857870609
+	.data.32	3151128937
+	.data.32	1890179545
+	.data.32	2298973838
+	.data.32	2805175444
+	.data.32	3056442267
+	.data.32	574365214
+	.data.32	2450884487
+	.data.32	550103529
+	.data.32	1233637070
+	.data.32	4289353045
+	.data.32	2018519080
+	.data.32	2057691103
+	.data.32	2399374476
+	.data.32	4166623649
+	.data.32	2148108681
+	.data.32	387583245
+	.data.32	3664101311
+	.data.32	836232934
+	.data.32	3330556482
+	.data.32	3100665960
+	.data.32	3280093505
+	.data.32	2955516313
+	.data.32	2002398509
+	.data.32	287182607
+	.data.32	3413881008
+	.data.32	4238890068
+	.data.32	3597515707
+	.data.32	975967766
+	.align	4
+L4:
+	.data.32	1671808611
+	.data.32	2089089148
+	.data.32	2006576759
+	.data.32	2072901243
+	.data.32	4061003762
+	.data.32	1807603307
+	.data.32	1873927791
+	.data.32	3310653893
+	.data.32	810573872
+	.data.32	16974337
+	.data.32	1739181671
+	.data.32	729634347
+	.data.32	4263110654
+	.data.32	3613570519
+	.data.32	2883997099
+	.data.32	1989864566
+	.data.32	3393556426
+	.data.32	2191335298
+	.data.32	3376449993
+	.data.32	2106063485
+	.data.32	4195741690
+	.data.32	1508618841
+	.data.32	1204391495
+	.data.32	4027317232
+	.data.32	2917941677
+	.data.32	3563566036
+	.data.32	2734514082
+	.data.32	2951366063
+	.data.32	2629772188
+	.data.32	2767672228
+	.data.32	1922491506
+	.data.32	3227229120
+	.data.32	3082974647
+	.data.32	4246528509
+	.data.32	2477669779
+	.data.32	644500518
+	.data.32	911895606
+	.data.32	1061256767
+	.data.32	4144166391
+	.data.32	3427763148
+	.data.32	878471220
+	.data.32	2784252325
+	.data.32	3845444069
+	.data.32	4043897329
+	.data.32	1905517169
+	.data.32	3631459288
+	.data.32	827548209
+	.data.32	356461077
+	.data.32	67897348
+	.data.32	3344078279
+	.data.32	593839651
+	.data.32	3277757891
+	.data.32	405286936
+	.data.32	2527147926
+	.data.32	84871685
+	.data.32	2595565466
+	.data.32	118033927
+	.data.32	305538066
+	.data.32	2157648768
+	.data.32	3795705826
+	.data.32	3945188843
+	.data.32	661212711
+	.data.32	2999812018
+	.data.32	1973414517
+	.data.32	152769033
+	.data.32	2208177539
+	.data.32	745822252
+	.data.32	439235610
+	.data.32	455947803
+	.data.32	1857215598
+	.data.32	1525593178
+	.data.32	2700827552
+	.data.32	1391895634
+	.data.32	994932283
+	.data.32	3596728278
+	.data.32	3016654259
+	.data.32	695947817
+	.data.32	3812548067
+	.data.32	795958831
+	.data.32	2224493444
+	.data.32	1408607827
+	.data.32	3513301457
+	.space	4
+	.data.32	3979133421
+	.data.32	543178784
+	.data.32	4229948412
+	.data.32	2982705585
+	.data.32	1542305371
+	.data.32	1790891114
+	.data.32	3410398667
+	.data.32	3201918910
+	.data.32	961245753
+	.data.32	1256100938
+	.data.32	1289001036
+	.data.32	1491644504
+	.data.32	3477767631
+	.data.32	3496721360
+	.data.32	4012557807
+	.data.32	2867154858
+	.data.32	4212583931
+	.data.32	1137018435
+	.data.32	1305975373
+	.data.32	861234739
+	.data.32	2241073541
+	.data.32	1171229253
+	.data.32	4178635257
+	.data.32	33948674
+	.data.32	2139225727
+	.data.32	1357946960
+	.data.32	1011120188
+	.data.32	2679776671
+	.data.32	2833468328
+	.data.32	1374921297
+	.data.32	2751356323
+	.data.32	1086357568
+	.data.32	2408187279
+	.data.32	2460827538
+	.data.32	2646352285
+	.data.32	944271416
+	.data.32	4110742005
+	.data.32	3168756668
+	.data.32	3066132406
+	.data.32	3665145818
+	.data.32	560153121
+	.data.32	271589392
+	.data.32	4279952895
+	.data.32	4077846003
+	.data.32	3530407890
+	.data.32	3444343245
+	.data.32	202643468
+	.data.32	322250259
+	.data.32	3962553324
+	.data.32	1608629855
+	.data.32	2543990167
+	.data.32	1154254916
+	.data.32	389623319
+	.data.32	3294073796
+	.data.32	2817676711
+	.data.32	2122513534
+	.data.32	1028094525
+	.data.32	1689045092
+	.data.32	1575467613
+	.data.32	422261273
+	.data.32	1939203699
+	.data.32	1621147744
+	.data.32	2174228865
+	.data.32	1339137615
+	.data.32	3699352540
+	.data.32	577127458
+	.data.32	712922154
+	.data.32	2427141008
+	.data.32	2290289544
+	.data.32	1187679302
+	.data.32	3995715566
+	.data.32	3100863416
+	.data.32	339486740
+	.data.32	3732514782
+	.data.32	1591917662
+	.data.32	186455563
+	.data.32	3681988059
+	.data.32	3762019296
+	.data.32	844522546
+	.data.32	978220090
+	.data.32	169743370
+	.data.32	1239126601
+	.data.32	101321734
+	.data.32	611076132
+	.data.32	1558493276
+	.data.32	3260915650
+	.data.32	3547250131
+	.data.32	2901361580
+	.data.32	1655096418
+	.data.32	2443721105
+	.data.32	2510565781
+	.data.32	3828863972
+	.data.32	2039214713
+	.data.32	3878868455
+	.data.32	3359869896
+	.data.32	928607799
+	.data.32	1840765549
+	.data.32	2374762893
+	.data.32	3580146133
+	.data.32	1322425422
+	.data.32	2850048425
+	.data.32	1823791212
+	.data.32	1459268694
+	.data.32	4094161908
+	.data.32	3928346602
+	.data.32	1706019429
+	.data.32	2056189050
+	.data.32	2934523822
+	.data.32	135794696
+	.data.32	3134549946
+	.data.32	2022240376
+	.data.32	628050469
+	.data.32	779246638
+	.data.32	472135708
+	.data.32	2800834470
+	.data.32	3032970164
+	.data.32	3327236038
+	.data.32	3894660072
+	.data.32	3715932637
+	.data.32	1956440180
+	.data.32	522272287
+	.data.32	1272813131
+	.data.32	3185336765
+	.data.32	2340818315
+	.data.32	2323976074
+	.data.32	1888542832
+	.data.32	1044544574
+	.data.32	3049550261
+	.data.32	1722469478
+	.data.32	1222152264
+	.data.32	50660867
+	.data.32	4127324150
+	.data.32	236067854
+	.data.32	1638122081
+	.data.32	895445557
+	.data.32	1475980887
+	.data.32	3117443513
+	.data.32	2257655686
+	.data.32	3243809217
+	.data.32	489110045
+	.data.32	2662934430
+	.data.32	3778599393
+	.data.32	4162055160
+	.data.32	2561878936
+	.data.32	288563729
+	.data.32	1773916777
+	.data.32	3648039385
+	.data.32	2391345038
+	.data.32	2493985684
+	.data.32	2612407707
+	.data.32	505560094
+	.data.32	2274497927
+	.data.32	3911240169
+	.data.32	3460925390
+	.data.32	1442818645
+	.data.32	678973480
+	.data.32	3749357023
+	.data.32	2358182796
+	.data.32	2717407649
+	.data.32	2306869641
+	.data.32	219617805
+	.data.32	3218761151
+	.data.32	3862026214
+	.data.32	1120306242
+	.data.32	1756942440
+	.data.32	1103331905
+	.data.32	2578459033
+	.data.32	762796589
+	.data.32	252780047
+	.data.32	2966125488
+	.data.32	1425844308
+	.data.32	3151392187
+	.data.32	372911126
+	.align	4
+L5:
+	.data.32	1667474886
+	.data.32	2088535288
+	.data.32	2004326894
+	.data.32	2071694838
+	.data.32	4075949567
+	.data.32	1802223062
+	.data.32	1869591006
+	.data.32	3318043793
+	.data.32	808472672
+	.data.32	16843522
+	.data.32	1734846926
+	.data.32	724270422
+	.data.32	4278065639
+	.data.32	3621216949
+	.data.32	2880169549
+	.data.32	1987484396
+	.data.32	3402253711
+	.data.32	2189597983
+	.data.32	3385409673
+	.data.32	2105378810
+	.data.32	4210693615
+	.data.32	1499065266
+	.data.32	1195886990
+	.data.32	4042263547
+	.data.32	2913856577
+	.data.32	3570689971
+	.data.32	2728590687
+	.data.32	2947541573
+	.data.32	2627518243
+	.data.32	2762274643
+	.data.32	1920112356
+	.data.32	3233831835
+	.data.32	3082273397
+	.data.32	4261223649
+	.data.32	2475929149
+	.data.32	640051788
+	.data.32	909531756
+	.data.32	1061110142
+	.data.32	4160160501
+	.data.32	3435941763
+	.data.32	875846760
+	.data.32	2779116625
+	.data.32	3857003729
+	.data.32	4059105529
+	.data.32	1903268834
+	.data.32	3638064043
+	.data.32	825316194
+	.data.32	353713962
+	.data.32	67374088
+	.data.32	3351728789
+	.data.32	589522246
+	.data.32	3284360861
+	.data.32	404236336
+	.data.32	2526454071
+	.data.32	84217610
+	.data.32	2593830191
+	.data.32	117901582
+	.data.32	303183396
+	.data.32	2155911963
+	.data.32	3806477791
+	.data.32	3958056653
+	.data.32	656894286
+	.data.32	2998062463
+	.data.32	1970642922
+	.data.32	151591698
+	.data.32	2206440989
+	.data.32	741110872
+	.data.32	437923380
+	.data.32	454765878
+	.data.32	1852748508
+	.data.32	1515908788
+	.data.32	2694904667
+	.data.32	1381168804
+	.data.32	993742198
+	.data.32	3604373943
+	.data.32	3014905469
+	.data.32	690584402
+	.data.32	3823320797
+	.data.32	791638366
+	.data.32	2223281939
+	.data.32	1398011302
+	.data.32	3520161977
+	.space	4
+	.data.32	3991743681
+	.data.32	538992704
+	.data.32	4244381667
+	.data.32	2981218425
+	.data.32	1532751286
+	.data.32	1785380564
+	.data.32	3419096717
+	.data.32	3200178535
+	.data.32	960056178
+	.data.32	1246420628
+	.data.32	1280103576
+	.data.32	1482221744
+	.data.32	3486468741
+	.data.32	3503319995
+	.data.32	4025428677
+	.data.32	2863326543
+	.data.32	4227536621
+	.data.32	1128514950
+	.data.32	1296947098
+	.data.32	859002214
+	.data.32	2240123921
+	.data.32	1162203018
+	.data.32	4193849577
+	.data.32	33687044
+	.data.32	2139062782
+	.data.32	1347481760
+	.data.32	1010582648
+	.data.32	2678045221
+	.data.32	2829640523
+	.data.32	1364325282
+	.data.32	2745433693
+	.data.32	1077985408
+	.data.32	2408548869
+	.data.32	2459086143
+	.data.32	2644360225
+	.data.32	943212656
+	.data.32	4126475505
+	.data.32	3166494563
+	.data.32	3065430391
+	.data.32	3671750063
+	.data.32	555836226
+	.data.32	269496352
+	.data.32	4294908645
+	.data.32	4092792573
+	.data.32	3537006015
+	.data.32	3452783745
+	.data.32	202118168
+	.data.32	320025894
+	.data.32	3974901699
+	.data.32	1600119230
+	.data.32	2543297077
+	.data.32	1145359496
+	.data.32	387397934
+	.data.32	3301201811
+	.data.32	2812801621
+	.data.32	2122220284
+	.data.32	1027426170
+	.data.32	1684319432
+	.data.32	1566435258
+	.data.32	421079858
+	.data.32	1936954854
+	.data.32	1616945344
+	.data.32	2172753945
+	.data.32	1330631070
+	.data.32	3705438115
+	.data.32	572679748
+	.data.32	707427924
+	.data.32	2425400123
+	.data.32	2290647819
+	.data.32	1179044492
+	.data.32	4008585671
+	.data.32	3099120491
+	.data.32	336870440
+	.data.32	3739122087
+	.data.32	1583276732
+	.data.32	185277718
+	.data.32	3688593069
+	.data.32	3772791771
+	.data.32	842159716
+	.data.32	976899700
+	.data.32	168435220
+	.data.32	1229577106
+	.data.32	101059084
+	.data.32	606366792
+	.data.32	1549591736
+	.data.32	3267517855
+	.data.32	3553849021
+	.data.32	2897014595
+	.data.32	1650632388
+	.data.32	2442242105
+	.data.32	2509612081
+	.data.32	3840161747
+	.data.32	2038008818
+	.data.32	3890688725
+	.data.32	3368567691
+	.data.32	926374254
+	.data.32	1835907034
+	.data.32	2374863873
+	.data.32	3587531953
+	.data.32	1313788572
+	.data.32	2846482505
+	.data.32	1819063512
+	.data.32	1448540844
+	.data.32	4109633523
+	.data.32	3941213647
+	.data.32	1701162954
+	.data.32	2054852340
+	.data.32	2930698567
+	.data.32	134748176
+	.data.32	3132806511
+	.data.32	2021165296
+	.data.32	623210314
+	.data.32	774795868
+	.data.32	471606328
+	.data.32	2795958615
+	.data.32	3031746419
+	.data.32	3334885783
+	.data.32	3907527627
+	.data.32	3722280097
+	.data.32	1953799400
+	.data.32	522133822
+	.data.32	1263263126
+	.data.32	3183336545
+	.data.32	2341176845
+	.data.32	2324333839
+	.data.32	1886425312
+	.data.32	1044267644
+	.data.32	3048588401
+	.data.32	1718004428
+	.data.32	1212733584
+	.data.32	50529542
+	.data.32	4143317495
+	.data.32	235803164
+	.data.32	1633788866
+	.data.32	892690282
+	.data.32	1465383342
+	.data.32	3115962473
+	.data.32	2256965911
+	.data.32	3250673817
+	.data.32	488449850
+	.data.32	2661202215
+	.data.32	3789633753
+	.data.32	4177007595
+	.data.32	2560144171
+	.data.32	286339874
+	.data.32	1768537042
+	.data.32	3654906025
+	.data.32	2391705863
+	.data.32	2492770099
+	.data.32	2610673197
+	.data.32	505291324
+	.data.32	2273808917
+	.data.32	3924369609
+	.data.32	3469625735
+	.data.32	1431699370
+	.data.32	673740880
+	.data.32	3755965093
+	.data.32	2358021891
+	.data.32	2711746649
+	.data.32	2307489801
+	.data.32	218961690
+	.data.32	3217021541
+	.data.32	3873845719
+	.data.32	1111672452
+	.data.32	1751693520
+	.data.32	1094828930
+	.data.32	2576986153
+	.data.32	757954394
+	.data.32	252645662
+	.data.32	2964376443
+	.data.32	1414855848
+	.data.32	3149649517
+	.data.32	370555436
+	.align	4
+L6:
+	.data.32	82
+	.data.32	9
+	.data.32	106
+	.data.32	213
+	.data.32	48
+	.data.32	54
+	.data.32	165
+	.data.32	56
+	.data.32	191
+	.data.32	64
+	.data.32	163
+	.data.32	158
+	.data.32	129
+	.data.32	243
+	.data.32	215
+	.data.32	251
+	.data.32	124
+	.data.32	227
+	.data.32	57
+	.data.32	130
+	.data.32	155
+	.data.32	47
+	.data.32	255
+	.data.32	135
+	.data.32	52
+	.data.32	142
+	.data.32	67
+	.data.32	68
+	.data.32	196
+	.data.32	222
+	.data.32	233
+	.data.32	203
+	.data.32	84
+	.data.32	123
+	.data.32	148
+	.data.32	50
+	.data.32	166
+	.data.32	194
+	.data.32	35
+	.data.32	61
+	.data.32	238
+	.data.32	76
+	.data.32	149
+	.data.32	11
+	.data.32	66
+	.data.32	250
+	.data.32	195
+	.data.32	78
+	.data.32	8
+	.data.32	46
+	.data.32	161
+	.data.32	102
+	.data.32	40
+	.data.32	217
+	.data.32	36
+	.data.32	178
+	.data.32	118
+	.data.32	91
+	.data.32	162
+	.data.32	73
+	.data.32	109
+	.data.32	139
+	.data.32	209
+	.data.32	37
+	.data.32	114
+	.data.32	248
+	.data.32	246
+	.data.32	100
+	.data.32	134
+	.data.32	104
+	.data.32	152
+	.data.32	22
+	.data.32	212
+	.data.32	164
+	.data.32	92
+	.data.32	204
+	.data.32	93
+	.data.32	101
+	.data.32	182
+	.data.32	146
+	.data.32	108
+	.data.32	112
+	.data.32	72
+	.data.32	80
+	.data.32	253
+	.data.32	237
+	.data.32	185
+	.data.32	218
+	.data.32	94
+	.data.32	21
+	.data.32	70
+	.data.32	87
+	.data.32	167
+	.data.32	141
+	.data.32	157
+	.data.32	132
+	.data.32	144
+	.data.32	216
+	.data.32	171
+	.space	4
+	.data.32	140
+	.data.32	188
+	.data.32	211
+	.data.32	10
+	.data.32	247
+	.data.32	228
+	.data.32	88
+	.data.32	5
+	.data.32	184
+	.data.32	179
+	.data.32	69
+	.data.32	6
+	.data.32	208
+	.data.32	44
+	.data.32	30
+	.data.32	143
+	.data.32	202
+	.data.32	63
+	.data.32	15
+	.data.32	2
+	.data.32	193
+	.data.32	175
+	.data.32	189
+	.data.32	3
+	.data.32	1
+	.data.32	19
+	.data.32	138
+	.data.32	107
+	.data.32	58
+	.data.32	145
+	.data.32	17
+	.data.32	65
+	.data.32	79
+	.data.32	103
+	.data.32	220
+	.data.32	234
+	.data.32	151
+	.data.32	242
+	.data.32	207
+	.data.32	206
+	.data.32	240
+	.data.32	180
+	.data.32	230
+	.data.32	115
+	.data.32	150
+	.data.32	172
+	.data.32	116
+	.data.32	34
+	.data.32	231
+	.data.32	173
+	.data.32	53
+	.data.32	133
+	.data.32	226
+	.data.32	249
+	.data.32	55
+	.data.32	232
+	.data.32	28
+	.data.32	117
+	.data.32	223
+	.data.32	110
+	.data.32	71
+	.data.32	241
+	.data.32	26
+	.data.32	113
+	.data.32	29
+	.data.32	41
+	.data.32	197
+	.data.32	137
+	.data.32	111
+	.data.32	183
+	.data.32	98
+	.data.32	14
+	.data.32	170
+	.data.32	24
+	.data.32	190
+	.data.32	27
+	.data.32	252
+	.data.32	86
+	.data.32	62
+	.data.32	75
+	.data.32	198
+	.data.32	210
+	.data.32	121
+	.data.32	32
+	.data.32	154
+	.data.32	219
+	.data.32	192
+	.data.32	254
+	.data.32	120
+	.data.32	205
+	.data.32	90
+	.data.32	244
+	.data.32	31
+	.data.32	221
+	.data.32	168
+	.data.32	51
+	.data.32	136
+	.data.32	7
+	.data.32	199
+	.data.32	49
+	.data.32	177
+	.data.32	18
+	.data.32	16
+	.data.32	89
+	.data.32	39
+	.data.32	128
+	.data.32	236
+	.data.32	95
+	.data.32	96
+	.data.32	81
+	.data.32	127
+	.data.32	169
+	.data.32	25
+	.data.32	181
+	.data.32	74
+	.data.32	13
+	.data.32	45
+	.data.32	229
+	.data.32	122
+	.data.32	159
+	.data.32	147
+	.data.32	201
+	.data.32	156
+	.data.32	239
+	.data.32	160
+	.data.32	224
+	.data.32	59
+	.data.32	77
+	.data.32	174
+	.data.32	42
+	.data.32	245
+	.data.32	176
+	.data.32	200
+	.data.32	235
+	.data.32	187
+	.data.32	60
+	.data.32	131
+	.data.32	83
+	.data.32	153
+	.data.32	97
+	.data.32	23
+	.data.32	43
+	.data.32	4
+	.data.32	126
+	.data.32	186
+	.data.32	119
+	.data.32	214
+	.data.32	38
+	.data.32	225
+	.data.32	105
+	.data.32	20
+	.data.32	99
+	.data.32	85
+	.data.32	33
+	.data.32	12
+	.data.32	125
+	.align	4
+L7:
+	.data.32	1374988112
+	.data.32	2118214995
+	.data.32	437757123
+	.data.32	975658646
+	.data.32	1001089995
+	.data.32	530400753
+	.data.32	2902087851
+	.data.32	1273168787
+	.data.32	540080725
+	.data.32	2910219766
+	.data.32	2295101073
+	.data.32	4110568485
+	.data.32	1340463100
+	.data.32	3307916247
+	.data.32	641025152
+	.data.32	3043140495
+	.data.32	3736164937
+	.data.32	632953703
+	.data.32	1172967064
+	.data.32	1576976609
+	.data.32	3274667266
+	.data.32	2169303058
+	.data.32	2370213795
+	.data.32	1809054150
+	.data.32	59727847
+	.data.32	361929877
+	.data.32	3211623147
+	.data.32	2505202138
+	.data.32	3569255213
+	.data.32	1484005843
+	.data.32	1239443753
+	.data.32	2395588676
+	.data.32	1975683434
+	.data.32	4102977912
+	.data.32	2572697195
+	.data.32	666464733
+	.data.32	3202437046
+	.data.32	4035489047
+	.data.32	3374361702
+	.data.32	2110667444
+	.data.32	1675577880
+	.data.32	3843699074
+	.data.32	2538681184
+	.data.32	1649639237
+	.data.32	2976151520
+	.data.32	3144396420
+	.data.32	4269907996
+	.data.32	4178062228
+	.data.32	1883793496
+	.data.32	2403728665
+	.data.32	2497604743
+	.data.32	1383856311
+	.data.32	2876494627
+	.data.32	1917518562
+	.data.32	3810496343
+	.data.32	1716890410
+	.data.32	3001755655
+	.data.32	800440835
+	.data.32	2261089178
+	.data.32	3543599269
+	.data.32	807962610
+	.data.32	599762354
+	.data.32	33778362
+	.data.32	3977675356
+	.data.32	2328828971
+	.data.32	2809771154
+	.data.32	4077384432
+	.data.32	1315562145
+	.data.32	1708848333
+	.data.32	101039829
+	.data.32	3509871135
+	.data.32	3299278474
+	.data.32	875451293
+	.data.32	2733856160
+	.data.32	92987698
+	.data.32	2767645557
+	.data.32	193195065
+	.data.32	1080094634
+	.data.32	1584504582
+	.data.32	3178106961
+	.data.32	1042385657
+	.data.32	2531067453
+	.data.32	3711829422
+	.data.32	1306967366
+	.data.32	2438237621
+	.data.32	1908694277
+	.data.32	67556463
+	.data.32	1615861247
+	.data.32	429456164
+	.data.32	3602770327
+	.data.32	2302690252
+	.data.32	1742315127
+	.data.32	2968011453
+	.data.32	126454664
+	.data.32	3877198648
+	.data.32	2043211483
+	.data.32	2709260871
+	.data.32	2084704233
+	.data.32	4169408201
+	.space	4
+	.data.32	159417987
+	.data.32	841739592
+	.data.32	504459436
+	.data.32	1817866830
+	.data.32	4245618683
+	.data.32	260388950
+	.data.32	1034867998
+	.data.32	908933415
+	.data.32	168810852
+	.data.32	1750902305
+	.data.32	2606453969
+	.data.32	607530554
+	.data.32	202008497
+	.data.32	2472011535
+	.data.32	3035535058
+	.data.32	463180190
+	.data.32	2160117071
+	.data.32	1641816226
+	.data.32	1517767529
+	.data.32	470948374
+	.data.32	3801332234
+	.data.32	3231722213
+	.data.32	1008918595
+	.data.32	303765277
+	.data.32	235474187
+	.data.32	4069246893
+	.data.32	766945465
+	.data.32	337553864
+	.data.32	1475418501
+	.data.32	2943682380
+	.data.32	4003061179
+	.data.32	2743034109
+	.data.32	4144047775
+	.data.32	1551037884
+	.data.32	1147550661
+	.data.32	1543208500
+	.data.32	2336434550
+	.data.32	3408119516
+	.data.32	3069049960
+	.data.32	3102011747
+	.data.32	3610369226
+	.data.32	1113818384
+	.data.32	328671808
+	.data.32	2227573024
+	.data.32	2236228733
+	.data.32	3535486456
+	.data.32	2935566865
+	.data.32	3341394285
+	.data.32	496906059
+	.data.32	3702665459
+	.data.32	226906860
+	.data.32	2009195472
+	.data.32	733156972
+	.data.32	2842737049
+	.data.32	294930682
+	.data.32	1206477858
+	.data.32	2835123396
+	.data.32	2700099354
+	.data.32	1451044056
+	.data.32	573804783
+	.data.32	2269728455
+	.data.32	3644379585
+	.data.32	2362090238
+	.data.32	2564033334
+	.data.32	2801107407
+	.data.32	2776292904
+	.data.32	3669462566
+	.data.32	1068351396
+	.data.32	742039012
+	.data.32	1350078989
+	.data.32	1784663195
+	.data.32	1417561698
+	.data.32	4136440770
+	.data.32	2430122216
+	.data.32	775550814
+	.data.32	2193862645
+	.data.32	2673705150
+	.data.32	1775276924
+	.data.32	1876241833
+	.data.32	3475313331
+	.data.32	3366754619
+	.data.32	270040487
+	.data.32	3902563182
+	.data.32	3678124923
+	.data.32	3441850377
+	.data.32	1851332852
+	.data.32	3969562369
+	.data.32	2203032232
+	.data.32	3868552805
+	.data.32	2868897406
+	.data.32	566021896
+	.data.32	4011190502
+	.data.32	3135740889
+	.data.32	1248802510
+	.data.32	3936291284
+	.data.32	699432150
+	.data.32	832877231
+	.data.32	708780849
+	.data.32	3332740144
+	.data.32	899835584
+	.data.32	1951317047
+	.data.32	4236429990
+	.data.32	3767586992
+	.data.32	866637845
+	.data.32	4043610186
+	.data.32	1106041591
+	.data.32	2144161806
+	.data.32	395441711
+	.data.32	1984812685
+	.data.32	1139781709
+	.data.32	3433712980
+	.data.32	3835036895
+	.data.32	2664543715
+	.data.32	1282050075
+	.data.32	3240894392
+	.data.32	1181045119
+	.data.32	2640243204
+	.data.32	25965917
+	.data.32	4203181171
+	.data.32	4211818798
+	.data.32	3009879386
+	.data.32	2463879762
+	.data.32	3910161971
+	.data.32	1842759443
+	.data.32	2597806476
+	.data.32	933301370
+	.data.32	1509430414
+	.data.32	3943906441
+	.data.32	3467192302
+	.data.32	3076639029
+	.data.32	3776767469
+	.data.32	2051518780
+	.data.32	2631065433
+	.data.32	1441952575
+	.data.32	404016761
+	.data.32	1942435775
+	.data.32	1408749034
+	.data.32	1610459739
+	.data.32	3745345300
+	.data.32	2017778566
+	.data.32	3400528769
+	.data.32	3110650942
+	.data.32	941896748
+	.data.32	3265478751
+	.data.32	371049330
+	.data.32	3168937228
+	.data.32	675039627
+	.data.32	4279080257
+	.data.32	967311729
+	.data.32	135050206
+	.data.32	3635733660
+	.data.32	1683407248
+	.data.32	2076935265
+	.data.32	3576870512
+	.data.32	1215061108
+	.data.32	3501741890
+	.align	4
+L8:
+	.data.32	1347548327
+	.data.32	1400783205
+	.data.32	3273267108
+	.data.32	2520393566
+	.data.32	3409685355
+	.data.32	4045380933
+	.data.32	2880240216
+	.data.32	2471224067
+	.data.32	1428173050
+	.data.32	4138563181
+	.data.32	2441661558
+	.data.32	636813900
+	.data.32	4233094615
+	.data.32	3620022987
+	.data.32	2149987652
+	.data.32	2411029155
+	.data.32	1239331162
+	.data.32	1730525723
+	.data.32	2554718734
+	.data.32	3781033664
+	.data.32	46346101
+	.data.32	310463728
+	.data.32	2743944855
+	.data.32	3328955385
+	.data.32	3875770207
+	.data.32	2501218972
+	.data.32	3955191162
+	.data.32	3667219033
+	.data.32	768917123
+	.data.32	3545789473
+	.data.32	692707433
+	.data.32	1150208456
+	.data.32	1786102409
+	.data.32	2029293177
+	.data.32	1805211710
+	.data.32	3710368113
+	.data.32	3065962831
+	.data.32	401639597
+	.data.32	1724457132
+	.data.32	3028143674
+	.data.32	409198410
+	.data.32	2196052529
+	.data.32	1620529459
+	.data.32	1164071807
+	.data.32	3769721975
+	.data.32	2226875310
+	.data.32	486441376
+	.data.32	2499348523
+	.data.32	1483753576
+	.data.32	428819965
+	.data.32	2274680428
+	.data.32	3075636216
+	.data.32	598438867
+	.data.32	3799141122
+	.data.32	1474502543
+	.data.32	711349675
+	.data.32	129166120
+	.data.32	53458370
+	.data.32	2592523643
+	.data.32	2782082824
+	.data.32	4063242375
+	.data.32	2988687269
+	.data.32	3120694122
+	.data.32	1559041666
+	.data.32	730517276
+	.data.32	2460449204
+	.data.32	4042459122
+	.data.32	2706270690
+	.data.32	3446004468
+	.data.32	3573941694
+	.data.32	533804130
+	.data.32	2328143614
+	.data.32	2637442643
+	.data.32	2695033685
+	.data.32	839224033
+	.data.32	1973745387
+	.data.32	957055980
+	.data.32	2856345839
+	.data.32	106852767
+	.data.32	1371368976
+	.data.32	4181598602
+	.data.32	1033297158
+	.data.32	2933734917
+	.data.32	1179510461
+	.data.32	3046200461
+	.data.32	91341917
+	.data.32	1862534868
+	.data.32	4284502037
+	.data.32	605657339
+	.data.32	2547432937
+	.data.32	3431546947
+	.data.32	2003294622
+	.data.32	3182487618
+	.data.32	2282195339
+	.data.32	954669403
+	.data.32	3682191598
+	.data.32	1201765386
+	.data.32	3917234703
+	.data.32	3388507166
+	.space	4
+	.data.32	2198438022
+	.data.32	1211247597
+	.data.32	2887651696
+	.data.32	1315723890
+	.data.32	4227665663
+	.data.32	1443857720
+	.data.32	507358933
+	.data.32	657861945
+	.data.32	1678381017
+	.data.32	560487590
+	.data.32	3516619604
+	.data.32	975451694
+	.data.32	2970356327
+	.data.32	261314535
+	.data.32	3535072918
+	.data.32	2652609425
+	.data.32	1333838021
+	.data.32	2724322336
+	.data.32	1767536459
+	.data.32	370938394
+	.data.32	182621114
+	.data.32	3854606378
+	.data.32	1128014560
+	.data.32	487725847
+	.data.32	185469197
+	.data.32	2918353863
+	.data.32	3106780840
+	.data.32	3356761769
+	.data.32	2237133081
+	.data.32	1286567175
+	.data.32	3152976349
+	.data.32	4255350624
+	.data.32	2683765030
+	.data.32	3160175349
+	.data.32	3309594171
+	.data.32	878443390
+	.data.32	1988838185
+	.data.32	3704300486
+	.data.32	1756818940
+	.data.32	1673061617
+	.data.32	3403100636
+	.data.32	272786309
+	.data.32	1075025698
+	.data.32	545572369
+	.data.32	2105887268
+	.data.32	4174560061
+	.data.32	296679730
+	.data.32	1841768865
+	.data.32	1260232239
+	.data.32	4091327024
+	.data.32	3960309330
+	.data.32	3497509347
+	.data.32	1814803222
+	.data.32	2578018489
+	.data.32	4195456072
+	.data.32	575138148
+	.data.32	3299409036
+	.data.32	446754879
+	.data.32	3629546796
+	.data.32	4011996048
+	.data.32	3347532110
+	.data.32	3252238545
+	.data.32	4270639778
+	.data.32	915985419
+	.data.32	3483825537
+	.data.32	681933534
+	.data.32	651868046
+	.data.32	2755636671
+	.data.32	3828103837
+	.data.32	223377554
+	.data.32	2607439820
+	.data.32	1649704518
+	.data.32	3270937875
+	.data.32	3901806776
+	.data.32	1580087799
+	.data.32	4118987695
+	.data.32	3198115200
+	.data.32	2087309459
+	.data.32	2842678573
+	.data.32	3016697106
+	.data.32	1003007129
+	.data.32	2802849917
+	.data.32	1860738147
+	.data.32	2077965243
+	.data.32	164439672
+	.data.32	4100872472
+	.data.32	32283319
+	.data.32	2827177882
+	.data.32	1709610350
+	.data.32	2125135846
+	.data.32	136428751
+	.data.32	3874428392
+	.data.32	3652904859
+	.data.32	3460984630
+	.data.32	3572145929
+	.data.32	3593056380
+	.data.32	2939266226
+	.data.32	824852259
+	.data.32	818324884
+	.data.32	3224740454
+	.data.32	930369212
+	.data.32	2801566410
+	.data.32	2967507152
+	.data.32	355706840
+	.data.32	1257309336
+	.data.32	4148292826
+	.data.32	243256656
+	.data.32	790073846
+	.data.32	2373340630
+	.data.32	1296297904
+	.data.32	1422699085
+	.data.32	3756299780
+	.data.32	3818836405
+	.data.32	457992840
+	.data.32	3099667487
+	.data.32	2135319889
+	.data.32	77422314
+	.data.32	1560382517
+	.data.32	1945798516
+	.data.32	788204353
+	.data.32	1521706781
+	.data.32	1385356242
+	.data.32	870912086
+	.data.32	325965383
+	.data.32	2358957921
+	.data.32	2050466060
+	.data.32	2388260884
+	.data.32	2313884476
+	.data.32	4006521127
+	.data.32	901210569
+	.data.32	3990953189
+	.data.32	1014646705
+	.data.32	1503449823
+	.data.32	1062597235
+	.data.32	2031621326
+	.data.32	3212035895
+	.data.32	3931371469
+	.data.32	1533017514
+	.data.32	350174575
+	.data.32	2256028891
+	.data.32	2177544179
+	.data.32	1052338372
+	.data.32	741876788
+	.data.32	1606591296
+	.data.32	1914052035
+	.data.32	213705253
+	.data.32	2334669897
+	.data.32	1107234197
+	.data.32	1899603969
+	.data.32	3725069491
+	.data.32	2631447780
+	.data.32	2422494913
+	.data.32	1635502980
+	.data.32	1893020342
+	.data.32	1950903388
+	.data.32	1120974935
+	.align	4
+L9:
+	.data.32	2807058932
+	.data.32	1699970625
+	.data.32	2764249623
+	.data.32	1586903591
+	.data.32	1808481195
+	.data.32	1173430173
+	.data.32	1487645946
+	.data.32	59984867
+	.data.32	4199882800
+	.data.32	1844882806
+	.data.32	1989249228
+	.data.32	1277555970
+	.data.32	3623636965
+	.data.32	3419915562
+	.data.32	1149249077
+	.data.32	2744104290
+	.data.32	1514790577
+	.data.32	459744698
+	.data.32	244860394
+	.data.32	3235995134
+	.data.32	1963115311
+	.data.32	4027744588
+	.data.32	2544078150
+	.data.32	4190530515
+	.data.32	1608975247
+	.data.32	2627016082
+	.data.32	2062270317
+	.data.32	1507497298
+	.data.32	2200818878
+	.data.32	567498868
+	.data.32	1764313568
+	.data.32	3359936201
+	.data.32	2305455554
+	.data.32	2037970062
+	.data.32	1047239000
+	.data.32	1910319033
+	.data.32	1337376481
+	.data.32	2904027272
+	.data.32	2892417312
+	.data.32	984907214
+	.data.32	1243112415
+	.data.32	830661914
+	.data.32	861968209
+	.data.32	2135253587
+	.data.32	2011214180
+	.data.32	2927934315
+	.data.32	2686254721
+	.data.32	731183368
+	.data.32	1750626376
+	.data.32	4246310725
+	.data.32	1820824798
+	.data.32	4172763771
+	.data.32	3542330227
+	.data.32	48394827
+	.data.32	2404901663
+	.data.32	2871682645
+	.data.32	671593195
+	.data.32	3254988725
+	.data.32	2073724613
+	.data.32	145085239
+	.data.32	2280796200
+	.data.32	2779915199
+	.data.32	1790575107
+	.data.32	2187128086
+	.data.32	472615631
+	.data.32	3029510009
+	.data.32	4075877127
+	.data.32	3802222185
+	.data.32	4107101658
+	.data.32	3201631749
+	.data.32	1646252340
+	.data.32	4270507174
+	.data.32	1402811438
+	.data.32	1436590835
+	.data.32	3778151818
+	.data.32	3950355702
+	.data.32	3963161475
+	.data.32	4020912224
+	.data.32	2667994737
+	.data.32	273792366
+	.data.32	2331590177
+	.data.32	104699613
+	.data.32	95345982
+	.data.32	3175501286
+	.data.32	2377486676
+	.data.32	1560637892
+	.data.32	3564045318
+	.data.32	369057872
+	.data.32	4213447064
+	.data.32	3919042237
+	.data.32	1137477952
+	.data.32	2658625497
+	.data.32	1119727848
+	.data.32	2340947849
+	.data.32	1530455833
+	.data.32	4007360968
+	.data.32	172466556
+	.data.32	266959938
+	.data.32	516552836
+	.space	4
+	.data.32	2256734592
+	.data.32	3980931627
+	.data.32	1890328081
+	.data.32	1917742170
+	.data.32	4294704398
+	.data.32	945164165
+	.data.32	3575528878
+	.data.32	958871085
+	.data.32	3647212047
+	.data.32	2787207260
+	.data.32	1423022939
+	.data.32	775562294
+	.data.32	1739656202
+	.data.32	3876557655
+	.data.32	2530391278
+	.data.32	2443058075
+	.data.32	3310321856
+	.data.32	547512796
+	.data.32	1265195639
+	.data.32	437656594
+	.data.32	3121275539
+	.data.32	719700128
+	.data.32	3762502690
+	.data.32	387781147
+	.data.32	218828297
+	.data.32	3350065803
+	.data.32	2830708150
+	.data.32	2848461854
+	.data.32	428169201
+	.data.32	122466165
+	.data.32	3720081049
+	.data.32	1627235199
+	.data.32	648017665
+	.data.32	4122762354
+	.data.32	1002783846
+	.data.32	2117360635
+	.data.32	695634755
+	.data.32	3336358691
+	.data.32	4234721005
+	.data.32	4049844452
+	.data.32	3704280881
+	.data.32	2232435299
+	.data.32	574624663
+	.data.32	287343814
+	.data.32	612205898
+	.data.32	1039717051
+	.data.32	840019705
+	.data.32	2708326185
+	.data.32	793451934
+	.data.32	821288114
+	.data.32	1391201670
+	.data.32	3822090177
+	.data.32	376187827
+	.data.32	3113855344
+	.data.32	1224348052
+	.data.32	1679968233
+	.data.32	2361698556
+	.data.32	1058709744
+	.data.32	752375421
+	.data.32	2431590963
+	.data.32	1321699145
+	.data.32	3519142200
+	.data.32	2734591178
+	.data.32	188127444
+	.data.32	2177869557
+	.data.32	3727205754
+	.data.32	2384911031
+	.data.32	3215212461
+	.data.32	2648976442
+	.data.32	2450346104
+	.data.32	3432737375
+	.data.32	1180849278
+	.data.32	331544205
+	.data.32	3102249176
+	.data.32	4150144569
+	.data.32	2952102595
+	.data.32	2159976285
+	.data.32	2474404304
+	.data.32	766078933
+	.data.32	313773861
+	.data.32	2570832044
+	.data.32	2108100632
+	.data.32	1668212892
+	.data.32	3145456443
+	.data.32	2013908262
+	.data.32	418672217
+	.data.32	3070356634
+	.data.32	2594734927
+	.data.32	1852171925
+	.data.32	3867060991
+	.data.32	3473416636
+	.data.32	3907448597
+	.data.32	2614737639
+	.data.32	919489135
+	.data.32	164948639
+	.data.32	2094410160
+	.data.32	2997825956
+	.data.32	590424639
+	.data.32	2486224549
+	.data.32	1723872674
+	.data.32	3157750862
+	.data.32	3399941250
+	.data.32	3501252752
+	.data.32	3625268135
+	.data.32	2555048196
+	.data.32	3673637356
+	.data.32	1343127501
+	.data.32	4130281361
+	.data.32	3599595085
+	.data.32	2957853679
+	.data.32	1297403050
+	.data.32	81781910
+	.data.32	3051593425
+	.data.32	2283490410
+	.data.32	532201772
+	.data.32	1367295589
+	.data.32	3926170974
+	.data.32	895287692
+	.data.32	1953757831
+	.data.32	1093597963
+	.data.32	492483431
+	.data.32	3528626907
+	.data.32	1446242576
+	.data.32	1192455638
+	.data.32	1636604631
+	.data.32	209336225
+	.data.32	344873464
+	.data.32	1015671571
+	.data.32	669961897
+	.data.32	3375740769
+	.data.32	3857572124
+	.data.32	2973530695
+	.data.32	3747192018
+	.data.32	1933530610
+	.data.32	3464042516
+	.data.32	935293895
+	.data.32	3454686199
+	.data.32	2858115069
+	.data.32	1863638845
+	.data.32	3683022916
+	.data.32	4085369519
+	.data.32	3292445032
+	.data.32	875313188
+	.data.32	1080017571
+	.data.32	3279033885
+	.data.32	621591778
+	.data.32	1233856572
+	.data.32	2504130317
+	.data.32	24197544
+	.data.32	3017672716
+	.data.32	3835484340
+	.data.32	3247465558
+	.data.32	2220981195
+	.data.32	3060847922
+	.data.32	1551124588
+	.data.32	1463996600
+	.align	4
+L10:
+	.data.32	4104605777
+	.data.32	1097159550
+	.data.32	396673818
+	.data.32	660510266
+	.data.32	2875968315
+	.data.32	2638606623
+	.data.32	4200115116
+	.data.32	3808662347
+	.data.32	821712160
+	.data.32	1986918061
+	.data.32	3430322568
+	.data.32	38544885
+	.data.32	3856137295
+	.data.32	718002117
+	.data.32	893681702
+	.data.32	1654886325
+	.data.32	2975484382
+	.data.32	3122358053
+	.data.32	3926825029
+	.data.32	4274053469
+	.data.32	796197571
+	.data.32	1290801793
+	.data.32	1184342925
+	.data.32	3556361835
+	.data.32	2405426947
+	.data.32	2459735317
+	.data.32	1836772287
+	.data.32	1381620373
+	.data.32	3196267988
+	.data.32	1948373848
+	.data.32	3764988233
+	.data.32	3385345166
+	.data.32	3263785589
+	.data.32	2390325492
+	.data.32	1480485785
+	.data.32	3111247143
+	.data.32	3780097726
+	.data.32	2293045232
+	.data.32	548169417
+	.data.32	3459953789
+	.data.32	3746175075
+	.data.32	439452389
+	.data.32	1362321559
+	.data.32	1400849762
+	.data.32	1685577905
+	.data.32	1806599355
+	.data.32	2174754046
+	.data.32	137073913
+	.data.32	1214797936
+	.data.32	1174215055
+	.data.32	3731654548
+	.data.32	2079897426
+	.data.32	1943217067
+	.data.32	1258480242
+	.data.32	529487843
+	.data.32	1437280870
+	.data.32	3945269170
+	.data.32	3049390895
+	.data.32	3313212038
+	.data.32	923313619
+	.data.32	679998000
+	.data.32	3215307299
+	.data.32	57326082
+	.data.32	377642221
+	.data.32	3474729866
+	.data.32	2041877159
+	.data.32	133361907
+	.data.32	1776460110
+	.data.32	3673476453
+	.data.32	96392454
+	.data.32	878845905
+	.data.32	2801699524
+	.data.32	777231668
+	.data.32	4082475170
+	.data.32	2330014213
+	.data.32	4142626212
+	.data.32	2213296395
+	.data.32	1626319424
+	.data.32	1906247262
+	.data.32	1846563261
+	.data.32	562755902
+	.data.32	3708173718
+	.data.32	1040559837
+	.data.32	3871163981
+	.data.32	1418573201
+	.data.32	3294430577
+	.data.32	114585348
+	.data.32	1343618912
+	.data.32	2566595609
+	.data.32	3186202582
+	.data.32	1078185097
+	.data.32	3651041127
+	.data.32	3896688048
+	.data.32	2307622919
+	.data.32	425408743
+	.data.32	3371096953
+	.data.32	2081048481
+	.data.32	1108339068
+	.data.32	2216610296
+	.space	4
+	.data.32	2156299017
+	.data.32	736970802
+	.data.32	292596766
+	.data.32	1517440620
+	.data.32	251657213
+	.data.32	2235061775
+	.data.32	2933202493
+	.data.32	758720310
+	.data.32	265905162
+	.data.32	1554391400
+	.data.32	1532285339
+	.data.32	908999204
+	.data.32	174567692
+	.data.32	1474760595
+	.data.32	4002861748
+	.data.32	2610011675
+	.data.32	3234156416
+	.data.32	3693126241
+	.data.32	2001430874
+	.data.32	303699484
+	.data.32	2478443234
+	.data.32	2687165888
+	.data.32	585122620
+	.data.32	454499602
+	.data.32	151849742
+	.data.32	2345119218
+	.data.32	3064510765
+	.data.32	514443284
+	.data.32	4044981591
+	.data.32	1963412655
+	.data.32	2581445614
+	.data.32	2137062819
+	.data.32	19308535
+	.data.32	1928707164
+	.data.32	1715193156
+	.data.32	4219352155
+	.data.32	1126790795
+	.data.32	600235211
+	.data.32	3992742070
+	.data.32	3841024952
+	.data.32	836553431
+	.data.32	1669664834
+	.data.32	2535604243
+	.data.32	3323011204
+	.data.32	1243905413
+	.data.32	3141400786
+	.data.32	4180808110
+	.data.32	698445255
+	.data.32	2653899549
+	.data.32	2989552604
+	.data.32	2253581325
+	.data.32	3252932727
+	.data.32	3004591147
+	.data.32	1891211689
+	.data.32	2487810577
+	.data.32	3915653703
+	.data.32	4237083816
+	.data.32	4030667424
+	.data.32	2100090966
+	.data.32	865136418
+	.data.32	1229899655
+	.data.32	953270745
+	.data.32	3399679628
+	.data.32	3557504664
+	.data.32	4118925222
+	.data.32	2061379749
+	.data.32	3079546586
+	.data.32	2915017791
+	.data.32	983426092
+	.data.32	2022837584
+	.data.32	1607244650
+	.data.32	2118541908
+	.data.32	2366882550
+	.data.32	3635996816
+	.data.32	972512814
+	.data.32	3283088770
+	.data.32	1568718495
+	.data.32	3499326569
+	.data.32	3576539503
+	.data.32	621982671
+	.data.32	2895723464
+	.data.32	410887952
+	.data.32	2623762152
+	.data.32	1002142683
+	.data.32	645401037
+	.data.32	1494807662
+	.data.32	2595684844
+	.data.32	1335535747
+	.data.32	2507040230
+	.data.32	4293295786
+	.data.32	3167684641
+	.data.32	367585007
+	.data.32	3885750714
+	.data.32	1865862730
+	.data.32	2668221674
+	.data.32	2960971305
+	.data.32	2763173681
+	.data.32	1059270954
+	.data.32	2777952454
+	.data.32	2724642869
+	.data.32	1320957812
+	.data.32	2194319100
+	.data.32	2429595872
+	.data.32	2815956275
+	.data.32	77089521
+	.data.32	3973773121
+	.data.32	3444575871
+	.data.32	2448830231
+	.data.32	1305906550
+	.data.32	4021308739
+	.data.32	2857194700
+	.data.32	2516901860
+	.data.32	3518358430
+	.data.32	1787304780
+	.data.32	740276417
+	.data.32	1699839814
+	.data.32	1592394909
+	.data.32	2352307457
+	.data.32	2272556026
+	.data.32	188821243
+	.data.32	1729977011
+	.data.32	3687994002
+	.data.32	274084841
+	.data.32	3594982253
+	.data.32	3613494426
+	.data.32	2701949495
+	.data.32	4162096729
+	.data.32	322734571
+	.data.32	2837966542
+	.data.32	1640576439
+	.data.32	484830689
+	.data.32	1202797690
+	.data.32	3537852828
+	.data.32	4067639125
+	.data.32	349075736
+	.data.32	3342319475
+	.data.32	4157467219
+	.data.32	4255800159
+	.data.32	1030690015
+	.data.32	1155237496
+	.data.32	2951971274
+	.data.32	1757691577
+	.data.32	607398968
+	.data.32	2738905026
+	.data.32	499347990
+	.data.32	3794078908
+	.data.32	1011452712
+	.data.32	227885567
+	.data.32	2818666809
+	.data.32	213114376
+	.data.32	3034881240
+	.data.32	1455525988
+	.data.32	3414450555
+	.data.32	850817237
+	.data.32	1817998408
+	.data.32	3092726480
+	.align	4
+L11:
+	.data.32	16777216
+	.data.32	33554432
+	.data.32	67108864
+	.data.32	134217728
+	.data.32	268435456
+	.data.32	536870912
+	.data.32	1073741824
+	.data.32	2147483648
+	.data.32	452984832
+	.data.32	905969664
+	.align	4
+L12:
+	.data.32	1
+	.align	4
+L13:
+	.space	1024
+	.align	4
+L14:
+	.space	1024
+	.align	4
+L15:
+	.space	1024
+	.align	4
+L16:
+	.space	1024

@@ -1,0 +1,836 @@
+0 s: Info: RotationsManager: Cycle-time: 1 ns
+
+0 s: Info: TDLAMBDA: 
+   TD(lambda) using parameters:
+   lambda = 0
+   gamma  = 0
+   alpha  = 0
+   e_min  = 1e-05
+0 s: Info: RotationsManager: 
+   * FPGA capacity/used: 10/0
+
+
+
+0 s: Info: DECODER: Decoder ready.
+0 s: Info: MONITOR: 	Size of timeframe: 250,000
+	Extended monitoring information between cycles 0 and 1
+0 s: Info: RotationsManager: Initializing DLX Pipeline Emulator
+   * Module Name:            [Pipeline]
+   * Instruction Memory:     [/home/bauer_l/ASIPMeisterProjects/dlx_basis/Applications/Encoder_dynamic_MixedHWSWMolecule_startup_opt2/TestData.IM]
+   * Branch Trace:           [/home/bauer_l/ASIPMeisterProjects/dlx_basis/Applications/Encoder_dynamic_MixedHWSWMolecule_startup_opt2/trace.txt]
+   * DLX Opcode Definitions: [/home/bauer_l//RotationsManager_53/DLX/dlxops.dlx]
+
+52 ns: Info: PREFETCHER: 
+---> BEFORE RESCHEDULING
+ SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	0
+ SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	0
+ LF_BS_4_4_HW_01     : 1x[atom_Cond] 1x[atom_LF]  (L, Execs)=	9	0
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	0
+ MC_Hz4_HW_01        : 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	26	0
+ HT_4X4_HW_01        : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	16	0
+
+
+---> AFTER RESCHEDULING
+ LF_BS_4_4_HW_01     : 1x[atom_Cond] 1x[atom_LF]  (L, Execs)=	9	0
+ SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	0
+ HT_4X4_HW_01        : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	16	0
+ DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	0
+ SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	0
+ MC_Hz4_HW_00        : 1x[atom_PointFilter]  (L, Execs)=	103	0
+ MC_Hz4_HW_01        : 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	26	0
+
+
+52 ns: Info: PREFETCHER: 
+SysDyn:	FORECAST POINT:	at address 0x290
+SysDyn:	CURRENT PREDICTION:	6633.0	1584.0	2.0	9420.0	7.0	7.0	3168.0	25344.0	4752.0	
+SysDyn:	CONFIGURATION STATUS:	   * FPGA capacity/used: 10/0
+
+SysDyn:	SWAP-IN QUEUE:	atom_Cond	needed/available: 1/0 swap-in/swap-out: 0/0 --> LF_BS_4_4_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_LF	needed/available: 1/0 swap-in/swap-out: 0/0 --> LF_BS_4_4_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_SAD4	needed/available: 1/0 swap-in/swap-out: 0/0 --> SAD_16_HW_00 
+SysDyn:	SWAP-IN QUEUE:	atom_PackLSBMSB	needed/available: 1/0 swap-in/swap-out: 0/0 --> HT_4X4_HW_01 SATD_4x4_HW_03 DCT_4x4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform2	needed/available: 1/0 swap-in/swap-out: 0/0 --> HT_4X4_HW_01 SATD_4x4_HW_03 
+SysDyn:	SWAP-IN QUEUE:	atom_QuadSub	needed/available: 1/0 swap-in/swap-out: 0/0 --> SATD_4x4_HW_03 DCT_4x4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_Transform1	needed/available: 1/0 swap-in/swap-out: 0/0 --> DCT_4x4_HW_02 
+SysDyn:	SWAP-IN QUEUE:	atom_SATD	needed/available: 1/0 swap-in/swap-out: 0/0 --> SATD_4x4_HW_03 
+SysDyn:	SWAP-IN QUEUE:	atom_PointFilter	needed/available: 1/0 swap-in/swap-out: 0/0 --> MC_Hz4_HW_01 
+SysDyn:	SWAP-IN QUEUE:	atom_Clip3	needed/available: 1/0 swap-in/swap-out: 0/0 --> MC_Hz4_HW_01 
+================================================================================
+
+52 ns: Info: MONITOR: currently no atoms available
+
+62 ns: Info: MONITOR: ATOM IN:	atom_Cond	needed/available: 1/1 swap-in/swap-out: 1/0 --> LF_BS_4_4_HW_01 
+62 ns: Info: MONITOR: Molecule	LF_BS_4_4_SW	960	is replaced by molecule	LF_BS_4_4_HW_00	428	and was used	0	- times.
+
+62 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+62 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+62 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+62 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+62 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+62 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+62 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_00	428
+62 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+62 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+62 ns: Info: MONITOR: 
+
+72 ns: Info: MONITOR: ATOM IN:	atom_LF	needed/available: 1/1 swap-in/swap-out: 1/0 --> LF_BS_4_4_HW_01 
+72 ns: Info: MONITOR: Molecule	LF_BS_4_4_HW_00	428	is replaced by molecule	LF_BS_4_4_HW_01	9	and was used	0	- times.
+
+72 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_SW	4673
+72 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+72 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+72 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+72 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+72 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+72 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+72 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+72 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+72 ns: Info: MONITOR: 
+
+82 ns: Info: MONITOR: ATOM IN:	atom_SAD4	needed/available: 1/1 swap-in/swap-out: 1/0 --> SAD_16_HW_00 
+82 ns: Info: MONITOR: Molecule	SAD_16_SW	4673	is replaced by molecule	SAD_16_HW_00	68	and was used	0	- times.
+
+82 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+82 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+82 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+82 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+82 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+82 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+82 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+82 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+82 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+82 ns: Info: MONITOR: 
+
+92 ns: Info: MONITOR: ATOM IN:	atom_PackLSBMSB	needed/available: 1/1 swap-in/swap-out: 1/0 --> HT_4X4_HW_01 SATD_4x4_HW_03 DCT_4x4_HW_02 
+92 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+92 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+92 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_SW	298
+92 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+92 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+92 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+92 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+92 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_SW	544
+92 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+92 ns: Info: MONITOR: 
+
+102 ns: Info: MONITOR: ATOM IN:	atom_Transform2	needed/available: 1/1 swap-in/swap-out: 1/0 --> HT_4X4_HW_01 SATD_4x4_HW_03 
+102 ns: Info: MONITOR: Molecule	HT_4X4_SW	298	is replaced by molecule	HT_4X4_HW_01	16	and was used	0	- times.
+
+102 ns: Info: MONITOR: Molecule	SATD_4x4_SW	544	is replaced by molecule	SATD_4x4_HW_01	294	and was used	0	- times.
+
+102 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+102 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+102 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+102 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+102 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+102 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+102 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+102 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_01	294
+102 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+102 ns: Info: MONITOR: 
+
+112 ns: Info: MONITOR: ATOM IN:	atom_QuadSub	needed/available: 1/1 swap-in/swap-out: 1/0 --> SATD_4x4_HW_03 DCT_4x4_HW_02 
+112 ns: Info: MONITOR: Molecule	SATD_4x4_HW_01	294	is replaced by molecule	SATD_4x4_HW_02	186	and was used	0	- times.
+
+112 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+112 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+112 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+112 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+112 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+112 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+112 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+112 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+112 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_SW	488
+112 ns: Info: MONITOR: 
+
+122 ns: Info: MONITOR: ATOM IN:	atom_Transform1	needed/available: 1/1 swap-in/swap-out: 1/0 --> DCT_4x4_HW_02 
+122 ns: Info: MONITOR: Molecule	DCT_4x4_SW	488	is replaced by molecule	DCT_4x4_HW_02	21	and was used	0	- times.
+
+122 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+122 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+122 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+122 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+122 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+122 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+122 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+122 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_02	186
+122 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+122 ns: Info: MONITOR: 
+
+132 ns: Info: MONITOR: ATOM IN:	atom_SATD	needed/available: 1/1 swap-in/swap-out: 1/0 --> SATD_4x4_HW_03 
+132 ns: Info: MONITOR: Molecule	SATD_4x4_HW_02	186	is replaced by molecule	SATD_4x4_HW_03	22	and was used	0	- times.
+
+132 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+132 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+132 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+132 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_SW	215
+132 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+132 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+132 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+132 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_03	22
+132 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+132 ns: Info: MONITOR: 
+
+142 ns: Info: MONITOR: ATOM IN:	atom_PointFilter	needed/available: 1/1 swap-in/swap-out: 1/0 --> MC_Hz4_HW_01 
+142 ns: Info: MONITOR: Molecule	MC_Hz4_SW	215	is replaced by molecule	MC_Hz4_HW_00	103	and was used	0	- times.
+
+142 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+142 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+142 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+142 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_00	103
+142 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+142 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+142 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+142 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_03	22
+142 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+142 ns: Info: MONITOR: 
+
+152 ns: Info: MONITOR: ATOM IN:	atom_Clip3	needed/available: 1/1 swap-in/swap-out: 1/0 --> MC_Hz4_HW_01 
+152 ns: Info: MONITOR: Molecule	MC_Hz4_HW_00	103	is replaced by molecule	MC_Hz4_HW_01	26	and was used	0	- times.
+
+152 ns: Info: MONITOR: The fastest available molecule for SI No. 0 is:	SAD_16_HW_00	68
+152 ns: Info: MONITOR: The fastest available molecule for SI No. 1 is:	HT_2X2_SW	100
+152 ns: Info: MONITOR: The fastest available molecule for SI No. 2 is:	HT_4X4_HW_01	16
+152 ns: Info: MONITOR: The fastest available molecule for SI No. 3 is:	MC_Hz4_HW_01	26
+152 ns: Info: MONITOR: The fastest available molecule for SI No. 4 is:	IPred_HDC16x16_SW	249
+152 ns: Info: MONITOR: The fastest available molecule for SI No. 5 is:	IPred_VDC16x16_SW	69
+152 ns: Info: MONITOR: The fastest available molecule for SI No. 6 is:	LF_BS_4_4_HW_01	9
+152 ns: Info: MONITOR: The fastest available molecule for SI No. 7 is:	SATD_4x4_HW_03	22
+152 ns: Info: MONITOR: The fastest available molecule for SI No. 8 is:	DCT_4x4_HW_02	21
+152 ns: Info: MONITOR: 
+
+250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1243	since in last timeframe
+250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4608	since in last timeframe
+250 us: Info: MONITOR:    SI usages in last timeframe  	1243	0	0	0	0	0	0	4608	0	
+
+500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1236	since in last timeframe
+500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4629	since in last timeframe
+500 us: Info: MONITOR:    SI usages in last timeframe  	1236	0	0	0	0	0	0	4629	0	
+
+750 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4711	since in last timeframe
+750 us: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4711	0	
+
+1 ms: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+1 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4711	since in last timeframe
+1 ms: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4711	0	
+
+1250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1233	since in last timeframe
+1250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4637	since in last timeframe
+1250 us: Info: MONITOR:    SI usages in last timeframe  	1233	0	0	0	0	0	0	4637	0	
+
+1500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	509	since in last timeframe
+1500 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	329	since in last timeframe
+1500 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	2016	since in last timeframe
+1500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	2048	since in last timeframe
+1500 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1008	since in last timeframe
+1500 us: Info: MONITOR:    SI usages in last timeframe  	509	329	0	2016	0	0	0	2048	1008	
+
+1750 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	583	since in last timeframe
+1750 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3548	since in last timeframe
+1750 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1728	since in last timeframe
+1750 us: Info: MONITOR:    SI usages in last timeframe  	0	583	0	3548	0	0	0	0	1728	
+
+2 ms: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	592	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	HT_4X4_HW_01	was used	2	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3400	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	IPred_HDC16x16_SW	was used	8	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	IPred_VDC16x16_SW	was used	8	since in last timeframe
+2 ms: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1776	since in last timeframe
+2 ms: Info: MONITOR:    SI usages in last timeframe  	0	592	2	3400	8	8	0	0	1776	
+
+2250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	737	since in last timeframe
+2250 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	80	since in last timeframe
+2250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	444	since in last timeframe
+2250 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	3168	since in last timeframe
+2250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	2567	since in last timeframe
+2250 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	240	since in last timeframe
+2250 us: Info: MONITOR:    SI usages in last timeframe  	737	80	0	444	0	0	3168	2567	240	
+
+2500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+2500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4712	since in last timeframe
+2500 us: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4712	0	
+
+2750 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+2750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4711	since in last timeframe
+2750 us: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4711	0	
+
+3 ms: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1228	since in last timeframe
+3 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4650	since in last timeframe
+3 ms: Info: MONITOR:    SI usages in last timeframe  	1228	0	0	0	0	0	0	4650	0	
+
+3250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1244	since in last timeframe
+3250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4608	since in last timeframe
+3250 us: Info: MONITOR:    SI usages in last timeframe  	1244	0	0	0	0	0	0	4608	0	
+
+3500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1012	since in last timeframe
+3500 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	80	since in last timeframe
+3500 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	520	since in last timeframe
+3500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4096	since in last timeframe
+3500 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	240	since in last timeframe
+3500 us: Info: MONITOR:    SI usages in last timeframe  	1012	80	0	520	0	0	0	4096	240	
+
+3750 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	584	since in last timeframe
+3750 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3512	since in last timeframe
+3750 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1770	since in last timeframe
+3750 us: Info: MONITOR:    SI usages in last timeframe  	0	584	0	3512	0	0	0	0	1770	
+
+4 ms: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	584	since in last timeframe
+4 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3540	since in last timeframe
+4 ms: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1734	since in last timeframe
+4 ms: Info: MONITOR:    SI usages in last timeframe  	0	584	0	3540	0	0	0	0	1734	
+
+4250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	201	since in last timeframe
+4250 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	336	since in last timeframe
+4250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	1932	since in last timeframe
+4250 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	3168	since in last timeframe
+4250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	588	since in last timeframe
+4250 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1008	since in last timeframe
+4250 us: Info: MONITOR:    SI usages in last timeframe  	201	336	0	1932	0	0	3168	588	1008	
+
+4500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+4500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4711	since in last timeframe
+4500 us: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4711	0	
+
+4750 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1215	since in last timeframe
+4750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4685	since in last timeframe
+4750 us: Info: MONITOR:    SI usages in last timeframe  	1215	0	0	0	0	0	0	4685	0	
+
+5 ms: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1244	since in last timeframe
+5 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4608	since in last timeframe
+5 ms: Info: MONITOR:    SI usages in last timeframe  	1244	0	0	0	0	0	0	4608	0	
+
+5250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1226	since in last timeframe
+5250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4657	since in last timeframe
+5250 us: Info: MONITOR:    SI usages in last timeframe  	1226	0	0	0	0	0	0	4657	0	
+
+5500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+5500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4711	since in last timeframe
+5500 us: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4711	0	
+
+5750 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	335	since in last timeframe
+5750 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	416	since in last timeframe
+5750 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	2510	since in last timeframe
+5750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	1384	since in last timeframe
+5750 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1248	since in last timeframe
+5750 us: Info: MONITOR:    SI usages in last timeframe  	335	416	0	2510	0	0	0	1384	1248	
+
+6 ms: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	581	since in last timeframe
+6 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3538	since in last timeframe
+6 ms: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1752	since in last timeframe
+6 ms: Info: MONITOR:    SI usages in last timeframe  	0	581	0	3538	0	0	0	0	1752	
+
+6250 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	587	since in last timeframe
+6250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3456	since in last timeframe
+6250 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	89	since in last timeframe
+6250 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1752	since in last timeframe
+6250 us: Info: MONITOR:    SI usages in last timeframe  	0	587	0	3456	0	0	89	0	1752	
+
+6500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	871	since in last timeframe
+6500 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	3079	since in last timeframe
+6500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	3320	since in last timeframe
+6500 us: Info: MONITOR:    SI usages in last timeframe  	871	0	0	0	0	0	3079	3320	0	
+
+6750 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1240	since in last timeframe
+6750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4616	since in last timeframe
+6750 us: Info: MONITOR:    SI usages in last timeframe  	1240	0	0	0	0	0	0	4616	0	
+
+7 ms: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1239	since in last timeframe
+7 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4623	since in last timeframe
+7 ms: Info: MONITOR:    SI usages in last timeframe  	1239	0	0	0	0	0	0	4623	0	
+
+7250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+7250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4711	since in last timeframe
+7250 us: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4711	0	
+
+7500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+7500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4711	since in last timeframe
+7500 us: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4711	0	
+
+7750 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	871	since in last timeframe
+7750 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	160	since in last timeframe
+7750 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	1022	since in last timeframe
+7750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	3363	since in last timeframe
+7750 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	480	since in last timeframe
+7750 us: Info: MONITOR:    SI usages in last timeframe  	871	160	0	1022	0	0	0	3363	480	
+
+8 ms: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	592	since in last timeframe
+8 ms: Info: MONITOR: Molecule: 	HT_4X4_HW_01	was used	2	since in last timeframe
+8 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3400	since in last timeframe
+8 ms: Info: MONITOR: Molecule: 	IPred_HDC16x16_SW	was used	8	since in last timeframe
+8 ms: Info: MONITOR: Molecule: 	IPred_VDC16x16_SW	was used	8	since in last timeframe
+8 ms: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1776	since in last timeframe
+8 ms: Info: MONITOR:    SI usages in last timeframe  	0	592	2	3400	8	8	0	0	1776	
+
+8250 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	579	since in last timeframe
+8250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3546	since in last timeframe
+8250 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1752	since in last timeframe
+8250 us: Info: MONITOR:    SI usages in last timeframe  	0	579	0	3546	0	0	0	0	1752	
+
+8500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	364	since in last timeframe
+8500 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	253	since in last timeframe
+8500 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	1440	since in last timeframe
+8500 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	3168	since in last timeframe
+8500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	1280	since in last timeframe
+8500 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	744	since in last timeframe
+8500 us: Info: MONITOR:    SI usages in last timeframe  	364	253	0	1440	0	0	3168	1280	744	
+
+8750 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1244	since in last timeframe
+8750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4609	since in last timeframe
+8750 us: Info: MONITOR:    SI usages in last timeframe  	1244	0	0	0	0	0	0	4609	0	
+
+9 ms: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+9 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4711	since in last timeframe
+9 ms: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4711	0	
+
+9250 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1206	since in last timeframe
+9250 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4712	since in last timeframe
+9250 us: Info: MONITOR:    SI usages in last timeframe  	1206	0	0	0	0	0	0	4712	0	
+
+9500 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1225	since in last timeframe
+9500 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4656	since in last timeframe
+9500 us: Info: MONITOR:    SI usages in last timeframe  	1225	0	0	0	0	0	0	4656	0	
+
+9750 us: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	1245	since in last timeframe
+9750 us: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	4608	since in last timeframe
+9750 us: Info: MONITOR:    SI usages in last timeframe  	1245	0	0	0	0	0	0	4608	0	
+
+10 ms: Info: MONITOR: Molecule: 	SAD_16_HW_00	was used	143	since in last timeframe
+10 ms: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	496	since in last timeframe
+10 ms: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3031	since in last timeframe
+10 ms: Info: MONITOR: Molecule: 	SATD_4x4_HW_03	was used	768	since in last timeframe
+10 ms: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1488	since in last timeframe
+10 ms: Info: MONITOR:    SI usages in last timeframe  	143	496	0	3031	0	0	0	768	1488	
+
+10250 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	587	since in last timeframe
+10250 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	3497	since in last timeframe
+10250 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1776	since in last timeframe
+10250 us: Info: MONITOR:    SI usages in last timeframe  	0	587	0	3497	0	0	0	0	1776	
+
+10500 us: Info: MONITOR: Molecule: 	HT_2X2_SW	was used	501	since in last timeframe
+10500 us: Info: MONITOR: Molecule: 	MC_Hz4_HW_01	was used	2976	since in last timeframe
+10500 us: Info: MONITOR: Molecule: 	LF_BS_4_4_HW_01	was used	1610	since in last timeframe
+10500 us: Info: MONITOR: Molecule: 	DCT_4x4_HW_02	was used	1488	since in last timeframe
+10500 us: Info: MONITOR:    SI usages in last timeframe  	0	501	0	2976	0	0	1610	0	1488	
+
+10536475 ns: Info: RotationsManager: 
+TOTAL: Branches              308284
+       Fetch Stalls:         7457491
+       Decode Stalls:        0
+       EXE Stage Stalls:     67490
+       Load/Store Stalls:    50703
+       Write Back Stalls:    0
+       Cycles (total):       10536475
+       Instructions fetched: 2960791
+
+10536475 ns: Info: RotationsManager: Gesamtdauer: 24.55 Sekunden.
+10536475 ns: Info: RotationsManager: Cleaning up Pipeline
+
+10536475 ns: Info: MONITOR: 
+PREDICTION TABLE
+Node       | Backups    | E    | Insns      | Function Type Predictions                                                                                 |
+0x290      |          0 | 0.00 | 6633.0	1584.0	2.0	9420.0	7.0	7.0	3168.0	25344.0	4752.0	
+
+
+
+SETTINGS
+  + slots:              10
+  + time per atom:      10
+  + TD prediction       
+    - lambda:           0.0
+    - gamma:            0.0
+    - alpha:            0.0
+    - e_min:            0.0
+
+CYCLE COUNT
+  + fastest possible:   7234105
+  + slowest possible:   264515021
+  + this run:           10536476
+    - cycles saved (%): 253978545 (96.0 %)
+    - cycles lost (%) : 3302371 (45.7 %)
+  + basic ops:          2824216
+  + ad-hoc stalls:      0
+    - tot. # specops:   0
+
+EXECUTION COUNT
+  + forecast bursts:    1
+  + specop execs:       254769
+    - HW executions:    246817
+    - SW executions:    7952
+    - coverage:         96.9 %
+
+ATOM SWAP-IN / SWAP-OUT
+  + swap-ins:           10
+  + swap-out:           0
+
+BRANCH AND BOUND
+  + tot. # possible:    653184
+  + tot. # checked:     14
+  + checked %:          0.0 %
+
+COUNTS PER 10000 INSTRUCTIONS
+fb: forecast bursts
+#SI: total # of Special Instructions
+#hw: # executed HW-Molecules
+#sw: # executed SW-Molecules
+la: loaded atoms (finish time [cycle])
+s-out: swapped-out atoms
+cycle	fb	#SI	#hw	#sw	la	s-out	possible	checked	adhoc_w	adhoc_t
+37723	1	857	857	0	atom_SAD4(83) atom_SATD(133) atom_Transform1(123) atom_Transform2(103) atom_PackLSBMSB(93) atom_QuadSub(113) atom_PointFilter(143) atom_Clip3(153) atom_Cond(63) atom_LF(73) 	 	653184	14	0
+75571	0	864	864	0	 	 	0	0	0
+111952	0	888	888	0	 	 	0	0	0
+148894	0	880	880	0	 	 	0	0	0
+186721	0	863	863	0	 	 	0	0	0
+224152	0	871	871	0	 	 	0	0	0
+260064	0	898	898	0	 	 	0	0	0
+297892	0	863	863	0	 	 	0	0	0
+335740	0	864	864	0	 	 	0	0	0
+371857	0	891	891	0	 	 	0	0	0
+409042	0	876	876	0	 	 	0	0	0
+446890	0	864	864	0	 	 	0	0	0
+484057	0	874	874	0	 	 	0	0	0
+520192	0	893	893	0	 	 	0	0	0
+558040	0	864	864	0	 	 	0	0	0
+595847	0	863	863	0	 	 	0	0	0
+631761	0	896	896	0	 	 	0	0	0
+669211	0	873	873	0	 	 	0	0	0
+707018	0	862	862	0	 	 	0	0	0
+743961	0	879	879	0	 	 	0	0	0
+780361	0	890	890	0	 	 	0	0	0
+818189	0	863	863	0	 	 	0	0	0
+856016	0	863	863	0	 	 	0	0	0
+891665	0	900	900	0	 	 	0	0	0
+929359	0	869	869	0	 	 	0	0	0
+967187	0	863	863	0	 	 	0	0	0
+1003865	0	882	882	0	 	 	0	0	0
+1040530	0	887	887	0	 	 	0	0	0
+1078337	0	862	862	0	 	 	0	0	0
+1116065	0	865	865	0	 	 	0	0	0
+1151680	0	904	904	0	 	 	0	0	0
+1189487	0	862	862	0	 	 	0	0	0
+1227335	0	864	864	0	 	 	0	0	0
+1263769	0	886	886	0	 	 	0	0	0
+1300658	0	882	882	0	 	 	0	0	0
+1338506	0	864	864	0	 	 	0	0	0
+1374667	0	906	874	32	 	 	0	0	0
+1413363	0	895	799	96	 	 	0	0	0
+1451670	0	904	816	88	 	 	0	0	0
+1490085	0	902	814	88	 	 	0	0	0
+1528747	0	894	798	96	 	 	0	0	0
+1566866	0	910	827	83	 	 	0	0	0
+1605494	0	897	804	93	 	 	0	0	0
+1644134	0	899	804	95	 	 	0	0	0
+1682167	0	907	826	81	 	 	0	0	0
+1720903	0	895	799	96	 	 	0	0	0
+1759171	0	904	816	88	 	 	0	0	0
+1797625	0	902	814	88	 	 	0	0	0
+1838441	0	897	785	112	 	 	0	0	0
+1877157	0	895	799	96	 	 	0	0	0
+1915444	0	904	816	88	 	 	0	0	0
+1953879	0	902	814	88	 	 	0	0	0
+1992566	0	895	799	96	 	 	0	0	0
+2030764	0	907	822	85	 	 	0	0	0
+2047347	0	655	644	11	 	 	0	0	0
+2062583	0	652	652	0	 	 	0	0	0
+2077812	0	651	651	0	 	 	0	0	0
+2093048	0	652	652	0	 	 	0	0	0
+2111434	0	645	645	0	 	 	0	0	0
+2147465	0	897	897	0	 	 	0	0	0
+2185272	0	862	862	0	 	 	0	0	0
+2223120	0	864	864	0	 	 	0	0	0
+2259138	0	893	893	0	 	 	0	0	0
+2296422	0	875	875	0	 	 	0	0	0
+2334291	0	864	864	0	 	 	0	0	0
+2371338	0	875	875	0	 	 	0	0	0
+2407593	0	892	892	0	 	 	0	0	0
+2445441	0	864	864	0	 	 	0	0	0
+2483289	0	864	864	0	 	 	0	0	0
+2519042	0	897	897	0	 	 	0	0	0
+2556591	0	870	870	0	 	 	0	0	0
+2594439	0	864	864	0	 	 	0	0	0
+2631242	0	880	880	0	 	 	0	0	0
+2667762	0	888	888	0	 	 	0	0	0
+2705610	0	864	864	0	 	 	0	0	0
+2743417	0	862	862	0	 	 	0	0	0
+2779013	0	902	902	0	 	 	0	0	0
+2816760	0	867	867	0	 	 	0	0	0
+2854567	0	862	862	0	 	 	0	0	0
+2891213	0	885	885	0	 	 	0	0	0
+2927910	0	884	884	0	 	 	0	0	0
+2965717	0	863	863	0	 	 	0	0	0
+3003413	0	867	867	0	 	 	0	0	0
+3039081	0	902	902	0	 	 	0	0	0
+3076888	0	862	862	0	 	 	0	0	0
+3114736	0	864	864	0	 	 	0	0	0
+3151117	0	888	888	0	 	 	0	0	0
+3188059	0	880	880	0	 	 	0	0	0
+3225886	0	863	863	0	 	 	0	0	0
+3263317	0	871	871	0	 	 	0	0	0
+3299229	0	898	898	0	 	 	0	0	0
+3337057	0	863	863	0	 	 	0	0	0
+3374905	0	864	864	0	 	 	0	0	0
+3411022	0	891	891	0	 	 	0	0	0
+3448207	0	876	876	0	 	 	0	0	0
+3485408	0	891	843	48	 	 	0	0	0
+3523427	0	909	827	82	 	 	0	0	0
+3562130	0	897	803	94	 	 	0	0	0
+3600794	0	900	805	95	 	 	0	0	0
+3638808	0	906	825	81	 	 	0	0	0
+3677539	0	895	799	96	 	 	0	0	0
+3715811	0	904	816	88	 	 	0	0	0
+3754261	0	902	814	88	 	 	0	0	0
+3792948	0	895	799	96	 	 	0	0	0
+3831272	0	906	819	87	 	 	0	0	0
+3869670	0	900	811	89	 	 	0	0	0
+3908332	0	894	798	96	 	 	0	0	0
+3946309	0	912	832	80	 	 	0	0	0
+3985079	0	895	799	96	 	 	0	0	0
+4023312	0	904	816	88	 	 	0	0	0
+4061801	0	902	814	88	 	 	0	0	0
+4100488	0	895	799	96	 	 	0	0	0
+4138815	0	904	816	88	 	 	0	0	0
+4155050	0	654	646	8	 	 	0	0	0
+4170286	0	652	652	0	 	 	0	0	0
+4185515	0	651	651	0	 	 	0	0	0
+4200751	0	652	652	0	 	 	0	0	0
+4219557	0	645	645	0	 	 	0	0	0
+4255323	0	900	900	0	 	 	0	0	0
+4293171	0	864	864	0	 	 	0	0	0
+4330978	0	862	862	0	 	 	0	0	0
+4367261	0	890	890	0	 	 	0	0	0
+4404321	0	880	880	0	 	 	0	0	0
+4442149	0	862	862	0	 	 	0	0	0
+4479461	0	872	872	0	 	 	0	0	0
+4515492	0	897	897	0	 	 	0	0	0
+4553299	0	862	862	0	 	 	0	0	0
+4591147	0	864	864	0	 	 	0	0	0
+4627165	0	893	893	0	 	 	0	0	0
+4664449	0	874	874	0	 	 	0	0	0
+4702297	0	864	864	0	 	 	0	0	0
+4739365	0	876	876	0	 	 	0	0	0
+4775620	0	892	892	0	 	 	0	0	0
+4813468	0	864	864	0	 	 	0	0	0
+4851316	0	864	864	0	 	 	0	0	0
+4887069	0	896	896	0	 	 	0	0	0
+4924618	0	871	871	0	 	 	0	0	0
+4962466	0	864	864	0	 	 	0	0	0
+4999269	0	879	879	0	 	 	0	0	0
+5035768	0	888	888	0	 	 	0	0	0
+5073616	0	865	865	0	 	 	0	0	0
+5111444	0	862	862	0	 	 	0	0	0
+5146973	0	902	902	0	 	 	0	0	0
+5184787	0	867	867	0	 	 	0	0	0
+5222594	0	862	862	0	 	 	0	0	0
+5259173	0	885	885	0	 	 	0	0	0
+5295937	0	884	884	0	 	 	0	0	0
+5333744	0	862	862	0	 	 	0	0	0
+5371373	0	868	868	0	 	 	0	0	0
+5407087	0	902	902	0	 	 	0	0	0
+5444915	0	862	862	0	 	 	0	0	0
+5482763	0	864	864	0	 	 	0	0	0
+5519144	0	888	888	0	 	 	0	0	0
+5556086	0	880	880	0	 	 	0	0	0
+5593305	0	890	842	48	 	 	0	0	0
+5631682	0	905	817	88	 	 	0	0	0
+5670052	0	902	814	88	 	 	0	0	0
+5708714	0	894	798	96	 	 	0	0	0
+5746656	0	911	831	80	 	 	0	0	0
+5785461	0	896	800	96	 	 	0	0	0
+5823820	0	903	813	90	 	 	0	0	0
+5862159	0	903	817	86	 	 	0	0	0
+5900845	0	894	798	96	 	 	0	0	0
+5939182	0	905	817	88	 	 	0	0	0
+5977592	0	902	814	88	 	 	0	0	0
+6016254	0	894	798	96	 	 	0	0	0
+6054298	0	910	828	82	 	 	0	0	0
+6093001	0	897	803	94	 	 	0	0	0
+6131565	0	899	805	94	 	 	0	0	0
+6169659	0	907	825	82	 	 	0	0	0
+6208385	0	894	798	96	 	 	0	0	0
+6246682	0	905	817	88	 	 	0	0	0
+6262753	0	650	642	8	 	 	0	0	0
+6277982	0	651	651	0	 	 	0	0	0
+6293218	0	652	652	0	 	 	0	0	0
+6308454	0	652	652	0	 	 	0	0	0
+6327679	0	645	645	0	 	 	0	0	0
+6363181	0	903	903	0	 	 	0	0	0
+6401029	0	864	864	0	 	 	0	0	0
+6438877	0	864	864	0	 	 	0	0	0
+6475384	0	885	885	0	 	 	0	0	0
+6512179	0	883	883	0	 	 	0	0	0
+6550048	0	864	864	0	 	 	0	0	0
+6587584	0	867	867	0	 	 	0	0	0
+6623350	0	900	900	0	 	 	0	0	0
+6661198	0	864	864	0	 	 	0	0	0
+6699005	0	862	862	0	 	 	0	0	0
+6735288	0	890	890	0	 	 	0	0	0
+6772348	0	879	879	0	 	 	0	0	0
+6810155	0	862	862	0	 	 	0	0	0
+6847488	0	873	873	0	 	 	0	0	0
+6883519	0	897	897	0	 	 	0	0	0
+6921326	0	862	862	0	 	 	0	0	0
+6959174	0	864	864	0	 	 	0	0	0
+6995192	0	893	893	0	 	 	0	0	0
+7032476	0	874	874	0	 	 	0	0	0
+7070324	0	864	864	0	 	 	0	0	0
+7107392	0	876	876	0	 	 	0	0	0
+7143647	0	892	892	0	 	 	0	0	0
+7181474	0	864	864	0	 	 	0	0	0
+7219343	0	864	864	0	 	 	0	0	0
+7255096	0	896	896	0	 	 	0	0	0
+7292645	0	871	871	0	 	 	0	0	0
+7330493	0	864	864	0	 	 	0	0	0
+7367296	0	879	879	0	 	 	0	0	0
+7403795	0	888	888	0	 	 	0	0	0
+7441643	0	864	864	0	 	 	0	0	0
+7479450	0	862	862	0	 	 	0	0	0
+7515000	0	902	902	0	 	 	0	0	0
+7552814	0	868	868	0	 	 	0	0	0
+7590621	0	862	862	0	 	 	0	0	0
+7627200	0	884	884	0	 	 	0	0	0
+7663964	0	885	885	0	 	 	0	0	0
+7701227	0	890	842	48	 	 	0	0	0
+7739529	0	905	817	88	 	 	0	0	0
+7780381	0	896	783	113	 	 	0	0	0
+7818819	0	903	816	87	 	 	0	0	0
+7857506	0	895	799	96	 	 	0	0	0
+7895823	0	904	816	88	 	 	0	0	0
+7934228	0	902	814	88	 	 	0	0	0
+7972890	0	894	798	96	 	 	0	0	0
+8010958	0	911	829	82	 	 	0	0	0
+8049637	0	896	802	94	 	 	0	0	0
+8088225	0	900	806	94	 	 	0	0	0
+8126320	0	906	824	82	 	 	0	0	0
+8165046	0	895	799	96	 	 	0	0	0
+8203323	0	904	816	88	 	 	0	0	0
+8241768	0	902	814	88	 	 	0	0	0
+8280430	0	894	798	96	 	 	0	0	0
+8318703	0	907	821	86	 	 	0	0	0
+8355804	0	876	786	90	 	 	0	0	0
+8371040	0	652	652	0	 	 	0	0	0
+8386269	0	651	651	0	 	 	0	0	0
+8401505	0	652	652	0	 	 	0	0	0
+8416741	0	652	652	0	 	 	0	0	0
+8437428	0	675	675	0	 	 	0	0	0
+8474865	0	869	869	0	 	 	0	0	0
+8510730	0	898	898	0	 	 	0	0	0
+8548578	0	865	865	0	 	 	0	0	0
+8586447	0	864	864	0	 	 	0	0	0
+8622569	0	890	890	0	 	 	0	0	0
+8659749	0	877	877	0	 	 	0	0	0
+8697597	0	864	864	0	 	 	0	0	0
+8734769	0	873	873	0	 	 	0	0	0
+8770899	0	894	894	0	 	 	0	0	0
+8808747	0	864	864	0	 	 	0	0	0
+8846554	0	862	862	0	 	 	0	0	0
+8882540	0	896	896	0	 	 	0	0	0
+8919918	0	874	874	0	 	 	0	0	0
+8957725	0	862	862	0	 	 	0	0	0
+8994740	0	878	878	0	 	 	0	0	0
+9031068	0	891	891	0	 	 	0	0	0
+9068875	0	862	862	0	 	 	0	0	0
+9106723	0	864	864	0	 	 	0	0	0
+9142444	0	899	899	0	 	 	0	0	0
+9180025	0	868	868	0	 	 	0	0	0
+9217873	0	865	865	0	 	 	0	0	0
+9254644	0	881	881	0	 	 	0	0	0
+9291196	0	886	886	0	 	 	0	0	0
+9329044	0	864	864	0	 	 	0	0	0
+9366844	0	864	864	0	 	 	0	0	0
+9402346	0	903	903	0	 	 	0	0	0
+9440194	0	864	864	0	 	 	0	0	0
+9478042	0	864	864	0	 	 	0	0	0
+9514549	0	885	885	0	 	 	0	0	0
+9551344	0	883	883	0	 	 	0	0	0
+9589213	0	864	864	0	 	 	0	0	0
+9626749	0	867	867	0	 	 	0	0	0
+9662515	0	900	900	0	 	 	0	0	0
+9700363	0	864	864	0	 	 	0	0	0
+9738170	0	862	862	0	 	 	0	0	0
+9774453	0	890	890	0	 	 	0	0	0
+9811367	0	904	853	51	 	 	0	0	0
+9850019	0	898	805	93	 	 	0	0	0
+9888734	0	899	803	96	 	 	0	0	0
+9926667	0	907	827	80	 	 	0	0	0
+9965403	0	894	798	96	 	 	0	0	0
+10003671	0	904	816	88	 	 	0	0	0
+10042150	0	903	815	88	 	 	0	0	0
+10080812	0	894	798	96	 	 	0	0	0
+10119212	0	906	818	88	 	 	0	0	0
+10157559	0	901	813	88	 	 	0	0	0
+10196221	0	894	798	96	 	 	0	0	0
+10234168	0	911	831	80	 	 	0	0	0
+10272943	0	895	799	96	 	 	0	0	0
+10311251	0	904	815	89	 	 	0	0	0
+10349690	0	903	816	87	 	 	0	0	0
+10388352	0	894	798	96	 	 	0	0	0
+10426674	0	905	817	88	 	 	0	0	0
+10463507	0	874	786	88	 	 	0	0	0
+10478743	0	652	652	0	 	 	0	0	0
+10493972	0	651	651	0	 	 	0	0	0
+10509208	0	652	652	0	 	 	0	0	0
+10524445	0	652	652	0	 	 	0	0	0
+ATOMS
+  atom_SAD4	needed/available: 1/1 swap-in/swap-out: 1/0 --> SAD_16_HW_00 
+  atom_SATD	needed/available: 1/1 swap-in/swap-out: 1/0 --> SATD_4x4_HW_03 
+  atom_Transform1	needed/available: 1/1 swap-in/swap-out: 1/0 --> DCT_4x4_HW_02 
+  atom_Transform2	needed/available: 1/1 swap-in/swap-out: 1/0 --> HT_4X4_HW_01 SATD_4x4_HW_03 
+  atom_Transform3	needed/available: 0/0 swap-in/swap-out: 0/0 
+  atom_PackLSBMSB	needed/available: 1/1 swap-in/swap-out: 1/0 --> HT_4X4_HW_01 SATD_4x4_HW_03 DCT_4x4_HW_02 
+  atom_QuadSub	needed/available: 1/1 swap-in/swap-out: 1/0 --> SATD_4x4_HW_03 DCT_4x4_HW_02 
+  atom_BytePack	needed/available: 0/0 swap-in/swap-out: 0/0 
+  atom_PointFilter	needed/available: 1/1 swap-in/swap-out: 1/0 --> MC_Hz4_HW_01 
+  atom_Clip3	needed/available: 1/1 swap-in/swap-out: 1/0 --> MC_Hz4_HW_01 
+  atom_PackLBytes	needed/available: 0/0 swap-in/swap-out: 0/0 
+  atom_CollapseAdd	needed/available: 0/0 swap-in/swap-out: 0/0 
+  atom_Cond	needed/available: 1/1 swap-in/swap-out: 1/0 --> LF_BS_4_4_HW_01 
+  atom_LF	needed/available: 1/1 swap-in/swap-out: 1/0 --> LF_BS_4_4_HW_01 
+MOLECULES
+  <0>	*SAD_16_HW_00        : 1x[atom_SAD4]  (L, Execs)=	68	33165
+  <0>	 SAD_16_HW_01        : 2x[atom_SAD4]  (L, Execs)=	37	0
+  <0>	*SAD_16_SW           :  (L, Execs)=	4673	0
+  <1>	 HT_2X2_HW_00        : 1x[atom_Transform3]  (L, Execs)=	5	0
+  <1>	*HT_2X2_SW           :  (L, Execs)=	100	7920
+  <2>	*HT_4X4_HW_00        : 1x[atom_Transform2]  (L, Execs)=	104	0
+  <2>	*HT_4X4_HW_01        : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	16	4
+  <2>	 HT_4X4_HW_02        : 2x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	14	0
+  <2>	 HT_4X4_HW_03        : 2x[atom_Transform2] 2x[atom_PackLSBMSB]  (L, Execs)=	10	0
+  <2>	 HT_4X4_HW_04        : 4x[atom_Transform2] 4x[atom_PackLSBMSB]  (L, Execs)=	8	0
+  <2>	*HT_4X4_SW           :  (L, Execs)=	298	0
+  <3>	*MC_Hz4_HW_00        : 1x[atom_PointFilter]  (L, Execs)=	103	0
+  <3>	*MC_Hz4_HW_01        : 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	26	47328
+  <3>	 MC_Hz4_HW_02        : 1x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	11	0
+  <3>	 MC_Hz4_HW_03        : 2x[atom_BytePack] 1x[atom_PointFilter] 1x[atom_Clip3]  (L, Execs)=	10	0
+  <3>	 MC_Hz4_HW_04        : 2x[atom_BytePack] 2x[atom_PointFilter] 2x[atom_Clip3]  (L, Execs)=	9	0
+  <3>	 MC_Hz4_HW_05        : 3x[atom_BytePack] 2x[atom_PointFilter] 2x[atom_Clip3]  (L, Execs)=	8	0
+  <3>	*MC_Hz4_SW           :  (L, Execs)=	215	0
+  <4>	 IPred_HDC16x16_HW_00: 1x[atom_PackLBytes]  (L, Execs)=	53	0
+  <4>	 IPred_HDC16x16_HW_01: 1x[atom_PackLBytes] 1x[atom_CollapseAdd]  (L, Execs)=	22	0
+  <4>	*IPred_HDC16x16_SW   :  (L, Execs)=	249	16
+  <5>	 IPred_VDC16x16_HW_00: 1x[atom_CollapseAdd]  (L, Execs)=	7	0
+  <5>	 IPred_VDC16x16_HW_01: 2x[atom_CollapseAdd]  (L, Execs)=	6	0
+  <5>	*IPred_VDC16x16_SW   :  (L, Execs)=	69	16
+  <6>	*LF_BS_4_4_HW_00     : 1x[atom_Cond]  (L, Execs)=	428	0
+  <6>	*LF_BS_4_4_HW_01     : 1x[atom_Cond] 1x[atom_LF]  (L, Execs)=	9	15840
+  <6>	 LF_BS_4_4_HW_02     : 2x[atom_Cond] 2x[atom_LF]  (L, Execs)=	8	0
+  <6>	*LF_BS_4_4_SW        :  (L, Execs)=	960	0
+  <7>	*SATD_4x4_HW_00      : 1x[atom_Transform2]  (L, Execs)=	350	0
+  <7>	*SATD_4x4_HW_01      : 1x[atom_Transform2] 1x[atom_PackLSBMSB]  (L, Execs)=	294	0
+  <7>	*SATD_4x4_HW_02      : 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	186	0
+  <7>	*SATD_4x4_HW_03      : 1x[atom_SATD] 1x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	22	126720
+  <7>	 SATD_4x4_HW_04      : 1x[atom_SATD] 2x[atom_Transform2] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	0
+  <7>	 SATD_4x4_HW_05      : 2x[atom_SATD] 2x[atom_Transform2] 2x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	20	0
+  <7>	 SATD_4x4_HW_06      : 1x[atom_SATD] 4x[atom_Transform2] 4x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	19	0
+  <7>	 SATD_4x4_HW_07      : 2x[atom_SATD] 4x[atom_Transform2] 4x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	18	0
+  <7>	*SATD_4x4_SW         :  (L, Execs)=	544	0
+  <8>	*DCT_4x4_HW_00       : 1x[atom_Transform1]  (L, Execs)=	216	0
+  <8>	*DCT_4x4_HW_01       : 1x[atom_Transform1] 1x[atom_PackLSBMSB]  (L, Execs)=	160	0
+  <8>	*DCT_4x4_HW_02       : 1x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	21	23760
+  <8>	 DCT_4x4_HW_03       : 2x[atom_Transform1] 1x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	19	0
+  <8>	 DCT_4x4_HW_04       : 2x[atom_Transform1] 2x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	18	0
+  <8>	 DCT_4x4_HW_05       : 4x[atom_Transform1] 2x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	16	0
+  <8>	 DCT_4x4_HW_06       : 4x[atom_Transform1] 4x[atom_PackLSBMSB] 1x[atom_QuadSub]  (L, Execs)=	15	0
+  <8>	*DCT_4x4_SW          :  (L, Execs)=	488	0
+
+The asterisk indicates the currently available Molecules (maybe multiple) for each Special Instruction
+

@@ -1,0 +1,3088 @@
+mod dlx_basis
+{
+/* Architecture Parameter */
+  num_stages 5;
+  stage IF : fetch_stage;
+  stage ID : decode_stage;
+  stage EXE : exec_stage;
+  stage MEM : memory_read_stage,memory_write_stage;
+  stage WB : register_write_stage;
+
+/* Resource */
+  resource PC : program_counter
+  {
+    model "pcu";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=32 increment_step=1 ";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=32 increment_step=1 adder_algorithm=rca";
+    };
+  };
+  resource IR : instr_register
+  {
+    model "register";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=32";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=32";
+    };
+  };
+  resource IMAU : instr_memory
+  {
+    model "imau";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=32 address_space=32";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=32 address_space=32";
+    };
+  };
+  resource DMAU : data_memory
+  {
+    model "dmau";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=32 address_space=32 access_width=8";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=32 address_space=32 access_width=8";
+    };
+  };
+  resource GPR : register_file
+  {
+    model "registerfile";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=32 num_register=32 num_read_port=2 num_write_port=1";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=32 num_register=32 num_read_port=2 num_write_port=1";
+    };
+  };
+  resource ALU0
+  {
+    model "alu";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=32 ";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=32 algorithm=cla";
+    };
+  };
+  resource EXT0
+  {
+    model "extender";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=16 bit_width_out=32";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=16 bit_width_out=32";
+    };
+  };
+  resource MUL0
+  {
+    model "multiplier";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=32 data_type=two_complement";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=32 algorithm=seq adder_algorithm=cla data_type=two_complement";
+    };
+  };
+  resource DIV0
+  {
+    model "divider";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=32 data_type=two_complement";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=32 algorithm=seq adder_algorithm=cla data_type=two_complement";
+    };
+  };
+  resource SFT0
+  {
+    model "shifter";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=32 amount=variable";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=32 amount=variable";
+    };
+  };
+  resource EXT1
+  {
+    model "extender";
+    for_simulation
+    {
+      design_level "Behavior";
+      parameter "bit_width=28 bit_width_out=32";
+    };
+    for_synthesis
+    {
+      design_level "Synthesis";
+      parameter "bit_width=28 bit_width_out=32";
+    };
+  };
+
+/* Instruction Type */
+  instr_type R_R
+  {
+    opecode [31:26] op;
+    operand [25:21] rs0;
+    operand [20:16] rs1;
+    operand [15:11] rd;
+    opecode [10:0] func;
+  };
+  instr_type R_I
+  {
+    opecode [31:26] op;
+    operand [25:21] rs0;
+    operand [20:16] rd;
+    operand [15:0] const;
+  };
+  instr_type L_S
+  {
+    opecode [31:26] op;
+    operand [25:21] rs0;
+    operand [20:16] rd;
+    operand [15:0] const;
+  };
+  instr_type B
+  {
+    opecode [31:26] op;
+    operand [25:21] rs0;
+    opecode [20:16] bin000="00000";
+    operand [15:0] const;
+  };
+  instr_type J
+  {
+    opecode [31:26] op;
+    operand [25:0] const;
+  };
+  instr_type JR
+  {
+    opecode [31:26] bin000="000000";
+    operand [25:21] rs0;
+    opecode [20:11] bin001="0000000000";
+    opecode [10:0] func;
+  };
+  instr_type LHI
+  {
+    opecode [31:26] op;
+    opecode [25:21] bin000="00000";
+    operand [20:16] rd;
+    operand [15:0] const;
+  };
+
+/* I/O Port */
+  top_module CPU;
+  clock_port CLK;
+  reset_port Reset;
+  port [31:0] instAB {
+    direction out;
+    connect_to IMAU.addr_bus;
+  };
+  port [31:0] instDB {
+    direction in;
+    connect_to IMAU.data_bus;
+  };
+  port [31:0] DataAB {
+    direction out;
+    connect_to DMAU.addr_bus;
+  };
+  port [31:0] DataDB {
+    direction inout;
+    connect_to DMAU.data_bus;
+  };
+  port DataReq {
+    direction out;
+    connect_to DMAU.req_bus;
+  };
+  port DataAck {
+    direction in;
+    connect_to DMAU.ack_bus;
+  };
+  port [3:0] dataWin {
+    direction out;
+    connect_to DMAU.w_mode_bus;
+  };
+
+/* Exception */
+  reset_interrupt reset {
+    cause_condition {
+      port Reset;
+      active_value '1';
+    };
+  };
+
+  catch_interrupt reset {
+    null = PC.reset();
+    null = IR.reset();
+    null = DMAU.reset();
+    null = GPR.reset();
+    null = MUL0.reset();
+    null = DIV0.reset();
+  };
+
+/* Instruction */
+  instruction add : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000100000";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.add(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction addu : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000100001";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.addu(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction addi : R_I
+  {
+    opecode  op = "001000";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.add(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction addui : R_I
+  {
+    opecode  op = "001001";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [15:0] zero_16;
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      zero_16 = "0000000000000000";
+      source1 = <zero_16, const>;
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.addu(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction sub : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000100010";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.sub(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction subu : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000100011";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.subu(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction subi : R_I
+  {
+    opecode  op = "001010";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.sub(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction subui : R_I
+  {
+    opecode  op = "001011";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [15:0] zero_16;
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      zero_16 = "0000000000000000";
+      source1 = <zero_16, const>;
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.subu(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction mult : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000011000";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [63:0]  tmp_result;
+      
+      tmp_result = MUL0.mul(source0, source1);
+      result = tmp_result[31:0];
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction multu : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000011001";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [63:0]  tmp_result;
+      
+      tmp_result = MUL0.mulu(source0, source1);
+      result = tmp_result[31:0];
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction div : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000011010";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result;
+    wire [31:0]  mod_result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire div_flag;
+      
+      <result, mod_result, div_flag> = DIV0.div(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction divu : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000011011";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result;
+    wire [31:0]  mod_result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire div_flag;
+      
+      <result, mod_result, div_flag> = DIV0.divu(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction and : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000100100";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.and(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction andi : R_I
+  {
+    opecode  op = "001100";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [15:0] zero_16;
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      zero_16 = "0000000000000000";
+      source1 = <zero_16, const>;
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.and(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction or : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000100101";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.or(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction ori : R_I
+  {
+    opecode  op = "001101";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [15:0] zero_16;
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      zero_16 = "0000000000000000";
+      source1 = <zero_16, const>;
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.or(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction xor : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000100110";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.xor(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction xori : R_I
+  {
+    opecode  op = "001110";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [15:0] zero_16;
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      zero_16 = "0000000000000000";
+      source1 = <zero_16, const>;
+    };
+
+    stage 3 :
+    {
+      wire [3:0]  flag;
+      
+      <result, flag> = ALU0.or(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction sll : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000000000";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [4:0]  shamt;
+      
+      shamt = source1[4:0];
+      result = SFT0.sll(source0, shamt);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction srl : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000000010";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [4:0]  shamt;
+      
+      shamt = source1[4:0];
+      result = SFT0.srl(source0, shamt);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction sra : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000000011";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire [4:0]  shamt;
+      
+      shamt = source1[4:0];
+      result = SFT0.sra(source0, shamt);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction slli : R_I
+  {
+    opecode  op = "010000";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [15:0] zero_16;
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      zero_16 = "0000000000000000";
+      source1 = <zero_16, const>;
+    };
+
+    stage 3 :
+    {
+      wire [4:0]  shamt;
+      
+      shamt = source1[4:0];
+      result = SFT0.sll(source0, shamt);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction srli : R_I
+  {
+    opecode  op = "010001";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [15:0] zero_16;
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      zero_16 = "0000000000000000";
+      source1 = <zero_16, const>;
+    };
+
+    stage 3 :
+    {
+      wire [4:0]  shamt;
+      
+      shamt = source1[4:0];
+      result = SFT0.srl(source0, shamt);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction srai : R_I
+  {
+    opecode  op = "010010";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0]  result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [15:0] zero_16;
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      zero_16 = "0000000000000000";
+      source1 = <zero_16, const>;
+    };
+
+    stage 3 :
+    {
+      wire [4:0]  shamt;
+      
+      shamt = source1[4:0];
+      result = SFT0.sra(source0, shamt);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction slt : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000101010";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [2:0]   tmp_flag;
+      wire           cond1;
+      wire           cond2;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag = flag[2:0];
+      cond1 = tmp_flag == "010";
+      cond2 = flag         == "1001";
+      cond   = cond1 | cond2;
+      result = <zero31, cond>;
+      null  = GPR.write0(rd, result);
+    };
+  };
+  instruction sgt : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000101011";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [2:0]   tmp_flag;
+      wire           cond1;
+      wire           cond2;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag = flag[2:0];
+      cond1 = tmp_flag == "000";
+      cond2 = flag         == "0011";
+      cond   = cond1 | cond2;
+      result = <zero31, cond>;
+      null  = GPR.write0(rd, result);
+    };
+  };
+  instruction sle : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000101100";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [2:0]   tmp_flag;
+      wire           cond1;
+      wire           cond2;
+      wire           cond3;
+      wire           cond4;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag = flag[2:0];
+      cond1 = tmp_flag == "010";
+      cond2 = flag         == "1001";
+      cond3 = flag         == "1100";
+      cond4 = cond1 | cond2;
+      cond   = cond3 | cond4;
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+  instruction sge : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000101101";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire           cond1;
+      wire           cond2;
+      wire           cond3;
+      wire           cond4;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      wire [2:0]   tmp_flag1;
+      wire           tmp_flag2;
+      wire [1:0]   tmp_flag3;
+      wire [2:0]   tmp_flag4;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag1 = flag[2:0];
+      tmp_flag2 = flag[3];
+      tmp_flag3 = flag[1:0];
+      tmp_flag4 = <tmp_flag2,tmp_flag3>;
+      cond1 = tmp_flag1 == "000";
+      cond2 = tmp_flag4 == "100";
+      cond3 = flag           == "0011";
+      cond4 = cond1 | cond2;
+      cond   = cond3 | cond4;
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+  instruction seq : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000101110";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      cond  = flag  == "1100";
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+  instruction sne : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000101111";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      cond  = flag  != "1100";
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+  instruction slti : R_I
+  {
+    opecode  op = "011010";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [2:0]   tmp_flag;
+      wire           cond1;
+      wire           cond2;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag = flag[2:0];
+      cond1 = tmp_flag == "010";
+      cond2 = flag         == "1001";
+      cond   = cond1 | cond2;
+      result = <zero31, cond>;
+      null  = GPR.write0(rd, result);
+    };
+  };
+  instruction sgti : R_I
+  {
+    opecode  op = "011011";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [2:0]   tmp_flag;
+      wire           cond1;
+      wire           cond2;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag = flag[2:0];
+      cond1 = tmp_flag == "000";
+      cond2 = flag         == "0011";
+      cond   = cond1 | cond2;
+      result = <zero31, cond>;
+      null  = GPR.write0(rd, result);
+    };
+  };
+  instruction slei : R_I
+  {
+    opecode  op = "011100";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [2:0]   tmp_flag;
+      wire           cond1;
+      wire           cond2;
+      wire           cond3;
+      wire           cond4;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag = flag[2:0];
+      cond1 = tmp_flag == "010";
+      cond2 = flag         == "1001";
+      cond3 = flag         == "1100";
+      cond4 = cond1 | cond2;
+      cond   = cond3 | cond4;
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+  instruction sgei : R_I
+  {
+    opecode  op = "011101";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire           cond1;
+      wire           cond2;
+      wire           cond3;
+      wire           cond4;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      wire [2:0]   tmp_flag1;
+      wire           tmp_flag2;
+      wire [1:0]   tmp_flag3;
+      wire [2:0]   tmp_flag4;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag1 = flag[2:0];
+      tmp_flag2 = flag[3];
+      tmp_flag3 = flag[1:0];
+      tmp_flag4 = <tmp_flag2,tmp_flag3>;
+      cond1 = tmp_flag1 == "000";
+      cond2 = tmp_flag4 == "100";
+      cond3 = flag           == "0011";
+      cond4 = cond1 | cond2;
+      cond   = cond3 | cond4;
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+  instruction seqi : R_I
+  {
+    opecode  op = "011110";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      cond  = flag  == "1100";
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+  instruction snei : R_I
+  {
+    opecode  op = "011111";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmp(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      cond  = flag  != "1100";
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+  instruction lhi : LHI
+  {
+    opecode  op = "001111";
+
+    wire [31:0]  result;
+    wire [31:0] current_pc; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [15:0] zero16;
+      
+      tmp_ir = IR.read(); rd = tmp_ir[20:16]; const = tmp_ir[15:0]; zero16 = "0000000000000000";
+      result = <const, zero16>;
+    };
+
+    stage 3 :
+    {
+      
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction lb : L_S
+  {
+    opecode  op = "100000";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0] addr;
+    wire [31:0] result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0] flag;
+      
+      <addr,flag> = ALU0.add(source0,source1);
+    };
+
+    stage 4 :
+    {
+      wire addr_err;
+      
+      <result, addr_err> = DMAU.lb(addr);
+        /* result is 32bit data. already extended*/
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction lh : L_S
+  {
+    opecode  op = "100001";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0] addr;
+    wire [31:0] result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0] flag;
+      
+      <addr,flag> = ALU0.add(source0,source1);
+    };
+
+    stage 4 :
+    {
+      wire addr_err;
+      
+      <result, addr_err> = DMAU.lh(addr);
+        /* result is 32bit data. already extended*/
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction lw : L_S
+  {
+    opecode  op = "100011";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0] addr;
+    wire [31:0] result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0] flag;
+      
+      <addr,flag> = ALU0.add(source0,source1);
+    };
+
+    stage 4 :
+    {
+      wire addr_err;
+      
+      <result, addr_err> = DMAU.load(addr);
+        /* result is 32bit data. already extended*/
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction lbu : L_S
+  {
+    opecode  op = "100100";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0] addr;
+    wire [31:0] result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0] flag;
+      
+      <addr,flag> = ALU0.add(source0,source1);
+    };
+
+    stage 4 :
+    {
+      wire addr_err;
+      
+      <result, addr_err> = DMAU.lbu(addr);
+        /* result is 32bit data. already extended*/
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction lhu : L_S
+  {
+    opecode  op = "100101";
+
+    wire [31:0] current_pc;
+    wire [31:0] source0;
+    wire [31:0] source1;
+    wire [31:0] addr;
+    wire [31:0] result; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; source0 = GPR.read0(rs0);
+      source1 = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0] flag;
+      
+      <addr,flag> = ALU0.add(source0,source1);
+    };
+
+    stage 4 :
+    {
+      wire addr_err;
+      
+      <result, addr_err> = DMAU.lhu(addr);
+        /* result is 32bit data. already extended*/
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction sb : L_S
+  {
+    opecode  op = "101000";
+
+    wire [31:0] current_pc;
+    wire [31:0] data;
+    wire [31:0] base;
+    wire [31:0] offset;
+    wire [31:0] addr; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; data   = GPR.read0(rd);
+      base   = GPR.read1(rs0);
+      offset = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0] flag;
+      
+      <addr, flag> = ALU0.add(base,offset);
+    };
+
+    stage 4 :
+    {
+      wire addr_err;
+      
+      addr_err = DMAU.sb(addr,data);
+    };
+
+    stage 5 :
+    {
+      
+    };
+  };
+  instruction sh : L_S
+  {
+    opecode  op = "101001";
+
+    wire [31:0] current_pc;
+    wire [31:0] data;
+    wire [31:0] base;
+    wire [31:0] offset;
+    wire [31:0] addr; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; data   = GPR.read0(rd);
+      base   = GPR.read1(rs0);
+      offset = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0] flag;
+      
+      <addr, flag> = ALU0.add(base,offset);
+    };
+
+    stage 4 :
+    {
+      wire addr_err;
+      
+      addr_err = DMAU.sh(addr,data);
+    };
+
+    stage 5 :
+    {
+      
+    };
+  };
+  instruction sw : L_S
+  {
+    opecode  op = "101011";
+
+    wire [31:0] current_pc;
+    wire [31:0] data;
+    wire [31:0] base;
+    wire [31:0] offset;
+    wire [31:0] addr; wire [4:0] rs0; wire [4:0] rd; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rd = tmp_ir[20:16]; const = tmp_ir[15:0]; data   = GPR.read0(rd);
+      base   = GPR.read1(rs0);
+      offset = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire [3:0] flag;
+      
+      <addr, flag> = ALU0.add(base,offset);
+    };
+
+    stage 4 :
+    {
+      wire addr_err;
+      
+      addr_err = DMAU.store(addr,data);
+    };
+
+    stage 5 :
+    {
+      
+    };
+  };
+  instruction beqz : B
+  {
+    opecode  op = "000100";
+
+    wire [31:0] current_pc;
+    wire [31:0] offset;
+    wire [31:0] source0; wire [4:0] rs0; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; const = tmp_ir[15:0]; source0           = GPR.read0(rs0);
+      offset              = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire           cond;
+      wire [31:0] target;
+      wire [3:0]   flag;
+      
+      cond    = source0 == "00000000000000000000000000000000";
+      <target,flag>   = ALU0.add(current_pc, offset);
+      null      = [cond] PC.write(target);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      
+    };
+  };
+  instruction bnez : B
+  {
+    opecode  op = "000101";
+
+    wire [31:0] current_pc;
+    wire [31:0] offset;
+    wire [31:0] source0; wire [4:0] rs0; wire [15:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; const = tmp_ir[15:0]; source0           = GPR.read0(rs0);
+      offset              = EXT0.sign(const);
+    };
+
+    stage 3 :
+    {
+      wire           cond;
+      wire [31:0] target;
+      wire [3:0]   flag;
+      
+      cond    = source0 != "00000000000000000000000000000000";
+      <target,flag>   = ALU0.add(current_pc, offset);
+      null      = [cond] PC.write(target);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      
+    };
+  };
+  instruction j : J
+  {
+    opecode  op = "000010";
+
+    wire [31:0] current_pc;
+    wire [31:0]  offset; wire [25:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [1:0]  zero2;
+      wire [27:0]  ext_const;
+      wire [31:0]  temp_offset;
+      wire [1:0] first;
+      wire [29:0] second;
+      
+      tmp_ir = IR.read(); const = tmp_ir[25:0]; zero2 = "00";
+      ext_const = <const, zero2>;
+      temp_offset = EXT1.sign(ext_const);
+      first = temp_offset[31:30];
+      second = temp_offset [31:2];
+      
+      offset = <first, second>;
+    };
+
+    stage 3 :
+    {
+      wire [31:0]  target;
+      wire [3:0]  flag;
+      
+      <target, flag> = ALU0.add(current_pc, offset);
+      null = PC.write(target);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      
+    };
+  };
+  instruction jal : J
+  {
+    opecode  op = "000011";
+
+    wire [31:0] current_pc;
+    wire [31:0]  link;
+    wire [31:0]  offset; wire [25:0] const;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       wire [1:0]  zero2;
+      wire [27:0]  ext_const;
+      wire [31:0]  temp_offset;
+      wire [1:0] first;
+      wire [29:0] second;
+      
+      tmp_ir = IR.read(); const = tmp_ir[25:0]; zero2 = "00";
+      ext_const = <const, zero2>;
+      temp_offset = EXT1.sign(ext_const);
+      first = temp_offset[31:30];
+      second = temp_offset [31:2];
+      
+      offset = <first, second>;
+      
+      
+      link = PC.read();
+    };
+
+    stage 3 :
+    {
+      wire [31:0]  target;
+      wire [3:0]  flag;
+      
+      <target, flag> = ALU0.add(current_pc, offset);
+      null = PC.write(target);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [4:0]  reg_num;
+      
+      reg_num = "11111";
+      null = GPR.write0(reg_num, link);
+    };
+  };
+  instruction jr : JR
+  {
+    opecode  func = "00000001000";
+
+    wire [31:0] current_pc;
+    wire [31:0]  target; wire [4:0] rs0;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; target = GPR.read0(rs0);
+    };
+
+    stage 3 :
+    {
+      null = PC.write(target);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      
+    };
+  };
+  instruction jalr : JR
+  {
+    opecode  func = "00000001001";
+
+    wire [31:0] current_pc;
+    wire [31:0]  target;
+    wire [31:0]  link; wire [4:0] rs0;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; target = GPR.read0(rs0);
+      
+      
+      link = PC.read();
+    };
+
+    stage 3 :
+    {
+      null = PC.write(target);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [4:0]  reg_num;
+      
+      reg_num = "11111";
+      null = GPR.write0(reg_num, link);
+    };
+  };
+  instruction MOD : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000011100";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result;
+    wire [31:0]  div_result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire div_flag;
+      
+      <div_result, result, div_flag> = DIV0.div(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction modu : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000011110";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [31:0]  result;
+    wire [31:0]  div_result; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      wire div_flag;
+      
+      <div_result, result, div_flag> = DIV0.divu(source0, source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      null = GPR.write0(rd, result);
+    };
+  };
+  instruction sltu : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000111010";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmpu(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [2:0]   tmp_flag;
+      wire           cond1;
+      wire           cond2;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag = flag[2:0];
+      cond1 = tmp_flag == "010";
+      cond2 = flag         == "1001";
+      cond   = cond1 | cond2;
+      result = <zero31, cond>;
+      null  = GPR.write0(rd, result);
+    };
+  };
+  instruction sgtu : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000111011";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmpu(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [2:0]   tmp_flag;
+      wire           cond1;
+      wire           cond2;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag = flag[2:0];
+      cond1 = tmp_flag == "000";
+      cond2 = flag         == "0011";
+      cond   = cond1 | cond2;
+      result = <zero31, cond>;
+      null  = GPR.write0(rd, result);
+    };
+  };
+  instruction sleu : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000111100";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmpu(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire [2:0]   tmp_flag;
+      wire           cond1;
+      wire           cond2;
+      wire           cond3;
+      wire           cond4;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag = flag[2:0];
+      cond1 = tmp_flag == "010";
+      cond2 = flag         == "1001";
+      cond3 = flag         == "1100";
+      cond4 = cond1 | cond2;
+      cond   = cond3 | cond4;
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+  instruction sgeu : R_R
+  {
+    opecode  op = "000000";
+    opecode  func = "00000111101";
+
+    wire [31:0] current_pc;
+    wire [31:0]  source0;
+    wire [31:0]  source1;
+    wire [3:0] flag; wire [4:0] rs0; wire [4:0] rs1; wire [4:0] rd;
+
+    stage 1 :
+    {
+      wire [31:0]  inst;
+      
+      current_pc = PC.read();
+      inst = IMAU.read(current_pc);
+      null = IR.write(inst);
+      null = PC.inc();
+    };
+
+    stage 2 :
+    {
+      wire [31:0] tmp_ir;       
+      
+      tmp_ir = IR.read(); rs0 = tmp_ir[25:21]; rs1 = tmp_ir[20:16]; rd = tmp_ir[15:11]; source0 = GPR.read0(rs0);
+      source1 = GPR.read1(rs1);
+    };
+
+    stage 3 :
+    {
+      flag = ALU0.cmpu(source0,source1);
+    };
+
+    stage 4 :
+    {
+      
+    };
+
+    stage 5 :
+    {
+      wire           cond1;
+      wire           cond2;
+      wire           cond3;
+      wire           cond4;
+      wire           cond;
+      wire [30:0] zero31;
+      wire [31:0] result;
+      wire [2:0]   tmp_flag1;
+      wire           tmp_flag2;
+      wire [1:0]   tmp_flag3;
+      wire [2:0]   tmp_flag4;
+      
+      zero31 = "0000000000000000000000000000000";
+      
+      tmp_flag1 = flag[2:0];
+      tmp_flag2 = flag[3];
+      tmp_flag3 = flag[1:0];
+      tmp_flag4 = <tmp_flag2,tmp_flag3>;
+      cond1 = tmp_flag1 == "000";
+      cond2 = tmp_flag4 == "100";
+      cond3 = flag           == "0011";
+      cond4 = cond1 | cond2;
+      cond   = cond3 | cond4;
+      result = <zero31, cond>;
+      null    = GPR.write0(rd,result);
+    };
+  };
+}

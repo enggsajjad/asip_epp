@@ -1,0 +1,37 @@
+
+#ifndef COSY
+  #include <stdafx.h>
+  #include <stdio.h>
+#endif
+
+int ggt(int a, int b) {
+  int temp;
+#ifndef COSY
+  printf("GGT(a=%i, b=%i) = ", a, b);
+#endif
+
+  while (b != 0) {
+    if (a>=b) {
+      a = a-b;
+    }
+    else {
+      temp=a;
+      a=b;
+      b=temp;
+    }
+#ifndef COSY
+    //    printf("a=%d,b=%d)=",a,b);
+#endif
+  }
+
+#ifndef COSY
+  printf("%i\n",a);
+#endif
+}
+
+int main() {
+
+  ggt(26, 6);
+
+  return 0;
+}

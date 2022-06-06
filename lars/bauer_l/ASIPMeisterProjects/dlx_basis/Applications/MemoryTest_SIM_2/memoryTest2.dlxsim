@@ -1,0 +1,933 @@
+	.section	.text
+	.addressing	Word
+	.section	.text
+	.addressing	Word
+	;.addressing	Word
+
+	xor	r30, r30, r30
+	xor	r29, r29, r29
+	xor	r28, r28, r28
+	nop
+	lhi	r30, $(0x4FC/0x10000)
+	lhi	r29, $(0x4FC/0x10000)
+	nop
+	nop
+	ori	r30, r30, $(0x4FC%0x10000)
+	ori	r29, r29, $(0x4FC%0x10000)
+	nop
+	nop
+	nop
+	sw	-4(r29), r30
+	sw	-8(r29), r31
+	addi	r29, r30, $-8
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	jal	main	
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	0(r29), r1
+	jal	exit	
+	nop
+main:
+L1:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 9 NOPs removed by reduceNOPs.sh
+	lhi	r1,$21499	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$1408985750	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$1280	
+	nop
+	nop
+	nop
+L2:
+	nop	; Automatically Added by addNopAfterLabels.pl
+	add	r3,r2,r0	
+	nop	;;0,4
+	nop	;;0,4
+	nop	;;0,4
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r3,0(r3)	
+	nop	;;4,8
+	nop	;;4,8
+	nop	;;4,8
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sne	r27,r3,r1	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L5	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L3	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L3:
+	nop	;;0,2
+	nop	;;0,2
+	addi	r2,r2,$4	
+	nop	;;2,4
+	nop	;;2,4
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$113	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$4096	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	multu	r1,r1,r3	
+	nop	;;8,12
+	nop	;;8,12
+	nop	;;8,12
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addui	r1,r1,$1	
+	sle	r27,r2,r4	
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	nop	; Automatically added by findDataDependency.sh
+	bnez	r27,L2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L4	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L4:
+	nop	;;0,2
+	nop	;;0,2
+	lhi	r1,$( _errorNumber	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( _errorNumber	%0x10000)
+	nop	;;2,4
+	nop	;;2,4
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$0	
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$0	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	sw	0(r1),r2	
+	j	L6	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L5:
+	nop	;;0,2
+	nop	;;0,2
+	lhi	r1,$( _errorNumber	/0x10000)
+	nop
+	nop
+	nop
+	ori	r1,r1,$( _errorNumber	%0x10000)
+	nop	;;2,4
+	nop	;;2,4
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$1	
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$0	
+	nop	;;5,8
+	nop	;;5,8
+	nop	;;5,8
+	sw	0(r1),r2	
+	j	L6	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L6:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+exit:
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data
+	;.global	_errorNumber
+	.align	4
+_errorNumber:
+	.data.32	42
+	;.global	_heapEnd
+	.align	4
+_heapEnd:
+	.space	4
+	.space	556
+	.align	4
+_testArea:
+	.data.32	1408985750
+	.data.32	301599799
+	.data.32	4016006216
+	.data.32	2837136329
+	.data.32	2768825274
+	.data.32	3639610651
+	.data.32	3254110444
+	.data.32	2642260013
+	.data.32	2222638046
+	.data.32	2049996031
+	.data.32	4016284816
+	.data.32	2868618129
+	.data.32	2031301378
+	.data.32	1903789027
+	.data.32	379795252
+	.data.32	4262157813
+	.data.32	587495718
+	.data.32	1962506695
+	.data.32	2719924440
+	.data.32	2408783705
+	.data.32	1609619018
+	.data.32	1498322603
+	.data.32	1806729596
+	.data.32	2296981437
+	.data.32	1860864622
+	.data.32	4119272079
+	.data.32	1621276960
+	.data.32	2815670049
+	.data.32	343135634
+	.data.32	119620979
+	.data.32	632268740
+	.data.32	2726890885
+	.data.32	3195991990
+	.data.32	369842007
+	.data.32	3137441128
+	.data.32	2343529193
+	.data.32	2825793754
+	.data.32	1487114299
+	.data.32	540191244
+	.data.32	912068429
+	.data.32	4279484670
+	.data.32	2545430559
+	.data.32	4165811632
+	.data.32	2585279153
+	.data.32	78768162
+	.data.32	310867715
+	.data.32	768313428
+	.data.32	920071445
+	.data.32	888858182
+	.data.32	1656726759
+	.data.32	2526530040
+	.data.32	2030052985
+	.data.32	1762720618
+	.data.32	1618934219
+	.data.32	2550940316
+	.data.32	493446877
+	.data.32	4219889550
+	.data.32	106149295
+	.data.32	3404935744
+	.data.32	2505649729
+	.data.32	3965545138
+	.data.32	1430001811
+	.data.32	2676414692
+	.data.32	1787149477
+	.data.32	84427990
+	.data.32	950428279
+	.data.32	24213128
+	.data.32	2736083465
+	.data.32	4234753530
+	.data.32	1785779035
+	.data.32	4224535340
+	.data.32	631123565
+	.data.32	2597486110
+	.data.32	1458154303
+	.data.32	1562678992
+	.data.32	489066961
+	.data.32	3724959042
+	.data.32	13576739
+	.data.32	1534171508
+	.data.32	1562688565
+	.data.32	490148710
+	.data.32	3847196679
+	.data.32	941527832
+	.data.32	3313429913
+	.data.32	755425418
+	.data.32	3758693611
+	.data.32	3825583036
+	.data.32	2794153469
+	.data.32	2206729390
+	.data.32	252317903
+	.data.32	2742119264
+	.data.32	621831521
+	.data.32	1547485138
+	.data.32	3067128755
+	.data.32	2988165636
+	.data.32	2655267781
+	.data.32	3692515830
+	.data.32	642461079
+	.data.32	3878625192
+	.data.32	197982505
+	.data.32	897186586
+	.data.32	2597836411
+	.data.32	1497738316
+	.data.32	1740705165
+	.data.32	3426155326
+	.data.32	608495199
+	.data.32	40480752
+	.data.32	279357681
+	.data.32	1502646882
+	.data.32	2295373123
+	.data.32	1679125140
+	.data.32	762579797
+	.data.32	272171142
+	.data.32	690567975
+	.data.32	724769848
+	.data.32	294614201
+	.data.32	3226633642
+	.data.32	3832348683
+	.data.32	3558671580
+	.data.32	2697930013
+	.data.32	4218380750
+	.data.32	4230622191
+	.data.32	1318937728
+	.data.32	3011075201
+	.data.32	949081330
+	.data.32	4166975187
+	.data.32	2716760868
+	.data.32	2051300069
+	.data.32	4163641110
+	.data.32	2340010167
+	.data.32	2428143816
+	.data.32	3797311561
+	.data.32	3894444090
+	.data.32	1985517979
+	.data.32	1025232236
+	.data.32	4182092973
+	.data.32	130103390
+	.data.32	1816781183
+	.data.32	3432810768
+	.data.32	1360560145
+	.data.32	3419441026
+	.data.32	4144746595
+	.data.32	204929972
+	.data.32	1682250357
+	.data.32	1115729318
+	.data.32	1523361351
+	.data.32	341140824
+	.data.32	4189174745
+	.data.32	930343626
+	.data.32	2049614635
+	.data.32	3973187068
+	.data.32	2293539901
+	.data.32	1471971054
+	.data.32	3123971855
+	.data.32	821501344
+	.data.32	2635338657
+	.data.32	1440524818
+	.data.32	3865514483
+	.data.32	3011439684
+	.data.32	990267909
+	.data.32	231124022
+	.data.32	347210711
+	.data.32	580104680
+	.data.32	1127319401
+	.data.32	2833040730
+	.data.32	2306022587
+	.data.32	2882514572
+	.data.32	3601599437
+	.data.32	3253810558
+	.data.32	2608372895
+	.data.32	2688361008
+	.data.32	3137083185
+	.data.32	2303081634
+	.data.32	2550186883
+	.data.32	408308948
+	.data.32	3189238165
+	.data.32	3901627078
+	.data.32	2797195623
+	.data.32	2550492792
+	.data.32	442876665
+	.data.32	2800422890
+	.data.32	2915173963
+	.data.32	2997143324
+	.data.32	3669746525
+	.data.32	2364496910
+	.data.32	900178479
+	.data.32	2935920320
+	.data.32	1046514369
+	.data.32	2292006706
+	.data.32	1298720019
+	.data.32	726474084
+	.data.32	487192869
+	.data.32	3513186646
+	.data.32	1853099767
+	.data.32	3241843464
+	.data.32	1256091273
+	.data.32	204393082
+	.data.32	1621581787
+	.data.32	2850115500
+	.data.32	4235471597
+	.data.32	1866920606
+	.data.32	508630975
+	.data.32	1640725328
+	.data.32	718368337
+	.data.32	3866210754
+	.data.32	3090118307
+	.data.32	1291017716
+	.data.32	4151081141
+	.data.32	920733670
+	.data.32	963689607
+	.data.32	1522743192
+	.data.32	271288857
+	.data.32	590869770
+	.data.32	2343774571
+	.data.32	2853521468
+	.data.32	325378685
+	.data.32	2408053038
+	.data.32	1527053647
+	.data.32	758370272
+	.data.32	4091462113
+	.data.32	2773718098
+	.data.32	4192499763
+	.data.32	1306070660
+	.data.32	1557096517
+	.data.32	4153214582
+	.data.32	1161812503
+	.data.32	2435793960
+	.data.32	366810537
+	.data.32	2794885018
+	.data.32	2289394427
+	.data.32	1003532492
+	.data.32	1730021901
+	.data.32	2218946494
+	.data.32	1632850655
+	.data.32	4123497584
+	.data.32	2098759025
+	.data.32	936568546
+	.data.32	2753030595
+	.data.32	1854811924
+	.data.32	3435317205
+	.data.32	1643787526
+	.data.32	1064396711
+	.data.32	17744056
+	.data.32	2005078329
+	.data.32	3235551786
+	.data.32	545131659
+	.data.32	1470335324
+	.data.32	2939134365
+	.data.32	1409701454
+	.data.32	382474351
+	.data.32	269928704
+	.data.32	437172481
+	.data.32	2155850098
+	.data.32	3092892499
+	.data.32	1604501412
+	.data.32	920033125
+	.data.32	884528022
+	.data.32	1167418679
+	.data.32	3069291848
+	.data.32	3232595145
+	.data.32	211031226
+	.data.32	2371692059
+	.data.32	1713230316
+	.data.32	321497389
+	.data.32	1969466590
+	.data.32	3506392575
+	.data.32	1085369744
+	.data.32	2387696785
+	.data.32	3521764354
+	.data.32	2822380771
+	.data.32	1101447220
+	.data.32	4204451573
+	.data.32	2656625190
+	.data.32	3845903047
+	.data.32	795347416
+	.data.32	3974912089
+	.data.32	2488467274
+	.data.32	2023927723
+	.data.32	1070566012
+	.data.32	714875069
+	.data.32	3471471470
+	.data.32	1434252175
+	.data.32	3156705824
+	.data.32	225472545
+	.data.32	4003561106
+	.data.32	1430838899
+	.data.32	2771005636
+	.data.32	3885991557
+	.data.32	1030381750
+	.data.32	469020759
+	.data.32	1459738216
+	.data.32	1741661161
+	.data.32	3534182874
+	.data.32	4225673531
+	.data.32	759739148
+	.data.32	4246145101
+	.data.32	3073026558
+	.data.32	3654617375
+	.data.32	654902960
+	.data.32	989590449
+	.data.32	154571042
+	.data.32	286658563
+	.data.32	2327646548
+	.data.32	1031054869
+	.data.32	545083206
+	.data.32	1464860135
+	.data.32	2320438008
+	.data.32	216489849
+	.data.32	2988516458
+	.data.32	2694910667
+	.data.32	3877194652
+	.data.32	36331485
+	.data.32	4105457806
+	.data.32	60264111
+	.data.32	2514877248
+	.data.32	713287489
+	.data.32	3292074930
+	.data.32	2637279635
+	.data.32	1659855332
+	.data.32	2880058789
+	.data.32	3324095958
+	.data.32	1960688503
+	.data.32	2514468744
+	.data.32	667126537
+	.data.32	2370854650
+	.data.32	1618603099
+	.data.32	2513523756
+	.data.32	560342893
+	.data.32	3189204766
+	.data.32	3897852991
+	.data.32	2370723792
+	.data.32	1603816145
+	.data.32	842597954
+	.data.32	724288291
+	.data.32	240198260
+	.data.32	1372599605
+	.data.32	484932710
+	.data.32	3257788679
+	.data.32	3057900568
+	.data.32	1945380505
+	.data.32	784664970
+	.data.32	2767795691
+	.data.32	3523267772
+	.data.32	2992267005
+	.data.32	3118722478
+	.data.32	228321743
+	.data.32	30553184
+	.data.32	3452509793
+	.data.32	3586549970
+	.data.32	1553220787
+	.data.32	3715257092
+	.data.32	3212223685
+	.data.32	2204023542
+	.data.32	4241524375
+	.data.32	2550884520
+	.data.32	487141929
+	.data.32	3507430426
+	.data.32	1202646907
+	.data.32	2755114316
+	.data.32	2090272397
+	.data.32	4272546878
+	.data.32	1761460063
+	.data.32	1476491504
+	.data.32	3634782705
+	.data.32	2708552546
+	.data.32	1123759683
+	.data.32	2430792596
+	.data.32	4096623701
+	.data.32	3356977542
+	.data.32	1381340199
+	.data.32	1472619832
+	.data.32	3197283769
+	.data.32	515813034
+	.data.32	2452297995
+	.data.32	2231766492
+	.data.32	3081510429
+	.data.32	318327502
+	.data.32	1611269359
+	.data.32	1684811136
+	.data.32	1405097345
+	.data.32	4157177330
+	.data.32	1609603027
+	.data.32	1496515620
+	.data.32	1602540517
+	.data.32	698451990
+	.data.32	1615663543
+	.data.32	2181353928
+	.data.32	1679857993
+	.data.32	845392186
+	.data.32	1040036507
+	.data.32	1560008300
+	.data.32	187278765
+	.data.32	3982631262
+	.data.32	3360733823
+	.data.32	1805799952
+	.data.32	2191931665
+	.data.32	2875142274
+	.data.32	2768529763
+	.data.32	3606217908
+	.data.32	3775697781
+	.data.32	1452086950
+	.data.32	877068103
+	.data.32	324447832
+	.data.32	2302866649
+	.data.32	2525893578
+	.data.32	1958132779
+	.data.32	2225671932
+	.data.32	2392825149
+	.data.32	4101269486
+	.data.32	3881951247
+	.data.32	573826720
+	.data.32	417909921
+	.data.32	4274148114
+	.data.32	1942399731
+	.data.32	447837508
+	.data.32	3360998149
+	.data.32	1835668790
+	.data.32	1272143063
+	.data.32	2018245352
+	.data.32	428458089
+	.data.32	1171123802
+	.data.32	3487970747
+	.data.32	3298670476
+	.data.32	3382576333
+	.data.32	4274003582
+	.data.32	1926067615
+	.data.32	2897275696
+	.data.32	974639153
+	.data.32	2760041890
+	.data.32	2647088259
+	.data.32	2768229844
+	.data.32	3572327061
+	.data.32	4240999366
+	.data.32	2491558503
+	.data.32	2373236600
+	.data.32	1887763449
+	.data.32	2863872234
+	.data.32	1495015243
+	.data.32	1432997916
+	.data.32	3014974557
+	.data.32	1389708558
+	.data.32	2418244399
+	.data.32	2678677440
+	.data.32	2042840001
+	.data.32	3207653426
+	.data.32	1687584275
+	.data.32	1718462052
+	.data.32	912683557
+	.data.32	54026838
+	.data.32	1810065399
+	.data.32	2673927176
+	.data.32	1506060169
+	.data.32	2681074554
+	.data.32	2313713883
+	.data.32	3751631020
+	.data.32	3027510253
+	.data.32	2806242206
+	.data.32	3572756671
+	.data.32	4289545296
+	.data.32	3682281297
+	.data.32	3780926146
+	.data.32	2042892195
+	.data.32	3213551348
+	.data.32	2354049461
+	.data.32	4014584038
+	.data.32	2676430215
+	.data.32	1788903576
+	.data.32	282641177
+	.data.32	1873681930
+	.data.32	1272660587
+	.data.32	2076725564
+	.data.32	2741754749
+	.data.32	580641326
+	.data.32	1187960399
+	.data.32	1095538912
+	.data.32	3536812769
+	.data.32	227884370
+	.data.32	4276097331
+	.data.32	2162661252
+	.data.32	3862552901
+	.data.32	2676780918
+	.data.32	1828533015
+	.data.32	465800488
+	.data.32	1095847593
+	.data.32	3571693722
+	.data.32	4169432059
+	.data.32	2994387404
+	.data.32	3358327565
+	.data.32	1533892798
+	.data.32	1531194335
+	.data.32	1226268016
+	.data.32	1129332337
+	.data.32	3060502498
+	.data.32	2239398595
+	.data.32	3943938068
+	.data.32	3283370197
+	.data.32	1653644806
+	.data.32	2178269351
+	.data.32	1331300792
+	.data.32	113134137
+	.data.32	4194222890
+	.data.32	1500784011
+	.data.32	2084868700
+	.data.32	3661929117
+	.data.32	1481129806
+	.data.32	4158910831
+	.data.32	1805488640
+	.data.32	2156753409
+	.data.32	3194966642
+	.data.32	253977683
+	.data.32	2929674404
+	.data.32	340725861
+	.data.32	4142283926
+	.data.32	4221615671
+	.data.32	301200968
+	.data.32	3970938313
+	.data.32	2039430586
+	.data.32	2822389531
+	.data.32	1102437100
+	.data.32	21340717
+	.data.32	2411501022
+	.data.32	1916675839
+	.data.32	1836005008
+	.data.32	1310135697
+	.data.32	2016445698
+	.data.32	225097187
+	.data.32	3961145652
+	.data.32	932859893
+	.data.32	2333952806
+	.data.32	1743662023
+	.data.32	3760280280
+	.data.32	4004876633
+	.data.32	1579493450
+	.data.32	2389100715
+	.data.32	3680408444
+	.data.32	3569293757
+	.data.32	3898236014
+	.data.32	2414005391
+	.data.32	2199669536
+	.data.32	3749521697
+	.data.32	2789156754
+	.data.32	1642100595
+	.data.32	873773508
+	.data.32	4247125893
+	.data.32	3183856054
+	.data.32	3293448535
+	.data.32	2792497000
+	.data.32	2019548393
+	.data.32	575701722
+	.data.32	629785147
+	.data.32	2446244876
+	.data.32	1547764045
+	.data.32	3098645246
+	.data.32	2254561823
+	.data.32	1362415536
+	.data.32	3629100209
+	.data.32	2066430498
+	.data.32	1578412291
+	.data.32	2266929748
+	.data.32	2759991061
+	.data.32	2641344582
+	.data.32	2119194343
+	.data.32	3245759480
+	.data.32	1698601081
+	.data.32	2963361130
+	.data.32	4147325899
+	.data.32	496391324
+	.data.32	257644765
+	.data.32	3344054670
+	.data.32	4216022959
+	.data.32	3964191808
+	.data.32	1277075521
+	.data.32	2575613106
+	.data.32	3281472147
+	.data.32	1439165156
+	.data.32	3711872677
+	.data.32	2829784790
+	.data.32	1938101367
+	.data.32	4257089672
+	.data.32	14795785
+	.data.32	1671923706
+	.data.32	4243785051
+	.data.32	2806340908
+	.data.32	3583909997
+	.data.32	1254903838
+	.data.32	70212927
+	.data.32	3639093456
+	.data.32	3195667409
+	.data.32	333164354
+	.data.32	3287833635
+	.data.32	2158013300
+	.data.32	3337334325
+	.data.32	3456623974
+	.data.32	4051452423
+	.data.32	2547590424
+	.data.32	114909081
+	.data.32	99824266
+	.data.32	2690207467
+	.data.32	3345733052
+	.data.32	110712829
+	.data.32	3920615086
+	.data.32	647873231
+	.data.32	195231072
+	.data.32	586274657
+	.data.32	1824526802
+	.data.32	13098419
+	.data.32	1480121348
+	.data.32	4044955077
+	.data.32	1813390326
+	.data.32	3049643927
+	.data.32	1012380072
+	.data.32	2729798441
+	.data.32	3524545818
+	.data.32	3136686203
+	.data.32	2258222668
+	.data.32	1776091021
+	.data.32	3129789758
+	.data.32	1478924383
+	.data.32	3909698032
+	.data.32	3709213425
+	.data.32	2529289314
+	.data.32	2341850947
+	.data.32	2636151956
+	.data.32	1532427605
+	.data.32	1365627526
+	.data.32	3992055079
+	.data.32	130657848
+	.data.32	1879434937
+	.data.32	1922750378
+	.data.32	2522427915
+	.data.32	1566512860
+	.data.32	922294045
+	.data.32	1140011982
+	.data.32	4267302383
+	.data.32	1168832128
+	.data.32	3229011585
+	.data.32	4101056242
+	.data.32	3857854675
+	.data.32	2145881380
+	.data.32	1966427365
+	.data.32	3162960150
+	.data.32	932211383
+	.data.32	2260671176
+	.data.32	2052772425
+	.data.32	35050042
+	.data.32	3960654747
+	.data.32	877387628
+	.data.32	360554157
+	.data.32	2087914078
+	.data.32	4006056831
+	.data.32	1712855824
+	.data.32	279179793
+	.data.32	1482545538
+	.data.32	23921251
+	.data.32	2703101364
+	.data.32	507776117
+	.data.32	1544126374
+	.data.32	2687588423
+	.data.32	3049781080
+	.data.32	1027878361
+	.data.32	186137802
+	.data.32	3853702443
+	.data.32	1676679164
+	.data.32	486184509
+	.data.32	3399241966
+	.data.32	1862252815
+	.data.32	4276137888
+	.data.32	2167244193
+	.data.32	85457938
+	.data.32	1066812403
+	.data.32	290717252
+	.data.32	2786278405
+	.data.32	1316847158
+	.data.32	2774840791
+	.data.32	24396776
+	.data.32	2756835689
+	.data.32	2284787546
+	.data.32	482954939
+	.data.32	3034300556
+	.data.32	3573546445
+	.data.32	83822462
+	.data.32	882003615
+	.data.32	882160688
+	.data.32	899909937
+	.data.32	2905575074
+	.data.32	1912468867
+	.data.32	1360617172
+	.data.32	3425885077
+	.data.32	577957062
+	.data.32	884638567
+	.data.32	1179910264
+	.data.32	185873657
+	.data.32	3823854058
+	.data.32	2598778955
+	.data.32	1604245788
+	.data.32	891147613
+	.data.32	1915432462
+	.data.32	1695503407
+	.data.32	2613323968
+	.data.32	3247832257
+	.data.32	1932824882
+	.data.32	3660846867
+	.data.32	1358835556
+	.data.32	3224562469
+	.data.32	3598306134

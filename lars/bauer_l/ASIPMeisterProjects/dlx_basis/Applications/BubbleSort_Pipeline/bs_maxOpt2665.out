@@ -1,0 +1,203 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.addressing	Word
+2				.section	.text
+3			_main:
+4				; Initialize Stack Pointer
+5	0000	3c1d0000		lhi	%r29, $(((1024-4)*65536)&0xffff)	; MemSize is 1024
+6	0001	00000000		nop
+7	0002	00000000		nop
+8	0003	00000000		nop
+9	0004	27bd03fc		addui	%r29, %r29, $((1024-4)&0xffff)
+10	0005	00000000		nop
+11	0006	00000000		nop
+12	0007	00000000		nop
+13	0008	2bbd000c		subi	%r29, %r29, $12		; Adjust Stack Pointer
+14	0009	00000000		nop
+15	000a	00000000		nop
+16	000b	00000000		nop
+17	000c	afbe0000		sw	0(%r29), %r30		; Save the old frame pointer
+18	000d	afbf0004		sw	4(%r29), %r31		; Save the return address
+19	000e	afa10008		sw	8(%r29), %r1		; Save r1, which is used in main.
+20	000f	001df020		add	%r30, %r0, %r29		; Establish new frame pointer
+21			
+22				; Call BubbleSort
+23	0010	2bbd0008		subi	%r29, %r29, $8		; create place for the parameters
+24	0011	00000000		nop
+25	0012	00000000		nop
+26	0013	00000000		nop
+27	0014	afa00000		sw	0(%r29), %r0		; "const unsigned int startIndex"
+28	0015	20010013		addi	%r1, %r0, $19
+29	0016	00000000		nop
+30	0017	00000000		nop
+31	0018	00000000		nop
+32	0019	afa10004		sw	4(%r29), %r1		; "const unsigned int endIndex"
+33	001a	0c00000c		jal	_bubbleSort
+34	001b	00000000		nop
+35	001c	23bd0008		addi	%r29, %r29, $8
+36			
+37	001d	00000000		nop
+38	001e	00000000		nop
+39	001f	00000000		nop
+40	0020	8fbe0000		lw	%r30, 0(%r29)		; Restore frame pointer
+41	0021	8fbf0004		lw	%r31, 4(%r29)		; Restore return address
+42	0022	8fa10008		lw	%r1,  8(%r29)		; Restore r1
+43	0023	001ee820		add	%r29, %r0, %r30		; Restore stack pointer
+44			
+45				; HALT
+46	0024	0c00003d		jal	_exit
+47	0025	00000000		nop
+48			
+49			
+50			_bubbleSort:
+51	0026	2bbd0030		subi	%r29, %r29, $(8 + 10*4)	; Adjust Stack Pointer; 8 for oldFP+RET and x*4 for saved Registers
+52	0027	001df020		add	%r30, %r0, %r29		; r29'OLD; Establish new frame pointer
+53	0028	00000000		nop
+54			
+55	0029	3c0a0000		lhi	%r10, $(_array/65536)&0xffff
+56	002a	afaa002c		sw	44(%r29), %r10		; r10'OLD; r10 is the die start address of 'array'.
+57	002b	afa2000c		sw	12(%r29), %r2		; r2 is the parameter value "startIndex".
+58	002c	afa30010		sw	16(%r29), %r3		; r3 is the parameter value "endIndex".
+59			
+60	002d	254a0000		addui	%r10, %r10, $(_array&0xffff)
+61	002e	8fc20000		lw	%r2, 0(%r30)
+62	002f	8fc30004		lw	%r3, 4(%r30)
+63	0030	00000000		nop
+64			
+65	0031	afa40014		sw	20(%r29), %r4		; r4 is the loop-variable "i".
+66			
+67	0032	00402020		add	%r4, %r2, %r0		; i = startIndex;
+68	0033	40420002		slli	%r2, %r2, $2		; NEW: We shift the startIndex once, so we don't need to do it in every loop.
+69	0034	40660002		slli	%r6, %r3, $2		; innerLoopEnd = array+endIndex;
+70				
+71	0035	afa50018		sw	24(%r29), %r5		; r5 is the loop-variable "j".
+72	0036	afa6001c		sw	28(%r29), %r6		; r6 is the loop-end "innerLoopEnd".
+73	0037	afa70020		sw	32(%r29), %r7		; r7 is "next_j".
+74			
+75	0038	00ca3020		add	%r6, %r6, %r10
+76	0039	004a2820		add	%r5, %r2, %r10		; CODE DUPLiCATION; j = array+startIndex;
+77				
+78	003a	afa80024		sw	36(%r29), %r8		; r8 is "value_j".
+79	003b	afa90028		sw	40(%r29), %r9		; r9 is "value_next_j".
+80	003c	afa10008		sw	 8(%r29), %r1		; r1 is used for comparing-results and for temporary stuff.
+81	003d	afbf0004		sw	 4(%r29), %r31		; Save the return address 
+82	003e	afbe0000		sw	 0(%r29), %r30		; Save the frame pointer 
+83			
+84			OuterLoop_Start:
+85	003f	f8830013		bgeu	%r4, %r3, OuterLoop_End	; while (i < endIndex) {
+86	0040	00a03820		add	%r7, %r5, %r0		; next_j = j;
+87			
+88	0041	8ca90004		lw	%r9, 4(%r5)		; r5=r7'NEW; value_next_j = *next_j;
+89	0042	8ca80000		lw	%r8, 0(%r5)		; value_j = *j;
+90	0043	00000000		nop
+91			
+92			InnerLoop_Start:
+93	0044	f8a6000a		bgeu	%r5, %r6, InnerLoop_End	; while (j < innerLoopEnd) {
+94	0045	20e70004		addi	%r7, %r7, $4		; next_j++;
+95			
+96	0046	f9280005		bgeu	%r9, %r8, SkipExchange	; if (value_next_j < value_j) {
+97	0047	20e50004		addi	%r5, %r7, $4		; r7'OLD; j = next_j
+98			
+99	0048	00084820		add	%r9, %r0, %r8		; value_next_j = tmp;
+100	0049	aca90000		sw	0(%r5), %r9		; r5'OLD; r9'OLD; *j = value_next_j;
+101	004a	ace80000		sw	0(%r7), %r8		; *next_j = tmp;
+102			
+103			SkipExchange:
+104			
+105	004b	00094020		add	%r8, %r0, %r9		; value_j = value_next_j;
+106				
+107	004c	0bfffff8		j	InnerLoop_Start		; }
+108	004d	8ce90004		lw	%r9, 4(%r7)		; value_next_j = *next_j;
+109			
+110			InnerLoop_End:
+111	004e	20840001		addi	%r4, %r4, $1		; i++;
+112	004f	004a2820		add	%r5, %r2, %r10		; j = array+startIndex;
+113	0050	0bffffef		j	OuterLoop_Start		; }
+114	0051	28c60004		subi	%r6, %r6, $4		; innerLoopEnd--;
+115			
+116			OuterLoop_End:
+117	0052	8fbe0000		lw	%r30, 0(%r29)		; Restore frame pointer
+118	0053	8fbf0004		lw	%r31, 4(%r29)		; Restore return address
+119			
+120				; Restore the saved registers
+121	0054	8fa10008		lw	%r1, 8(%r29)
+122	0055	8fa2000c		lw	%r2, 12(%r29)
+123	0056	8fa30010		lw	%r3, 16(%r29)
+124	0057	8fa40014		lw	%r4, 20(%r29)
+125	0058	8fa50018		lw	%r5, 24(%r29)
+126	0059	8fa6001c		lw	%r6, 28(%r29)
+127	005a	8fa70020		lw	%r7, 32(%r29)
+128	005b	8fa80024		lw	%r8, 36(%r29)
+129	005c	8fa90028		lw	%r9, 40(%r29)
+130	005d	8faa0030		lw	%r10,48(%r29)
+131			
+132	005e	001ee820		add	%r29, %r0, %r30		; Restore stack pointer
+133			
+134				; Return
+135	005f	03e00008		jr	%r31
+136	0060	00000000		nop
+137			
+138			
+139	0061	00000000	_exit:	nop
+140	0062	00000000		nop
+141			
+142			
+143				.section	.data
+144			_array:
+145	0000	0000002d		.data.32	45
+146	0004	0000004b		.data.32	75
+147	0008	00000156		.data.32	342
+148	000c	00000036		.data.32	54
+149	0010	00000007		.data.32	7
+150	0014	00000056		.data.32	86
+151	0018	0000005c		.data.32	92
+152	001c	000000eb		.data.32	235
+153	0020	00000004		.data.32	4
+154	0024	0000002a		.data.32	42
+155	0028	00000063		.data.32	99
+156	002c	0000004e		.data.32	78
+157	0030	0000003f		.data.32	63
+158	0034	00000160		.data.32	352
+159	0038	00000015		.data.32	21
+160	003c	0000027a		.data.32	634
+161	0040	00000006		.data.32	6
+162	0044	0000004d		.data.32	77
+163	0048	0000015a		.data.32	346
+164	004c	00000017		.data.32	23
+165			
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+InnerLoop_End	.text	004e	Label	4e	110 
+_main	.text	0000	Label	0	3 
+OuterLoop_Start	.text	003f	Label	3f	84 
+_bubbleSort	.text	0026	Label	26	50 
+_array	.data	0000	Label	0	144 
+_exit	.text	0061	Label	61	139 
+SkipExchange	.text	004b	Label	4b	103 
+OuterLoop_End	.text	0052	Label	52	116 
+InnerLoop_Start	.text	0044	Label	44	92 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	63 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		50 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

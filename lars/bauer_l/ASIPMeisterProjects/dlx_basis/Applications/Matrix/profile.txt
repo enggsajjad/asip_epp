@@ -1,0 +1,55 @@
+#### List of different label names for the same address:
+#### Syntax: #:<TAB>LabelA_Name<TAB>LabelA_JumpTarget<TAB>LabelB_Name<TAB>LabelB_JumpTarget
+#:	pin_down:		l_matrix_1:	
+#:	main:		l_matrix_9:	
+
+#### List of base blocks with number of executions and used special instructions:
+#### Syntax: startLabel<TAB>startJumpInstruction<TAB>endLabel<TAB>endJumpInstruction<TAB>
+####         startAddress<TAB>numberOfExecutions<TAB>executionTime<TAB>CSV{specialInstructions}<TAB>
+####         CSV{SuccessingBaseBlocks(StartingAddress, Counter)}
+start:		main:	jal	0	1	23		224:1
+main:	jal	exit:	jal	21	1	9		474:1
+exit:	jal	pin_down:		28	0	0		
+l_matrix_1:		l_matrix_2:		29	1	22		48:1
+l_matrix_2:		l_matrix_2:	bnez	48	21	72		48:20, 84:1
+l_matrix_2:	bnez	l_matrix_3:	j	84	1	4		90:1
+l_matrix_3:	j	l_matrix_3:		88	0	0		
+l_matrix_3:		l_matrix_4:		90	1	12		101:1
+l_matrix_4:		l_matrix_4:	bnez	101	15	72		101:14, 137:1
+l_matrix_4:	bnez	l_matrix_5:	j	137	1	4		143:1
+l_matrix_5:	j	l_matrix_5:		141	0	0		
+l_matrix_5:		l_matrix_6:		143	1	12		154:1
+l_matrix_6:		l_matrix_6:	bnez	154	35	72		154:34, 190:1
+l_matrix_6:	bnez	l_matrix_7:	j	190	1	4		196:1
+l_matrix_7:	j	l_matrix_7:		194	0	0		
+l_matrix_7:		l_matrix_8:	j	196	1	14		211:1
+l_matrix_8:	j	l_matrix_8:		209	0	0		
+l_matrix_8:			return	211	1	14		265:1
+	return	main:		222	0	0		
+l_matrix_9:		pin_down:	jal	224	1	45		29:1
+pin_down:	jal	l_matrix_10:		265	1	15		279:1
+l_matrix_10:		l_matrix_11:		279	5	17		295:5
+l_matrix_11:		l_matrix_12:		295	35	113		337:35
+l_matrix_12:		l_matrix_12:	bnez	337	105	84	mac	337:70, 380:35
+l_matrix_12:	bnez	l_matrix_13:	j	380	35	4		386:35
+l_matrix_13:	j	l_matrix_13:		384	0	0		
+l_matrix_13:		l_matrix_11:	bnez	386	35	32		295:30, 415:5
+l_matrix_11:	bnez	l_matrix_14:	j	415	5	4		421:5
+l_matrix_14:	j	l_matrix_14:		419	0	0		
+l_matrix_14:		l_matrix_10:	bnez	421	5	19		279:4, 439:1
+l_matrix_10:	bnez	l_matrix_15:	j	439	1	4		445:1
+l_matrix_15:	j	l_matrix_15:		443	0	0		
+l_matrix_15:		l_matrix_16:	j	445	1	14		460:1
+l_matrix_16:	j	l_matrix_16:		458	0	0		
+l_matrix_16:			return	460	1	14		21:1
+	return	exit:		471	0	0		
+exit:		_matrixa:		474	1	0		
+_matrixa:		_matrixb:		477	0	0		
+_matrixb:		_matrixc:		498	0	0		
+_matrixc:		finish:		513	0	0		
+
+#### List of JumpTable Usages:
+####   Syntax is: "#;<TAB>BaseBlockLabel<TAB>CSV(JumpTargets)"
+####   "BaseBlockLabel" is the starting label of the baseBlock where the JumpTable is used, e.g. L10.
+####   Then in the above Base Block List there must be something like: "L10<TAB><TAB><TAB>jr".
+####   "CSV" are the Comma Seperated Values of the possible Jump Targets in this Jump Table

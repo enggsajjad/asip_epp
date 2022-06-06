@@ -1,0 +1,363 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.section	.data
+2				.section	.text
+3				.addressing	Word
+4	0000	03def026		xor	%GPR30, %GPR30, %GPR30
+5	0001	03bde826		xor	%GPR29, %GPR29, %GPR29
+6	0002	039ce026		xor	%GPR28, %GPR28, %GPR28
+7	0003	00000000		nop
+8	0004	3c1e000f		lhi	%GPR30, $15
+9	0005	3c1d000f		lhi	%GPR29, $15
+10	0006	00000000		nop
+11	0007	00000000		nop
+12	0008	37defffc		ori	%GPR30, %GPR30, $65532
+13	0009	37bdfffc		ori	%GPR29, %GPR29, $65532
+14	000a	00000000		nop
+15	000b	00000000		nop
+16	000c	00000000		nop
+17	000d	afbefffc		sw	-4(%GPR29), %GPR30
+18	000e	afbffff8		sw	-8(%GPR29), %GPR31
+19	000f	23ddfff8		addi	%GPR29, %GPR30, $-8
+20	0010	0c000028		jal	main	
+21	0011	00000000		nop
+22	0012	afa10000		sw	0(%GPR29), %GPR1
+23	0013	0c0000e9		jal	exit	
+24	0014	00000000		nop
+25			method:
+26			L1:
+27	0015	00000000		nop
+28	0016	00000000		nop
+29	0017	00000000		nop
+30				; Automatically 1 NOPs removed by reduceNOPs.sh
+31	0018	afbefffc		sw	-4(%GPR29),%GPR30	
+32	0019	afbf0000		sw	0(%GPR29),%GPR31	
+33	001a	2fbe0004		subui	%GPR30,%GPR29,$4	
+34	001b	2bbd0008		subi	%GPR29,%GPR29,$8	
+35	001c	00000000		nop
+36	001d	00000000		nop
+37	001e	00000000		nop
+38				; Automatically 9 NOPs removed by reduceNOPs.sh
+39	001f	3c1c0000		lhi	%GPR28,$0	
+40	0020	00000000		nop
+41	0021	00000000		nop
+42	0022	00000000		nop
+43				; Automatically 1 NOPs removed by reduceNOPs.sh
+44	0023	379c002a		ori	%GPR28,%GPR28,$42	
+45	0024	00000000		nop	;;6,10
+46	0025	00000000		nop	;;6,10
+47	0026	00000000		nop	;;6,10
+48				; Automatically 1 NOPs removed by reduceNOPs.sh
+49	0027	08000004		j	L2	
+50	0028	00000000		nop
+51	0029	00000000		nop
+52	002a	00000000		nop
+53				; Automatically 1 NOPs removed by reduceNOPs.sh
+54			L2:
+55	002b	00000000		nop
+56	002c	00000000		nop
+57	002d	00000000		nop
+58				; Automatically 1 NOPs removed by reduceNOPs.sh
+59	002e	8fdf0004		lw	%GPR31,4(%GPR30)	
+60	002f	27dd0004		addui	%GPR29,%GPR30,$4	
+61	0030	8fde0000		lw	%GPR30,0(%GPR30)	
+62	0031	00000000		nop
+63	0032	00000000		nop
+64	0033	00000000		nop
+65	0034	03e00008		jr	%GPR31	
+66	0035	00000000		nop
+67	0036	00000000		nop
+68	0037	00000000		nop
+69				; Automatically 1 NOPs removed by reduceNOPs.sh
+70			main:
+71			L3:
+72	0038	00000000		nop
+73	0039	00000000		nop
+74	003a	00000000		nop
+75				; Automatically 1 NOPs removed by reduceNOPs.sh
+76	003b	afbefffc		sw	-4(%GPR29),%GPR30	
+77	003c	afbf0000		sw	0(%GPR29),%GPR31	
+78	003d	2fbe0004		subui	%GPR30,%GPR29,$4	
+79	003e	2bbd000c		subi	%GPR29,%GPR29,$12	
+80	003f	00000000		nop
+81	0040	00000000		nop
+82	0041	00000000		nop
+83				; Automatically 8 NOPs removed by reduceNOPs.sh
+84	0042	2bbd0008		subi	%GPR29,%GPR29,$8	
+85	0043	00000000		nop
+86	0044	00000000		nop
+87	0045	00000000		nop
+88				; Automatically 1 NOPs removed by reduceNOPs.sh
+89	0046	0fffffcf		jal	method	
+90	0047	00000000		nop
+91	0048	00000000		nop
+92	0049	00000000		nop
+93				; Automatically 1 NOPs removed by reduceNOPs.sh
+94	004a	23bd0008		addi	%GPR29,%GPR29,$8	
+95	004b	00000000		nop
+96	004c	00000000		nop
+97	004d	00000000		nop
+98				; Automatically 1 NOPs removed by reduceNOPs.sh
+99	004e	afdcfffc		sw	-4(%GPR30),%GPR28	
+100	004f	00000000		nop
+101	0050	00000000		nop
+102	0051	00000000		nop
+103				; Automatically 1 NOPs removed by reduceNOPs.sh
+104	0052	2bbd0008		subi	%GPR29,%GPR29,$8	
+105	0053	00000000		nop
+106	0054	00000000		nop
+107	0055	00000000		nop
+108				; Automatically 1 NOPs removed by reduceNOPs.sh
+109	0056	0fffffbf		jal	method	
+110	0057	00000000		nop
+111	0058	00000000		nop
+112	0059	00000000		nop
+113				; Automatically 1 NOPs removed by reduceNOPs.sh
+114	005a	23bd0008		addi	%GPR29,%GPR29,$8	
+115	005b	00000000		nop
+116	005c	00000000		nop
+117	005d	00000000		nop
+118				; Automatically 1 NOPs removed by reduceNOPs.sh
+119	005e	8fc1fffc		lw	%GPR1,-4(%GPR30)	
+120	005f	00000000		nop	;;5,9
+121	0060	00000000		nop	;;5,9
+122	0061	00000000		nop	;;5,9
+123				; Automatically 1 NOPs removed by reduceNOPs.sh
+124	0062	003ce020		add	%GPR28,%GPR1,%GPR28	
+125	0063	3c010000		lhi	%GPR1,$0	
+126	0064	00000000		nop
+127	0065	00000000		nop
+128	0066	00000000		nop
+129				; Automatically 1 NOPs removed by reduceNOPs.sh
+130	0067	34210000		ori	%GPR1,%GPR1,$0	
+131	0068	00000000		nop	;;10,14
+132	0069	00000000		nop	;;10,14
+133	006a	00000000		nop	;;10,14
+134				; Automatically 1 NOPs removed by reduceNOPs.sh
+135	006b	0381d82e		seq	%GPR27,%GPR28,%GPR1	
+136	006c	00000000		nop	; Automatically added by findDataDependency.sh
+137	006d	00000000		nop	; Automatically added by findDataDependency.sh
+138	006e	00000000		nop	; Automatically added by findDataDependency.sh
+139	006f	1760005c		bnez	%GPR27,L9	
+140	0070	00000000		nop
+141	0071	00000000		nop
+142	0072	00000000		nop
+143				; Automatically 1 NOPs removed by reduceNOPs.sh
+144	0073	08000004		j	L4	
+145	0074	00000000		nop
+146	0075	00000000		nop
+147	0076	00000000		nop
+148				; Automatically 1 NOPs removed by reduceNOPs.sh
+149			L4:
+150	0077	00000000		nop	;;0,4
+151	0078	00000000		nop	;;0,4
+152	0079	00000000		nop	;;0,4
+153				; Automatically 1 NOPs removed by reduceNOPs.sh
+154	007a	3c010000		lhi	%GPR1,$0	
+155	007b	00000000		nop
+156	007c	00000000		nop
+157	007d	00000000		nop
+158				; Automatically 1 NOPs removed by reduceNOPs.sh
+159	007e	34210001		ori	%GPR1,%GPR1,$1	
+160	007f	00000000		nop	;;4,8
+161	0080	00000000		nop	;;4,8
+162	0081	00000000		nop	;;4,8
+163				; Automatically 1 NOPs removed by reduceNOPs.sh
+164	0082	0381d82e		seq	%GPR27,%GPR28,%GPR1	
+165	0083	00000000		nop	; Automatically added by findDataDependency.sh
+166	0084	00000000		nop	; Automatically added by findDataDependency.sh
+167	0085	00000000		nop	; Automatically added by findDataDependency.sh
+168	0086	17600051		bnez	%GPR27,L10	
+169	0087	00000000		nop
+170	0088	00000000		nop
+171	0089	00000000		nop
+172				; Automatically 1 NOPs removed by reduceNOPs.sh
+173	008a	08000004		j	L5	
+174	008b	00000000		nop
+175	008c	00000000		nop
+176	008d	00000000		nop
+177				; Automatically 1 NOPs removed by reduceNOPs.sh
+178			L5:
+179	008e	00000000		nop	;;0,4
+180	008f	00000000		nop	;;0,4
+181	0090	00000000		nop	;;0,4
+182				; Automatically 1 NOPs removed by reduceNOPs.sh
+183	0091	3c010000		lhi	%GPR1,$0	
+184	0092	00000000		nop
+185	0093	00000000		nop
+186	0094	00000000		nop
+187				; Automatically 1 NOPs removed by reduceNOPs.sh
+188	0095	34210002		ori	%GPR1,%GPR1,$2	
+189	0096	00000000		nop	;;4,8
+190	0097	00000000		nop	;;4,8
+191	0098	00000000		nop	;;4,8
+192				; Automatically 1 NOPs removed by reduceNOPs.sh
+193	0099	0381d82e		seq	%GPR27,%GPR28,%GPR1	
+194	009a	00000000		nop	; Automatically added by findDataDependency.sh
+195	009b	00000000		nop	; Automatically added by findDataDependency.sh
+196	009c	00000000		nop	; Automatically added by findDataDependency.sh
+197	009d	17600046		bnez	%GPR27,L11	
+198	009e	00000000		nop
+199	009f	00000000		nop
+200	00a0	00000000		nop
+201				; Automatically 1 NOPs removed by reduceNOPs.sh
+202	00a1	08000004		j	L6	
+203	00a2	00000000		nop
+204	00a3	00000000		nop
+205	00a4	00000000		nop
+206				; Automatically 1 NOPs removed by reduceNOPs.sh
+207			L6:
+208	00a5	00000000		nop	;;0,4
+209	00a6	00000000		nop	;;0,4
+210	00a7	00000000		nop	;;0,4
+211				; Automatically 1 NOPs removed by reduceNOPs.sh
+212	00a8	3c010000		lhi	%GPR1,$0	
+213	00a9	00000000		nop
+214	00aa	00000000		nop
+215	00ab	00000000		nop
+216				; Automatically 1 NOPs removed by reduceNOPs.sh
+217	00ac	34210003		ori	%GPR1,%GPR1,$3	
+218	00ad	00000000		nop	;;4,8
+219	00ae	00000000		nop	;;4,8
+220	00af	00000000		nop	;;4,8
+221				; Automatically 1 NOPs removed by reduceNOPs.sh
+222	00b0	0381d82e		seq	%GPR27,%GPR28,%GPR1	
+223	00b1	00000000		nop	; Automatically added by findDataDependency.sh
+224	00b2	00000000		nop	; Automatically added by findDataDependency.sh
+225	00b3	00000000		nop	; Automatically added by findDataDependency.sh
+226	00b4	17600008		bnez	%GPR27,L7	
+227	00b5	00000000		nop
+228	00b6	00000000		nop
+229	00b7	00000000		nop
+230				; Automatically 1 NOPs removed by reduceNOPs.sh
+231	00b8	0800000f		j	L8	
+232	00b9	00000000		nop
+233	00ba	00000000		nop
+234	00bb	00000000		nop
+235				; Automatically 1 NOPs removed by reduceNOPs.sh
+236			L7:
+237	00bc	00000000		nop	;;0,4
+238	00bd	00000000		nop	;;0,4
+239	00be	00000000		nop	;;0,4
+240				; Automatically 1 NOPs removed by reduceNOPs.sh
+241	00bf	3c1c0000		lhi	%GPR28,$0	
+242	00c0	00000000		nop
+243	00c1	00000000		nop
+244	00c2	00000000		nop
+245				; Automatically 1 NOPs removed by reduceNOPs.sh
+246	00c3	379c0007		ori	%GPR28,%GPR28,$7	
+247	00c4	00000000		nop
+248	00c5	00000000		nop
+249	00c6	00000000		nop
+250			L8:
+251	00c7	08000028		j	L12	
+252	00c8	00000000		nop
+253	00c9	00000000		nop
+254	00ca	00000000		nop
+255				; Automatically 1 NOPs removed by reduceNOPs.sh
+256			L9:
+257	00cb	00000000		nop	;;0,4
+258	00cc	00000000		nop	;;0,4
+259	00cd	00000000		nop	;;0,4
+260				; Automatically 1 NOPs removed by reduceNOPs.sh
+261	00ce	3c1c0000		lhi	%GPR28,$0	
+262	00cf	00000000		nop
+263	00d0	00000000		nop
+264	00d1	00000000		nop
+265				; Automatically 1 NOPs removed by reduceNOPs.sh
+266	00d2	379c0005		ori	%GPR28,%GPR28,$5	
+267	00d3	0bfffff4		j	L8	
+268	00d4	00000000		nop
+269	00d5	00000000		nop
+270	00d6	00000000		nop
+271			L10:
+272	00d7	00000000		nop	;;0,4
+273	00d8	00000000		nop	;;0,4
+274	00d9	00000000		nop	;;0,4
+275				; Automatically 1 NOPs removed by reduceNOPs.sh
+276	00da	3c1c0000		lhi	%GPR28,$0	
+277	00db	00000000		nop
+278	00dc	00000000		nop
+279	00dd	00000000		nop
+280				; Automatically 1 NOPs removed by reduceNOPs.sh
+281	00de	379c0003		ori	%GPR28,%GPR28,$3	
+282	00df	0bffffe8		j	L8	
+283	00e0	00000000		nop
+284	00e1	00000000		nop
+285	00e2	00000000		nop
+286			L11:
+287	00e3	00000000		nop	;;0,4
+288	00e4	00000000		nop	;;0,4
+289	00e5	00000000		nop	;;0,4
+290				; Automatically 1 NOPs removed by reduceNOPs.sh
+291	00e6	3c1c0000		lhi	%GPR28,$0	
+292	00e7	00000000		nop
+293	00e8	00000000		nop
+294	00e9	00000000		nop
+295				; Automatically 1 NOPs removed by reduceNOPs.sh
+296	00ea	379c0002		ori	%GPR28,%GPR28,$2	
+297	00eb	0bffffdc		j	L8	
+298	00ec	00000000		nop
+299	00ed	00000000		nop
+300	00ee	00000000		nop
+301			L12:
+302	00ef	00000000		nop
+303	00f0	00000000		nop
+304	00f1	00000000		nop
+305				; Automatically 1 NOPs removed by reduceNOPs.sh
+306	00f2	8fdf0004		lw	%GPR31,4(%GPR30)	
+307	00f3	27dd0004		addui	%GPR29,%GPR30,$4	
+308	00f4	8fde0000		lw	%GPR30,0(%GPR30)	
+309	00f5	00000000		nop
+310	00f6	00000000		nop
+311	00f7	00000000		nop
+312	00f8	03e00008		jr	%GPR31	
+313	00f9	00000000		nop
+314	00fa	00000000		nop
+315	00fb	00000000		nop
+316				; Automatically 2 NOPs removed by reduceNOPs.sh
+317			exit:
+318	00fc	00000000		nop
+319	00fd	00000000		nop
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+exit	.text	00fc	Label	fc	317 
+method	.text	0015	Label	15	25 
+L10	.text	00d7	Label	d7	271 
+L11	.text	00e3	Label	e3	286 
+L12	.text	00ef	Label	ef	301 
+L1	.text	0015	Label	15	26 
+L2	.text	002b	Label	2b	54 
+L3	.text	0038	Label	38	71 
+L4	.text	0077	Label	77	149 
+L5	.text	008e	Label	8e	178 
+L6	.text	00a5	Label	a5	207 
+L7	.text	00bc	Label	bc	236 
+L8	.text	00c7	Label	c7	250 
+L9	.text	00cb	Label	cb	256 
+main	.text	0038	Label	38	70 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	fe 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		0 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

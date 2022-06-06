@@ -1,0 +1,11 @@
+* ASIP COMMANDS: Stellen die man aendern muss/die geaendert wurden, wenn man neue Befehle einbaut.
+* ASIP STATS : Stellen die geaendert wurden, um die Ausgaben fuer die Statistik zu erweitern.
+* ASIP MEMORYDELAY : Stellen die geaendert wurden, um die vorhandenen LoadStalls den ASIP-CPU's anzupassen.
+* ASIP FLOAT : Stellen, die geaendert wurden, um FloatingPoint Befehle zu entfernen.
+* ASIP OVERFLOW : Die ueberpruefung auf UEberlauf bei Arithmetischen Operationen wird ausgeschaltet.
+* ASIP JUMP : Bei Sprungbefehlen werden immer 2 Takte in die Pipeline geladen, auch wenn nur der erste der Beiden bis zur WriteBack Phase kommt. Der 2te Befehl fehlte im Simulator und wird durch ein erhoehen des CycleCounters im richtigen Moment simuliert.
+* ASIP PIPELINE : Die schreib/lese-Zugriffe auf die Register werden jetzt durch Methodenaufrufe gekapselt. Intern haben die Register jetzt eine History, wodurch die Verzoegerung zwischen Register-WriteBack und Register-Read, wie sie in einer richtigen Pipeline auftreten, simuliert werden. Die Dauer der Verzoegerung kann man per Startparameter -pd# einstellen. Bei einem cycle-count-Overflow wird die History automatisch angepasst. Desweiteren kann man mit dem Startparameter -cdd# (Check Data Dependency) eine automatische UEberpruefung auf Einhaltung von Datenabhaengigkeiten aktivieren.
+* ASIP BASEBLOCKS : neue Statistiken.
+* ASIP UNSUPPORTED COMMANDS : Befehle, die zuvor im dlx-sim enthalten waren, aber von der ASIPMeister CPU micht unterstuetzt werden.
+* ASIP STALLING : A concept for simulating the stalling of the Pipeline, how it is used by the load and store commands. Basically every command can requesst a pipeline-stall for the future. When the cycle-time of the scheduled stalling is reached, then some things will be changed, i.e. the clock-counter, (some of) the time-stamps for future register-write-backs and other stalling-requests for the future. For every new clockcycle, which is about to be simulated, pending stalling requests will be checked and performed if their time is reached.
+

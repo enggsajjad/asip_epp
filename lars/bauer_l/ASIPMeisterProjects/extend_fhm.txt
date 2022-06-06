@@ -1,0 +1,27 @@
+Wie man *.fhm ändert:
+---------------------
+
+
+- Um eine lokale Kopie von ASIPmeister verwenden zu können kopiert man am besten den gesamten /usr/epp/ASIPmeister in sein home.
+- zum Starten anpassen des Pfades ($PATH) nicht vergessen !
+- ASIP_MEISTER_HOME Variable in folgenden Dateien anpassen :
+  - bin/modelgen
+  - bin/archest
+  - bin/ASIPmeister
+  
+- die FHM Dateien liegen unter: $ASIP_MEISTER_HOME/share/fhmdb/
+- Die Dateien die unter ASIPmeister angezeigt und verwendet werden sollen müssen in  share/fhmdb/fhmdbstruct definiert werden. Wenn also eine neue fhm Datei (oder ein ganzer Ordner) hinzugefügt werden soll muss diese hier eingefügt werden.
+
+- In den FHM Dateien erscheint die Beschreibung, die in der Resource Declaration angezeigt wird 3 mal (für Behaviour, RT, Synthese). Beispiel:
+
+  <model>
+    <design_level> behavior </design_level>
+	...
+	model extender${bit_width}_${bit_width_out} {
+	   ...
+	}
+  </model>
+
+
+- Änderungen müssen (vermutlich) in allen vorgenommen werden: Die verschiedenen Versionen werden für verschiedene Design-Level verwendet: Behaviour,  RT, Synthese.
+

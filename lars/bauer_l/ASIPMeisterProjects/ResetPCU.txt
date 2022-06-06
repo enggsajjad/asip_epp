@@ -1,0 +1,7 @@
+[bauer_l@i80pc04 CPU]$ diff rtg_controller.vhd ../CPU.orig/rtg_controller.vhd
+1556,1557c1556
+<   CTRLOUT_PC_RESET <= '1' when rst = '1' else
+<                       resctrl_PC_reset_intr when interrupt_handling =
+---
+>   CTRLOUT_PC_RESET <= resctrl_PC_reset_intr when interrupt_handling =
+

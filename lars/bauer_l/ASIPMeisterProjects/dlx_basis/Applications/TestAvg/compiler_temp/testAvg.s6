@@ -1,0 +1,90 @@
+	.section	.data
+	.section	.text
+	.section	.text
+	.addressing	Word
+	
+	xor	%GPR30, %GPR30, %GPR30
+	xor	%GPR29, %GPR29, %GPR29
+	xor	%GPR28, %GPR28, %GPR28
+	nop
+	lhi	%GPR30, $(0xFFFFC/0x10000)
+	lhi	%GPR29, $(0xFFFFC/0x10000)
+	nop
+	nop
+	ori	%GPR30, %GPR30, $(0xFFFFC%0x10000)
+	ori	%GPR29, %GPR29, $(0xFFFFC%0x10000)
+	nop
+	nop
+	nop
+	sw	-4(%GPR29), %GPR30
+	sw	-8(%GPR29), %GPR31
+	addi	%GPR29, %GPR30, $-8
+	nop
+	nop
+	nop
+	jal	main	
+	nop
+	nop
+	nop
+				; Automatically 2 NOPs removed by reduceNOPs.sh
+	sw	0(%GPR29), %GPR1
+	jal	exit
+	nop
+	nop
+
+testAvg:
+L1:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 8 NOPs removed by reduceNOPs.sh
+	add	%GPR1,%GPR1,%GPR2	
+	NOP		;;4,7
+	NOP		;;4,7
+	NOP		;;4,7
+	lhi	%GPR2,$0	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	%GPR2,%GPR2,$2	
+	NOP		;;7,11
+	NOP		;;7,11
+	NOP		;;7,11
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	div	%GPR28,%GPR1,%GPR2	
+	NOP		;;11,15
+	NOP		;;11,15
+	NOP		;;11,15
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L2	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+L2:
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	NOP		
+	NOP		
+	jr	%GPR31	
+	NOP		
+	NOP		
+	NOP		
+				; Automatically 2 NOPs removed by reduceNOPs.sh
+exit:
+	NOP
+	NOP

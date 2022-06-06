@@ -1,0 +1,101 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.section	.data
+2				.section	.text
+3				.addressing	Word
+4	0000	03def026		xor	%GPR30, %GPR30, %GPR30
+5	0001	03bde826		xor	%GPR29, %GPR29, %GPR29
+6	0002	039ce026		xor	%GPR28, %GPR28, %GPR28
+7	0003	00000000		nop
+8	0004	3c1e000f		lhi	%GPR30, $15
+9	0005	3c1d000f		lhi	%GPR29, $15
+10	0006	00000000		nop
+11	0007	00000000		nop
+12	0008	37defffc		ori	%GPR30, %GPR30, $65532
+13	0009	37bdfffc		ori	%GPR29, %GPR29, $65532
+14	000a	00000000		nop
+15	000b	00000000		nop
+16	000c	00000000		nop
+17	000d	afbefffc		sw	-4(%GPR29), %GPR30
+18	000e	afbffff8		sw	-8(%GPR29), %GPR31
+19	000f	23ddfff8		addi	%GPR29, %GPR30, $-8
+20	0010	0c000000		jal	main	
+21	0011	00000000		nop
+22	0012	afa10000		sw	0(%GPR29), %GPR1
+23	0013	0c000021		jal	exit	
+24	0014	00000000		nop
+25			testSwap:
+26			L1:
+27	0015	00000000		nop
+28	0016	00000000		nop
+29	0017	00000000		nop
+30				; Automatically 1 NOPs removed by reduceNOPs.sh
+31	0018	afbefffc		sw	-4(%GPR29),%GPR30	
+32	0019	afbf0000		sw	0(%GPR29),%GPR31	
+33	001a	2fbe0004		subui	%GPR30,%GPR29,$4	
+34	001b	2bbd0008		subi	%GPR29,%GPR29,$8	
+35	001c	00000000		nop
+36	001d	00000000		nop
+37	001e	00000000		nop
+38				; Automatically 6 NOPs removed by reduceNOPs.sh
+39	001f	0781c000		swap	%GPR28,%GPR1	
+40	0020	00000000		nop	;;3,11
+41	0021	00000000		nop	;;3,11
+42	0022	00000000		nop	;;3,11
+43				; Automatically 5 NOPs removed by reduceNOPs.sh
+44	0023	08000004		j	L2	
+45	0024	00000000		nop
+46	0025	00000000		nop
+47	0026	00000000		nop
+48				; Automatically 1 NOPs removed by reduceNOPs.sh
+49			L2:
+50	0027	00000000		nop
+51	0028	00000000		nop
+52	0029	00000000		nop
+53				; Automatically 1 NOPs removed by reduceNOPs.sh
+54	002a	8fdf0004		lw	%GPR31,4(%GPR30)	
+55	002b	27dd0004		addui	%GPR29,%GPR30,$4	
+56	002c	8fde0000		lw	%GPR30,0(%GPR30)	
+57	002d	00000000		nop
+58	002e	00000000		nop
+59	002f	00000000		nop
+60	0030	03e00008		jr	%GPR31	
+61	0031	00000000		nop
+62	0032	00000000		nop
+63	0033	00000000		nop
+64				; Automatically 2 NOPs removed by reduceNOPs.sh
+65			exit:
+66	0034	00000000		nop
+67	0035	00000000		nop
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+exit	.text	0034	Label	34	65 
+L1	.text	0015	Label	15	26 
+L2	.text	0027	Label	27	49 
+testSwap	.text	0015	Label	15	25 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+main	.text	0010	Undefined	10	20 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	36 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		0 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

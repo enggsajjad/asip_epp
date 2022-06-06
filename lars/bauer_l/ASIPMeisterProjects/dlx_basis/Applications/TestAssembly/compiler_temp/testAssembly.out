@@ -1,0 +1,61 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.section	.text
+2				.addressing	Word
+3				
+4	0000	20010005	main:	addi	%r1, %r0, $5
+5	0001	00000000		nop	; Automatically Added by addNopAfterLabels.pl
+6	0002	20020007		addi	%r2, %r0, $7
+7	0003	00000000		nop
+8	0004	00000000		nop
+9	0005	00000000		nop
+10			
+11	0006	0800000c		j	label
+12	0007	00000000		nop
+13	0008	8c030000		lw	%r3, 0(%r0)
+14	0009	8c030000		lw	%r3, 0(%r0)
+15	000a	00000000		nop	; Automatically added by fix-stall-insns.pl
+16	000b	00000000		nop	; Automatically added by fix-stall-insns.pl
+17	000c	00000000		nop	; Automatically added by fix-stall-insns.pl
+18	000d	00000000		nop	; Automatically added by fix-stall-insns.pl
+19	000e	8c030000		lw	%r3, 0(%r0)
+20	000f	8c030000		lw	%r3, 0(%r0)
+21			
+22	0010	00000000		nop
+23	0011	00000000		nop
+24			
+25	0012	00000000	label:	nop
+26	0013	00000000		nop
+27	0014	00000000		nop
+28	0015	00000000		nop
+29							; Automatically 3 NOPs removed by reduceNOPs.sh
+30			
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+label	.text	0012	Label	12	25 
+main	.text	0000	Label	0	4 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	16 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		0 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

@@ -1,0 +1,79 @@
+NET "clk_in" LOC = AH15;
+NET "clk_in" TNM_NET = "clk_in";
+TIMESPEC "TS_clk" = PERIOD "clk_in" 100 MHz HIGH 50 %;
+
+#NET "CLKIN_P_IN" IOSTANDARD = LVDS_25;
+#NET "CLKIN_P_IN" LOC = L19;
+#NET "CLKIN_N_IN" IOSTANDARD = LVDS_25;
+#NET "CLKIN_N_IN" LOC = K19;
+
+
+NET "AudioR_Out" LOC =   L33  | IOSTANDARD = LVCMOS33 ;
+NET "AudioL_Out" LOC =   J34  | IOSTANDARD = LVCMOS33 ;
+
+#NET "serial0_out" LOC =   H33 | IOSTANDARD = LVCMOS33 ;
+#NET "serial0_in"  LOC =   H34 | IOSTANDARD = LVCMOS33 ; 
+
+#NET "AudioL_Out" LOC =   F34 | IOSTANDARD = LVCMOS33 ;
+#NET "AudioR_Out" LOC =   H33 | IOSTANDARD = LVCMOS33 ;
+
+NET "serial0_in" 	LOC =   AN33 | IOSTANDARD = LVCMOS33 ;
+NET "serial0_out" LOC =   AN34 | IOSTANDARD = LVCMOS33 ; 
+
+NET "clock_33" LOC = AH17 ; # 33MHZ
+
+#NET "reset" LOC = U8;
+NET "reset" LOC =  H32 | PULLDOWN |IOSTANDARD = LVCMOS33 ;
+
+NET  "knop[0]" LOC=   F34  | PULLDOWN  | IOSTANDARD = LVCMOS33 ; 
+NET  "knop[1]" LOC=   J32  | PULLDOWN  | IOSTANDARD = LVCMOS33 ; 
+NET  "knop[2]" LOC=   G32  | PULLDOWN  | IOSTANDARD = LVCMOS33 ;   
+NET  "knop[3]" LOC=   G33  | PULLDOWN  | IOSTANDARD = LVCMOS33 ; 
+
+#NET "Led1" LOC  =  P34 | IOSTANDARD = LVCMOS33 ;   #RED 
+
+#NET "AudioR_Led" LOC =  P34 | IOSTANDARD = LVCMOS33 ; #RED 
+#NET "AudioL_Led" LOC =  N34 | IOSTANDARD = LVCMOS33 ; #Yellow 
+#NET "cpu_finish" LOC =  M32 | IOSTANDARD = LVCMOS33 ; #GREEN
+  
+#------------------------------------------------------------
+# I2C (LCD)    
+NET "pca9564_address<0>" LOC = "AK34"   | IOSTANDARD = LVCMOS33 | SLEW = FAST   | PULLUP; #| IOSTANDARD = LVCMOS33 
+NET "pca9564_address<1>" LOC = "AJ32"   | IOSTANDARD = LVCMOS33  | SLEW = FAST   | PULLUP;
+
+NET "pca9564_ce"         LOC = "AG32"    | IOSTANDARD = LVCMOS33 | SLEW = FAST   | PULLUP;
+
+NET "pca9564_data<0>"    LOC = "AL33"    | IOSTANDARD = LVCMOS33 | SLEW = FAST   | PULLUP;
+NET "pca9564_data<1>"    LOC = "AK32"    | IOSTANDARD = LVCMOS33 | SLEW = FAST   | PULLUP; 
+NET "pca9564_data<2>"    LOC = "AK33"    | IOSTANDARD = LVCMOS33 | SLEW = FAST   | PULLUP;
+NET "pca9564_data<3>"    LOC = "AH32"    | IOSTANDARD = LVCMOS33 | SLEW = FAST   | PULLUP;
+NET "pca9564_data<4>"    LOC = "AE32"   | IOSTANDARD = LVCMOS33  | SLEW = FAST   | PULLUP;
+NET "pca9564_data<5>"    LOC = "W32"     | IOSTANDARD = LVCMOS33 | SLEW = FAST   | PULLUP;
+NET "pca9564_data<6>"    LOC = "Y34"     | IOSTANDARD = LVCMOS33 | SLEW = FAST   | PULLUP;
+NET "pca9564_data<7>"    LOC = "AA34"    | IOSTANDARD = LVCMOS33 | SLEW = FAST   | PULLUP;
+
+NET "pca9564_rd"         LOC = "AH34"  | IOSTANDARD = LVCMOS33 | SLEW = FAST;
+NET "pca9564_reset"      LOC = "AM33" | IOSTANDARD = LVCMOS33  | SLEW = FAST;
+NET "pca9564_wr"         LOC = "Y32"  | IOSTANDARD = LVCMOS33  | SLEW = FAST;
+NET "pca9564_int"        LOC = "AL34"  | IOSTANDARD = LVCMOS33 ;
+
+
+#28   AD32 -- FREE
+
+NET "led_buildin[0]" LOC = H18;
+NET "led_buildin[1]" LOC = L18;
+NET "led_buildin[2]" LOC = G15;
+NET "led_buildin[3]" LOC = AD26;
+#NET "led_buildin[4]" LOC = G16;
+#NET "led_buildin[5]" LOC = AD25;
+#NET "led_buildin[6]" LOC = AD24;
+#NET "led_buildin[7]" LOC = AE24;
+
+#NET  "dipswitchs[7]" LOC="U25";   # Bank 15, Vcco=1.8V, DCI using 49.9 ohm resistors
+#NET  "dipswitchs[6]" LOC="AG27";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+#NET  "dipswitchs[5]" LOC="AF25";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+#NET  "dipswitchs[4]" LOC="AF26";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+#NET  "dipswitchs[3]" LOC="AE27";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+#NET  "dipswitchs[2]" LOC="AE26";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+#NET  "dipswitchs[1]" LOC="AC25";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors
+#NET  "dipswitchs[0]" LOC="AC24";  # Bank 21, Vcco=1.8V, DCI using 49.9 ohm resistors

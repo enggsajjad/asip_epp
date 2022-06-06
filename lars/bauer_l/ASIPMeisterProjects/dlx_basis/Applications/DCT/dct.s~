@@ -1,0 +1,461 @@
+; Compiled by Karlsruhe DLX GCC
+.section	.data
+_Input:
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 0
+	.data.8 0
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 0
+	.data.8 0
+	.data.8 0
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 0
+	.data.8 0
+	.data.8 0
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 0
+	.data.8 0
+	.data.8 0
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 0
+	.data.8 0
+	.data.8 0
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 0
+	.data.8 0
+	.data.8 0
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 0
+	.data.8 0
+	.data.8 0
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 0
+	.data.8 0
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+	.data.8 255
+_COS1:
+	.data.8 125
+	.data.8 122
+	.data.8 115
+	.data.8 103
+	.data.8 88
+	.data.8 69
+	.data.8 47
+	.data.8 24
+	.data.8 125
+	.data.8 103
+	.data.8 47
+	.data.8 232
+	.data.8 168
+	.data.8 134
+	.data.8 141
+	.data.8 187
+	.data.8 125
+	.data.8 69
+	.data.8 209
+	.data.8 134
+	.data.8 168
+	.data.8 24
+	.data.8 115
+	.data.8 103
+	.data.8 125
+	.data.8 24
+	.data.8 141
+	.data.8 187
+	.data.8 88
+	.data.8 103
+	.data.8 209
+	.data.8 134
+	.data.8 125
+	.data.8 232
+	.data.8 141
+	.data.8 69
+	.data.8 88
+	.data.8 153
+	.data.8 209
+	.data.8 122
+	.data.8 125
+	.data.8 187
+	.data.8 209
+	.data.8 122
+	.data.8 168
+	.data.8 232
+	.data.8 115
+	.data.8 153
+	.data.8 125
+	.data.8 153
+	.data.8 47
+	.data.8 24
+	.data.8 168
+	.data.8 122
+	.data.8 141
+	.data.8 69
+	.data.8 125
+	.data.8 134
+	.data.8 115
+	.data.8 153
+	.data.8 88
+	.data.8 187
+	.data.8 47
+	.data.8 232
+_COS2:
+	.data.8 125
+	.data.8 125
+	.data.8 125
+	.data.8 125
+	.data.8 125
+	.data.8 125
+	.data.8 125
+	.data.8 125
+	.data.8 122
+	.data.8 103
+	.data.8 69
+	.data.8 24
+	.data.8 232
+	.data.8 187
+	.data.8 153
+	.data.8 134
+	.data.8 115
+	.data.8 47
+	.data.8 209
+	.data.8 141
+	.data.8 141
+	.data.8 209
+	.data.8 47
+	.data.8 115
+	.data.8 103
+	.data.8 232
+	.data.8 134
+	.data.8 187
+	.data.8 69
+	.data.8 122
+	.data.8 24
+	.data.8 153
+	.data.8 88
+	.data.8 168
+	.data.8 168
+	.data.8 88
+	.data.8 88
+	.data.8 168
+	.data.8 168
+	.data.8 88
+	.data.8 69
+	.data.8 134
+	.data.8 24
+	.data.8 103
+	.data.8 153
+	.data.8 232
+	.data.8 122
+	.data.8 187
+	.data.8 47
+	.data.8 141
+	.data.8 115
+	.data.8 209
+	.data.8 209
+	.data.8 115
+	.data.8 141
+	.data.8 47
+	.data.8 24
+	.data.8 187
+	.data.8 103
+	.data.8 134
+	.data.8 122
+	.data.8 153
+	.data.8 69
+	.data.8 232
+.section	.text
+	.align 2
+_my_mult:
+;  Function 'my_mult'; 0 bytes of locals, 2 regs to save.
+	sw	-4(%GPR29),%GPR30	; push fp
+	add	%GPR30,%GPR0,%GPR29	; fp = sp
+	sw	-8(%GPR29),%GPR31	; push ret addr
+	subui	%GPR29,%GPR29,#16	; alloc local storage
+	sw	0(%GPR29),%GPR2
+	sw	4(%GPR29),%GPR3
+	lw	%GPR1,(%GPR30)
+	lw	%GPR3,4(%GPR30)
+	mult	%GPR2,%GPR1,%GPR3
+	add	%GPR1,%GPR0,%GPR2
+	j	L1
+	nop	; delay slot nop
+L1:
+	lw	%GPR2,0(0PR29)
+	lw	%GPR3,4(0PR29)
+;  Leaving function
+	lw	%GPR31,-8(%GPR30)
+	add	%GPR29,%GPR0,%GPR30
+	lw	%GPR30,-4(%GPR30)
+	jr	%GPR31
+	nop
+	.align 2
+_DCT:
+;  Function 'DCT'; 80 bytes of locals, 3 regs to save.
+	sw	-4(%GPR29),%GPR30	; push fp
+	add	%GPR30,%GPR0,%GPR29	; fp = sp
+	sw	-8(%GPR29),%GPR31	; push ret addr
+	subui	%GPR29,%GPR29,#104	; alloc local storage
+	sw	0(%GPR29),%GPR2
+	sw	4(%GPR29),%GPR3
+	sw	8(%GPR29),%GPR4
+	nop
+	addi	%GPR1,%GPR0,#0
+	sw	-76(%GPR30),%GPR1
+L3:
+	lw	%GPR1,-76(%GPR30)
+	slei	%GPR2,%GPR1,#7
+	bnez	%GPR2,L6
+	nop	; delay slot nop
+	j	L4
+	nop	; delay slot nop
+L6:
+	addi	%GPR1,%GPR0,#0
+	sw	-80(%GPR30),%GPR1
+L7:
+	lw	%GPR1,-80(%GPR30)
+	slei	%GPR2,%GPR1,#7
+	bnez	%GPR2,L10
+	nop	; delay slot nop
+	j	L8
+	nop	; delay slot nop
+L10:
+	addi	%GPR1,%GPR0,(#0x0)&0xff
+	sb	-85(%GPR30),%GPR1
+	addi	%GPR1,%GPR0,#0
+	sw	-84(%GPR30),%GPR1
+L11:
+	lw	%GPR1,-84(%GPR30)
+	slei	%GPR2,%GPR1,#7
+	bnez	%GPR2,L14
+	nop	; delay slot nop
+	j	L12
+	nop	; delay slot nop
+L14:
+	lw	%GPR1,-76(%GPR30)
+	addi	%GPR2,%GPR0,#8
+	mult	%GPR1,%GPR1,%GPR2
+	lhi	%GPR31,%hi(_Input)
+	addui	%GPR31,%GPR31,%lo(_Input)
+	add	%GPR2,%GPR1,%GPR31
+	lw	%GPR3,-84(%GPR30)
+	add	%GPR1,%GPR2,%GPR3
+	lw	%GPR2,-84(%GPR30)
+	addi	%GPR3,%GPR0,#8
+	mult	%GPR2,%GPR2,%GPR3
+	lhi	%GPR31,%hi(_COS2)
+	addui	%GPR31,%GPR31,%lo(_COS2)
+	add	%GPR3,%GPR2,%GPR31
+	lw	%GPR4,-80(%GPR30)
+	add	%GPR2,%GPR3,%GPR4
+	lb	%GPR1,(%GPR1)
+	lb	%GPR2,(%GPR2)
+	mult	%GPR1,%GPR1,%GPR2
+	lb	%GPR2,-85(%GPR30)
+	add	%GPR1,%GPR0,%GPR1
+	add	%GPR2,%GPR2,%GPR1
+	sb	-85(%GPR30),%GPR2
+L13:
+	lw	%GPR2,-84(%GPR30)
+	addi	%GPR1,%GPR2,#1
+	add	%GPR2,%GPR0,%GPR1
+	sw	-84(%GPR30),%GPR2
+	j	L11
+	nop	; delay slot nop
+L12:
+	lw	%GPR1,-76(%GPR30)
+	addi	%GPR2,%GPR0,#8
+	mult	%GPR1,%GPR1,%GPR2
+	addi	%GPR2,%GPR30,#-8
+	add	%GPR1,%GPR1,%GPR2
+	addi	%GPR2,%GPR1,#-64
+	lw	%GPR3,-80(%GPR30)
+	add	%GPR1,%GPR2,%GPR3
+	lb	%GPR2,-85(%GPR30)
+	sb	(%GPR1),%GPR2
+L9:
+	lw	%GPR2,-80(%GPR30)
+	addi	%GPR1,%GPR2,#1
+	add	%GPR2,%GPR0,%GPR1
+	sw	-80(%GPR30),%GPR2
+	j	L7
+	nop	; delay slot nop
+L8:
+L5:
+	lw	%GPR2,-76(%GPR30)
+	addi	%GPR1,%GPR2,#1
+	add	%GPR2,%GPR0,%GPR1
+	sw	-76(%GPR30),%GPR2
+	j	L3
+	nop	; delay slot nop
+L4:
+	nop
+	addi	%GPR1,%GPR0,#0
+	sw	-76(%GPR30),%GPR1
+L15:
+	lw	%GPR1,-76(%GPR30)
+	slei	%GPR2,%GPR1,#7
+	bnez	%GPR2,L18
+	nop	; delay slot nop
+	j	L16
+	nop	; delay slot nop
+L18:
+	addi	%GPR1,%GPR0,#0
+	sw	-80(%GPR30),%GPR1
+L19:
+	lw	%GPR1,-80(%GPR30)
+	slei	%GPR2,%GPR1,#7
+	bnez	%GPR2,L22
+	nop	; delay slot nop
+	j	L20
+	nop	; delay slot nop
+L22:
+	addi	%GPR1,%GPR0,(#0x0)&0xff
+	sb	-85(%GPR30),%GPR1
+	addi	%GPR1,%GPR0,#0
+	sw	-84(%GPR30),%GPR1
+L23:
+	lw	%GPR1,-84(%GPR30)
+	slei	%GPR2,%GPR1,#7
+	bnez	%GPR2,L26
+	nop	; delay slot nop
+	j	L24
+	nop	; delay slot nop
+L26:
+	lw	%GPR1,-76(%GPR30)
+	addi	%GPR2,%GPR0,#8
+	mult	%GPR1,%GPR1,%GPR2
+	lhi	%GPR31,%hi(_COS1)
+	addui	%GPR31,%GPR31,%lo(_COS1)
+	add	%GPR2,%GPR1,%GPR31
+	lw	%GPR3,-84(%GPR30)
+	add	%GPR1,%GPR2,%GPR3
+	lw	%GPR2,-84(%GPR30)
+	addi	%GPR3,%GPR0,#8
+	mult	%GPR2,%GPR2,%GPR3
+	addi	%GPR3,%GPR30,#-8
+	add	%GPR2,%GPR2,%GPR3
+	addi	%GPR3,%GPR2,#-64
+	lw	%GPR4,-80(%GPR30)
+	add	%GPR2,%GPR3,%GPR4
+	lb	%GPR1,(%GPR1)
+	lb	%GPR2,(%GPR2)
+	mult	%GPR1,%GPR1,%GPR2
+	lb	%GPR2,-85(%GPR30)
+	add	%GPR1,%GPR0,%GPR1
+	add	%GPR2,%GPR2,%GPR1
+	sb	-85(%GPR30),%GPR2
+L25:
+	lw	%GPR2,-84(%GPR30)
+	addi	%GPR1,%GPR2,#1
+	add	%GPR2,%GPR0,%GPR1
+	sw	-84(%GPR30),%GPR2
+	j	L23
+	nop	; delay slot nop
+L24:
+	lw	%GPR1,-76(%GPR30)
+	addi	%GPR2,%GPR0,#8
+	mult	%GPR1,%GPR1,%GPR2
+	lhi	%GPR31,%hi(_Output)
+	addui	%GPR31,%GPR31,%lo(_Output)
+	add	%GPR2,%GPR1,%GPR31
+	lw	%GPR3,-80(%GPR30)
+	add	%GPR1,%GPR2,%GPR3
+	lb	%GPR2,-85(%GPR30)
+	sb	(%GPR1),%GPR2
+L21:
+	lw	%GPR2,-80(%GPR30)
+	addi	%GPR1,%GPR2,#1
+	add	%GPR2,%GPR0,%GPR1
+	sw	-80(%GPR30),%GPR2
+	j	L19
+	nop	; delay slot nop
+L20:
+L17:
+	lw	%GPR2,-76(%GPR30)
+	addi	%GPR1,%GPR2,#1
+	add	%GPR2,%GPR0,%GPR1
+	sw	-76(%GPR30),%GPR2
+	j	L15
+	nop	; delay slot nop
+L16:
+L2:
+	lw	%GPR2,0(0PR29)
+	lw	%GPR3,4(0PR29)
+	lw	%GPR4,8(0PR29)
+;  Leaving function
+	lw	%GPR31,-8(%GPR30)
+	add	%GPR29,%GPR0,%GPR30
+	lw	%GPR30,-4(%GPR30)
+	jr	%GPR31
+	nop
+	.align 2
+_main:
+;  Function 'main'; 4 bytes of locals, 0 regs to save.
+	sw	-4(%GPR29),%GPR30	; push fp
+	add	%GPR30,%GPR0,%GPR29	; fp = sp
+	sw	-8(%GPR29),%GPR31	; push ret addr
+	subui	%GPR29,%GPR29,#12	; alloc local storage
+	jal	___main
+	nop	; delay slot nop
+	addi	%GPR1,%GPR0,#0
+	sw	-12(%GPR30),%GPR1
+	addi	%GPR1,%GPR0,#0
+	sw	-12(%GPR30),%GPR1
+L28:
+	lw	%GPR1,-12(%GPR30)
+	slei	%GPR2,%GPR1,#9
+	bnez	%GPR2,L31
+	nop	; delay slot nop
+	j	L29
+	nop	; delay slot nop
+L31:
+	add	%GPR2,%GPR0,%GPR29
+	jal	_DCT
+	nop	; delay slot nop
+L30:
+	lw	%GPR2,-12(%GPR30)
+	addi	%GPR1,%GPR2,#1
+	add	%GPR2,%GPR0,%GPR1
+	sw	-12(%GPR30),%GPR2
+	j	L28
+	nop	; delay slot nop
+L29:
+L27:
+;  Leaving function
+	jal	_exit
+	nop
+.section	.data
+_Output:
+	.space 64

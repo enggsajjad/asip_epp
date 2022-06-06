@@ -1,0 +1,12 @@
+#!/bin/sh
+
+ASIP_MEISTER_HOME=/Software/epp/ASIPmeister
+
+st=0
+trap "/bin/rm -f formula.txt formula.log tmp.txt fhm.log ; exit \$st" 0 1 2 3 15
+
+cd meister
+/bin/rm -f $2 archest_err.log
+cp ${ASIP_MEISTER_HOME}/etc/formula.txt .
+${ASIP_MEISTER_HOME}/bin/estimate -c $1 -o $2 > archest_err.log
+st=$?

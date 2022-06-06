@@ -1,0 +1,15 @@
+#!/bin/sh
+# @(#)buildcompiler	1.6 05/05/19	
+
+#uses COSY internal $COSYROOT
+#uses CES used $COMP_NAME
+
+echo "COSYROOT: ${COSYROOT}"
+echo "COMPILERNAME: ${COMP_NAME}"
+echo "COMPILERNAME: ${COMPNAME}"
+
+cd ${COSYROOT}/compilers/${COMPNAME}
+echo "script uses ${COMPNAME} from outer shell"
+time mkc
+echo "Compiler has been build. Press Control-C to continue process."
+exit

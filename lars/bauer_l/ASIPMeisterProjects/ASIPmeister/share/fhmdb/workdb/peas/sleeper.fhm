@@ -1,0 +1,2929 @@
+<?xml version="1.0" encoding="Shift_JIS" ?>
+<FHM>
+  <model_name> sleeper </model_name>
+
+  <model>
+    <design_level> behavior </design_level>
+    <version> 1.0 </version>
+    <author> <![CDATA[ Sasaki Toshiyuki ]]> </author>
+    <affiliation> <![CDATA[ Osaka Univ. ]]> </affiliation>
+    <model_info> <![CDATA[ (c)2001,PEAS3-Lite Project ]]> </model_info>
+
+    <parameter>
+      <parameter_value key="bit_width">
+        <value> 1 </value>
+      </parameter_value>
+      <parameter_value key="port_type">
+        <value> in </value>
+        <value> out </value>
+        <value> inout </value>
+      </parameter_value>
+    </parameter>
+
+    <function_description>
+      <script>
+        <![CDATA[
+#!/usr/bin/perl
+# This script generates register function definition in behavior level
+# parameter : bit_width port_type
+
+if ($#ARGV != 1) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script bit_width port_type\n";
+    exit (100);
+}
+
+$bit_width    = $ARGV[0];
+
+if ($bit_width > 80) {
+    if ($bit_width != 128) {
+    print "bit_width $bit_width is not supported.\n";
+    exit (100);
+    }
+}
+elsif ($bit_width < 1) {
+    print "bit_width $bit_width is not supported.\n";
+    exit (100);
+}
+
+if ("$bit_width" == "1") {
+    $range = "";
+}
+else {
+    $W1 = $bit_width - 1;
+    $range = "[$W1:0]";
+}
+
+unless ("$ARGV[1]" eq "in" or "$ARGV[1]" eq "out" or "$ARGV[1]" eq "inout") {
+  print "port_type $ARGV[1] is not supported.\n";
+  exit(100);
+}
+
+
+print <<FHM_DL_READ;
+/** sleep */
+function sleep {
+  input {
+    bit [1:0] sleeplength;
+  }
+  output {
+  }
+  control {
+   in start, cancel;
+   out fin;
+  }
+  protocol {
+    repeat [start == 1] until (fin == 1 || cancel == 1);
+  }
+}
+FHM_DL_READ
+
+exit (0);
+        ]]>
+      </script>
+    </function_description>
+
+    <function_conv>
+      <script>
+        <![CDATA[
+#!/usr/bin/perl
+# This script generates register function definition in behavior level
+# parameter : bit_width port_type
+
+if ($#ARGV != 1) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script bit_width port_type\n";
+    exit (100);
+}
+
+$bit_width    = $ARGV[0];
+
+if ($bit_width > 80) {
+    if ($bit_width != 128) {
+    print "bit_width $bit_width is not supported.\n";
+    exit (100);
+    }
+}
+elsif ($bit_width < 1) {
+    print "bit_width $bit_width is not supported.\n";
+    exit (100);
+}
+
+if ("$bit_width" == "1") {
+    $range = "";
+}
+else {
+    $W1 = $bit_width - 1;
+    $range = "[$W1:0]";
+}
+
+if ("$ARGV[1]" eq "in" or "$ARGV[1]" eq "out" or "$ARGV[1]" eq "inout") {
+
+}
+else {
+  print "port_type $ARGV[1] is not supported.\n";
+  exit(100);
+}
+
+
+print <<FHM_DL_READ;
+/** sleep */
+function sleep {
+  input {
+    bit [1:0] sleeplength;
+  }
+  output {
+  }
+  control {
+   in bit start;
+   in bit cancel;
+   out bit fin;
+  }
+  protocol {
+    multi_cycle_protocol {
+      start_signal	start = '1';
+      fin_signal	fin = '1';
+      cancel_signal     cancel = '1';
+    }
+  }
+}
+FHM_DL_READ
+
+exit (0);
+        ]]>
+      </script>
+    </function_conv>
+
+    <function_port>
+      <script>
+        <![CDATA[
+#!/usr/bin/perl
+# This script generates register port information in behavior level
+# parameter : bit_width
+
+if ($#ARGV != 1) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script bit_width port_type\n";
+    exit (100);
+}
+
+$bit_width    = $ARGV[0];
+
+$msb = $bit_width-1;
+
+print <<FHM_DL_MORE;
+start	in	bit	ctrl
+fin	out	bit	ctrl
+cancel	in	bit	ctrl
+sleeplength   in   bit_vector   1   0	data
+FHM_DL_MORE
+
+exit (0);
+        ]]>
+      </script>
+    </function_port>
+
+    <design>
+      <design_lang> vhdl </design_lang>
+
+      <instance>
+        <script>
+          <![CDATA[
+#!/usr/bin/perl
+# This script generates register instance in behavior level
+# parameter : instance_name bit_width
+
+if ($#ARGV != 2) {
+  print "number of parameters is wrong.\n";
+  print "usage : this_script instance_name bit_width port_type\n";
+  exit (100);
+}
+
+$instance_name = $ARGV[0];
+$bit_width     = $ARGV[1];
+
+
+  $signals = "type t_s is (st0, st1, st2);
+  signal state, next_state : t_s;";
+  $vhdl    = "process (state, start)
+	variable sleep_left : integer;
+	begin
+		case state is
+		when st0 =>
+			if (start = '1') then
+				if (TO_INTEGER(UNSIGNED(sleeplength)) = 1) then
+					next_state <= st0;
+					fin <= '1';
+				else
+					next_state <= st1;
+					fin <= '0';
+				end if;
+			else
+				next_state <= st0;
+				fin <= '0';
+			end if;
+		when st1 =>
+			if (TO_INTEGER(UNSIGNED(sleeplength)) = 2) then
+				next_state <= st0;
+				fin <= '1';
+			else
+				next_state <= st2;
+				fin <= '0';
+			end if;
+		when st2 =>
+			fin <= '1';
+			next_state <= st0;
+		end case;
+	end process;
+
+	process (clock, reset)
+	begin
+		if (reset = '1') then
+			state <= st0;
+		elsif (clock'event and clock = '1') then
+			state <= next_state;
+		end if;
+	end process;";
+
+  $write   = "";
+
+$W1 = $bit_width - 1;
+
+{
+print <<FHM_DL_TOP;
+-- Module     : $bit_width-bit Wire
+-- Feature    : 
+-- References : Started from scratch
+-- Author     : Designed by T.Sasaki (c)2002.
+--              Modified by Y.Kobayashi (c)2003.
+
+-- Version    : 1.2  :
+-- VHDL       : 87
+
+-- Functionality :
+--  port
+FHM_DL_TOP
+}
+
+
+
+print <<FHM_DL_TOP_2;
+--   int_port : internal port
+--   ext_port : external port
+
+-- Comment :
+
+library IEEE;
+  use IEEE.std_logic_1164.all;
+  use IEEE.std_logic_unsigned.all;
+  use IEEE.numeric_std.all;
+
+entity $instance_name is
+  port (
+FHM_DL_TOP_2
+
+    print <<FHM_DL_MORE;
+	clock : in std_logic;
+        start: in std_logic;
+        cancel: in std_logic;
+        fin: out std_logic;
+        sleeplength : in std_logic_vector(1 downto 0) );
+FHM_DL_MORE
+
+{
+print <<FHM_DL_BOTTOM;
+end $instance_name;
+
+architecture logic of $instance_name is
+$signals
+begin
+  $vhdl
+end logic;
+
+FHM_DL_BOTTOM
+}
+
+exit (0);
+          ]]>
+        </script>
+      </instance>
+
+      <entity>
+        <script>
+          <![CDATA[
+#!/usr/bin/perl
+# This script generates register instance in behavior level
+# parameter : instance_name bit_width
+
+if ($#ARGV != 2) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script instance_name bit_width port_type\n";
+    exit (100);
+}
+
+$instance_name = $ARGV[0];
+$bit_width     = $ARGV[1];
+
+
+$W1 = $bit_width - 1;
+
+{
+print <<FHM_DL_TOP;
+
+entity $instance_name is
+  port (
+FHM_DL_TOP
+
+}
+
+    print <<FHM_DL_MORE;
+	clock : in std_logic;
+        start: in std_logic;
+        cancel: in std_logic;
+        fin: out std_logic;
+        sleeplength : in std_logic_vector(1 downto 0) );
+FHM_DL_MORE
+
+{
+print <<FHM_DL_BOTTOM;
+end $instance_name;
+FHM_DL_BOTTOM
+}
+exit (0);
+          ]]>
+        </script>
+      </entity>
+
+      <testvector>
+        <testvector_script>
+          <![CDATA[ ]]>
+        </testvector_script>
+      </testvector>
+
+      <synthesis>
+        <parameter></parameter>
+        <synthesis_script>
+          <script>
+            <![CDATA[
+#!/usr/bin/perl
+# This script generates register synthesis script in behavior level
+# parameter : instance_name priority bit_width
+
+if ($#ARGV != 2) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script instance_name priority bit_width\n";
+    exit (100);
+}
+
+$instance_name = $ARGV[0];
+$priority      = $ARGV[1];
+$bit_width     = $ARGV[2];
+
+
+if ($priority eq "area"){
+  $priority_const = "set_max_area 0";
+}
+elsif ($priority eq "performance"){
+  $priority_const = "set_max_delay -from all_inputs() -to all_outputs() 0";
+}
+elsif ($priority eq "power"){
+  $priority_const = "";
+}
+elsif ($priority eq "none"){
+  $priority_const = "";
+}
+else {
+    print "priority $priority is not supported.\n";
+    exit(100);
+}
+
+{
+print <<FHM_DL_END_OF_SCRIPT;
+hdlin_auto_save_templates = TRUE
+
+analyze -f vhdl $instance_name.vhd
+
+elaborate $instance_name
+uniquify
+
+$priority_const
+
+create_clock -period 10 -waveform{0 5} clock
+
+compile
+
+write -hierarchy -output $instance_name.db
+
+report_area
+report_timing
+
+quit
+FHM_DL_END_OF_SCRIPT
+}
+exit(0);
+            ]]>
+          </script>
+        </synthesis_script>
+      </synthesis>
+    </design>
+
+    <estimation>
+      <estimation_data>
+        <library name="OSAKA">
+
+          <est_type name="shape">
+            <est_index name="area">
+              <unit> mm2 </unit>
+              <translate>
+                <translate_value key="gate"> 4201.68 </translate_value>
+                <translate_value key="mm2">  1 </translate_value>
+              </translate>
+
+              <parameters name="out">
+                <max>
+                  <data bit_width="1"> 0 </data>
+                  <data bit_width="4"> 0 </data>
+                  <data bit_width="8"> 0 </data>
+                  <data bit_width="16"> 0 </data>
+                  <data bit_width="32"> 0 </data>
+                  <data bit_width="128"> 0 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0 </data>
+                  <data bit_width="4"> 0 </data>
+                  <data bit_width="8"> 0 </data>
+                  <data bit_width="16"> 0 </data>
+                  <data bit_width="32"> 0 </data>
+                  <data bit_width="128"> 0 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                </typ>
+              </parameters>
+
+              <parameters name="in">
+                <max>
+                  <data bit_width="1"> 0 </data>
+                  <data bit_width="4"> 0 </data>
+                  <data bit_width="8"> 0 </data>
+                  <data bit_width="16"> 0 </data>
+                  <data bit_width="32"> 0 </data>
+                  <data bit_width="128"> 0 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0 </data>
+                  <data bit_width="4"> 0 </data>
+                  <data bit_width="8"> 0 </data>
+                  <data bit_width="16"> 0 </data>
+                  <data bit_width="32"> 0 </data>
+                  <data bit_width="128"> 0 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                </typ>
+              </parameters>
+            </est_index>
+
+            <est_index name="aspect_ratio">
+              <!-- Dummy yet -->
+            </est_index>
+
+            <est_index name="height">
+              <!-- Dummy yet -->
+            </est_index>
+
+            <est_index name="width">
+              <!-- Dummy yet -->
+            </est_index>
+          </est_type>
+
+          <est_type name="timing">
+            <est_index name="delay">
+              <unit> ns </unit>
+
+              <parameters name="out">
+                <max>
+                  <data bit_width="1"> 0.10 </data>
+                  <data bit_width="4"> 0.10 </data>
+                  <data bit_width="8"> 0.10 </data>
+                  <data bit_width="16"> 0.10 </data>
+                  <data bit_width="32"> 0.10 </data>
+                  <data bit_width="128"> 0.10 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0.10 </data>
+                  <data bit_width="4"> 0.10 </data>
+                  <data bit_width="8"> 0.10 </data>
+                  <data bit_width="16"> 0.10 </data>
+                  <data bit_width="32"> 0.10 </data>
+                  <data bit_width="128"> 0.10 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                </typ>
+              </parameters>
+              <parameters name="in">
+                <max>
+                  <data bit_width="1"> 0.10 </data>
+                  <data bit_width="4"> 0.10 </data>
+                  <data bit_width="8"> 0.10 </data>
+                  <data bit_width="16"> 0.10 </data>
+                  <data bit_width="32"> 0.10 </data>
+                  <data bit_width="128"> 0.10 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0.10 </data>
+                  <data bit_width="4"> 0.10 </data>
+                  <data bit_width="8"> 0.10 </data>
+                  <data bit_width="16"> 0.10 </data>
+                  <data bit_width="32"> 0.10 </data>
+                  <data bit_width="128"> 0.10 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                </typ>
+              </parameters>
+            </est_index>
+
+            <est_index name="delay_fullpath">
+            <!-- Dummy yet -->
+            </est_index>
+          </est_type>
+
+          <est_type name="power">
+            <est_index name="static_power">
+              <unit> mW </unit>
+              <parameters name="out">
+                <max>
+                  <data bit_width="1"> 0.2102073 </data>
+                  <data bit_width="4"> 0.3102073 </data>
+                  <data bit_width="8"> 0.5102073 </data>
+                  <data bit_width="16"> 0.6802764 </data>
+                  <data bit_width="32"> 1.0204 </data>
+                  <data bit_width="128"> 3.0612 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0.2102073 </data>
+                  <data bit_width="4"> 0.3102073 </data>
+                  <data bit_width="8"> 0.5102073 </data>
+                  <data bit_width="16"> 0.6802764 </data>
+                  <data bit_width="32"> 1.0204 </data>
+                  <data bit_width="128"> 3.0612 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                </typ>
+              </parameters>
+
+              <parameters name="in">
+                <max>
+                  <data bit_width="1"> 0.2102073 </data>
+                  <data bit_width="4"> 0.3102073 </data>
+                  <data bit_width="8"> 0.5102073 </data>
+                  <data bit_width="16"> 0.6802764 </data>
+                  <data bit_width="32"> 1.0204 </data>
+                  <data bit_width="128"> 3.0612 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0.2102073 </data>
+                  <data bit_width="4"> 0.3102073 </data>
+                  <data bit_width="8"> 0.5102073 </data>
+                  <data bit_width="16"> 0.6802764 </data>
+                  <data bit_width="32"> 1.0204 </data>
+                  <data bit_width="128"> 3.0612 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                </typ>
+              </parameters>
+            </est_index>
+          </est_type>
+
+          <est_type name="function_cycle">
+            <!-- Dummy yet -->
+          </est_type>
+
+          <est_type name="function_power">
+            <!-- Dummy yet -->
+          </est_type>
+        </library>
+      </estimation_data>
+
+      <estimation_method>
+         
+        <est_type name="shape">
+
+          <est_index name="area">
+		<parameters name="out">
+
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of area for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+	print DBG $_;
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 4);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+                ]]>
+              </script>
+		</parameters>
+
+		<parameters name="in">
+
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of area for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+	print DBG $_;
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 4);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+                ]]>
+              </script>
+		</parameters>
+
+          </est_index>
+
+           <est_index name="aspect_ratio">
+
+             <!-- Dummy yet -->
+
+           </est_index>
+                
+           <est_index name="height">
+
+             <!-- Dummy yet -->
+
+           </est_index>
+                
+           <est_index name="width">
+
+             <!-- Dummy yet -->
+
+           </est_index>
+                
+        </est_type>
+
+        <est_type name="timing">
+
+          <est_index name="delay">
+		<parameters name="out">
+
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of delay for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 2);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+		<parameters name="in">
+
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of delay for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 2);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+          </est_index>
+
+          <est_index name="delay_fullpath">
+
+             <!-- Dummy yet -->
+
+          </est_index>
+
+        </est_type>
+
+        <est_type name="power">
+
+          <est_index name="static_power">
+
+		<parameters name="out">
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of power for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 1);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+		<parameters name="in">
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of power for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 1);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+          </est_index>
+
+        </est_type>
+
+        <est_type name="function_cycle">
+
+        </est_type>
+
+        <est_type name="function_power">
+
+        </est_type>
+
+    
+      </estimation_method>
+    </estimation>
+
+  </model>
+
+  <model>
+    <design_level> synthesis </design_level>
+    <version> 1.0 </version>
+    <author> <![CDATA[ Sasaki Toshiyuki ]]> </author>
+    <affiliation> <![CDATA[ Osaka Univ. ]]> </affiliation>
+    <model_info> <![CDATA[ (c)2001,PEAS3-Lite Project ]]> </model_info>
+
+    <parameter>
+      <parameter_value key="bit_width">
+        <value> 1 </value>
+      </parameter_value>
+      <parameter_value key="port_type">
+        <value> in </value>
+        <value> out </value>
+        <value> inout </value>
+      </parameter_value>
+    </parameter>
+
+    <function_description>
+      <script>
+        <![CDATA[
+#!/usr/bin/perl
+# This script generates register function definition in behavior level
+# parameter : bit_width port_type
+
+if ($#ARGV != 1) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script bit_width port_type\n";
+    exit (100);
+}
+
+$bit_width    = $ARGV[0];
+
+print <<FHM_DL_READ;
+/** sleep */
+function sleep {
+  input {
+    bit [1:0] sleeplength;
+  }
+  output {
+  }
+  control {
+   in start, cancel;
+   out fin;
+  }
+  protocol {
+    repeat [start == 1] until (fin == 1 || cancel == 1);
+  }
+}
+FHM_DL_READ
+
+exit (0);
+        ]]>
+      </script>
+    </function_description>
+
+    <function_conv>
+      <script>
+        <![CDATA[
+#!/usr/bin/perl
+# This script generates register function definition in behavior level
+# parameter : bit_width port_type
+
+if ($#ARGV != 1) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script bit_width port_type\n";
+    exit (100);
+}
+
+$bit_width    = $ARGV[0];
+
+print <<FHM_DL_READ;
+/** sleep */
+function sleep {
+  input {
+    bit [1:0] sleeplength;
+  }
+  output {
+  }
+  control {
+   in bit start;
+   in bit cancel;
+   out bit fin;
+  }
+  protocol {
+    multi_cycle_protocol {
+      start_signal	start = '1';
+      fin_signal	fin = '1';
+      cancel_signal     cancel = '1';
+    }
+  }
+}
+FHM_DL_READ
+
+exit (0);
+        ]]>
+      </script>
+    </function_conv>
+
+    <function_port>
+      <script>
+        <![CDATA[
+#!/usr/bin/perl
+# This script generates register port information in behavior level
+# parameter : bit_width
+
+if ($#ARGV != 1) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script bit_width port_type\n";
+    exit (100);
+}
+
+print <<FHM_DL_MORE;
+clock   in	bit	clock
+reset	in	bit	reset
+start	in	bit	ctrl
+fin	out	bit	ctrl
+cancel	in	bit	ctrl
+sleeplength   in   bit_vector   1   0	data
+FHM_DL_MORE
+
+exit (0);
+        ]]>
+      </script>
+    </function_port>
+
+    <design>
+      <design_lang> vhdl </design_lang>
+
+      <instance>
+        <script>
+          <![CDATA[
+#!/usr/bin/perl
+# This script generates register instance in behavior level
+# parameter : instance_name bit_width
+
+if ($#ARGV != 2) {
+  print "number of parameters is wrong.\n";
+  print "usage : this_script instance_name bit_width port_type\n";
+  exit (100);
+}
+
+$instance_name = $ARGV[0];
+$bit_width     = $ARGV[1];
+
+  $ext_dir = "in";
+  $int_dir = "out";
+  $signals = "type t_s is (st0, st1, st2);
+  signal state, next_state : t_s;";
+  $vhdl    = "process (state, start)
+	variable sleep_left : integer;
+	begin
+		case state is
+		when st0 =>
+			if (start = '1') then
+				if (TO_INTEGER(UNSIGNED(sleeplength)) = 1) then
+					next_state <= st0;
+					fin <= '1';
+				else
+					next_state <= st1;
+					fin <= '0';
+				end if;
+			else
+				next_state <= st0;
+				fin <= '0';
+			end if;
+		when st1 =>
+			if (TO_INTEGER(UNSIGNED(sleeplength)) = 2) then
+				next_state <= st0;
+				fin <= '1';
+			else
+				next_state <= st2;
+				fin <= '0';
+			end if;
+		when st2 =>
+			fin <= '1';
+			next_state <= st0;
+		end case;
+	end process;
+
+	process (clock, reset)
+	begin
+		if (reset = '1') then
+			state <= st0;
+		elsif (clock'event and clock = '1') then
+			state <= next_state;
+		end if;
+	end process;";
+
+  $write   = "";
+
+{
+print <<FHM_DL_TOP;
+-- Module     : $bit_width-bit Wire
+-- Feature    : 
+-- References : Started from scratch
+-- Author     : Designed by T.Sasaki (c)2002.
+--              Modified by Y.Kobayashi (c)2003.
+
+-- Version    : 1.2  :
+-- VHDL       : 87
+
+-- Functionality :
+--  port
+FHM_DL_TOP
+}
+
+
+
+print <<FHM_DL_TOP_2;
+--   int_port : internal port
+--   ext_port : external port
+
+-- Comment :
+
+library IEEE;
+  use IEEE.std_logic_1164.all;
+  use IEEE.std_logic_unsigned.all;
+  use IEEE.numeric_std.all;
+
+entity $instance_name is
+  port (
+FHM_DL_TOP_2
+
+    print <<FHM_DL_MORE;
+	clock : in std_logic;
+	reset : in std_logic;
+        start: in std_logic;
+        cancel: in std_logic;
+        fin: out std_logic;
+        sleeplength : in std_logic_vector(1 downto 0) );
+FHM_DL_MORE
+
+{
+print <<FHM_DL_BOTTOM;
+end $instance_name;
+
+architecture logic of $instance_name is
+$signals
+begin
+  $vhdl
+end logic;
+
+FHM_DL_BOTTOM
+}
+
+exit (0);
+          ]]>
+        </script>
+      </instance>
+
+      <entity>
+        <script>
+          <![CDATA[
+#!/usr/bin/perl
+# This script generates register instance in behavior level
+# parameter : instance_name bit_width
+
+if ($#ARGV != 2) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script instance_name bit_width port_type\n";
+    exit (100);
+}
+
+$instance_name = $ARGV[0];
+$bit_width     = $ARGV[1];
+
+{
+print <<FHM_DL_TOP;
+
+entity $instance_name is
+  port (
+FHM_DL_TOP
+
+}
+
+    print <<FHM_DL_MORE;
+	clock : in std_logic;
+	reset : in std_logic;
+        start: in std_logic;
+        cancel: in std_logic;
+        fin: out std_logic;
+	en : out std_logic;
+	valid : in std_logic;
+	of_in : in std_logic;
+        int_port : $int_dir std_logic_vector($W1 downto 0);
+        ext_port : $ext_dir std_logic_vector($W1 downto 0) );
+FHM_DL_MORE
+
+{
+print <<FHM_DL_BOTTOM;
+end $instance_name;
+FHM_DL_BOTTOM
+}
+exit (0);
+          ]]>
+        </script>
+      </entity>
+
+      <testvector>
+        <testvector_script>
+          <![CDATA[ ]]>
+        </testvector_script>
+      </testvector>
+
+      <synthesis>
+        <parameter></parameter>
+        <synthesis_script>
+          <script>
+            <![CDATA[
+#!/usr/bin/perl
+# This script generates register synthesis script in behavior level
+# parameter : instance_name priority bit_width
+
+if ($#ARGV != 2) {
+    print "number of parameters is wrong.\n";
+    print "usage : this_script instance_name priority bit_width\n";
+    exit (100);
+}
+
+$instance_name = $ARGV[0];
+$priority      = $ARGV[1];
+$bit_width     = $ARGV[2];
+
+if ($priority eq "area"){
+  $priority_const = "set_max_area 0";
+}
+elsif ($priority eq "performance"){
+  $priority_const = "set_max_delay -from all_inputs() -to all_outputs() 0";
+}
+elsif ($priority eq "power"){
+  $priority_const = "";
+}
+elsif ($priority eq "none"){
+  $priority_const = "";
+}
+else {
+    print "priority $priority is not supported.\n";
+    exit(100);
+}
+
+{
+print <<FHM_DL_END_OF_SCRIPT;
+hdlin_auto_save_templates = TRUE
+
+analyze -f vhdl $instance_name.vhd
+
+elaborate $instance_name
+uniquify
+
+$priority_const
+
+create_clock -period 10 -waveform{0 5} clock
+
+compile
+
+write -hierarchy -output $instance_name.db
+
+report_area
+report_timing
+
+quit
+FHM_DL_END_OF_SCRIPT
+}
+exit(0);
+            ]]>
+          </script>
+        </synthesis_script>
+      </synthesis>
+    </design>
+
+    <estimation>
+      <estimation_data>
+        <library name="OSAKA">
+
+          <est_type name="shape">
+            <est_index name="area">
+              <unit> mm2 </unit>
+              <translate>
+                <translate_value key="gate"> 4201.68 </translate_value>
+                <translate_value key="mm2">  1 </translate_value>
+              </translate>
+
+              <parameters name="out">
+                <max>
+                  <data bit_width="1"> 0 </data>
+                  <data bit_width="4"> 0 </data>
+                  <data bit_width="8"> 0 </data>
+                  <data bit_width="16"> 0 </data>
+                  <data bit_width="32"> 0 </data>
+                  <data bit_width="128"> 0 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0 </data>
+                  <data bit_width="4"> 0 </data>
+                  <data bit_width="8"> 0 </data>
+                  <data bit_width="16"> 0 </data>
+                  <data bit_width="32"> 0 </data>
+                  <data bit_width="128"> 0 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                </typ>
+              </parameters>
+
+              <parameters name="in">
+                <max>
+                  <data bit_width="1"> 0 </data>
+                  <data bit_width="4"> 0 </data>
+                  <data bit_width="8"> 0 </data>
+                  <data bit_width="16"> 0 </data>
+                  <data bit_width="32"> 0 </data>
+                  <data bit_width="128"> 0 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0 </data>
+                  <data bit_width="4"> 0 </data>
+                  <data bit_width="8"> 0 </data>
+                  <data bit_width="16"> 0 </data>
+                  <data bit_width="32"> 0 </data>
+                  <data bit_width="128"> 0 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0 </data>
+                    <data bit_width="4"> 0 </data>
+                    <data bit_width="8"> 0 </data>
+                    <data bit_width="16"> 0 </data>
+                    <data bit_width="32"> 0 </data>
+                    <data bit_width="128"> 0 </data>
+                  </priority>
+                </typ>
+              </parameters>
+            </est_index>
+
+            <est_index name="aspect_ratio">
+              <!-- Dummy yet -->
+            </est_index>
+
+            <est_index name="height">
+              <!-- Dummy yet -->
+            </est_index>
+
+            <est_index name="width">
+              <!-- Dummy yet -->
+            </est_index>
+          </est_type>
+
+          <est_type name="timing">
+            <est_index name="delay">
+              <unit> ns </unit>
+
+              <parameters name="out">
+                <max>
+                  <data bit_width="1"> 0.10 </data>
+                  <data bit_width="4"> 0.10 </data>
+                  <data bit_width="8"> 0.10 </data>
+                  <data bit_width="16"> 0.10 </data>
+                  <data bit_width="32"> 0.10 </data>
+                  <data bit_width="128"> 0.10 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0.00 </data>
+                  <data bit_width="4"> 0.00 </data>
+                  <data bit_width="8"> 0.00 </data>
+                  <data bit_width="16"> 0.00 </data>
+                  <data bit_width="32"> 0.00 </data>
+                  <data bit_width="128"> 0.00 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0.10 </data>
+                    <data bit_width="4"> 0.10 </data>
+                    <data bit_width="8"> 0.10 </data>
+                    <data bit_width="16"> 0.10 </data>
+                    <data bit_width="32"> 0.10 </data>
+                    <data bit_width="128"> 0.10 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                </typ>
+              </parameters>
+
+              <parameters name="in">
+                <max>
+                  <data bit_width="1"> 0.10 </data>
+                  <data bit_width="4"> 0.10 </data>
+                  <data bit_width="8"> 0.10 </data>
+                  <data bit_width="16"> 0.10 </data>
+                  <data bit_width="32"> 0.10 </data>
+                  <data bit_width="128"> 0.10 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0.00 </data>
+                  <data bit_width="4"> 0.00 </data>
+                  <data bit_width="8"> 0.00 </data>
+                  <data bit_width="16"> 0.00 </data>
+                  <data bit_width="32"> 0.00 </data>
+                  <data bit_width="128"> 0.00 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0.10 </data>
+                    <data bit_width="4"> 0.10 </data>
+                    <data bit_width="8"> 0.10 </data>
+                    <data bit_width="16"> 0.10 </data>
+                    <data bit_width="32"> 0.10 </data>
+                    <data bit_width="128"> 0.10 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0.00 </data>
+                    <data bit_width="4"> 0.00 </data>
+                    <data bit_width="8"> 0.00 </data>
+                    <data bit_width="16"> 0.00 </data>
+                    <data bit_width="32"> 0.00 </data>
+                    <data bit_width="128"> 0.00 </data>
+                  </priority>
+                </typ>
+              </parameters>
+            </est_index>
+
+            <est_index name="delay_fullpath">
+
+              <!-- Dummy yet -->
+
+            </est_index>
+          </est_type>
+
+          <est_type name="power">
+            <est_index name="static_power">
+              <unit> mW </unit>
+              <parameters name="out">
+                <max>
+                  <data bit_width="1"> 0.2102073 </data>
+                  <data bit_width="4"> 0.3102073 </data>
+                  <data bit_width="8"> 0.5102073 </data>
+                  <data bit_width="16"> 0.6802764 </data>
+                  <data bit_width="32"> 1.0204 </data>
+                  <data bit_width="128"> 3.0612 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0.2102073 </data>
+                  <data bit_width="4"> 0.3102073 </data>
+                  <data bit_width="8"> 0.5102073 </data>
+                  <data bit_width="16"> 0.6802764 </data>
+                  <data bit_width="32"> 1.0204 </data>
+                  <data bit_width="128"> 3.0612 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                </typ>
+              </parameters>
+
+              <parameters name="in">
+                <max>
+                  <data bit_width="1"> 0.2102073 </data>
+                  <data bit_width="4"> 0.3102073 </data>
+                  <data bit_width="8"> 0.5102073 </data>
+                  <data bit_width="16"> 0.6802764 </data>
+                  <data bit_width="32"> 1.0204 </data>
+                  <data bit_width="128"> 3.0612 </data>
+                </max>
+                <min>
+                  <data bit_width="1"> 0.2102073 </data>
+                  <data bit_width="4"> 0.3102073 </data>
+                  <data bit_width="8"> 0.5102073 </data>
+                  <data bit_width="16"> 0.6802764 </data>
+                  <data bit_width="32"> 1.0204 </data>
+                  <data bit_width="128"> 3.0612 </data>
+                </min>
+                <typ>
+                  <priority name="area">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                  <priority name="delay">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                  <priority name="power">
+                    <data bit_width="1"> 0.2102073 </data>
+                    <data bit_width="4"> 0.3102073 </data>
+                    <data bit_width="8"> 0.5102073 </data>
+                    <data bit_width="16"> 0.6802764 </data>
+                    <data bit_width="32"> 1.0204 </data>
+                    <data bit_width="128"> 3.0612 </data>
+                  </priority>
+                </typ>
+              </parameters>
+            </est_index>
+          </est_type>
+
+          <est_type name="function_cycle">
+            <unit> cycle </unit>
+
+            <est_index name="cycle">
+              <parameters name="out">
+                <function name="write">
+                  <priority name="area"><data bit_width="0"></data></priority>
+                  <priority name="delay"><data bit_width="0"></data></priority>
+                  <priority name="power"><data bit_width="0"></data></priority>
+                </function>
+              </parameters>
+
+              <parameters name="in">
+                <function name="read">
+                  <priority name="area"><data bit_width="0"></data></priority>
+                  <priority name="delay"><data bit_width="0"></data></priority>
+                  <priority name="power"><data bit_width="0"></data></priority>
+                </function>
+              </parameters>
+	    </est_index>
+
+            <est_index name="latency">
+              <parameters name="out">
+                <function name="write">
+                  <priority name="area"><data bit_width="0"></data></priority>
+                  <priority name="delay"><data bit_width="0"></data></priority>
+                  <priority name="power"><data bit_width="0"></data></priority>
+                </function>
+              </parameters>
+
+              <parameters name="in">
+                <function name="read">
+                  <priority name="area"><data bit_width="0"></data></priority>
+                  <priority name="delay"><data bit_width="0"></data></priority>
+                  <priority name="power"><data bit_width="0"></data></priority>
+                </function>
+              </parameters>
+	    </est_index>
+
+            <est_index name="throughput">
+              <parameters name="out">
+                <function name="write">
+                  <priority name="area"><data bit_width="0"></data></priority>
+                  <priority name="delay"><data bit_width="0"></data></priority>
+                  <priority name="power"><data bit_width="0"></data></priority>
+                </function>
+              </parameters>
+
+              <parameters name="in">
+                <function name="read">
+                  <priority name="area"><data bit_width="0"></data></priority>
+                  <priority name="delay"><data bit_width="0"></data></priority>
+                  <priority name="power"><data bit_width="0"></data></priority>
+                </function>
+              </parameters>
+	    </est_index>
+          </est_type>
+
+          <est_type name="function_power">
+            <!-- Dummy yet -->
+          </est_type>
+        </library>
+      </estimation_data>
+
+      <estimation_method>
+         
+        <est_type name="shape">
+
+          <est_index name="area">
+		<parameters name="out">
+
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of area for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 4);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+		<parameters name="in">
+
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of area for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 4);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+          </est_index>
+
+           <est_index name="aspect_ratio">
+
+             <!-- Dummy yet -->
+
+           </est_index>
+                
+           <est_index name="height">
+
+             <!-- Dummy yet -->
+
+           </est_index>
+                
+           <est_index name="width">
+
+             <!-- Dummy yet -->
+
+           </est_index>
+                
+        </est_type>
+
+        <est_type name="timing">
+
+          <est_index name="delay">
+
+		<parameters name="out">
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of delay for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 2);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+		<parameters name="in">
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of delay for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 2);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+          </est_index>
+
+          <est_index name="delay_fullpath">
+
+             <!-- Dummy yet -->
+
+          </est_index>
+
+        </est_type>
+
+        <est_type name="power">
+
+          <est_index name="static_power">
+		<parameters name="out">
+
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of power for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 1);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+		<parameters name="in">
+
+               <script>
+                 <![CDATA[
+#!/usr/bin/perl
+# -------------------------------------------------------------------#
+# Estimation method of power for imau() .
+#
+# Author : PEAS Project
+# Date   : 2001/12
+# -------------------------------------------------------------------#
+
+#=pod
+if (! open(TMP, "<$ARGV[3]")) {
+    print STDOUT ("Data file '$ARGV[3]' not found.\n");
+    exit(100);
+}
+
+#--------------------------------------------------------------------------#
+# Type: Table lookup
+#--------------------------------------------------------------------------#
+$i = 0;
+while (<TMP>) {
+    if ( /\<\s*data\s+bit\_width\=\"(\d+)\"\s*\>\s*(\d+\.?\d+)\s*\<\s*\/data\s*\>/ ) {
+        $bit[$i]  = $1;
+        $data[$i] = $2;
+        $i++;
+    }
+}
+close(TMP);
+
+$bit_width = $ARGV[1];
+
+
+for ($j = 0; $j < $i; $j++) {
+    if ($bit_width == $bit[$j]) {
+        $ret_data = $data[$j];
+        goto END;
+    }
+}
+
+if ($bit_width < $bit[0]) {
+    
+    # divide by zero
+    if ($bit[1] == $bit[0]) {
+        exit(100);
+    }    
+
+    $ret_data = $data[0] - (($data[1] - $data[0]) / ($bit[1] - $bit[0])) * ($bit[0] - $bit_width);
+}
+
+elsif ($bit[$i-1] < $bit_width) {
+
+    # divide by zero
+    if ($bit[$i-1] == $bit[$i-2]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$i-1] + (($data[$i-1] - $data[$i-2]) / ($bit[$i-1] - $bit[$i-2])) * ($bit_width - $bit[$i-1]);
+}
+
+else {
+    $j = 0;
+    while ($bit[$j] < $bit_width) {
+        $j++;
+    }
+
+    # divide by zero
+    if ($bit[$j] == $bit[$j-1]) {
+        exit(100);
+    }
+
+    $ret_data = $data[$j-1] + (($data[$j] - $data[$j-1]) / ($bit[$j] - $bit[$j-1])) * ($bit_width - $bit[$j-1]);
+}
+    
+
+END:
+
+$ret_data = &data_round($ret_data, 1);
+
+print "$ret_data\n";
+exit(0);
+
+
+sub data_round 
+{
+    my ( $input_data, $decimals ) = @_;
+    my ( $format, $magic, $output_data );
+
+    $format = '%.' . $decimals . 'f';
+    $magic = ($input_data > 0) ? 0.5 : -0.5;
+    
+    $output_data = sprintf($format, int(($input_data * (10 ** $decimals)) + $magic) / (10 ** $decimals));
+
+    return($output_data);
+}
+#=cut
+#print "0\n";
+#exit(0);
+
+                ]]>
+              </script>
+		</parameters>
+
+          </est_index>
+
+        </est_type>
+
+        <est_type name="function_cycle">
+          <est_index name="cycle">
+		<parameters name="out">
+              <script>
+                <![CDATA[
+#!/usr/bin/perl
+print "1";
+                ]]>
+              </script>
+		</parameters>
+
+		<parameters name="in">
+              <script>
+                <![CDATA[
+#!/usr/bin/perl
+print "1";
+                ]]>
+              </script>
+		</parameters>
+
+          </est_index>
+
+          <est_index name="latency">
+		<parameters name="out">
+              <script>
+                <![CDATA[
+#!/usr/bin/perl
+print "1";
+                ]]>
+              </script>
+		</parameters>
+
+		<parameters name="in">
+              <script>
+                <![CDATA[
+#!/usr/bin/perl
+print "1";
+                ]]>
+              </script>
+		</parameters>
+
+          </est_index>
+
+          <est_index name="throughput">
+		<parameters name="out">
+              <script>
+                <![CDATA[
+#!/usr/bin/perl
+print "1";
+                ]]>
+              </script>
+		</parameters>
+
+		<parameters name="in">
+              <script>
+                <![CDATA[
+#!/usr/bin/perl
+print "1";
+                ]]>
+              </script>
+		</parameters>
+
+          </est_index>
+        </est_type>
+
+        <est_type name="function_power">
+		<parameters name="out">
+		</parameters>
+
+		<parameters name="in">
+		</parameters>
+
+        </est_type>
+
+    
+      </estimation_method>
+    </estimation>
+
+  </model>
+</FHM>

@@ -1,0 +1,23 @@
+
+#####################################################################
+# Make sure, that there are no blanks before or after the '=' sign !
+#####################################################################
+
+
+HARDWARE_PROFILE=1
+
+
+if [ ${HARDWARE_PROFILE} == 1 ]; then
+
+  STACK_START="0xEFFC"	# BRAM Hardware
+#  STACK_START="0x2000C"	# SRAM Hardware
+  ADD_NOPS=4  # smaller than 1 means: don't call the corresponding script at all
+  MAX_ALLOWED_SUCCESSIVE_NOPS=4  # smaller than 0 means: don't call the corresponding script at all
+
+else
+
+  STACK_START="0xFFFFC"	# dlxsim
+  ADD_NOPS=0  # smaller than 1 means: don't call the corresponding script at all
+  MAX_ALLOWED_SUCCESSIVE_NOPS=3  # smaller than 0 means: don't call the corresponding script at all
+
+fi;

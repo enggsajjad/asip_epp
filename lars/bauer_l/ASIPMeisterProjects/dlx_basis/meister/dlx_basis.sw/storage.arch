@@ -1,0 +1,118 @@
+storage
+{
+  instance
+  {
+    GPR0
+    {
+      avail     { F }
+      class     {zero}
+      reg file  { GPR }
+      resource  {GPR[0]}
+      number    {1}
+      width     {32}
+      data type { any }
+    }
+    GPR28
+    {
+      avail     { T }
+      class     {return}
+      reg file  { GPR }
+      resource  {GPR[28]}
+      number    {1}
+      width     {32}
+      data type { any }
+    }
+    GPR29
+    {
+      avail     { T }
+      class     {sp}
+      reg file  { GPR }
+      resource  {GPR[29]}
+      number    {1}
+      width     {32}
+      data type { any }
+    }
+    GPR30
+    {
+      avail     { T }
+      class     {fp}
+      reg file  { GPR }
+      resource  {GPR[30]}
+      number    {1}
+      width     {32}
+      data type { any }
+    }
+    LINK    {
+      avail     { T }
+      class     {link}
+      reg file  { GPR }
+      resource  {GPR[31]}
+      number    {1}
+      width     {32}
+      data type { any }
+    }
+    PC
+    {
+      avail     { F }
+      class     {pc}
+      reg file  { none }
+      resource  {PC}
+      number    {1}
+      width     {32}
+      data type { any }
+    }
+    IR
+    {
+      avail     { F }
+      class     {reg}
+      reg file  { none }
+      resource  {IR}
+      number    {1}
+      width     {32}
+      data type { any }
+    }
+    IMEM
+    {
+      avail     { F }
+      class     {I_mem}
+      reg file  { none }
+      resource  {IMAU}
+      number    {1}
+      width     {32}
+      data type { any }
+    }
+    DMEM
+    {
+      avail     { T }
+      class     {D_mem}
+      reg file  { none }
+      resource  {DMAU}
+      number    {1}
+      width     {32}
+      data type { any }
+    }
+    GPR
+    {
+      avail     { T }
+      class     { reg }
+      reg file  { GPR }
+      resource  {GPR}
+      number    {32}
+      width     {32}
+      data type { any }
+    }
+  }
+  stack
+  {
+    width     { 32  }
+    depth     { 200 }
+  }
+  condition flag
+  {
+    Neg_flag       { N }
+    Zero_flag      { Z }
+    Carry_flag     { C }
+    Overflow_flag  { O }
+  }
+}
+

@@ -1,0 +1,18 @@
+	.addressing	Word
+	.section	.text
+
+	addi	%r1, %r0, $10000
+	nop
+	nop
+	nop
+loop:	subi	%r1, %r1, $1
+	addi	%r2, %r2, $7
+	nop
+	nop
+	bnez	%r1, loop
+	nop
+	nop
+	sw	0(%r0), %r2
+	nop
+	nop
+	nop

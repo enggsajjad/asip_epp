@@ -1,0 +1,872 @@
+	.section	.text
+	.addressing	Word
+	.section	.text
+	.addressing	Word
+	;.addressing	Word
+
+	xor	r30, r30, r30
+	xor	r29, r29, r29
+	xor	r28, r28, r28
+	nop
+	lhi	r30, $(0xFFFFC/0x10000)
+	lhi	r29, $(0xFFFFC/0x10000)
+	nop
+	nop
+	ori	r30, r30, $(0xFFFFC%0x10000)
+	ori	r29, r29, $(0xFFFFC%0x10000)
+	nop
+	nop
+	nop
+	sw	-4(r29), r30
+	sw	-8(r29), r31
+	addi	r29, r30, $-8
+	nop
+	nop
+	nop
+	jal	main	
+	nop
+	nop
+	nop
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+	sw	0(r29), r1
+	jal	exit
+	nop
+	nop
+
+function1:
+L3:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	add	r28,r1,r2	
+	nop	;;3,7
+	nop	;;3,7
+	nop	;;3,7
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L4	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L4:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+function2:
+L5:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r2	
+	nop	;;3,7
+	nop	;;3,7
+	nop	;;3,7
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r3	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r4	
+	nop	;;11,15
+	nop	;;11,15
+	nop	;;11,15
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r5	
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r6	
+	nop	;;19,23
+	nop	;;19,23
+	nop	;;19,23
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r7	
+	nop	;;23,27
+	nop	;;23,27
+	nop	;;23,27
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r8	
+	nop	;;27,31
+	nop	;;27,31
+	nop	;;27,31
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r9	
+	nop	;;31,35
+	nop	;;31,35
+	nop	;;31,35
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r10	
+	nop	;;35,39
+	nop	;;35,39
+	nop	;;35,39
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r11	
+	nop	;;39,43
+	nop	;;39,43
+	nop	;;39,43
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r12	
+	nop	;;43,47
+	nop	;;43,47
+	nop	;;43,47
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r28,r1,r13	
+	nop	;;47,51
+	nop	;;47,51
+	nop	;;47,51
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L6	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L6:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+function3:
+L7:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r2	
+	nop	;;3,7
+	nop	;;3,7
+	nop	;;3,7
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r3	
+	nop	;;7,11
+	nop	;;7,11
+	nop	;;7,11
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r4	
+	nop	;;11,15
+	nop	;;11,15
+	nop	;;11,15
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r5	
+	nop	;;15,19
+	nop	;;15,19
+	nop	;;15,19
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r6	
+	nop	;;19,23
+	nop	;;19,23
+	nop	;;19,23
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r7	
+	nop	;;23,27
+	nop	;;23,27
+	nop	;;23,27
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r8	
+	nop	;;27,31
+	nop	;;27,31
+	nop	;;27,31
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r9	
+	nop	;;31,35
+	nop	;;31,35
+	nop	;;31,35
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r10	
+	nop	;;35,39
+	nop	;;35,39
+	nop	;;35,39
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r11	
+	nop	;;39,43
+	nop	;;39,43
+	nop	;;39,43
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r12	
+	nop	;;43,47
+	nop	;;43,47
+	nop	;;43,47
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r13	
+	nop	;;47,51
+	nop	;;47,51
+	nop	;;47,51
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r14	
+	nop	;;51,55
+	nop	;;51,55
+	nop	;;51,55
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r15	
+	nop	;;55,59
+	nop	;;55,59
+	nop	;;55,59
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r2,r1,r16	
+	lw	r1,12(r30)	
+	nop	;;60,63
+	nop	;;60,63
+	nop	;;60,63
+	add	r3,r2,r17	
+	lw	r2,16(r30)	
+	nop	;;64,67
+	nop	;;64,67
+	nop	;;64,67
+	add	r4,r3,r18	
+	lw	r3,20(r30)	
+	nop	;;68,71
+	nop	;;68,71
+	nop	;;68,71
+	add	r5,r4,r19	
+	lw	r4,24(r30)	
+	nop	;;72,75
+	nop	;;72,75
+	nop	;;72,75
+	add	r6,r5,r20	
+	lw	r5,28(r30)	
+	nop	;;76,79
+	nop	;;76,79
+	nop	;;76,79
+	add	r7,r6,r21	
+	lw	r6,32(r30)	
+	nop	;;80,83
+	nop	;;80,83
+	nop	;;80,83
+	add	r7,r7,r22	
+	nop	;;83,87
+	nop	;;83,87
+	nop	;;83,87
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r7,r7,r23	
+	nop	;;87,91
+	nop	;;87,91
+	nop	;;87,91
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r7,r7,r24	
+	nop	;;91,95
+	nop	;;91,95
+	nop	;;91,95
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r7,r7,r25	
+	nop	;;95,99
+	nop	;;95,99
+	nop	;;95,99
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r7,r7,r26	
+	nop	;;99,103
+	nop	;;99,103
+	nop	;;99,103
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r7,r7,r27	
+	nop	;;103,107
+	nop	;;103,107
+	nop	;;103,107
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r7,r1	
+	nop	;;107,111
+	nop	;;107,111
+	nop	;;107,111
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r2	
+	nop	;;111,115
+	nop	;;111,115
+	nop	;;111,115
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r3	
+	nop	;;115,119
+	nop	;;115,119
+	nop	;;115,119
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r4	
+	nop	;;119,123
+	nop	;;119,123
+	nop	;;119,123
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r5	
+	nop	;;123,127
+	nop	;;123,127
+	nop	;;123,127
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r28,r1,r6	
+	nop	;;127,131
+	nop	;;127,131
+	nop	;;127,131
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L8	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L8:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+main:
+L9:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$36	
+	nop
+	nop
+	nop
+	; Automatically 4 NOPs removed by reduceNOPs.sh
+	lhi	r7,$( L1	/0x10000)
+	nop
+	nop
+	nop
+	ori	r7,r7,$( L1	%0x10000)
+	lhi	r6,$( _g11	/0x10000)
+	nop
+	nop
+	nop
+	ori	r6,r6,$( _g11	%0x10000)
+	lhi	r5,$( _g10	/0x10000)
+	nop
+	nop
+	nop
+	ori	r5,r5,$( _g10	%0x10000)
+	lhi	r4,$( _g9	/0x10000)
+	nop
+	nop
+	nop
+	ori	r4,r4,$( _g9	%0x10000)
+	lhi	r3,$( _g8	/0x10000)
+	nop
+	nop
+	nop
+	ori	r3,r3,$( _g8	%0x10000)
+	lhi	r13,$( L2	/0x10000)
+	nop
+	nop
+	nop
+	ori	r13,r13,$( L2	%0x10000)
+	nop	;;7,15
+	nop	;;7,15
+	nop	;;7,15
+	; Automatically 5 NOPs removed by reduceNOPs.sh
+	lw	r12,0(r7)	
+	lw	r11,0(r6)	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r10,0(r5)	
+	lw	r9,0(r4)	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r8,0(r3)	
+	lw	r13,0(r13)	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$23	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$42	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r7,r7,$7	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$6	
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$5	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$4	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$3	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	r29,r29,$32	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	function2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	r29,r29,$32	
+	nop
+	nop
+	nop
+	; Automatically 4 NOPs removed by reduceNOPs.sh
+	sw	-4(r30),r28	
+	nop	;;31,33
+	nop	;;31,33
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$23	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$42	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	r29,r29,$32	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	function1	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	r29,r29,$32	
+	nop
+	nop
+	nop
+	; Automatically 6 NOPs removed by reduceNOPs.sh
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$1	
+	nop	;;40,44
+	nop	;;40,44
+	nop	;;40,44
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-8(r30),r1	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$2	
+	nop	;;45,49
+	nop	;;45,49
+	nop	;;45,49
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-12(r30),r1	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$3	
+	nop	;;50,53
+	nop	;;50,53
+	nop	;;50,53
+	lhi	r5,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r5,r5,$32	
+	sw	-16(r30),r1	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$4	
+	lhi	r4,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r4,r4,$31	
+	lhi	r3,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r3,r3,$30	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$29	
+	sw	-20(r30),r1	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$5	
+	nop	;;60,64
+	nop	;;60,64
+	nop	;;60,64
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-24(r30),r1	
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$28	
+	nop	;;65,85
+	nop	;;65,85
+	nop	;;65,85
+	; Automatically 17 NOPs removed by reduceNOPs.sh
+	sw	-28(r30),r28	
+	lhi	r28,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r28,r28,$33	
+	sw	-24(r29),r5	
+	sw	-20(r29),r4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-16(r29),r3	
+	sw	-12(r29),r2	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	sw	-8(r29),r1	
+	sw	-28(r29),r28	
+	lhi	r27,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r27,r27,$27	
+	lhi	r26,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r26,r26,$26	
+	lhi	r25,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r25,r25,$25	
+	lhi	r24,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r24,r24,$24	
+	lhi	r23,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r23,r23,$23	
+	lhi	r22,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r22,r22,$22	
+	lhi	r21,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r21,r21,$21	
+	lhi	r20,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r20,r20,$20	
+	lhi	r19,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r19,r19,$19	
+	lhi	r18,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r18,r18,$18	
+	lhi	r17,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r17,r17,$17	
+	lhi	r16,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r16,r16,$16	
+	lhi	r15,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r15,r15,$15	
+	lhi	r14,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r14,r14,$14	
+	lhi	r13,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r13,r13,$13	
+	lhi	r12,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r12,r12,$12	
+	lhi	r11,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r11,r11,$11	
+	lhi	r10,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r10,r10,$10	
+	lhi	r9,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r9,r9,$9	
+	lhi	r8,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r8,r8,$8	
+	lhi	r7,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r7,r7,$7	
+	lhi	r6,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r6,r6,$6	
+	lw	r5,-24(r30)	
+	lw	r4,-20(r30)	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r3,-16(r30)	
+	lw	r2,-12(r30)	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r1,-8(r30)	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	r29,r29,$32	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	function3	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	r29,r29,$32	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r1,-28(r30)	
+	lw	r2,-4(r30)	
+	nop	;;122,125
+	nop	;;122,125
+	nop	;;122,125
+	add	r1,r1,r28	
+	nop	;;125,129
+	nop	;;125,129
+	nop	;;125,129
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	mult	r28,r2,r1	
+	nop	;;129,133
+	nop	;;129,133
+	nop	;;129,133
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L10	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L10:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	nop	; Automatically added by fix-stall-insns.pl
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	nop	; Automatically added by fix-stall-insns.pl
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+exit:
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data
+	;.global	_g8
+	.align	4
+_g8:
+	.space	4
+	;.global	_g9
+	.align	4
+_g9:
+	.space	4
+	;.global	_g10
+	.align	4
+_g10:
+	.data.32	10
+	;.global	_g11
+	.align	4
+_g11:
+	.data.32	11
+	.align	4
+L1:
+	.data.32	12
+	.align	4
+L2:
+	.data.32	13

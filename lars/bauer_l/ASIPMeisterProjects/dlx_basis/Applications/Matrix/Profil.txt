@@ -1,0 +1,54 @@
+#### List of different label names for the same address:
+#### Syntax: #:<TAB>LabelA_Name<TAB>LabelA_JumpTarget<TAB>LabelB_Name<TAB>LabelB_JumpTarget
+#:	pin_down:		l1:	
+#:	main:		l9:	
+
+#### List of base blocks with number of executions and used special instructions:
+#### Syntax: startLabel<TAB>startJumpInstruction<TAB>endLabel<TAB>endJumpInstruction<TAB>
+####         startAddress<TAB>numberOfExecutions<TAB>executionTime<TAB>CSV(specialInstructions)
+start:		main:	jal	0	1	23	
+main:	jal	exit	jal	21	1	7	
+exit	jal	pin_down:		26	0	0	
+l1:		l2:		27	1	22	
+l2:		l2:	bnez	46	21	72	
+l2:	bnez	l3:	j	82	1	4	
+l3:	j	l3:		86	0	0	
+l3:		l4:		88	1	12	
+l4:		l4:	bnez	99	15	72	
+l4:	bnez	l5:	j	135	1	4	
+l5:	j	l5:		139	0	0	
+l5:		l6:		141	1	12	
+l6:		l6:	bnez	152	35	72	
+l6:	bnez	l7:	j	188	1	4	
+l7:	j	l7:		192	0	0	
+l7:		l8:	j	194	1	14	
+l8:	j	l8:		207	0	0	
+l8:			return	209	1	18	
+	return	main:		224	0	0	
+l9:		pin_down:	jal	226	1	45	
+pin_down:	jal	l10:		267	1	15	
+l10:		l11:		281	5	18	
+l11:		l12:		298	35	113	
+l12:		l12:	bnez	340	105	91	mac
+l12:	bnez	l13:	j	390	35	4	
+l13:	j	l13:		394	0	0	
+l13:		l11:	bnez	396	35	33	
+l11:	bnez	l14:	j	426	5	4	
+l14:	j	l14:		430	0	0	
+l14:		l10:	bnez	432	5	20	
+l10:	bnez	l15:	j	451	1	4	
+l15:	j	l15:		455	0	0	
+l15:		l16:	j	457	1	14	
+l16:	j	l16:		470	0	0	
+l16:			return	472	1	18	
+	return	exit:		487	0	0	
+exit:		_matrixa:		489	1	0	
+_matrixa:		_matrixb:		492	0	0	
+_matrixb:		_matrixc:		513	0	0	
+_matrixc:		finish:		528	0	0	
+
+#### List of JumpTable Usages:
+####   Syntax is: "#;<TAB>BaseBlockLabel<TAB>CSV(JumpTargets)"
+####   "BaseBlockLabel" is the starting label of the baseBlock where the JumpTable is used, e.g. L10.
+####   Then in the above Base Block List there must be something like: "L10<TAB><TAB><TAB>jr".
+####   "CSV" are the Comma Seperated Values of the possible Jump Targets in this Jump Table

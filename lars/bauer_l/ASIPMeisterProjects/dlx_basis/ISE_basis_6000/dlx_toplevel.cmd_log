@@ -1,0 +1,6 @@
+xst -ise "/home/bauer_l/ASIPMeisterProjects/dlx_basis/ISE_basis_6000/ISE_basis_6000.ise" -intstyle ise -ifn dlx_toplevel.xst -ofn dlx_toplevel.syr
+ngdbuild -ise "/home/bauer_l/ASIPMeisterProjects/dlx_basis/ISE_basis_6000/ISE_basis_6000.ise" -intstyle ise -dd _ngo -nt timestamp -uc "dlx_toplevel.ucf" -bm "blockram.bmm" -p xc2v6000-ff1152-5 "dlx_toplevel.ngc" dlx_toplevel.ngd
+map -ise "/home/bauer_l/ASIPMeisterProjects/dlx_basis/ISE_basis_6000/ISE_basis_6000.ise" -intstyle ise -p xc2v6000-ff1152-5 -cm area -pr b -k 4 -c 100 -tx off -o dlx_toplevel_map.ncd dlx_toplevel.ngd dlx_toplevel.pcf
+par -ise "/home/bauer_l/ASIPMeisterProjects/dlx_basis/ISE_basis_6000/ISE_basis_6000.ise" -w -intstyle ise -ol std -t 1 dlx_toplevel_map.ncd dlx_toplevel.ncd dlx_toplevel.pcf
+trce -ise "/home/bauer_l/ASIPMeisterProjects/dlx_basis/ISE_basis_6000/ISE_basis_6000.ise" -intstyle ise -e 3 -s 5 -xml dlx_toplevel dlx_toplevel.ncd -o dlx_toplevel.twr dlx_toplevel.pcf -ucf dlx_toplevel.ucf
+bitgen -ise "/home/bauer_l/ASIPMeisterProjects/dlx_basis/ISE_basis_6000/ISE_basis_6000.ise" -intstyle ise -f dlx_toplevel.ut dlx_toplevel.ncd

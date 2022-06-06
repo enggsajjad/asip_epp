@@ -1,0 +1,302 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.addressing	Word
+2				.section	.text
+3			_main:
+4				; Initialize Stack Pointer
+5	0000	3c1d0000		lhi	%r29, $(((1024-4)*65536)&0xffff)	; MemSize is 1024
+6	0001	00000000		nop
+7	0002	00000000		nop
+8	0003	00000000		nop
+9	0004	27bd03fc		addui	%r29, %r29, $((1024-4)&0xffff)
+10	0005	00000000		nop
+11	0006	00000000		nop
+12	0007	00000000		nop
+13	0008	2bbd000c		subi	%r29, %r29, $12		; Adjust Stack Pointer
+14	0009	00000000		nop
+15	000a	00000000		nop
+16	000b	00000000		nop
+17	000c	afbe0000		sw	0(%r29), %r30		; Save the old frame pointer
+18	000d	afbf0004		sw	4(%r29), %r31		; Save the return address
+19	000e	afa10008		sw	8(%r29), %r1		; Save r1, which is used in main.
+20	000f	001df020		add	%r30, %r0, %r29		; Establish new frame pointer
+21			
+22				; Call BubbleSort
+23	0010	2bbd0008		subi	%r29, %r29, $8		; create place for the parameters
+24	0011	00000000		nop
+25	0012	00000000		nop
+26	0013	00000000		nop
+27	0014	afa00000		sw	0(%r29), %r0		; "const unsigned int startIndex"
+28	0015	20010031		addi	%r1, %r0, $49
+29	0016	00000000		nop
+30	0017	00000000		nop
+31	0018	00000000		nop
+32	0019	afa10004		sw	4(%r29), %r1		; "const unsigned int endIndex"
+33	001a	0c00000c		jal	_bubbleSort
+34	001b	00000000		nop
+35	001c	23bd0008		addi	%r29, %r29, $8
+36			
+37	001d	00000000		nop
+38	001e	00000000		nop
+39	001f	00000000		nop
+40	0020	8fbe0000		lw	%r30, 0(%r29)		; Restore frame pointer
+41	0021	8fbf0004		lw	%r31, 4(%r29)		; Restore return address
+42	0022	8fa10008		lw	%r1,  8(%r29)		; Restore r1
+43	0023	001ee820		add	%r29, %r0, %r30		; Restore stack pointer
+44			
+45				; HALT
+46	0024	0c000062		jal	_exit
+47	0025	00000000		nop
+48			
+49			
+50			_bubbleSort:
+51	0026	001df020		add	%r30, %r0, %r29		; Establish new frame pointer 
+52	0027	2bbd0030		subi	%r29, %r29, $(8 + 10*4)	; Adjust Stack Pointer; 8 for oldFP+RET and x*4 for saved Registers
+53			
+54	0028	00000000		nop
+55	0029	00000000		nop
+56	002a	00000000		nop
+57			
+58	002b	afbe0000		sw	0(%r29), %r30		; Save the frame pointer 
+59	002c	afbf0004		sw	4(%r29), %r31		; Save the return address 
+60			
+61				; Save Registers 
+62	002d	3c010000		lhi	%r1, $(_array*65536)&0xffff
+63	002e	8fc20000		lw	%r2, 0(%r30)
+64	002f	8fc30004		lw	%r3, 4(%r30)
+65	0030	afa10008		sw	 8(%r29), %r1		; r1 is used for comparing-results and for temporary stuff.
+66	0031	afa2000c		sw	12(%r29), %r2		; r2 is the parameter value "startIndex". (later "innerLoopStart")
+67	0032	afa30010		sw	16(%r29), %r3		; r3 is the parameter value "endIndex".	(later "innerLoopEnd")
+68	0033	40630002		slli	%r3,%r3,$2
+69	0034	24210000		addui	%r1, %r1, $(_array&0xffff)
+70	0035	40420002		slli	%r2,%r2,$2
+71	0036	afa80024		sw	36(%r29), %r8		; r8 is "value_j".
+72	0037	24630004		addui	%r3,%r3,$4		; innerLoopEnd++;
+73	0038	afa50018		sw	24(%r29), %r5		; r5 is the loop-variable "j".
+74	0039	00411021		addu	%r2,%r2,%r1
+75	003a	afa70020		sw	32(%r29), %r7		; r7 is "variable_xchanged".
+76	003b	00611821		addu	%r3,%r3,%r1
+77	003c	20070001		addi 	%r7,%r0,$1
+78			
+79	003d	08000003		j	while1_start
+80	003e	afa90028		sw	40(%r29), %r9		; r9 is "value_next_j".
+81				;nop
+82			
+83			while1_save_start:
+84	003f	aca10000		sw	0(%r5),%r1	;       *next_j = value_j;	
+85			
+86			while1_start:
+87	0040	00022821		addu	%r5,%r0,%r2	; j = innerLoopStart
+88	0041	2c630004		subui	%r3,%r3,$4	; innerLoopEnd--;
+89	0042	10e00038		beqz	%r7, while1_end
+90	0043	00003820		add	%r7,%r0,%r0
+91			
+92	0044	8ca80000		lw	%r8,0(%r5)	;   value_j = *j;
+93			
+94			while2_mit_r7_start:
+95	0045	8ca90004		lw	%r9,4(%r5)	;     value_next_j = *next_j;
+96	0046	f8a3fffa		bgeu	%r5,%r3,while1_start	;   while (j < innerLoopEnd) {
+97	0047	24a50004		addui	%r5,%r5,$4	;     j++;
+98	0048	00080821		addu	%r1,%r0,%r8	;       tmp = value_j;
+99	0049	f928fffc		bgeu	%r9,%r8,while2_mit_r7_start	;     if (value_next_j < value_j) {
+100	004a	00094021		addu	%r8,%r0,%r9	;       value_j = value_next_j;
+101			
+102			;	addu	%r8,%r0,%r1	;       value_j = tmp;
+103			;	sw	0(%r5),%r8	;       *next_j = value_j;
+104	004b	8ca90004		lw	%r9,4(%r5)
+105	004c	f8a3fff3		bgeu	%r5,%r3,while1_save_start	;   while (j < innerLoopEnd) {
+106	004d	aca9fffc		sw	-4(%r5),%r9	;       *j = value_next_j;
+107			
+108	004e	0800000c		j	while2_x_start	;   }
+109	004f	20070001		addi	%r7,%r0,$1
+110			;	nop
+111			
+112			while2_save_start:
+113	0050	aca1fffc		sw	-4(%r5),%r1	;       *next_j = value_j;	
+114			
+115			while2_start:
+116	0051	8ca90004		lw	%r9,4(%r5)	;     value_next_j = *next_j;
+117	0052	f8a3ffee		bgeu	%r5,%r3,while1_start	;   while (j < innerLoopEnd) {
+118	0053	24a50004		addui	%r5,%r5,$4	;     j++;
+119	0054	00080821		addu	%r1,%r0,%r8	;       tmp = value_j;
+120	0055	f928fffc		bgeu	%r9,%r8,while2_start	;     if (value_next_j < value_j) {
+121	0056	00094021		addu	%r8,%r0,%r9	;       value_j = value_next_j;
+122			
+123	0057	8ca90004		lw	%r9,4(%r5)	;     value_next_j = *next_j;
+124	0058	f8a3ffe7		bgeu	%r5,%r3,while1_save_start	;   while (j < innerLoopEnd) {
+125	0059	aca9fffc		sw	-4(%r5),%r9	;       *j = value_next_j;
+126			
+127			while2_x_start:
+128	005a	24a50004		addui	%r5,%r5,$4	;     j++;
+129	005b	f921fff5		bgeu	%r9,%r1,while2_save_start	;     if (value_next_j < value_j) {
+130	005c	00094021		addu	%r8,%r0,%r9	;       value_j = value_next_j;
+131			
+132	005d	8ca90008		lw	%r9,8(%r5)	;     value_next_j = *next_j;
+133	005e	f8a3ffe1		bgeu	%r5,%r3,while1_save_start	;   while (j < innerLoopEnd) {
+134	005f	aca9fffc		sw	-4(%r5),%r9	;       *j = value_next_j;
+135			
+136			
+137	0060	24a50004		addui	%r5,%r5,$4	;     j++;
+138	0061	f921ffef		bgeu	%r9,%r1,while2_save_start	;     if (value_next_j < value_j) {
+139	0062	00094021		addu	%r8,%r0,%r9	;       value_j = value_next_j;
+140			
+141	0063	8ca90008		lw	%r9,8(%r5)	;     value_next_j = *next_j;
+142	0064	f8a3ffdb		bgeu	%r5,%r3,while1_save_start	;   while (j < innerLoopEnd) {
+143	0065	aca9fffc		sw	-4(%r5),%r9	;       *j = value_next_j;
+144			
+145			
+146	0066	24a50004		addui	%r5,%r5,$4	;     j++;
+147	0067	f921ffe9		bgeu	%r9,%r1,while2_save_start	;     if (value_next_j < value_j) {
+148	0068	00094021		addu	%r8,%r0,%r9	;       value_j = value_next_j;
+149			
+150	0069	8ca90008		lw	%r9,8(%r5)	;     value_next_j = *next_j;
+151	006a	f8a3ffd5		bgeu	%r5,%r3,while1_save_start	;   while (j < innerLoopEnd) {
+152	006b	aca9fffc		sw	-4(%r5),%r9	;       *j = value_next_j;
+153			
+154			
+155	006c	24a50004		addui	%r5,%r5,$4	;     j++;
+156	006d	f921ffe3		bgeu	%r9,%r1,while2_save_start	;     if (value_next_j < value_j) {
+157	006e	00094021		addu	%r8,%r0,%r9	;       value_j = value_next_j;
+158			
+159	006f	8ca90008		lw	%r9,8(%r5)	;     value_next_j = *next_j;
+160	0070	f8a3ffcf		bgeu	%r5,%r3,while1_save_start	;   while (j < innerLoopEnd) {
+161	0071	aca9fffc		sw	-4(%r5),%r9	;       *j = value_next_j;
+162			
+163			
+164	0072	24a50004		addui	%r5,%r5,$4	;     j++;
+165	0073	f921ffdd		bgeu	%r9,%r1,while2_save_start	;     if (value_next_j < value_j) {
+166	0074	00094021		addu	%r8,%r0,%r9	;       value_j = value_next_j;
+167			
+168	0075	8ca90008		lw	%r9,8(%r5)	;     value_next_j = *next_j;
+169	0076	f8a3ffc9		bgeu	%r5,%r3,while1_save_start	;   while (j < innerLoopEnd) {
+170	0077	aca9fffc		sw	-4(%r5),%r9	;       *j = value_next_j;
+171			
+172			
+173	0078	0bffffe2		j	while2_x_start	;   }
+174	0079	00000000		nop
+175				
+176			
+177			while1_end:
+178			
+179			
+180			; *****************************************************************************************
+181			
+182	007a	8fbe0000		lw	%r30, 0(%r29)		; Restore frame pointer
+183	007b	8fbf0004		lw	%r31, 4(%r29)		; Restore return address
+184			
+185				; Restore the saved registers
+186	007c	8fa10008		lw	%r1, 8(%r29)
+187	007d	8fa2000c		lw	%r2, 12(%r29)
+188	007e	8fa30010		lw	%r3, 16(%r29)
+189			;	lw	%r4, 20(%r29)
+190	007f	8fa50018		lw	%r5, 24(%r29)
+191			;	lw	%r6, 28(%r29)
+192	0080	8fa70020		lw	%r7, 32(%r29)
+193	0081	8fa80024		lw	%r8, 36(%r29)
+194	0082	8fa90028		lw	%r9, 40(%r29)
+195			;	lw	%r10,48(%r29)
+196			
+197	0083	001ee820		add	%r29, %r0, %r30		; Restore stack pointer
+198			
+199				; Return
+200	0084	03e00008		jr	%r31
+201	0085	00000000		nop
+202			
+203			
+204	0086	00000000	_exit:	nop
+205	0087	00000000		nop
+206			
+207			
+208			
+209			
+210				.section	.data
+211			_array:
+212	0000	0000016c		.data.32	364
+213	0004	00000038		.data.32	56
+214	0008	000002df		.data.32	735
+215	000c	00000017		.data.32	23
+216	0010	0000004c		.data.32	76
+217	0014	0000004c		.data.32	76
+218	0018	0000005c		.data.32	92
+219	001c	00000d93		.data.32	3475
+220	0020	0000002b		.data.32	43
+221	0024	0000004d		.data.32	77
+222	0028	0000004e		.data.32	78
+223	002c	0000004e		.data.32	78
+224	0030	0000092a		.data.32	2346
+225	0034	0000035e		.data.32	862
+226	0038	0000002f		.data.32	47
+227	003c	00001637		.data.32	5687
+228	0040	00000022		.data.32	34
+229	0044	0000002f		.data.32	47
+230	0048	00000307		.data.32	775
+231	004c	000001c9		.data.32	457
+232	0050	0000015b		.data.32	347
+233	0054	000000ea		.data.32	234
+234	0058	00000037		.data.32	55
+235	005c	0000002d		.data.32	45
+236	0060	000002ad		.data.32	685
+237	0064	0000004b		.data.32	75
+238	0068	0000031c		.data.32	796
+239	006c	00000237		.data.32	567
+240	0070	000002fc		.data.32	764
+241	0074	00000238		.data.32	568
+242	0078	0000005f		.data.32	95
+243	007c	00000038		.data.32	56
+244	0080	0000004c		.data.32	76
+245	0084	00000300		.data.32	768
+246	0088	00000041		.data.32	65
+247	008c	0000004e		.data.32	78
+248	0090	00001ed2		.data.32	7890
+249	0094	00000165		.data.32	357
+250	0098	0000004c		.data.32	76
+251	009c	00000044		.data.32	68
+252	00a0	0000004f		.data.32	79
+253	00a4	00000039		.data.32	57
+254	00a8	00000301		.data.32	769
+255	00ac	00000237		.data.32	567
+256	00b0	0000002d		.data.32	45
+257	00b4	000003db		.data.32	987
+258	00b8	0000004c		.data.32	76
+259	00bc	000003db		.data.32	987
+260	00c0	00000044		.data.32	68
+261	00c4	00000381		.data.32	897
+262			
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+while2_x_start	.text	005a	Label	5a	127 
+while1_save_start	.text	003f	Label	3f	83 
+_main	.text	0000	Label	0	3 
+_bubbleSort	.text	0026	Label	26	50 
+_array	.data	0000	Label	0	211 
+while2_mit_r7_start	.text	0045	Label	45	94 
+_exit	.text	0086	Label	86	204 
+while1_start	.text	0040	Label	40	86 
+while1_end	.text	007a	Label	7a	177 
+while2_start	.text	0051	Label	51	115 
+while2_save_start	.text	0050	Label	50	112 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	88 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		c8 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

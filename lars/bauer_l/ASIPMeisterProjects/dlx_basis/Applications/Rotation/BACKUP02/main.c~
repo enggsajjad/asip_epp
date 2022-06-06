@@ -1,0 +1,110 @@
+#include "lib_lcd.h"
+#include "intToStr.h"
+
+struct point {int x; int y; int w;};
+
+// returns sin(angle)<<16. The shift is done as a kind of fix-point arithmetic.
+int sin(int alpha) {
+  if (alpha==15) return 16962;
+  if (alpha==90) return 65536;
+  return 0;
+}
+
+// returns sin(angle)<<16. The shift is done as a kind of fix-point arithmetic.
+int cos(int alpha) {
+  if (alpha==15) return 63303;
+  if (alpha==90) return 0;
+  return 0;
+}
+
+struct point* rotate(struct point* center, struct point* p, int alpha) {
+  static struct point resultPoint;
+  int deltaX, deltaY;
+  int sinAlpha, cosAlpha;
+
+  deltaX = p->x - center->x;
+  deltaY = p->y - center->y;
+  sinAlpha = sin(alpha);
+  cosAlpha = cos(alpha);
+  
+  resultPoint.x = cosAlpha*deltaX - sinAlpha*deltaY;
+  resultPoint.x >>= 16;
+  resultPoint.x -= center->x;
+  
+  resultPoint.y = sinAlpha*deltaX + cosAlpha*deltaY;
+  resultPoint.y >>= 16;
+  resultPoint.y -= center->y;
+
+  resultPoint.w = 1;
+  
+  return &resultPoint;
+}
+
+
+int printCoordinates(struct point* p) {
+  char tempString[20];
+  t_print("(");
+  intToStr(p->x, tempString);
+  t_print(tempString);
+  t_print(",");
+  intToStr(p->y, tempString);
+  t_print(tempString);
+  t_print(")");
+  return 0;
+}
+
+int drawRectangle(struct point* a, struct point* b, struct point* c, struct point* d) {
+  //d_clear();
+  /*
+  printCoordinates(a);
+  t_print(" \t");
+  printCoordinates(b);
+  t_print(" \t");
+  printCoordinates(c);
+  t_print(" \t");
+  printCoordinates(d);
+  t_print("\r\n");
+  */
+  g_drawline(a->x, a->y, b->x, b->y);
+  g_drawline(b->x, b->y, c->x, c->y);
+  g_drawline(c->x, c->y, d->x, d->y);
+  g_drawline(d->x, d->y, a->x, a->y);
+  return 0;
+}
+
+int main() {
+  struct point a, b, c, d, center;
+  struct point* result;
+  int angle, i;
+
+  a.x=50; a.y=50; a.w=1;
+  b.x=100; b.y=50; b.w=1;
+  c.x=100; c.y=100; c.w=1;
+  d.x=50; d.y=100; d.w=1;
+  center.x=75; center.y=75; center.w=1;
+
+  drawRectangle(&a, &b, &c, &d);
+
+  for (i=0; i<5; i++) {
+    angle = 15;
+    result = rotate(&center, &a, angle);
+    a.x = result->x;
+    a.y = result->y;
+
+    result = rotate(&center, &b, angle);
+    b.x = result->x;
+    b.y = result->y;
+
+    result = rotate(&center, &c, angle);
+    c.x = result->x;
+    c.y = result->y;
+
+    result = rotate(&center, &d, angle);
+    d.x = result->x;
+    d.y = result->y;
+
+    drawRectangle(&a, &b, &c, &d);
+  }
+
+  return 0;
+}

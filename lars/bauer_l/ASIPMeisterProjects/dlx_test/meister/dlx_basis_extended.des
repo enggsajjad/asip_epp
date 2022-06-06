@@ -1,0 +1,604 @@
+Resource_tbl {
+  "GPR" {
+    {"GPR0","00000"},
+    {"GPR1","00001"},
+    {"GPR2","00010"},
+    {"GPR3","00011"},
+    {"GPR4","00100"},
+    {"GPR5","00101"},
+    {"GPR6","00110"},
+    {"GPR7","00111"},
+    {"GPR8","01000"},
+    {"GPR9","01001"},
+    {"GPR10","01010"},
+    {"GPR11","01011"},
+    {"GPR12","01100"},
+    {"GPR13","01101"},
+    {"GPR14","01110"},
+    {"GPR15","01111"},
+    {"GPR16","10000"},
+    {"GPR17","10001"},
+    {"GPR18","10010"},
+    {"GPR19","10011"},
+    {"GPR20","10100"},
+    {"GPR21","10101"},
+    {"GPR22","10110"},
+    {"GPR23","10111"},
+    {"GPR24","11000"},
+    {"GPR25","11001"},
+    {"GPR26","11010"},
+    {"GPR27","11011"},
+    {"GPR28","11100"},
+    {"GPR29","11101"},
+    {"GPR30","11110"},
+    {"GPR31","11111"}
+  }
+}
+
+Instruction_type {
+  type {
+    "MY_NOP" {
+      width{"31","0"},
+      otype {
+        "MY_NOP0" {
+        }
+      }
+    },
+    "R_R" {
+      width{"31","0"},
+      otype {
+        "R_R0" {
+          "RDirect" {"Resource"{"rd","GPR"}},
+          "RDirect" {"Resource"{"rs0","GPR"}},
+          "RDirect" {"Resource"{"rs1","GPR"}}
+        }
+      }
+    },
+    "R_I" {
+      width{"31","0"},
+      otype {
+        "R_I0" {
+          "RDirect" {"Resource"{"rd","GPR"}},
+          "RDirect" {"Resource"{"rs0","GPR"}},
+          "Immediate_data" {"Immediate"{"const",""}}
+        }
+      }
+    },
+    "L_S" {
+      width{"31","0"},
+      otype {
+        "L_S0" {
+          "RDirect" {"Resource"{"rd","GPR"}},
+          "RIwDisp" {
+            "Displacement"{"const",""},
+            "Resource"{"rs0","GPR"}}
+        },
+        "L_S1" {
+          "RIwDisp" {
+            "Displacement"{"const",""},
+            "Resource"{"rs0","GPR"}},
+          "RDirect" {"Resource"{"rd","GPR"}}
+        }
+      }
+    },
+    "B" {
+      width{"31","0"},
+      otype {
+        "B0" {
+          "RDirect" {"Resource"{"rs0","GPR"}},
+          "PCrelative_address" {"Symbol"{"const",""}}
+        }
+      }
+    },
+    "J" {
+      width{"31","0"},
+      otype {
+        "J0" {
+          "PCrelative_address" {"Symbol"{"const",""}}
+        }
+      }
+    },
+    "JR" {
+      width{"31","0"},
+      otype {
+        "JR0" {
+          "RDirect" {"Resource"{"rs0","GPR"}}
+        }
+      }
+    },
+    "LHI" {
+      width{"31","0"},
+      otype {
+        "LHI0" {
+          "RDirect" {"Resource"{"rd","GPR"}},
+          "Immediate_data" {"Immediate"{"const",""}}
+        }
+      }
+    }
+  }
+}
+
+Instruction {
+  "nop" {
+    type{"MY_NOP"{otype{"MY_NOP0"}}},
+    "OP-code" {"binary"{"00000000000000000000000000000000"},width{"31","0"}}
+  },
+  "add" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000100000"},width{"10","0"}}
+  },
+
+  "addu" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000100001"},width{"10","0"}}
+  },
+
+  "addi" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"001000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "addui" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"001001"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "sub" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000100010"},width{"10","0"}}
+  },
+
+  "subu" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000100011"},width{"10","0"}}
+  },
+
+  "subi" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"001010"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "subui" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"001011"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "mult" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000011000"},width{"10","0"}}
+  },
+
+  "multu" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000011001"},width{"10","0"}}
+  },
+
+  "div" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000011010"},width{"10","0"}}
+  },
+
+  "divu" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000011011"},width{"10","0"}}
+  },
+
+  "and" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000100100"},width{"10","0"}}
+  },
+
+  "andi" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"001100"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "or" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000100101"},width{"10","0"}}
+  },
+
+  "ori" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"001101"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "xor" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000100110"},width{"10","0"}}
+  },
+
+  "xori" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"001110"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "sll" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000000000"},width{"10","0"}}
+  },
+
+  "srl" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000000010"},width{"10","0"}}
+  },
+
+  "sra" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000000011"},width{"10","0"}}
+  },
+
+  "slli" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"010000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "srli" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"010001"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "srai" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"010010"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "slt" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000101010"},width{"10","0"}}
+  },
+
+  "sgt" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000101011"},width{"10","0"}}
+  },
+
+  "sle" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000101100"},width{"10","0"}}
+  },
+
+  "sge" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000101101"},width{"10","0"}}
+  },
+
+  "seq" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000101110"},width{"10","0"}}
+  },
+
+  "sne" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000101111"},width{"10","0"}}
+  },
+
+  "slti" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"011010"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "sgti" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"011011"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "slei" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"011100"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "sgei" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"011101"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "seqi" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"011110"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "snei" {
+    type{"R_I"{otype{"R_I0"}}},
+    "OP-code" {"binary"{"011111"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "lhi" {
+    type{"LHI"{otype{"LHI0"}}},
+    "OP-code" {"binary"{"001111"},width{"31","26"}},
+    "OP-code" {"binary"{"00000"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "lb" {
+    type{"L_S"{otype{"L_S0"}}},
+    "OP-code" {"binary"{"100000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "lh" {
+    type{"L_S"{otype{"L_S0"}}},
+    "OP-code" {"binary"{"100001"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "lw" {
+    type{"L_S"{otype{"L_S0"}}},
+    "OP-code" {"binary"{"100011"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "lbu" {
+    type{"L_S"{otype{"L_S0"}}},
+    "OP-code" {"binary"{"100100"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "lhu" {
+    type{"L_S"{otype{"L_S0"}}},
+    "OP-code" {"binary"{"100101"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "sb" {
+    type{"L_S"{otype{"L_S1"}}},
+    "OP-code" {"binary"{"101000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "sh" {
+    type{"L_S"{otype{"L_S1"}}},
+    "OP-code" {"binary"{"101001"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "sw" {
+    type{"L_S"{otype{"L_S1"}}},
+    "OP-code" {"binary"{"101011"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rd"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "beqz" {
+    type{"B"{otype{"B0"}}},
+    "OP-code" {"binary"{"000100"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "OP-code" {"binary"{"00000"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "bnez" {
+    type{"B"{otype{"B0"}}},
+    "OP-code" {"binary"{"000101"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "OP-code" {"binary"{"00000"},width{"20","16"}},
+    "Operand" {"name"{"const"},width{"15","0"}}
+  },
+
+  "j" {
+    type{"J"{otype{"J0"}}},
+    "OP-code" {"binary"{"000010"},width{"31","26"}},
+    "Operand" {"name"{"const"},width{"25","0"}}
+  },
+
+  "jal" {
+    type{"J"{otype{"J0"}}},
+    "OP-code" {"binary"{"000011"},width{"31","26"}},
+    "Operand" {"name"{"const"},width{"25","0"}}
+  },
+
+  "jr" {
+    type{"JR"{otype{"JR0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "OP-code" {"binary"{"0000000000"},width{"20","11"}},
+    "OP-code" {"binary"{"00000001000"},width{"10","0"}}
+  },
+
+  "jalr" {
+    type{"JR"{otype{"JR0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "OP-code" {"binary"{"0000000000"},width{"20","11"}},
+    "OP-code" {"binary"{"00000001001"},width{"10","0"}}
+  },
+
+  "MOD" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000011100"},width{"10","0"}}
+  },
+
+  "modu" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000011110"},width{"10","0"}}
+  },
+
+  "sltu" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000111010"},width{"10","0"}}
+  },
+
+  "sgtu" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000111011"},width{"10","0"}}
+  },
+
+  "sleu" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000111100"},width{"10","0"}}
+  },
+
+  "sgeu" {
+    type{"R_R"{otype{"R_R0"}}},
+    "OP-code" {"binary"{"000000"},width{"31","26"}},
+    "Operand" {"name"{"rs0"},width{"25","21"}},
+    "Operand" {"name"{"rs1"},width{"20","16"}},
+    "Operand" {"name"{"rd"},width{"15","11"}},
+    "OP-code" {"binary"{"00000111101"},width{"10","0"}}
+  }
+}
+

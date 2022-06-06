@@ -1,0 +1,115 @@
+#!/bin/sh
+
+#
+# Copyright 2003 Sun Microsystems, Inc. All rights reserved.
+# SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+#
+
+PRG=$0
+SVPATH="$PATH"
+PATH=/bin:/usr/bin
+
+progname=`basename $0`
+case "`uname -m`" in
+    i[3-6]86  | ia32 | ia64 | i?86)
+        proc=i386
+        ;;
+    sparc*)
+        proc=sparc
+        ;;
+    *)
+        proc="`uname -m`"
+        ;;
+esac
+
+# Resolve symlinks. See 4152645.
+while [ -L "$PRG" ]; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/' > /dev/null; then
+	PRG="$link"
+    else
+	PRG="`dirname $PRG`/$link"
+    fi
+done
+
+APPHOME=`dirname "$PRG"`/.. 
+JREHOME=$APPHOME/jre
+
+# Where is JRE?
+unset jre
+if [ -f "${JREHOME}/lib/${proc}/libjava.so" ]; then
+    jre="${JREHOME}"
+fi
+if [ -f "${APPHOME}/lib/${proc}/libjava.so" ]; then
+    jre="${APPHOME}"
+fi
+if [ "x${jre}" = "x" ]; then
+    echo "Error: can't find libjava.so."
+    exit 1
+fi
+
+# Get the canonicalized absolute pathnames
+jre="`$jre/bin/realpath $jre`"
+APPHOME="`${jre}/bin/realpath $APPHOME`"
+JREHOME="`${jre}/bin/realpath $JREHOME`"
+export APPHOME JREHOME
+
+# Select vm type
+ttype=native_threads
+if grep "^$1\$" ${jre}/lib/jvm.cfg > /dev/null; then
+    # User specified some VM type known to jvm.cfg.
+    vmtype=`echo $1 | cut -c 2-`
+else
+    # User didn't specify a VM type, see if default is classic.
+    default=`grep -v '^#' "${jre}/lib/jvm.cfg" | head -1`
+    vmtype=`echo ${default} | cut -c 2-`
+fi
+
+if [ "${vmtype}" = "classic" ]; then
+    ttype=green_threads
+    LD_BIND_NOW=yes
+    export LD_BIND_NOW
+    _JVM_THREADS_TYPE=green_threads
+    export _JVM_THREADS_TYPE
+fi              
+
+
+# If jre is in a jre subdir, include parent dir libraries in lib path.  This
+# needs to be cleaned up because -Xrun libraries are the ones that need it.
+if [ "${jre}" = "$JREHOME" ]; then
+   JAVA_LIBRARY_PATH=":${jre}/../lib/${proc}"
+fi
+# Set LD_LIBRARY_PATH for libjvm.so (necessitated by ld.so bugid 4176579)
+JAVA_LIBRARY_PATH="${jre}/lib/${proc}/${vmtype}$JAVA_LIBRARY_PATH"
+
+# Set LD_LIBRARY_PATH to find libawt.so etc.
+JAVA_LIBRARY_PATH="${jre}/lib/${proc}:${jre}/lib/${proc}/${ttype}/:${JAVA_LIBRARY_PATH}"
+
+LD_LIBRARY_PATH="${JAVA_LIBRARY_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH
+
+# bug #4344135 workaround
+# A thread currently waiting on a I/O operation will not wake up if one
+# of the files involved is actually closed (last close - the file is
+# no longer accessible but the thread is still waiting in the kernel).
+# The library libpreemptive_close.so is dynamically linked to the JVM 
+# iff the J2SE_PREEMPTCLOSE environment variable is set to 1
+#
+if [ "$J2SE_PREEMPTCLOSE" = 1 ]; then
+   LD_PRELOAD=${LD_PRELOAD}:libpreemptive_close.so
+   export LD_PRELOAD
+fi
+
+prog="$APPHOME/bin/${proc}/${ttype}/${progname}"
+
+# Run.
+if [ -x "$prog" ]
+then
+     # Calling: exec $DEBUG_PROG "$prog" "$@"
+     PATH="$SVPATH"
+     exec $DEBUG_PROG "$prog" "$@" 
+else
+    echo >&2 "$progname was not found in ${prog}"
+    exit 1
+fi

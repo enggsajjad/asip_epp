@@ -1,0 +1,12 @@
+void  main() {
+  char tempString[100];
+  char* p = &tempString;
+  int i, j;
+
+  for (i=0; i<4;i++) {
+	  j = fprintf(p, "blabla%i ", i);
+	  printf("__%i\n", j);
+	  p += j;
+  }
+  printf("\"%s\"\n", tempString);
+}

@@ -1,0 +1,2384 @@
+instruction
+{
+  source data type spec
+  {
+    char
+    {
+      alignment {8}
+      size      {8}
+    }
+    short
+    {
+      alignment {16}
+      size      {16}
+    }
+    short2
+    {
+      alignment {16}
+      size      {16}
+    }
+    int
+    {
+      alignment {32}
+      size      {32}
+    }
+    long
+    {
+      alignment {32}
+      size      {32}
+    }
+    long2
+    {
+      alignment {32}
+      size      {32}
+    }
+    float
+    {
+      alignment {32}
+      size      {32}
+    }
+    double
+    {
+      alignment {64}
+      size      {64}
+    }
+    quad
+    {
+      alignment {64}
+      size      {64}
+    }
+    point
+    {
+      alignment {32}
+      size      {32}
+    }
+    struct
+    {
+      alignment {8}
+    }
+    data
+    {
+      alignment {8}
+    }
+  }
+
+
+  struct declaration
+  {
+  }
+
+
+  macro typedef
+  {
+    Int7to0 {
+      signed unsigned { char }
+    }
+    SInt7to0 {
+      signed { char }
+    }
+    UInt7to0 {
+      unsigned { char }
+    }
+    Int15to0 {
+      signed unsigned { char short short2 }
+    }
+    SInt15to0 {
+      signed { char short short2 }
+    }
+    UInt15to0 {
+      unsigned { char short short2 }
+    }
+    Int31to0 {
+      signed unsigned { char short short2 long long2 }
+    }
+    SInt31to0 {
+      signed { char short short2 long long2 }
+    }
+    UInt31to0 {
+      unsigned { char short short2 long long2 }
+    }
+  }
+
+
+  ckf prototype
+  {
+  }
+
+
+  add
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "add" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 + rs1;
+    }
+  }
+  addu
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "addu" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.addu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 + rs1;
+    }
+  }
+  addi
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      'Imm 16 SInt15to0 const__;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "addi" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 + const__;
+    }
+  }
+  addui
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      'Imm 16 UInt15to0 const__;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "addui" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+      }
+      stage(3)
+      {
+        ALU0.addu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 + const__;
+    }
+  }
+  sub
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "sub" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.sub
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 - rs1;
+    }
+  }
+  subu
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "subu" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.subu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 - rs1;
+    }
+  }
+  subi
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      'Imm 16 SInt15to0 const__;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "subi" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.sub
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 - const__;
+    }
+  }
+  subui
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      'Imm 16 UInt15to0 const__;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "subui" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+      }
+      stage(3)
+      {
+        ALU0.subu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 - const__;
+    }
+  }
+  mult
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "mult" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        MUL0.mul
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 * rs1;
+    }
+  }
+  multu
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "multu" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        MUL0.mulu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 * rs1;
+    }
+  }
+  div
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "div" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        DIV0.div
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 / rs1;
+    }
+  }
+  divu
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "divu" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        DIV0.divu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 / rs1;
+    }
+  }
+  and
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      GPR Int31to0 rs1;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "and" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.and
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 & rs1;
+    }
+  }
+  andi
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      'Imm 16 UInt15to0 const__;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "andi" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+      }
+      stage(3)
+      {
+        ALU0.and
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 & const__;
+    }
+  }
+  or
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      GPR Int31to0 rs1;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "or" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.or
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 | rs1;
+    }
+  }
+  ori
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      'Imm 16 UInt15to0 const__;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "ori" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+      }
+      stage(3)
+      {
+        ALU0.or
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 | const__;
+    }
+  }
+  xor
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      GPR Int31to0 rs1;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "xor" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.xor
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 ^ rs1;
+    }
+  }
+  xori
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      'Imm 16 UInt15to0 const__;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "xori" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+      }
+      stage(3)
+      {
+        ALU0.or
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 ^ const__;
+    }
+  }
+  sll
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      GPR Int31to0 rs1;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "sll" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        SFT0.sll
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 << rs1;
+    }
+  }
+  srl
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "srl" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        SFT0.srl
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 >>> rs1;
+    }
+  }
+  sra
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "sra" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        SFT0.sra
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 >> rs1;
+    }
+  }
+  slli
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      'Imm 16 UInt15to0 const__;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "slli" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+      }
+      stage(3)
+      {
+        SFT0.sll
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 << const__;
+    }
+  }
+  srli
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      'Imm 16 UInt15to0 const__;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "srli" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+      }
+      stage(3)
+      {
+        SFT0.srl
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 >>> const__;
+    }
+  }
+  srai
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      'Imm 16 UInt15to0 const__;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "srai" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+      }
+      stage(3)
+      {
+        SFT0.sra
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 >> const__;
+    }
+  }
+  slt
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "slt" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 < rs1;
+    }
+  }
+  sgt
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "sgt" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 > rs1;
+    }
+  }
+  sle
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "sle" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 <= rs1;
+    }
+  }
+  sge
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "sge" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 >= rs1;
+    }
+  }
+  seq
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      GPR Int31to0 rs1;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "seq" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 == rs1;
+    }
+  }
+  sne
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "sne" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 != rs1;
+    }
+  }
+  slti
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      'Imm 16 SInt15to0 const__;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "slti" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 < const__;
+    }
+  }
+  sgti
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      'Imm 16 SInt15to0 const__;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "sgti" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 > const__;
+    }
+  }
+  slei
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      'Imm 16 SInt15to0 const__;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "slei" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 <= const__;
+    }
+  }
+  sgei
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      'Imm 16 SInt15to0 const__;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "sgei" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 >= const__;
+    }
+  }
+  seqi
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      'Imm 16 SInt15to0 const__;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "seqi" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 == const__;
+    }
+  }
+  snei
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      'Imm 16 SInt15to0 const__;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "snei" rd "," rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.cmp
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 != const__;
+    }
+  }
+  lhi
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      'Imm 16 UInt15to0 const__;
+    }
+    format
+    {
+      "lhi" rd "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = const__ << 16;
+    }
+  }
+  lb
+  {
+    operand
+    {
+      GPR SInt7to0 rd;
+      [GPR, disp]:DMEM SInt7to0 addr;
+    }
+    format
+    {
+      "lb" rd "," addr
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(4)
+      {
+        DMAU.lb
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = *addr;
+    }
+  }
+  lh
+  {
+    operand
+    {
+      GPR SInt15to0 rd;
+      [GPR, disp]:DMEM SInt15to0 addr;
+    }
+    format
+    {
+      "lh" rd "," addr
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(4)
+      {
+        DMAU.lh
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = *addr;
+    }
+  }
+  lw
+  {
+    operand
+    {
+      GPR Int31to0 rd;
+      [GPR, disp]:DMEM Int31to0 addr;
+    }
+    format
+    {
+      "lw" rd "," addr
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(4)
+      {
+        DMAU.load
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = *addr;
+    }
+  }
+  lbu
+  {
+    operand
+    {
+      GPR UInt7to0 rd;
+      [GPR, disp]:DMEM UInt7to0 addr;
+    }
+    format
+    {
+      "lbu" rd "," addr
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(4)
+      {
+        DMAU.lbu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = *addr;
+    }
+  }
+  lhu
+  {
+    operand
+    {
+      GPR UInt15to0 rd;
+      [GPR, disp]:DMEM UInt15to0 addr;
+    }
+    format
+    {
+      "lhu" rd "," addr
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(4)
+      {
+        DMAU.lhu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = *addr;
+    }
+  }
+  sb
+  {
+    operand
+    {
+      [GPR, disp]:DMEM any addr;
+      GPR Int7to0 rd;
+    }
+    format
+    {
+      "sb" addr "," rd
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(4)
+      {
+        DMAU.sb
+      }
+    }
+    behavior
+    {
+      *addr = rd[7:0];
+    }
+  }
+  sh
+  {
+    operand
+    {
+      [GPR, disp]:DMEM any addr;
+      GPR Int15to0 rd;
+    }
+    format
+    {
+      "sh" addr "," rd
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(4)
+      {
+        DMAU.sh
+      }
+    }
+    behavior
+    {
+      *addr = rd[15:0];
+    }
+  }
+  sw
+  {
+    operand
+    {
+      [GPR, disp]:DMEM any addr;
+      GPR Int31to0 rd;
+    }
+    format
+    {
+      "sw" addr "," rd
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+      }
+      stage(4)
+      {
+        DMAU.store
+      }
+    }
+    behavior
+    {
+      *addr = rd[31:0];
+    }
+  }
+  beqz
+  {
+    operand
+    {
+      PC SInt31to0 PC;
+      'label any const__;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "beqz" rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+        PC.write
+      }
+    }
+    behavior
+    {
+      if (rs0 == 0) {
+        PC = PC + const__;
+      }
+    }
+  }
+  bnez
+  {
+    operand
+    {
+      PC SInt31to0 PC;
+      'label any const__;
+      GPR Int31to0 rs0;
+    }
+    format
+    {
+      "bnez" rs0 "," const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        EXT0.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+        PC.write
+      }
+    }
+    behavior
+    {
+      if (rs0 != 0) {
+        PC = PC + const__;
+      }
+    }
+  }
+  j
+  {
+    operand
+    {
+      PC any PC;
+      'label any const__;
+    }
+    format
+    {
+      "j" const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        EXT1.sign
+      }
+      stage(3)
+      {
+        ALU0.add
+        PC.write
+      }
+    }
+    behavior
+    {
+      if ( always ) {
+        PC = const__;
+      }
+    }
+  }
+  jal
+  {
+    operand
+    {
+      LINK any LINK;
+      PC any PC;
+      'label any const__;
+    }
+    format
+    {
+      "jal" const__
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        EXT1.sign
+        PC.read
+      }
+      stage(3)
+      {
+        ALU0.add
+        PC.write
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      if ( always ) {
+        LINK = Next(PC);
+        PC = const__;
+      }
+    }
+  }
+  jr
+  {
+    operand
+    {
+      PC any PC;
+      GPR any rs0;
+    }
+    format
+    {
+      "jr" rs0
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+      }
+      stage(3)
+      {
+        PC.write
+      }
+    }
+    behavior
+    {
+      if ( always ) {
+        PC = rs0;
+      }
+    }
+  }
+  jalr
+  {
+    operand
+    {
+      LINK any LINK;
+      PC any PC;
+      GPR any rs0;
+    }
+    format
+    {
+      "jalr" rs0
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        PC.read
+      }
+      stage(3)
+      {
+        PC.write
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      if ( always ) {
+        LINK = Next(PC);
+        PC = rs0;
+      }
+    }
+  }
+  MOD
+  {
+    operand
+    {
+      GPR SInt31to0 rd;
+      GPR SInt31to0 rs1;
+      GPR SInt31to0 rs0;
+    }
+    format
+    {
+      "MOD" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        DIV0.div
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 % rs1;
+    }
+  }
+  modu
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "modu" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        DIV0.divu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 % rs1;
+    }
+  }
+  sltu
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "sltu" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmpu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 < rs1;
+    }
+  }
+  sgtu
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "sgtu" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmpu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 > rs1;
+    }
+  }
+  sleu
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "sleu" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmpu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 <= rs1;
+    }
+  }
+  sgeu
+  {
+    operand
+    {
+      GPR UInt31to0 rd;
+      GPR UInt31to0 rs1;
+      GPR UInt31to0 rs0;
+    }
+    format
+    {
+      "sgeu" rd "," rs0 "," rs1
+    }
+    functions
+    {
+      stage(1)
+      {
+        PC.read
+        IMAU.read
+        IR.write
+        PC.inc
+      }
+      stage(2)
+      {
+        GPR.read0
+        GPR.read1
+      }
+      stage(3)
+      {
+        ALU0.cmpu
+      }
+      stage(5)
+      {
+        GPR.write0
+      }
+    }
+    behavior
+    {
+      rd = rs0 >= rs1;
+    }
+  }
+}
+

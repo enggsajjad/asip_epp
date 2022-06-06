@@ -1,0 +1,726 @@
+// @(#)basisSinasDevcc.edl	1.1 06/06/07
+// 
+// COPYRIGHT NOTICE (NOT TO BE REMOVED):
+// 
+// This file, or parts of it, or modified versions of it, may not be copied,
+// reproduced or transmitted in any form, including reprinting, translation,
+// photocopying or microfilming, or by any means, electronic, mechanical or
+// otherwise, or stored in a retrieval system, or used for any purpose, without
+// the prior written permission of all Owners unless it is explicitly marked as
+// having Classification `Public'.
+//   Classification: Restricted.
+// 
+// Owners of this file give notice:
+//   (c) Copyright 1996-2000 ACE Associated Compiler Experts bv
+//   (c) Copyright 1993-1996 ACE Associated Computer Experts bv
+// All rights, including copyrights, reserved.
+// 
+// This file contains or may contain restricted information and is UNPUBLISHED
+// PROPRIETARY SOURCE CODE OF THE Owners.  The Copyright Notice(s) above do not
+// evidence any actual or intended publication of such source code.  This file
+// is additionally subject to the conditions listed in the RESTRICTIONS file
+// and is with NO WARRANTY.
+// 
+// END OF COPYRIGHT NOTICE
+
+// true engine always returns true (used to build if/then construct)
+//OPT:		*.true:status:1
+//OPT:		*.uswitch:encodetable
+//OPT:		*.conevun:option:-f
+//OPT:		*.conevpr:option:-f
+//OPT-t:        *.ndump:option:-t
+
+// check/dump
+engine class dump (in u: mirUnit, t: TarDes)
+//OPT-d<pass>:		*.mile<pass>.nomile:status:0
+//OPT-d<pass>:		*.mile<pass>.dump.nodump:status:0
+//OPT-d*:		*.nomile:status:0
+//OPT-d*:		*.nodump:status:0
+{
+	engine	true:	test;
+	engine	nodump:	test;
+loop
+exit	nodump		()	//OPT:	*.dump.nodump:status:1
+	ndump		(u, t)	
+exit	true		()
+}
+engine class mile (in u: mirUnit, t: TarDes)
+{
+	engine	true:	test;
+	engine	nomile:	test;
+loop
+	echo		()
+exit	nomile		()	//OPT:		*.mile.nomile:status:1
+	dump		(u, t)	//OPT-check:	*.mile.nomile:status:0
+	checkmir	(u)
+	dagex		(u)
+exit	true		()
+}
+
+
+// init at very start
+engine class init (out u: mirUnit; out t: TarDes)
+{
+pipeline
+//OPT:		*.utinit:source:builtin:basisSinasDevcg.tdf
+// Force normal-C behaviour, unsigned arithmetic is Modulo arithmetic
+	utinit		(u, t)
+}
+
+
+// cfg edges-repair
+engine class cfgrepair (IN u: mirUnit)
+{
+	region p{}	: mirProcGlobal;
+pipeline
+	unit2proc	(u, p{})
+	cfgedges	(p)
+}
+
+//
+// Composite engine to do restrict base class analysis
+//
+ENGINE CLASS setrestrict_un(IN u: mirUnit)
+{
+	REGION	p{}:	mirProcGlobal;
+PIPELINE
+	unit2proc	(u, p{})
+	setrestrict	(p)
+}
+
+//
+// Composite engine to correct the CFG edges in the IR
+//
+ENGINE CLASS makecfg(IN u: mirUnit)
+{
+	REGION	p{}:	mirProcGlobal;
+PIPELINE
+	unit2proc	(u, p{})
+	cfgedges	(p)
+}
+
+// Frontend
+// Composite engine to parse a c file and make the IR valid
+engine class frontend (in u: mirUnit, t: TarDes)
+{
+	ENGINE	pponly:	test;
+	ENGINE	true:	test;
+LOOP
+	// c parser - does not produce CFG edges
+	anc0		(u, t)
+		//OPT:		*.anc0:option:-Hbuiltin:intrinsics.h
+		//OPT+:		*.anc0:source:<path>
+		//OPT-X <val>:	*.anc0:xvalue:<val>
+		//OPT-I<path>:  *.anc0:option:-I<path>
+		//OPT-D<macro>: *.anc0:option:-D<macro>
+		//OPT-U<macro>: *.anc0:option:-U<macro>
+		//OPT+:		*.anc0:ppoutput:<base>.i
+		//OPT-E:	*.anc0:option:-P
+		//OPT-restrict:	*.anc0:xvalue:restrict=1
+		//OPT:		*.anc0:wchar_t:char
+		//OPT:		*.anc0:ptrdiff_t:long
+		//OPT:		*.anc0:size_t:unsigned long
+		//OPT:		*.anc0:xvalue:stricts=0
+		//OPT:		*.anc0:xvalue:oldstyle=1
+		//OPT:		*.anc0:xvalue:warnings=1
+
+		//OPT-Wstrict:	*.anc0:xvalue:warnings=1
+		//OPT-Wstrict:	*.anc0:xvalue:stricts=1
+
+		//OPT-Wansi:	*.anc0:xvalue:warnings=1
+		//OPT-Wansi:	*.anc0:xvalue:oldstyle=0
+
+		//OPT-Wall:	*.anc0:xvalue:stricts=1
+		//OPT-Wall:	*.anc0:xvalue:warnings=1
+		//OPT-Wall:	*.anc0:xvalue:oldstyle=0
+
+		//OPT-g:	*.anc0:option:-g
+		//OPT-g:	*.ndump:option:-g
+
+
+	//add start SINAS 	
+		//OPT:		*.anc0:xvalue:asm=2
+		// Do NOT accept asm keyword, only __asm is accepted.
+		//OPT-noasm:	*.anc0:xvalue:asm=1
+		// Do NOT accept either asm or __asm keyword.
+		//OPT-no__asm:	*.anc0:xvalue:asm=0
+		//OPT-g:	*.anc0:option:-g
+		//OPT-g:	*.ndump:option:-g
+	//add end SINAS
+
+	
+	//del start SINAS	
+
+	//C front end generates high level bit field code - disabled in SINAS 
+	//mkcontainers	(u, t)
+
+	//del stop SINAS	
+
+EXIT	pponly		()
+
+	//add start SINAS
+
+	// extract parameter and result names Sinas
+	sinasnames	(u)
+	// lower bitfield operations
+	mkcontainers	(u, t)
+
+	//add end SINAS		
+
+	// correct the CFG edges
+	setrestrict_un  (u)
+	makecfg		(u)
+	// correct the alias information
+	alias		(u)
+EXIT	true		()
+
+}
+
+
+// cleanup after front end
+engine class cleanup (in u: mirUnit, t: TarDes)
+{
+	engine	true	: test;
+	engine	level0	: test;
+loop
+	deadobj		(u, t)	//OPT-g:*.deadobj:skip
+	conevun		(u, t)
+exit	level0		()
+	alloctp		(u, t)	// sharestring needs type sizes
+	sharestring	(u)
+exit	true		()
+}
+
+
+
+// cluster of optimizers which is repeated a number of times
+engine class proc_cluster (in p: mirProcGlobal, u: mirUnit, t: TarDes)
+{
+// alias and cfgedges is correct, no defuse/domtree/loop
+	engine	canon:		conevpr;
+	engine	coneval:	conevpr;
+	engine	cleandefuse:	defuse;	//OPT:*.cleandefuse:cleanonly
+pipeline
+	coneval		(p, u, t)
+		//OPT-O3:	*.proc_cluster.coneval:option:-i
+		//OPT-O4:	*.proc_cluster.coneval:option:-i
+		//OPT-O4:	*.proc_cluster.coneval:option:-s
+	canon		(p, u, t)
+		//OPT:		*.proc_cluster.canon:option:-c
+	misc		(p, u, t)
+		//OPT:		*.proc_cluster.misc:nosplit
+	chainflow	(p, u, t)
+	checkcfg	(p)
+	blockmerge	(p, u, t)
+	deadblock	(p, u, t)
+	defuse		(p, u, t)
+	copyprop	(p)
+	constprop	(p)
+	deadcode	(p)
+	cleandefuse	(p, u, t)
+	conevpr		(p, u, t)
+	cse		(p, u, t)	// kills defuse
+	doinvariant	(p, u, t)
+}
+
+engine class optim_cluster (in u: mirUnit, t: TarDes)
+{
+	region p{}: mirProcGlobal;
+pipeline
+	unit2proc	(u, p{})
+	proc_cluster	(p, u, t)
+}
+
+// first part of high_optimizers composite class ; optim_cluster is repeated 3 times till exit status  
+engine class simple_cluster (in u: mirUnit, t: TarDes)
+{
+// alias and cfgedges is correct, no defuse/domtree/loop
+	region p{}: mirProcGlobal;
+pipeline
+	unit2proc	(u, p{})
+	checkcfg	(p)
+	blockmerge	(p, u, t)	// merge basic blocks after frontend
+	deadblock	(p, u, t)
+	mvpostop	(p, u, t)
+	conevpr		(p, u, t)	// some constant folding
+}
+
+engine class ifsplit (in u: mirUnit, t: TarDes)
+{
+	region p{}: mirProcGlobal;
+pipeline
+	unit2proc	(u, p{})
+	misc		(p, u, t)
+}
+
+// Only on level 4, but before a number of optimizations which are
+// also done on level 3
+//Loop analysis and optimzer support
+engine class do_loopana (in p:mirProcGlobal, u: mirUnit, t: TarDes)
+{
+	engine chk1:	checkcfg;
+	engine chk2:	checkcfg;
+pipeline
+	chk1		(p)
+	domtree		(p)
+	pdomtree	(p)
+	conevpr		(p, u, t)
+	loopanalysis	(p, u, t)	//OPT:*.loopanalysis:cleanup
+	loopdump	(p)
+	chk2		(p)
+}
+
+engine class dofuse (in p:mirProcGlobal, u:mirUnit, t: TarDes)
+{
+	engine	cleandefuse :	defuse;
+	//OPT: *.dofuse.cleandefuse:cleanonly
+	engine domtree1 :	domtree;
+	engine domtree2 :	domtree;
+	engine	cleanloops :	loopanalysis;
+					//OPT:*.dofuse.cleanloops:cleanonly
+pipeline
+	domtree1	(p)
+	defuse		(p, u, t)
+	lrrename	(p, u, t)
+	cleandefuse	(p, u, t)
+	do_loopana	(p, u, t)
+	loopfuse	(p, u, t)
+	domtree2	(p)
+	cleanloops	(p, u, t)
+}
+
+engine class dostrength (in p:mirProcGlobal, u:mirUnit, t: TarDes)
+{
+	engine	cleanloops :	loopanalysis;
+					//OPT:*.dostrength.cleanloops:cleanonly
+pipeline
+	do_loopana	(p, u, t)
+	loopstrength	(p, u, t)
+	domtree		(p)
+	cleanloops	(p, u, t)
+}
+
+engine class dounroll (in p:mirProcGlobal, u:mirUnit, t: TarDes)
+{
+	engine	conevpr1 :	conevpr;
+	engine	conevpr2 :	conevpr;
+	engine	cleanloops :	loopanalysis;
+					//OPT:*.dounroll.cleanloops:cleanonly
+pipeline
+	defuse		(p, u, t)
+	copyprop	(p)
+	constprop	(p)
+	conevpr1	(p, u, t)
+	do_loopana	(p, u, t)
+	loopunroll	(p, u, t)
+	domtree		(p)
+	cleanloops	(p, u, t)
+	conevpr2	(p, u, t)
+	blockmerge	(p, u, t)
+}
+
+// Loop Marker aware engine currently running at -O2 (loopinvariant)
+engine class doinvariant (in p:mirProcGlobal, u:mirUnit, t: TarDes)
+{
+	engine	cleanloops :	loopanalysis;
+				//OPT:*.doinvariant.cleanloops:cleanonly
+pipeline
+	do_loopana	(p, u, t)
+	loopinvariant	(p, u, t)	// kills loop marker info !
+	domtree		(p)
+	cleanloops	(p, u, t)
+}
+
+// Loop Marker aware engine running at -O1 (loopbcount)
+engine class doblockcount (in u:mirUnit, t: TarDes)
+{
+	engine	true       : test;
+	engine	level0     : test;
+	engine	cleanloops : loopanalysis;
+				//OPT:*.doblockcount.cleanloops:cleanonly
+	region p{}: mirProcGlobal;
+loop
+exit	level0		()
+	unit2proc	(u, p{})
+	do_loopana	(p, u, t)
+	loopbcount	(p)
+	cleanloops	(p, u, t)
+exit	true		()
+}
+
+engine class doblockmerge (in u:mirUnit; in t:TarDes)
+{
+	region p{}: mirProcGlobal;
+pipeline
+	unit2proc	(u, p{})
+	chainflow	(p, u, t) // some more merging possible after chainflow
+	deadblock	(p, u, t) // chained blocks become unreachable
+	blockmerge	(p, u, t) // cleanup blocks e.g. made by loopanalysis
+}
+
+// Loop reversal, make loop control variable ranging from x to 0
+// Does not seem very useful for Sparc, but the engine its use is shown
+// It CAN have effects to get more loopfusions, though.
+//OPT:	*.dorev.looprev:levels:2
+//OPT:	*.dorev.looprev:makenew
+//OPT:	*.dorev.looprev:makeindep
+engine class dorev (in p:mirProcGlobal, u:mirUnit, t: TarDes)
+{
+	engine	cleanloops :	loopanalysis;
+					//OPT:*.dorev.cleanloops:cleanonly
+pipeline
+	do_loopana	(p, u, t)
+	looprev		(p, u, t)
+	cleanloops	(p, u, t)
+}
+
+// Loop induction variable elimination, make less objects changing value
+// within a loop, thus saving code.
+//OPT:	*.doive.loopive:levels:2
+//OPT:	*.doive.loopive:offset:1
+//OPT:	*.doive.loopive:multiply:0
+//OPT:	*.doive.loopive:division:0
+engine class doive (in p:mirProcGlobal, u:mirUnit, t: TarDes)
+{
+	engine	cleanloops :	loopanalysis;
+					//OPT:*.doive.cleanloops:cleanonly
+pipeline
+	do_loopana	(p, u, t)
+	loopive		(p, u, t)
+	cleanloops	(p, u, t)
+}
+
+engine class loops_on_proc (in p: mirProcGlobal, u: mirUnit, t: TarDes)
+{
+pipeline
+	dorev		(p, u, t)	// reverse loops, can make adjacent
+					// loops identical
+	dofuse		(p, u, t)	// needs index expressions
+	dostrength	(p, u, t)	// before unroll, since tempos
+					// are not initialized in the
+					// loop (and only once)
+	doive		(p, u, t)	// Try to get less iteration vars
+	dounroll	(p, u, t)
+}
+engine class loops_on_unit (in u: mirUnit, t: TarDes)
+{
+	region p{}: mirProcGlobal;
+pipeline
+	unit2proc	(u, p{})
+	loops_on_proc	(p, u, t)
+}
+engine class loops (in u: mirUnit, t: TarDes)
+//OPT <stat> = 1
+//OPT-O4:	<stat> = 0
+//OPT:		*.stat4:status:<stat>
+{
+	engine	mileloopsin:	mile;
+		//OPT:*.mileloopsin.dump.ndump:output:dumploopsin.out
+		//OPT-v<level>:*.mileloopsin.echo:message:mile loopsin
+	engine	mileloopsout:	mile;
+		//OPT:*.mileloopsout.dump.ndump:output:dumploopsout.out
+		//OPT-v<level>:*.mileloopsout.echo:message:mile loopsout
+	engine	stat4:		test;
+	engine	true:		test;
+loop
+exit	stat4		()
+	mileloopsin	(u, t)
+	loops_on_unit	(u, t)
+	mileloopsout	(u, t)
+exit	true		()
+}
+
+// real CCMIR optimizers, before any lowering
+engine class high_optimizers (in u: mirUnit, t: TarDes)
+// level indicates optimization throughout compiler, default 0
+//OPT <level> = 0
+//OPT-O0:		<level> = 0
+//OPT-O1:		<level> = 1
+//OPT-O2:		<level> = 2
+//OPT-O3:		<level> = 3
+//OPT-O4:		<level> = 4
+//OPT:			*.level<level>:status:1
+// force -O0 if -g
+//OPT-g:		*.level0:status:1
+//OPT-Ounsafe:		*.misc:doffold
+{
+	engine	true:		test;
+	engine	level0:		test;
+	engine	level1:		test;
+	engine	level2:		test;
+	engine	level3:		test;
+	engine	level4:		test;
+	engine	cluster1:	simple_cluster;
+	engine	cluster2:	optim_cluster;
+	engine	cluster3:	optim_cluster;
+	engine	cluster4:	optim_cluster;
+loop
+exit	level0		()
+	cluster1	(u, t)
+exit	level1		()
+	inliner		(u, t)		// inline functions
+	cluster2	(u, t)		// const/copy propag/fold
+exit	level2		()
+	loops		(u, t)
+	rodata		(u)		// only useful for conevun -i
+	cluster3	(u, t)
+exit	level3		()
+	ifsplit		(u, t)		// now do some ifsplit, and try again
+	cluster4	(u, t)
+exit	level4		()
+exit	true		()
+}
+
+
+//  Sort the case list of switches.
+//  enables merging of adjacent cases and binary search implementation
+//  of mirSwitch
+engine class swsortpr (in p: mirProcGlobal)
+{
+	region b: mirBasicBlock;
+pipeline
+	proc2block	(p, b{})
+	swsort		(b{})
+}
+
+
+// condense jumps, then translate switches to tables.
+engine class lowflow (in u: mirUnit, t: TarDes)
+{
+	region p{} : mirProcGlobal;
+pipeline
+  	unit2proc	(u, p{})
+
+// add start SINAS
+	sinasmultres 	(p, u, t)
+	scalarreplace	(p, u, t)
+	copyprop	(p)
+	deadcode	(p)
+	deadobj		(u, t)
+// add stop SINAS
+
+	chainflow	(p, u, t)
+  	checkcfg	(p)
+  	blockmerge	(p, u, t)
+    	swsortpr	(p)
+  	misc		(p, u, t)	// merge cases
+  	uswitch		(p, u, t)
+  	cfgedges	(p)
+  	lowercom	(p, u, t)
+        lowerboolval    (p, u, t)
+}
+
+// lower structures and switches
+engine class lowering (in u: mirUnit, t: TarDes)
+{
+	engine	mile3_1:	mile;	//OPT:*.mile3_1.dump.ndump:output:dump3_1.out
+				//OPT-v<level>:*.mile3_1.echo:message:mile 3_1
+	engine	mile3_2:	mile;	//OPT:*.mile3_2.dump.ndump:output:dump3_2.out
+				//OPT-v<level>:*.mile3_2.echo:message:mile 3_2
+	engine	mile3_3:	mile;	//OPT:*.mile3_3.dump.ndump:output:dump3_3.out
+				//OPT-v<level>:*.mile3_3.echo:message:mile 3_3
+	engine	mile3_4:	mile;	//OPT:*.mile3_4.dump.ndump:output:dump3_4.out
+				//OPT-v<level>:*.mile3_4.echo:message:mile 3_4
+pipeline
+	lowflow		(u, t)		// switches, jumpjumps...
+	mile3_1		(u, t)
+	alloctp		(u, t)		// calculate typesizes
+	mile3_2		(u, t)
+	dismemun	(u, t)
+	mile3_3		(u, t)
+	conevun		(u, t)		// dismemun creates plenty of constants
+	mile3_4		(u, t)
+	alias		(u)
+}
+
+
+// optimizers after lowering
+engine class low_cluster(in p: mirProcGlobal, u: mirUnit, t: TarDes)
+{
+// alias and cfgedges is correct, no defuse/domtree/loop
+	engine	canon1:	 conevpr;	//OPT:*.low_cluster.canon1:option:-c
+	engine	canon2:	 conevpr;	//OPT:*.low_cluster.canon2:option:-c
+pipeline
+	canon1		(p, u, t)
+	doinvariant	(p, u, t)
+	canon2		(p, u, t)
+	cse		(p, u, t)
+	misc		(p, u, t)
+	tailrec		(p, u, t)
+}
+
+
+engine class low_optimizers (in u: mirUnit, t: TarDes)
+{
+				//OPT:*.cse:fpconst
+				//OPT:*.loopinvariant:fpconst
+				//OPT:*.low_cluster.cse:globals
+				//OPT:*.low_cluster.doinvariant.loopinvariant:globals
+	engine	true:		test;
+	engine	level0: 	test;
+	engine	level1:		test;
+	engine	cluster1:	low_cluster;
+	engine	cluster2:	low_cluster;
+	engine	cluster3:	low_cluster;
+	engine	defuse1:	defuse;
+	engine	cleandefuse1:	defuse;	//OPT:*.cleandefuse1:cleanonly
+	engine	defuse2:	defuse;
+	engine	cleandefuse2:	defuse;	//OPT:*.cleandefuse2:cleanonly
+	region p{}: mirProcGlobal;
+loop
+exit	level0		()
+	alias		(u)
+	deadobj		(u, t)		// remove unused objects
+exit	level1		()
+	unit2proc	(u, p{})
+	checkcfg	(p)
+	blockmerge	(p, u, t)
+	deadblock	(p, u, t)
+	cluster1	(p, u, t)
+	defuse1		(p, u, t)
+	copyprop	(p)
+	constprop	(p)
+	deadcode	(p)
+	cleandefuse1	(p, u, t)
+	cluster2	(p, u, t)
+	strength	(p, u, t)
+	defuse2		(p, u, t)
+	lrrename	(p, u, t)
+	cluster3	(p, u, t)
+	cleandefuse2	(p, u, t)
+exit	true		()
+}
+
+
+// lower pure function calls
+engine class nopfc (in u: mirUnit, t: TarDes)
+{
+	region	p{}: mirProcGlobal;
+pipeline
+	unit2proc	(u, p{})
+	lowerpfc	(p, u, t)
+}
+
+// global register (pre-)allocation
+engine class globregall (in u: mirUnit, t: TarDes)
+{
+	engine	true:	test;
+	engine	level0:	test;
+loop
+exit	level0		()
+	noregun		(u)
+//	globregun	(u, t)
+exit	true		()
+}
+
+// code generator with all necessary lowering
+engine class codegentop (in u: mirUnit, t: TarDes)
+{
+	engine	mile6:	mile;	//OPT:*.mile6.dump.ndump:output:dump6.out
+				//OPT-v<level>:*.mile6.echo:message:mile 6
+				//OPT:*.mile6.nomile:status:0
+	engine	mile7:	mile;	//OPT:*.mile7.dump.ndump:output:dump7.out
+				//OPT-v<level>:*.mile7.echo:message:mile 7
+				//OPT:*.mile7.nomile:status:0
+pipeline
+	nopfc		(u, t)
+	alloctp		(u, t)		// recalc param offsets for nested procs
+	noregun		(u)		// set RC=0 for aliased objects
+	mile6		(u, t)
+
+	cfgrepair	(u)
+	mile7		(u, t)
+
+	basisSinasDevcg	(u, t)		// the real codegen (composite eng)
+                //OPT+:         *.datagen:output:<base>.s
+                //OPT+:         *.emit:output:<base>.s
+                //OPT:          *.packer:packer
+}
+
+// order the blocks to optimize jumps
+engine class orderblocks (in u: mirUnit)
+{
+	region	p{}	: mirProcGlobal;
+	engine	true	: test;
+	engine	level0	: test;
+loop
+exit	level0		()
+	unit2proc	(u, p{})
+	blockorder	(p)
+exit	true()
+}
+
+engine class PEAS_cg (in u: mirUnit, t: TarDes)
+{
+	engine	mile4:	mile;	//OPT:*.mile4.dump.ndump:output:dump4.out
+				//OPT-v<level>:*.mile4.echo:message:mile 4
+	engine	mile5:	mile;	//OPT:*.mile5.dump.ndump:output:dump5.out
+				//OPT-v<level>:*.mile5.echo:message:mile 5
+pipeline
+	globregall	(u, t)	// global register (pre-)allocation
+	lowering	(u, t)	// lower structs and switches away
+	mile4		(u, t)
+	low_optimizers	(u, t)	// 'low-level' optimizers
+	deadobj		(u, t)
+	mile5		(u, t)
+
+	doblockcount	(u, t)	// uses loopanalysis, orderblocks and
+				// global register allocator benefit from the
+				// result
+
+	doblockmerge	(u, t)
+	orderblocks	(u)
+	codegentop		(u, t)	// code generation
+}
+
+// the flat compiler
+engine class acc (in IR) [top]
+//OPT-V:		version(peascc v.3)
+//OPT-s<engine>:	*.<engine>:skip
+//OPT-v<level>:		*:verbose:<level>
+{
+	region	u: mirUnit;
+	region	t: TarDes;
+	engine	mile1:	mile;	//OPT:*.mile1.dump.ndump:output:dump1.out
+				//OPT-v<level>:*.mile1.echo:message:mile 1
+	engine	mile2:	mile;	//OPT:*.mile2.dump.ndump:output:dump2.out
+				//OPT-v<level>:*.mile2.echo:message:mile 2
+	engine	mile3:	mile;	//OPT:*.mile3.dump.ndump:output:dump3.out
+				//OPT-v<level>:*.mile3.echo:message:mile 3
+	engine	mile4:	mile;	//OPT:*.mile4.dump.ndump:output:dump4.out
+				//OPT-v<level>:*.mile4.echo:message:mile 4
+        engine  mileloop: mile; //OPT:*.mileloop.dump.ndump:output:dumploop.out
+                                //OPT-v<level>:*mileloop.echo:message:mileloop
+pipeline
+	init		(u, t)
+	frontend	(u, t)		// front end
+	mile1		(u, t)
+
+	cleanup		(u, t)		// clean up some
+	mile2		(u, t)
+
+	//ZOL at 9/8 2002
+	//doloopcanon	(u, t)
+	//dohwloops	(u, t)
+	mile3		(u, t)
+	mileloop	(u, t)
+
+	alias		(u)		// alias info must be kept alive!!
+	high_optimizers	(u, t)		// high level optimizers
+	mile4		(u, t)
+
+	// k-mita at 9/12 2002
+	proc		(u, t)
+
+	PEAS_cg		(u, t)		// lower and generate asm
+}
+
+engine class proc (in u: mirUnit, t: TarDes)
+{
+	region	p:	mirProcGlobal;
+pipeline
+	unit2proc	(u, p{})
+	cfgedges	(p)
+	//OPT+:		*.proc.checkcfg:output:<base>.proccfg
+	checkcfg	(p)
+}

@@ -1,0 +1,469 @@
+#### List of different label names for the same address:
+#### Syntax: #:<TAB>LabelA_Name<TAB>LabelA_JumpTarget<TAB>LabelB_Name<TAB>LabelB_JumpTarget
+#:	blowfish_encrypt:		l4:	
+#:	blowfish_decrypt:		l9:	
+#:	blowfish_init:		l14:	
+#:	merge:		l32:	
+#:	msort:		l45:	
+#:	blowfish_e1:		l55:	
+#:	blowfish_e2:		l65:	
+#:	blowfish_e3:		l75:	
+#:	blowfish_variable_decryption:		l85:	
+#:	blowfish_variable_encryption:		l95:	
+#:	blowfish_d1:		l105:	
+#:	blowfish_d2:		l115:	
+#:	blowfish_d3:		l125:	
+#:	msort_1:		l135:	
+#:	msort_2:		l142:	
+#:	msort_3:		l149:	
+#:	dct:		l156:	
+#:	calc_crc32:		l170:	
+#:	dummy_crc32:		l178:	
+#:	do_da_example:		l183:	
+#:	main:		l187:	
+
+#### List of base blocks with number of executions and used special instructions:
+#### Syntax: startLabel<TAB>startJumpInstruction<TAB>endLabel<TAB>endJumpInstruction<TAB>
+####         startAddress<TAB>numberOfExecutions<TAB>executionTime<TAB>CSV{specialInstructions}<TAB>
+####         CSV{SuccessingBaseBlocks(StartingAddress, Counter)}
+start:		main:	jal	0	1	23		5808:1
+main:	jal	exit:	jal	21	1	7		5895:1
+exit:	jal	blowfish_encrypt:		26	0	0		
+l4:		l5:		27	1532	32		54:1532
+l5:		l6:	bnez	54	26044	8		67:24512, 61:1532
+l6:	bnez	l7:	j	61	1532	4		125:1532
+l7:	j	l6:		65	0	0		
+l6:		l5:	j	67	24512	92	optimizef, xchg	54:24512
+l5:	j	l7:		123	0	0		
+l7:		l8:	j	125	1532	72	xchg	194:1532
+l8:	j	l8:		192	0	0		
+l8:			return	194	1532	18		792:9, 919:512, 1873:1001, 2495:10
+	return	blowfish_decrypt:		209	0	0		
+l9:		l10:		211	0	0		
+l10:		l11:	bnez	238	0	0		
+l11:	bnez	l12:	j	245	0	0		
+l12:	j	l11:		249	0	0		
+l11:		l10:	j	251	0	0	optimizef, xchg	
+l10:	j	l12:		307	0	0		
+l12:		l13:	j	309	0	0	xchg	
+l13:	j	l13:		372	0	0		
+l13:			return	374	0	0		
+	return	blowfish_init:		389	0	0		
+l14:		l15:		391	1	32		418:1
+l15:		l16:		418	4	17		433:4
+l16:		l16:	bnez	433	1024	238		433:1020, 524:4
+l16:	bnez	l17:	j	524	4	4		530:4
+l17:	j	l17:		528	0	0		
+l17:		l15:	bnez	530	4	28		418:3, 555:1
+l15:	bnez	l18:	j	555	1	4		561:1
+l18:	j	l18:		559	0	0		
+l18:		l19:		561	1	27		585:1
+l19:		l20:		585	18	17		601:18
+l20:		l21:	bnez	601	72	32		629:62, 635:10
+l21:	bnez	l22:	j	629	62	4		650:62
+l22:	j	l21:		633	0	0		
+l21:		l22:		635	10	17		650:10
+l22:		l20:	bnez	650	72	20		601:54, 669:18
+l20:	bnez	l23:	j	669	18	4		675:18
+l23:	j	l23:		673	0	0		
+l23:		l19:	bnez	675	18	138		585:17, 739:1
+l19:	bnez	l24:	j	739	1	4		745:1
+l24:	j	l24:		743	0	0		
+l24:		l25:		745	1	38		779:1
+l25:		blowfish_encrypt:	jal	779	9	15		27:9
+blowfish_encrypt:	jal	l25:	bnez	792	9	155		779:8, 870:1
+l25:	bnez	l26:	j	870	1	4		876:1
+l26:	j	l26:		874	0	0		
+l26:		l27:		876	1	17		891:1
+l27:		l28:		891	4	17		906:4
+l28:		blowfish_encrypt:	jal	906	512	15		27:512
+blowfish_encrypt:	jal	l28:	bnez	919	512	265		906:508, 1036:4
+l28:	bnez	l29:	j	1036	4	4		1042:4
+l29:	j	l29:		1040	0	0		
+l29:		l27:	bnez	1042	4	28		891:3, 1067:1
+l27:	bnez	l30:	j	1067	1	4		1073:1
+l30:	j	l30:		1071	0	0		
+l30:		l31:	j	1073	1	14		1088:1
+l31:	j	l31:		1086	0	0		
+l31:			return	1088	1	18		5848:1
+	return	merge:		1103	0	0		
+l32:		l33:		1105	8007	35		1137:8007
+l33:		l34:	bnez	1137	97787	8		1150:94630, 1144:3157
+l34:	bnez	l37:	j	1144	3157	4		1226:3157
+l37:	j	l34:		1148	0	0		
+l34:		l35:	bnez	1150	94630	8		1163:89780, 1157:4850
+l35:	bnez	l37:	j	1157	4850	4		1226:4850
+l37:	j	l35:		1161	0	0		
+l35:		l36:	bnez	1163	89780	41	s12, s06	1207:41600, 1201:48180
+l36:	bnez	l40:	j	1201	48180	4		1279:48180
+l40:	j	l36:		1205	0	0		
+l36:		l33:	j	1207	41600	20		1137:41600
+l33:	j	l37:		1224	0	0		
+l37:		l38:		1226	8007	22	s05	1247:8007
+l38:		l39:	bnez	1247	17923	8		1254:8007, 1260:9916
+l39:	bnez	l41:	j	1254	8007	4		1298:8007
+l41:	j	l39:		1258	0	0		
+l39:		l38:	j	1260	9916	20		1247:9916
+l38:	j	l40:		1277	0	0		
+l40:		l33:	j	1279	48180	20		1137:48180
+l33:	j	l41:		1296	0	0		
+l41:		l42:	bnez	1298	12231	8		1311:4224, 1305:8007
+l42:	bnez	l43:	j	1305	8007	4		1330:8007
+l43:	j	l42:		1309	0	0		
+l42:		l41:	j	1311	4224	20		1298:4224
+l41:	j	l43:		1328	0	0		
+l43:		l44:	j	1330	8007	14		1345:8007
+l44:	j	l44:		1343	0	0		
+l44:			return	1345	8007	18		1592:8007
+	return	msort:		1360	0	0		
+l45:		l46:	bnez	1362	16015	38		1402:8007, 1396:8008
+l46:	bnez	l53:	j	1396	8008	4		1598:8008
+l53:	j	l46:		1400	0	0		
+l46:		l47:		1402	8007	77	s03	1442:8007
+l47:		l48:	bnez	1442	59523	13		1459:51516, 1453:8007
+l48:	bnez	l49:	j	1453	8007	4		1479:8007
+l49:	j	l48:		1457	0	0		
+l48:		l47:	j	1459	51516	22		1442:51516
+l47:	j	l49:		1477	0	0		
+l49:		l50:		1479	8007	20	s04	1498:8007
+l50:		l51:	bnez	1498	60411	13		1515:52404, 1509:8007
+l51:	bnez	l52:	j	1509	8007	4		1539:8007
+l52:	j	l51:		1513	0	0		
+l51:		l50:	j	1515	52404	27		1498:52404
+l50:	j	l52:		1537	0	0		
+l52:		msort:	jal	1539	8007	14		1362:8007
+msort:	jal	msort:	jal	1551	8007	19		1362:8007
+msort:	jal	merge:	jal	1568	8007	28		1105:8007
+merge:	jal	l53:		1592	8007	7		1598:8007
+l53:		l54:	j	1598	16015	16		1616:16015
+l54:	j	l54:		1614	0	0		
+l54:			return	1616	16015	18		1551:8007, 1568:8007, 4206:1
+	return	blowfish_e1:		1631	0	0		
+l55:		l56:		1633	1	31		1660:1
+l56:		l57:	bnez	1660	8009	21		1685:8008, 1679:1
+l57:	bnez	l60:	j	1679	1	4		1766:1
+l60:	j	l57:		1683	0	0		
+l57:		l58:	bnez	1685	8008	64		1719:801, 1713:7207
+l58:	bnez	l59:	j	1713	7207	4		1735:7207
+l59:	j	l58:		1717	0	0		
+l58:		l59:		1719	801	18	s13	1735:801
+l59:		l56:	j	1735	8008	34		1660:8008
+l56:	j	l60:		1764	0	0		
+l60:		l61:		1766	1	47		1810:1
+l61:		l62:	bnez	1810	1002	21		1835:1001, 1829:1
+l62:	bnez	l63:	j	1829	1	4		1892:1
+l63:	j	l62:		1833	0	0		
+l62:		blowfish_encrypt:	jal	1835	1001	41		27:1001
+blowfish_encrypt:	jal	l61:	j	1873	1001	20		1810:1001
+l61:	j	l63:		1890	0	0		
+l63:		l64:	j	1892	1	35		1927:1
+l64:	j	l64:		1925	0	0		
+l64:			return	1927	1	18		5669:1
+	return	blowfish_e2:		1942	0	0		
+l65:		l66:		1944	0	0		
+l66:		l67:	bnez	1971	0	0		
+l67:	bnez	l70:	j	1990	0	0		
+l70:	j	l67:		1994	0	0		
+l67:		l68:	bnez	1996	0	0		
+l68:	bnez	l69:	j	2024	0	0		
+l69:	j	l68:		2028	0	0		
+l68:		l69:		2030	0	0	s13	
+l69:		l66:	j	2046	0	0		
+l66:	j	l70:		2075	0	0		
+l70:		l71:		2077	0	0		
+l71:		l72:	bnez	2121	0	0		
+l72:	bnez	l73:	j	2140	0	0		
+l73:	j	l72:		2144	0	0		
+l72:		blowfish_encrypt:	jal	2146	0	0		
+blowfish_encrypt:	jal	l71:	j	2184	0	0		
+l71:	j	l73:		2201	0	0		
+l73:		l74:	j	2203	0	0		
+l74:	j	l74:		2236	0	0		
+l74:			return	2238	0	0		
+	return	blowfish_e3:		2253	0	0		
+l75:		l76:		2255	1	31		2282:1
+l76:		l77:	bnez	2282	81	21		2307:80, 2301:1
+l77:	bnez	l80:	j	2301	1	4		2388:1
+l80:	j	l77:		2305	0	0		
+l77:		l78:	bnez	2307	80	64		2341:8, 2335:72
+l78:	bnez	l79:	j	2335	72	4		2357:72
+l79:	j	l78:		2339	0	0		
+l78:		l79:		2341	8	18	s13	2357:8
+l79:		l76:	j	2357	80	34		2282:80
+l76:	j	l80:		2386	0	0		
+l80:		l81:		2388	1	47		2432:1
+l81:		l82:	bnez	2432	11	21		2457:10, 2451:1
+l82:	bnez	l83:	j	2451	1	4		2514:1
+l83:	j	l82:		2455	0	0		
+l82:		blowfish_encrypt:	jal	2457	10	41		27:10
+blowfish_encrypt:	jal	l81:	j	2495	10	20		2432:10
+l81:	j	l83:		2512	0	0		
+l83:		l84:	j	2514	1	35		2549:1
+l84:	j	l84:		2547	0	0		
+l84:			return	2549	1	18		5745:1
+	return	blowfish_variable_decryption:		2564	0	0		
+l85:		l86:		2566	0	0		
+l86:		l87:	bnez	2597	0	0		
+l87:	bnez	l90:	j	2609	0	0		
+l90:	j	l87:		2613	0	0		
+l87:		l88:	bnez	2615	0	0		
+l88:	bnez	l89:	j	2643	0	0		
+l89:	j	l88:		2647	0	0		
+l88:		l89:		2649	0	0	s13	
+l89:		l86:	j	2665	0	0		
+l86:	j	l90:		2694	0	0		
+l90:		l91:		2696	0	0		
+l91:		l92:	bnez	2726	0	0		
+l92:	bnez	l93:	j	2738	0	0		
+l93:	j	l92:		2742	0	0		
+l92:		blowfish_decrypt:	jal	2744	0	0		
+blowfish_decrypt:	jal	l91:	j	2782	0	0		
+l91:	j	l93:		2799	0	0		
+l93:		l94:	j	2801	0	0		
+l94:	j	l94:		2828	0	0		
+l94:			return	2830	0	0		
+	return	blowfish_variable_encryption:		2845	0	0		
+l95:		l96:		2847	0	0		
+l96:		l97:	bnez	2878	0	0		
+l97:	bnez	l100:	j	2890	0	0		
+l100:	j	l97:		2894	0	0		
+l97:		l98:	bnez	2896	0	0		
+l98:	bnez	l99:	j	2924	0	0		
+l99:	j	l98:		2928	0	0		
+l98:		l99:		2930	0	0	s13	
+l99:		l96:	j	2946	0	0		
+l96:	j	l100:		2975	0	0		
+l100:		l101:		2977	0	0		
+l101:		l102:	bnez	3013	0	0		
+l102:	bnez	l103:	j	3025	0	0		
+l103:	j	l102:		3029	0	0		
+l102:		blowfish_encrypt:	jal	3031	0	0		
+blowfish_encrypt:	jal	l101:	j	3069	0	0		
+l101:	j	l103:		3086	0	0		
+l103:		l104:	j	3088	0	0		
+l104:	j	l104:		3115	0	0		
+l104:			return	3117	0	0		
+	return	blowfish_d1:		3132	0	0		
+l105:		l106:		3134	0	0		
+l106:		l107:	bnez	3161	0	0		
+l107:	bnez	l110:	j	3180	0	0		
+l110:	j	l107:		3184	0	0		
+l107:		l108:	bnez	3186	0	0		
+l108:	bnez	l109:	j	3214	0	0		
+l109:	j	l108:		3218	0	0		
+l108:		l109:		3220	0	0	s13	
+l109:		l106:	j	3236	0	0		
+l106:	j	l110:		3265	0	0		
+l110:		l111:		3267	0	0		
+l111:		l112:	bnez	3306	0	0		
+l112:	bnez	l113:	j	3325	0	0		
+l113:	j	l112:		3329	0	0		
+l112:		blowfish_decrypt:	jal	3331	0	0		
+blowfish_decrypt:	jal	l111:	j	3369	0	0		
+l111:	j	l113:		3386	0	0		
+l113:		l114:	j	3388	0	0		
+l114:	j	l114:		3421	0	0		
+l114:			return	3423	0	0		
+	return	blowfish_d2:		3438	0	0		
+l115:		l116:		3440	0	0		
+l116:		l117:	bnez	3467	0	0		
+l117:	bnez	l120:	j	3486	0	0		
+l120:	j	l117:		3490	0	0		
+l117:		l118:	bnez	3492	0	0		
+l118:	bnez	l119:	j	3520	0	0		
+l119:	j	l118:		3524	0	0		
+l118:		l119:		3526	0	0	s13	
+l119:		l116:	j	3542	0	0		
+l116:	j	l120:		3571	0	0		
+l120:		l121:		3573	0	0		
+l121:		l122:	bnez	3612	0	0		
+l122:	bnez	l123:	j	3631	0	0		
+l123:	j	l122:		3635	0	0		
+l122:		blowfish_decrypt:	jal	3637	0	0		
+blowfish_decrypt:	jal	l121:	j	3675	0	0		
+l121:	j	l123:		3692	0	0		
+l123:		l124:	j	3694	0	0		
+l124:	j	l124:		3727	0	0		
+l124:			return	3729	0	0		
+	return	blowfish_d3:		3744	0	0		
+l125:		l126:		3746	0	0		
+l126:		l127:	bnez	3773	0	0		
+l127:	bnez	l130:	j	3792	0	0		
+l130:	j	l127:		3796	0	0		
+l127:		l128:	bnez	3798	0	0		
+l128:	bnez	l129:	j	3826	0	0		
+l129:	j	l128:		3830	0	0		
+l128:		l129:		3832	0	0	s13	
+l129:		l126:	j	3848	0	0		
+l126:	j	l130:		3877	0	0		
+l130:		l131:		3879	0	0		
+l131:		l132:	bnez	3918	0	0		
+l132:	bnez	l133:	j	3937	0	0		
+l133:	j	l132:		3941	0	0		
+l132:		blowfish_decrypt:	jal	3943	0	0		
+blowfish_decrypt:	jal	l131:	j	3981	0	0		
+l131:	j	l133:		3998	0	0		
+l133:		l134:	j	4000	0	0		
+l134:	j	l134:		4033	0	0		
+l134:			return	4035	0	0		
+	return	msort_1:		4050	0	0		
+l135:		l136:		4052	1	40	s02	4089:1
+l136:		l137:	bnez	4089	8009	18		4112:8008, 4106:1
+l137:	bnez	l140:	j	4106	1	4		4182:1
+l140:	j	l137:		4110	0	0		
+l137:		l138:	bnez	4112	8008	61		4144:801, 4138:7207
+l138:	bnez	l139:	j	4138	7207	4		4154:7207
+l139:	j	l138:		4142	0	0		
+l138:		l139:		4144	801	11	s13	4154:801
+l139:		l136:	j	4154	8008	29		4089:8008
+l136:	j	l140:		4180	0	0		
+l140:		msort:	jal	4182	1	25		1362:1
+msort:	jal	l141:	j	4206	1	21		4228:1
+l141:	j	l141:		4226	0	0		
+l141:			return	4228	1	18		5721:1
+	return	msort_2:		4243	0	0		
+l142:		l143:		4245	0	0	s02	
+l143:		l144:	bnez	4282	0	0		
+l144:	bnez	l147:	j	4299	0	0		
+l147:	j	l144:		4303	0	0		
+l144:		l145:	bnez	4305	0	0		
+l145:	bnez	l146:	j	4331	0	0		
+l146:	j	l145:		4335	0	0		
+l145:		l146:		4337	0	0	s13	
+l146:		l143:	j	4347	0	0		
+l143:	j	l147:		4373	0	0		
+l147:		msort:	jal	4375	0	0		
+msort:	jal	l148:	j	4399	0	0		
+l148:	j	l148:		4419	0	0		
+l148:			return	4421	0	0		
+	return	msort_3:		4436	0	0		
+l149:		l150:		4438	0	0	s02	
+l150:		l151:	bnez	4475	0	0		
+l151:	bnez	l154:	j	4492	0	0		
+l154:	j	l151:		4496	0	0		
+l151:		l152:	bnez	4498	0	0		
+l152:	bnez	l153:	j	4524	0	0		
+l153:	j	l152:		4528	0	0		
+l152:		l153:		4530	0	0	s13	
+l153:		l150:	j	4540	0	0		
+l150:	j	l154:		4566	0	0		
+l154:		msort:	jal	4568	0	0		
+msort:	jal	l155:	j	4592	0	0		
+l155:	j	l155:		4612	0	0		
+l155:			return	4614	0	0		
+	return	dct:		4629	0	0		
+l156:		l157:		4631	1	28		4656:1
+l157:		l158:		4656	8	14		4669:8
+l158:		l159:		4669	64	29	s01	4697:64
+l159:		l159:	bnez	4697	512	255	mad	4697:448, 4779:64
+l159:	bnez	l160:	j	4779	64	4		4785:64
+l160:	j	l160:		4783	0	0		
+l160:		l158:	bnez	4785	64	75		4669:56, 4824:8
+l158:	bnez	l161:	j	4824	8	4		4830:8
+l161:	j	l161:		4828	0	0		
+l161:		l157:	bnez	4830	8	20		4656:7, 4849:1
+l157:	bnez	l162:	j	4849	1	4		4855:1
+l162:	j	l162:		4853	0	0		
+l162:		l163:		4855	1	14		4868:1
+l163:		l164:		4868	8	14		4881:8
+l164:		l165:		4881	64	36	s01, s12	4916:64
+l165:		l165:	bnez	4916	512	251	mad	4916:448, 4994:64
+l165:	bnez	l166:	j	4994	64	4		5000:64
+l166:	j	l166:		4998	0	0		
+l166:		l164:	bnez	5000	64	79		4881:56, 5043:8
+l164:	bnez	l167:	j	5043	8	4		5049:8
+l167:	j	l167:		5047	0	0		
+l167:		l163:	bnez	5049	8	20		4868:7, 5068:1
+l163:	bnez	l168:	j	5068	1	4		5074:1
+l168:	j	l168:		5072	0	0		
+l168:		l169:	j	5074	1	18		5093:1
+l169:	j	l169:		5091	0	0		
+l169:			return	5093	1	18		5657:1
+	return	calc_crc32:		5108	0	0		
+l170:		l171:	bnez	5110	640	61	s12	5167:336, 5173:304
+l171:	bnez	l172:	j	5167	336	4		5185:336
+l172:	j	l171:		5171	0	0		
+l171:		l173:	j	5173	304	11		5196:304
+l173:	j	l172:		5183	0	0		
+l172:		l173:		5185	336	12		5196:336
+l173:		l174:	bnez	5196	640	9		5211:495, 5205:145
+l174:	bnez	l175:	j	5205	145	4		5248:145
+l175:	j	l174:		5209	0	0		
+l174:		l176:	j	5211	495	38		5274:495
+l176:	j	l175:		5246	0	0		
+l175:		l176:		5248	145	29		5274:145
+l176:		l177:	j	5274	640	33		5307:640
+l177:	j	l177:		5305	0	0		
+l177:			return	5307	640	18		5424:80, 5444:80, 5464:80, 5484:80, 5504:80, 5524:80, 5544:80, 5564:80
+	return	dummy_crc32:		5322	0	0		
+l178:		l179:		5324	1	52		5369:1
+l179:		l180:	bnez	5369	81	15		5387:80, 5381:1
+l180:	bnez	l181:	j	5381	1	4		5583:1
+l181:	j	l180:		5385	0	0		
+l180:		calc_crc32:	jal	5387	80	43	s00	5110:80
+calc_crc32:	jal	calc_crc32:	jal	5424	80	22		5110:80
+calc_crc32:	jal	calc_crc32:	jal	5444	80	22		5110:80
+calc_crc32:	jal	calc_crc32:	jal	5464	80	22		5110:80
+calc_crc32:	jal	calc_crc32:	jal	5484	80	22		5110:80
+calc_crc32:	jal	calc_crc32:	jal	5504	80	22		5110:80
+calc_crc32:	jal	calc_crc32:	jal	5524	80	22		5110:80
+calc_crc32:	jal	calc_crc32:	jal	5544	80	22		5110:80
+calc_crc32:	jal	l179:	j	5564	80	20		5369:80
+l179:	j	l181:		5581	0	0		
+l181:		l182:	j	5583	1	16		5600:1
+l182:	j	l182:		5598	0	0		
+l182:			return	5600	1	18		5773:1
+	return	do_da_example:		5615	0	0		
+l183:		dct:	jal	5617	1	45		4631:1
+dct:	jal	blowfish_e1:	jal	5657	1	13		1633:1
+blowfish_e1:	jal	l184:	bnez	5669	1	26		5693:1
+l184:	bnez	l185:	j	5693	1	4		5712:1
+l185:	j	l184:		5697	0	0		
+l184:		l185:		5699	0	0	s10	
+l185:		msort_1:	jal	5712	1	10		4052:1
+msort_1:	jal	blowfish_e3:	jal	5721	1	27	s09	2255:1
+blowfish_e3:	jal	dummy_crc32:	jal	5745	1	29		5324:1
+dummy_crc32:	jal	l186:	j	5773	1	17		5791:1
+l186:	j	l186:		5789	0	0		
+l186:			return	5791	1	18		5860:1
+	return	main:		5806	0	0		
+l187:		blowfish_init:	jal	5808	1	43		391:1
+blowfish_init:	jal	do_da_example:	jal	5848	1	13		5617:1
+do_da_example:	jal	l188:	j	5860	1	17		5878:1
+l188:	j	l188:		5876	0	0		
+l188:			return	5878	1	18		21:1
+	return	exit:		5893	0	0		
+exit:		_input:		5895	1	0		
+_input:		_output:		5898	0	0		
+_output:		_cos1:		5914	0	0		
+_cos1:		_cos2:		5930	0	0		
+_cos2:		_inputstring1:		5946	0	0		
+_inputstring1:		_inputstring2:		5962	0	0		
+_inputstring2:		_inputstring3:		7964	0	0		
+_inputstring3:		_dummy1:		10400	0	0		
+_dummy1:		_encryptedstring1:		10420	0	0		
+_encryptedstring1:		_dummy2:		10421	0	0		
+_dummy2:		_encryptedstring2:		12423	0	0		
+_encryptedstring2:		_dummy3:		12424	0	0		
+_dummy3:		_encryptedstring3:		14860	0	0		
+_encryptedstring3:		_dummy4:		14861	0	0		
+_dummy4:		_decryptedstring1:		14881	0	0		
+_decryptedstring1:		_dummy5:		14882	0	0		
+_dummy5:		_decryptedstring2:		16884	0	0		
+_decryptedstring2:		_dummy6:		16885	0	0		
+_dummy6:		_decryptedstring3:		19321	0	0		
+_decryptedstring3:		_ctx:		19322	0	0		
+_ctx:		_msort_array1:		19342	0	0		
+_msort_array1:		_msort_array2:		20384	0	0		
+_msort_array2:		_msort_array3:		22386	0	0		
+_msort_array3:		l1:		24822	0	0		
+l1:		l2:		24842	0	0		
+l2:		_crc32:		24860	0	0		
+_crc32:		l3:		25884	0	0		
+l3:		finish:		25885	0	0		
+
+#### List of JumpTable Usages:
+####   Syntax is: "#;<TAB>BaseBlockLabel<TAB>CSV(JumpTargets)"
+####   "BaseBlockLabel" is the starting label of the baseBlock where the JumpTable is used, e.g. L10.
+####   Then in the above Base Block List there must be something like: "L10<TAB><TAB><TAB>jr".
+####   "CSV" are the Comma Seperated Values of the possible Jump Targets in this Jump Table

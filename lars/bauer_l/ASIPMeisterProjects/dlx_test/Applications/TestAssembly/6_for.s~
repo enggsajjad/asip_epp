@@ -1,0 +1,50 @@
+	.section	.text
+	.addressing	Word
+
+main:	lw	%GPR7, C(%GPR0)
+	addi	%GPR1, %GPR0, $10
+	nop
+	nop
+	addi	%GPR7, %GPR7, $5
+
+loop:	lw	%GPR6, B(%GPR4)
+	subi	%GPR1, %GPR1, $1
+	nop
+	nop
+	add	%GPR6, %GPR6, %GPR7
+	nop
+	nop
+	nop
+	sw	A(%GPR4), %GPR6
+	addi	%GPR4, %GPR4, $4
+	bnez	%GPR1, loop
+	nop
+	nop
+
+	.section	.data
+	.addressing	Word
+
+A:	.data.32	0
+	.data.32	0
+	.data.32	0
+	.data.32	0
+	.data.32	0
+	.data.32	0
+	.data.32	0
+	.data.32	0
+	.data.32	0
+	.data.32	0
+
+B:	.data.32	1
+	.data.32	2
+	.data.32	3
+	.data.32	4
+	.data.32	5
+	.data.32	6
+	.data.32	7
+	.data.32	8
+	.data.32	9
+	.data.32	10
+
+C:	.data.32	42
+

@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+# Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+# SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+#
+
+SVPATH="$PATH"
+PATH=/bin:/usr/bin
+case "`uname -m`" in
+    i[3-6]86)
+        proc=i386
+        ;;
+    sparc*)
+        proc=sparc
+        ;;
+    *)
+        proc="`uname -m`"
+        ;;
+esac
+
+PATH="$SVPATH"
+exec `dirname $0`/$proc/`basename $0` $@
+
+#
+# Comment on purpose:
+#
+# The dynamic library code in glibc does not seem to canonicalize
+# path names to when checking if a library has already been loaded.
+# As a result, if LD_LIBRARY_PATH is set with non-canonical paths
+# then the loading of libfontmanager.so-linked-against-libawt.so
+# causes a duplicate loading of libawt.so (the
+# System.loadLibrary("awt") call uses the canonical path name).
+#
+# This program is a simple workaround to the problem so that
+# .java_wrapper can set LD_LIBRARY_PATH to match the canonicalization
+# made by System.loadLibrary().
+#

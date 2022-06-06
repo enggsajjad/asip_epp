@@ -1,0 +1,186 @@
+structure
+{
+  portion
+  PC
+  {
+    class {pcu}
+    stage {1}
+    connection {
+      data_out {
+        stage 1 IMAU.addr
+        stage 3 ALU0.a
+      }
+    }
+  }
+  portion
+  PC
+  {
+    class {pcu}
+    stage {2}
+    connection {
+      data_out {
+        stage 5 GPR.data_in0
+      }
+    }
+  }
+  portion
+  PC
+  {
+    class {pcu}
+    stage {3}
+    connection {
+      dummy{}
+    }
+  }
+  portion
+  IR
+  {
+    class {register}
+    stage {2}
+    connection {
+      data_out {
+        stage 2 GPR.r_sel0
+        stage 2 GPR.r_sel1
+        stage 5 GPR.w_sel0
+        stage 2 EXT0.data_in
+        stage 2 EXT1.data_in
+      }
+    }
+  }
+  portion
+  IR
+  {
+    class {register}
+    stage {1}
+    connection {
+      dummy{}
+    }
+  }
+  IMAU
+  {
+    class {imau}
+    stage {1}
+    connection {
+      data__ {
+        stage 1 IR.data_in
+      }
+    }
+  }
+  DMAU
+  {
+    class {dmau}
+    stage {4}
+    connection {
+      data_out {
+        stage 5 GPR.data_in0
+      }
+    }
+  }
+  portion
+  GPR
+  {
+    class {registerfile}
+    stage {2}
+    connection {
+      data_out0 {
+        stage 3 ALU0.a
+        stage 3 MUL0.a
+        stage 3 DIV0.a
+        stage 3 SFT0.data_in
+        stage 4 DMAU.data_in
+        stage 3 PC.data_in
+      }
+      data_out1 {
+        stage 3 ALU0.b
+        stage 3 MUL0.b
+        stage 3 DIV0.b
+        stage 3 ALU0.a
+        stage 3 SFT0.ctrl
+      }
+    }
+  }
+  portion
+  GPR
+  {
+    class {registerfile}
+    stage {5}
+    connection {
+      dummy{}
+    }
+  }
+  ALU0
+  {
+    class {alu}
+    stage {3}
+    connection {
+      result {
+        stage 5 GPR.data_in0
+        stage 4 DMAU.addr
+        stage 3 PC.data_in
+      }
+      flag__ {
+        stage 5 GPR.data_in0
+        stage 5 GPR.data_in0
+        stage 5 GPR.data_in0
+        stage 5 GPR.data_in0
+        stage 5 GPR.data_in0
+        stage 5 GPR.data_in0
+        stage 5 GPR.data_in0
+      }
+    }
+  }
+  EXT0
+  {
+    class {extender}
+    stage {2}
+    connection {
+      data_out {
+        stage 3 ALU0.b
+      }
+    }
+  }
+  MUL0
+  {
+    class {multiplier}
+    stage {3}
+    connection {
+      result {
+        stage 5 GPR.data_in0
+      }
+    }
+  }
+  DIV0
+  {
+    class {divider}
+    stage {3}
+    connection {
+      q {
+        stage 5 GPR.data_in0
+      }
+      r {
+        stage 5 GPR.data_in0
+      }
+    }
+  }
+  SFT0
+  {
+    class {shifter}
+    stage {3}
+    connection {
+      data_out {
+        stage 5 GPR.data_in0
+      }
+    }
+  }
+  EXT1
+  {
+    class {extender}
+    stage {2}
+    connection {
+      data_out {
+        stage 3 ALU0.b
+        stage 3 ALU0.b
+      }
+    }
+  }
+}

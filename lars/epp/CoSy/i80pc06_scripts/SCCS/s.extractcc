@@ -1,0 +1,198 @@
+h35156
+s 00186/00000/00000
+d D 1.1 04/10/21 22:37:17 sascha 1 0
+c Comment
+c (sascha)
+e
+u
+U
+t
+T
+I 1
+#!/bin/bash
+
+#
+# please modify COSY_HOME to your enviornment
+#
+COSY_HOME=/home/sascha/devrep
+
+#
+# MEISTERCG and MEISTERCC are the name of the original code generator 
+# and compiler
+# if you want to change original code generator and compiler,
+# please modify them
+# 
+MEISTERCG=testcg
+MEISTERCC=testcc
+
+#########################################
+# arg1 is the name of new code generator
+# arg2 is the name of new compiler
+#########################################
+CG_DIR=${COSY_HOME}/engines/$1
+CC_DIR=${COSY_HOME}/compilers/$2
+WORK_DIR=$(pwd)
+
+##############################
+# dir. of sub engines of cg.
+##############################
+CGD_DIR=${CG_DIR}/cgd
+EMIT_DIR=${CG_DIR}/emit
+PAROFFSET_DIR=${CG_DIR}/paroffset
+MISC_DIR=${CG_DIR}/misc
+CCREG_DIR=${CG_DIR}/ccreg
+CG_EDL_DIR=${CG_DIR}/edl
+CG_SDL_DIR=${CG_DIR}/sdl
+MATCH_DIR=${CG_DIR}/match
+MKXIR_DIR=${CG_DIR}/mkxir
+SETPSR_DIR=${CG_DIR}/setpsr
+TDF_DIR=${CG_DIR}/misc
+
+CC_EDL_DIR=${CC_DIR}/edl
+
+##############################
+# check number of argument
+##############################
+if [ -z "$1" ] || [ -z "$2" ] ; then
+  echo "USAGE : extractcc engname compname"
+  exit
+fi
+
+if [ -d "$CG_DIR" ] ; then
+  echo "$CG_DIR is already exists."
+  exit
+fi
+
+if [ -d "$CC_DIR" ] ; then
+  echo "$CC_DIR is already exists."
+  exit
+fi
+
+##############################
+# make new tree
+##############################
+mkdir ${CG_DIR}
+mkdir ${CC_DIR}
+updatetree ${COSY_HOME}/engines/$MEISTERCG ${CG_DIR}
+updatetree ${COSY_HOME}/compilers/$MEISTERCC ${CC_DIR}
+
+######################################
+# rename $MEISTERCG to $1 in cg files
+######################################
+
+# change cg name in Makefile
+ccgete ${CGD_DIR}/Makefile
+sed s/${MEISTERCG}/$1/g ${CGD_DIR}/Makefile > ${CGD_DIR}/tmp
+mv ${CGD_DIR}/tmp ${CGD_DIR}/Makefile
+ccpute -y "" ${CGD_DIR}/Makefile
+
+# change cg name in emit/micromenu
+ccgete ${EMIT_DIR}/micromenu
+sed s/${MEISTERCG}/$1/g ${EMIT_DIR}/micromenu > ${EMIT_DIR}/tmp
+mv ${EMIT_DIR}/tmp ${EMIT_DIR}/micromenu
+ccpute -y "" ${EMIT_DIR}/micromenu
+
+# change cg name in paroffset/micromenu
+ccgete ${PAROFFSET_DIR}/micromenu
+sed s/${MEISTERCG}/$1/g ${PAROFFSET_DIR}/micromenu > ${PAROFFSET_DIR}/tmp
+mv ${PAROFFSET_DIR}/tmp ${PAROFFSET_DIR}/micromenu
+ccpute -y "" ${PAROFFSET_DIR}/micromenu
+
+# change misc/*.tdf and remark
+cp ${MISC_DIR}/${MEISTERCG}.tdf ${MISC_DIR}/$1.tdf
+chmod +w ${MISC_DIR}/$1.tdf
+ccimp -y "" ${MISC_DIR}/$1.tdf
+# remarking have to be done in the directory where the file is marked
+cd ${MISC_DIR}
+ccmark -y "" -d ${MEISTERCG}.tdf
+ccmark -y "" -a $1.tdf
+ccmark -y "" -l -f Markfile
+cd ../
+# also remark root Markfile
+ccmark -y "" -l -f Markfile
+cd ${WORK_DIR}
+
+ccgete ${CCREG_DIR}/micromenu
+sed s/${MEISTERCG}/$1/g ${CCREG_DIR}/micromenu > ${CCREG_DIR}/tmp
+mv ${CCREG_DIR}/tmp ${CCREG_DIR}/micromenu
+ccpute -y "" ${CCREG_DIR}/micromenu
+
+cp ${CG_EDL_DIR}/${MEISTERCG}.edl ${CG_EDL_DIR}/$1.edl
+chmod +w ${CG_EDL_DIR}/$1.edl
+sed s/${MEISTERCG}/$1/g ${CG_EDL_DIR}/$1.edl > ${CG_EDL_DIR}/tmp
+mv ${CG_EDL_DIR}/tmp ${CG_EDL_DIR}/$1.edl
+ccimp -y "" ${CG_EDL_DIR}/$1.edl
+# remarking have to be done in the directory where the file is marked
+cd ${CG_EDL_DIR}
+ccmark -y "" -a $1.edl
+ccmark -y "" -d ${MEISTERCG}.edl
+ccmark -y "" -l -f Markfile
+cd ../
+# also remark root Markfile
+ccmark -y "" -l -f Markfile
+cd ${WORK_DIR}
+
+cp ${CG_SDL_DIR}/${MEISTERCG}.sdl ${CG_SDL_DIR}/$1.sdl
+chmod +w ${CG_SDL_DIR}/$1.sdl
+sed s/${MEISTERCG}/$1/g ${CG_SDL_DIR}/$1.sdl > ${CG_SDL_DIR}/tmp
+mv ${CG_SDL_DIR}/tmp ${CG_SDL_DIR}/$1.sdl
+ccimp -y "" ${CG_SDL_DIR}/$1.sdl
+# remarking have to be done in the directory where the file is marked
+cd ${CG_SDL_DIR}
+ccmark -y "" -a $1.sdl
+ccmark -y "" -d ${MEISTERCG}.sdl
+ccmark -y "" -l -f Markfile
+cd ../
+# also remark root Markfile
+ccmark -y "" -l -f Markfile
+cd ${WORK_DIR}
+
+ccgete ${MATCH_DIR}/micromenu
+sed s/${MEISTERCG}/$1/g ${MATCH_DIR}/micromenu > ${MATCH_DIR}/tmp
+mv ${MATCH_DIR}/tmp ${MATCH_DIR}/micromenu
+ccpute -y "" ${MATCH_DIR}/micromenu
+
+ccgete ${MKXIR_DIR}/micromenu
+sed s/${MEISTERCG}/$1/g ${MKXIR_DIR}/micromenu > ${MKXIR_DIR}/tmp
+mv ${MKXIR_DIR}/tmp ${MKXIR_DIR}/micromenu
+ccpute -y "" ${MKXIR_DIR}/micromenu
+
+ccgete ${SETPSR_DIR}/micromenu
+sed s/${MEISTERCG}/$1/g ${SETPSR_DIR}/micromenu > ${SETPSR_DIR}/tmp
+mv ${SETPSR_DIR}/tmp ${SETPSR_DIR}/micromenu
+ccpute -y "" ${SETPSR_DIR}/micromenu
+
+######################################
+# rename $MEISTERCG to $1 and
+# rename $MEISTERCC to $2 in cc files
+######################################
+ccgete ${CC_DIR}/micromenu
+sed s/${MEISTERCG}/$1/g ${CC_DIR}/micromenu > ${CC_DIR}/tmp
+mv ${CC_DIR}/tmp ${CC_DIR}/micromenu
+sed s/${MEISTERCC}/$2/g ${CC_DIR}/micromenu > ${CC_DIR}/tmp
+mv ${CC_DIR}/tmp ${CC_DIR}/micromenu
+ccpute -y "" ${CC_DIR}/micromenu
+
+cp ${CC_EDL_DIR}/${MEISTERCC}.edl ${CC_EDL_DIR}/$2.edl
+cp ${CC_EDL_DIR}/${MEISTERCC}.ccl ${CC_EDL_DIR}/$2.ccl
+chmod +w ${CC_EDL_DIR}/$2.edl
+chmod +w ${CC_EDL_DIR}/$2.ccl
+sed s/${MEISTERCG}/$1/g ${CC_EDL_DIR}/$2.edl > ${CC_EDL_DIR}/tmp
+mv ${CC_EDL_DIR}/tmp ${CC_EDL_DIR}/$2.edl
+sed s/${MEISTERCC}/$2/g ${CC_EDL_DIR}/$2.edl > ${CC_EDL_DIR}/tmp
+mv ${CC_EDL_DIR}/tmp ${CC_EDL_DIR}/$2.edl
+ccimp -y "" ${CC_EDL_DIR}/$2.edl
+ccimp -y "" ${CC_EDL_DIR}/$2.ccl
+# remarking have to be done in the directory where the file is marked
+cd ${CC_EDL_DIR}/../
+echo "remark .edl .ccl"
+echo "mark $2.edl $2.ccl"
+ccmark -y "" -a edl/$2.edl
+ccmark -y "" -a edl/$2.ccl
+echo "unmark ${MEISTERCC}.edl ${MEISTERCC}.ccl"
+ccmark -y "" -d edl/${MEISTERCC}.edl
+ccmark -y "" -d edl/${MEISTERCC}.ccl
+echo "mark Markfile"
+ccmark -y "" -l -f Markfile
+cd ${WORK_DIR}
+E 1

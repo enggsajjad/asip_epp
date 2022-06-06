@@ -1,0 +1,145 @@
+#include "lib_lcd.h"
+
+#define NUMBER_OF_PATTERNS 11
+int pattern[NUMBER_OF_PATTERNS] = {0xAAAAAAAA, 0x12345678, 0x87654321, 0xF0F0F0F0, 0x0F0F0F0F, 0x54545454, 0x87841166, 0xFF545121, 0xBAFBAC12, 0X64316489, 0Xdeadbeaf};
+
+#define START_ADDRESS 0x4000000
+#define   END_ADDRESS 0x43FFFFC
+
+int errorNumber = 42; // dummy value to make sure that a 0 (passed) or 1 (failed) really has been written to this address at the end
+int heapEnd = 0; // this label is only used to indicate in dlxsim where the heap ends
+
+int main() {
+  int addressCounter;
+  int startPattern, patternNumber;
+  unsigned int* wordPointer;
+  unsigned short* shortPointer;
+  unsigned char* bytePointer;
+  unsigned int intPattern;
+  unsigned short shortPattern;
+  unsigned char bytePattern;
+  unsigned int readWord;
+  unsigned int errorCounter_thisTest;
+  unsigned int errorCounter_overall=0;
+  unsigned int numberOfTests=0;
+
+  d_clear();
+ start:
+  errorCounter_thisTest=0;
+  numberOfTests++;
+  for (startPattern=0; startPattern < (int)NUMBER_OF_PATTERNS; startPattern++) {
+    t_print("Pattern ");
+    printInt(startPattern);
+    t_print(":\r\n Schreibe SRAM:");
+
+    // Write Word-Data
+    patternNumber = startPattern;
+    wordPointer = (unsigned int*)(START_ADDRESS);
+    for (addressCounter=START_ADDRESS; addressCounter <= END_ADDRESS; addressCounter+=4) {
+      if ( (addressCounter-START_ADDRESS) % 0xFFFF == 0) t_print(".");
+      intPattern = (unsigned int)pattern[patternNumber];
+      *wordPointer++ = intPattern;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+    }
+
+    t_print("\r\n Teste SRAM:");
+    // Test Word-Data
+    patternNumber = startPattern;
+    wordPointer = (unsigned int*)(START_ADDRESS);
+    for (addressCounter=START_ADDRESS; addressCounter <= END_ADDRESS; addressCounter+=4) {
+      if ( (addressCounter-START_ADDRESS) % 0xFFFF == 0) t_print(".");
+      intPattern = (unsigned int)pattern[patternNumber];
+      readWord = *wordPointer++;
+      if (readWord != intPattern) {
+	errorCounter_thisTest++;
+	t_print("\r\nERROR: Adresse: ");
+	printInt((unsigned int)wordPointer);
+	t_print(" Wert ist ");
+	printInt(readWord);
+	t_print("; sollte aber sein: ");
+	printInt(intPattern);
+	t_print("!\r\n");
+	t_print("Das ist der ");
+	printInt(errorCounter_thisTest);
+	t_print("-te Fehler!\r\n");
+	wait(3000000);
+      }
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+    }
+    t_print("\r\n");
+
+    /*
+    // Write Short-Data
+    patternNumber = startPattern;
+    shortPointer = (unsigned short*)(START_ADDRESS);
+    for (addressCounter=START_ADDRESS; addressCounter <= END_ADDRESS; addressCounter++) {
+      shortPattern = (unsigned short)(pattern[patternNumber] & 0xFFFF);
+      *shortPointer++ = shortPattern;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+      shortPattern = (unsigned short)(pattern[patternNumber] & 0xFFFF);
+      *shortPointer++ = shortPattern;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+    }
+
+    // Test Short-Data
+    patternNumber = startPattern;
+    shortPointer = (unsigned short*)(START_ADDRESS);
+    for (addressCounter=START_ADDRESS; addressCounter <= END_ADDRESS; addressCounter++) {
+      shortPattern = (unsigned short)(pattern[patternNumber] & 0xFFFF);
+      if (*shortPointer++ != shortPattern) goto error;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+      shortPattern = (unsigned short)(pattern[patternNumber] & 0xFFFF);
+      if (*shortPointer++ != shortPattern) goto error;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+    }
+
+
+    // Write Byte-Data
+    patternNumber = startPattern;
+    bytePointer = (unsigned char*)(START_ADDRESS);
+    for (addressCounter=START_ADDRESS; addressCounter <= END_ADDRESS; addressCounter++) {
+      bytePattern = (unsigned char)(pattern[patternNumber] & 0xFF);
+      *bytePointer++ = bytePattern;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+      bytePattern = (unsigned char)(pattern[patternNumber] & 0xFF);
+      *bytePointer++ = bytePattern;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+      bytePattern = (unsigned char)(pattern[patternNumber] & 0xFF);
+      *bytePointer++ = bytePattern;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+      bytePattern = (unsigned char)(pattern[patternNumber] & 0xFF);
+      *bytePointer++ = bytePattern;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+    }
+
+    // Test Byte-Data
+    patternNumber = startPattern;
+    bytePointer = (unsigned char*)(START_ADDRESS);
+    for (addressCounter=START_ADDRESS; addressCounter <= END_ADDRESS; addressCounter++) {
+      bytePattern = (unsigned char)(pattern[patternNumber] & 0xFF);
+      if (*bytePointer++ != bytePattern) goto error;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+      bytePattern = (unsigned char)(pattern[patternNumber] & 0xFF);
+      if (*bytePointer++ != bytePattern) goto error;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+      bytePattern = (unsigned char)(pattern[patternNumber] & 0xFF);
+      if (*bytePointer++ != bytePattern) goto error;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+      bytePattern = (unsigned char)(pattern[patternNumber] & 0xFF);
+      if (*bytePointer++ != bytePattern) goto error;
+      if (++patternNumber >= NUMBER_OF_PATTERNS) patternNumber = 0;
+    }
+    */
+
+  }
+
+  errorCounter_overall += errorCounter_thisTest;
+  t_print("\r\nTest FERTIG: Fehler In diesem Test: ");
+  printInt(errorCounter_thisTest);
+  t_print("\r\nDuchschnittliche Fehler pro Test: ");
+  printInt(errorCounter_overall/numberOfTests);
+  t_print("\r\n");
+  goto start;
+
+  return 0;
+}

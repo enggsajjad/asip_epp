@@ -1,0 +1,192 @@
+#include <stdio.h>
+
+struct Point {
+  int x, y;
+};
+
+const int ARROW_LENGTH = 5;
+
+void gbham(int xstart,int ystart,int xend,int yend,int *npix,int **xpix,int **ypix)
+/*--------------------------------------------------------------
+ * Bresenham-Algorithmus: Linien auf Rastergeräten zeichnen
+ *
+ * Eingabeparameter:
+ *    int xstart, ystart     = Koordinaten des Startpunkts
+ *    int xend, yend         = Koordinaten des Endpunkts
+ *
+ * Ausgabeparameter:
+ *    int *npix                 = Anzahl der Pixel
+ *    int (*xpix)[i],(*ypix)[i] = Koordinaten des i-ten Pixels
+ *---------------------------------------------------------------
+ */
+ {
+     int x, y, t, dist, xerr, yerr, dx, dy, incx, incy;
+ 
+/* Entfernung in beiden Dimensionen berechnen */
+     dx = xend - xstart;
+     dy = yend - ystart;
+ 
+/* Vorzeichen des Inkrements bestimmen */
+     if(dx<0)
+     {
+       incx = -1;
+       dx = -dx;
+     }
+     else if (dx > 0)
+     {
+       incx = 1;
+     }
+     else
+     {
+       incx = 0;
+     }
+     
+     if(dy < 0)
+     {
+       incy = -1;
+       dy = -dy;
+     }
+     
+     else if (dy > 0)
+     {
+       incy = 1;
+     }
+     else
+     {
+       incy = 0;
+     }
+       
+/* feststellen, welche Entfernung größer ist */
+     dist = (dx > dy)?dx:dy;
+ 
+/* Initialisierungen vor Schleifenbeginn */
+     x = xstart;
+     y = ystart;
+     xerr = dx;
+     yerr = dy;
+     
+/* Pixel berechnen */
+     for(t = 0; t < ARROW_LENGTH; ++t)
+     {
+       (*xpix)[t] = x;
+       (*ypix)[t] = y;
+     
+       xerr += dx;
+       yerr += dy;
+     
+       if(xerr > dist)
+       {
+         xerr -= dist;
+         x += incx;
+       }
+     
+       if(yerr>dist)
+       {
+         yerr -= dist;
+         y += incy;
+       }
+     }
+}
+
+
+void findWingEndPoint(int dx, int dy, const struct Point from, struct Point* to) {
+  int incx, incy, dist;
+  int xerr, yerr;
+  int i;
+
+  if(dx<0) {
+    incx = -1;
+    dx = -dx;
+  } else if (dx > 0) {
+    incx = 1;
+  } else {
+    incx = 0;
+  }
+
+  if(dy < 0) {
+    incy = -1;
+    dy = -dy;
+  } else if (dy > 0) {
+    incy = 1;
+  } else {
+    incy = 0;
+  }
+
+  dist = (dx > dy) ? dx : dy;
+
+  to->x = from.x;
+  to->y = from.y;
+  xerr = dx;
+  yerr = dy;
+
+  for(i = 0; i < ARROW_LENGTH; i++) {
+    xerr += dx;
+    yerr += dy; 
+    if(xerr > dist) {
+      xerr -= dist;
+      to->x += incx;
+    }
+
+    if(yerr>dist) {
+      yerr -= dist;
+      to->y += incy;
+    }
+  }
+}
+
+
+void computeArrow(const struct Point from, const struct Point to, struct Point* leftWing, struct Point* rightWing) {
+  int leftDeltaX, leftDeltaY;
+  int rightDeltaX, rightDeltaY;
+
+  // TODO: Gleichheit??
+  // Compute the direction of the Wings
+  if (to.x > from.x) {
+    if (to.y > from.y) {
+      // Quartal 1
+      leftDeltaX = (from.x-to.x) >> 1;
+      leftDeltaY = from.y - to.y;
+      rightDeltaX = from.y - to.y;
+      rightDeltaY = (from.y-to.y) >> 1;
+    } else {
+      // Quartal 2
+    }
+  } else {
+    if (to.y < from.y) {
+      // Quartal 3
+    } else {
+      // Quartal 4
+    }
+  }
+
+  findWingEndPoint(leftDeltaX, leftDeltaY, to, leftWing);
+  findWingEndPoint(rightDeltaX, rightDeltaY, to, rightWing);
+
+}
+
+void clearScreen() {
+  printf("\n----------------------------\n");
+}
+
+void drawLine(struct Point from, struct Point to) {
+  printf("(%i, %i)  -->  (%i, %i)\n", from.x, from.y, to.x, to.y);
+}
+
+void wait(int delay) {
+}
+
+int main() {
+  struct Point start, end, leftWing, rightWing;
+  start.x = 10;
+  start.y = 10;
+  end.y = 20;
+  for (end.x=30; end.x<=30; end.x++) {
+    computeArrow(start, end, &leftWing, &rightWing);
+    clearScreen();
+    drawLine(start, end);
+    drawLine(end, leftWing);
+    drawLine(end, rightWing);
+    wait(1000);
+  }
+  return 0;
+}

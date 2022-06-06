@@ -1,0 +1,629 @@
+00000000 03DEF026 -- xor %r30, %r30, %r30
+00000001 03BDE826 -- xor %r29, %r29, %r29
+00000002 039CE026 -- xor %r28, %r28, %r28
+00000003 3C1E000F -- lhi %r30, $(0xFFFFC/0x10000)
+00000004 3C1D000F -- lhi %r29, $(0xFFFFC/0x10000)
+00000005 37DEFFFC -- ori %r30, %r30, $(0xFFFFC%0x10000)
+00000006 37BDFFFC -- ori %r29, %r29, $(0xFFFFC%0x10000)
+00000007 AFBEFFFC -- sw -4(%r29), %r30
+00000008 AFBFFFF8 -- sw -8(%r29), %r31
+00000009 23DDFFF8 -- addi %r29, %r30, $-8
+0000000A 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000000B 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000000C 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000000D 0C00023D -- jal main
+0000000E 00000000 -- nop 
+0000000F 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000010 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000011 AFA10000 -- sw 0(%r29), %r1
+00000012 0C000262 -- jal exit
+00000013 00000000 -- nop 
+00000014 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000015 AFBEFFFC -- sw -4(%r29),%r30
+00000016 AFBF0000 -- sw 0(%r29),%r31
+00000017 2FBE0004 -- subui %r30,%r29,$4
+00000018 2BBD0038 -- subi %r29,%r29,$56
+00000019 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000001A 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000001B AFC1FFDC -- sw -36(%r30),%r1
+0000001C AFC2FFD8 -- sw -40(%r30),%r2
+0000001D 3C020000 -- lhi %r2,$0
+0000001E 34420000 -- ori %r2,%r2,$0
+0000001F 3C010000 -- lhi %r1,$0
+00000020 34210000 -- ori %r1,%r1,$0
+00000021 AFC2FFD4 -- sw -44(%r30),%r2
+00000022 3C020000 -- lhi %r2,$0
+00000023 34420000 -- ori %r2,%r2,$0
+00000024 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000025 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000026 AFC2FFD0 -- sw -48(%r30),%r2
+00000027 00000000 -- nop ; Automatically added by findLoadStoreProblem.sh
+00000028 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000029 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000002A 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000002B 8FC2FFDC -- lw %r2,-36(%r30)
+0000002C 0041D82A -- slt %r27,%r2,%r1
+0000002D 17600004 -- bnez %r27,L_intToStr_2
+0000002E 00000000 -- nop 
+0000002F 0800001E -- j L_intToStr_3
+00000030 00000000 -- nop 
+00000031 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000032 8FC1FFDC -- lw %r1,-36(%r30)
+00000033 00010822 -- sub %r1,%r0,%r1
+00000034 3C020000 -- lhi %r2,$0
+00000035 3442002D -- ori %r2,%r2,$45
+00000036 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000037 AFC1FFDC -- sw -36(%r30),%r1
+00000038 00000000 -- nop ; Automatically added by findLoadStoreProblem.sh
+00000039 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000003A 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000003B 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000003C 8FC1FFD8 -- lw %r1,-40(%r30)
+0000003D 2BBD0008 -- subi %r29,%r29,$8
+0000003E 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000003F 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000040 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000041 0C0001E5 -- jal storeByte
+00000042 00000000 -- nop 
+00000043 23BD0008 -- addi %r29,%r29,$8
+00000044 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000045 8FC1FFD4 -- lw %r1,-44(%r30)
+00000046 20210001 -- addi %r1,%r1,$1
+00000047 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000048 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000049 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000004A AFC1FFD4 -- sw -44(%r30),%r1
+0000004B 0800001B -- j L_intToStr_5
+0000004C 00000000 -- nop 
+0000004D 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000004E 8FC2FFDC -- lw %r2,-36(%r30)
+0000004F 3C010000 -- lhi %r1,$0
+00000050 34210000 -- ori %r1,%r1,$0
+00000051 0041D82E -- seq %r27,%r2,%r1
+00000052 17600004 -- bnez %r27,L_intToStr_4
+00000053 00000000 -- nop 
+00000054 0800001D -- j L_intToStr_6
+00000055 00000000 -- nop 
+00000056 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000057 8FC1FFD8 -- lw %r1,-40(%r30)
+00000058 3C020000 -- lhi %r2,$0
+00000059 34420030 -- ori %r2,%r2,$48
+0000005A 2BBD0008 -- subi %r29,%r29,$8
+0000005B 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000005C 0C0001CA -- jal storeByte
+0000005D 00000000 -- nop 
+0000005E 23BD0008 -- addi %r29,%r29,$8
+0000005F 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000060 8FC1FFD4 -- lw %r1,-44(%r30)
+00000061 20210001 -- addi %r1,%r1,$1
+00000062 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000063 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000064 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000065 AFC1FFD4 -- sw -44(%r30),%r1
+00000066 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000067 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000068 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000069 8FC2FFDC -- lw %r2,-36(%r30)
+0000006A 3C010000 -- lhi %r1,$0
+0000006B 34210000 -- ori %r1,%r1,$0
+0000006C 0041D82F -- sne %r27,%r2,%r1
+0000006D 17600004 -- bnez %r27,L_intToStr_6
+0000006E 00000000 -- nop 
+0000006F 08000021 -- j L_intToStr_7
+00000070 00000000 -- nop 
+00000071 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000072 2BC10020 -- subi %r1,%r30,$32
+00000073 8FC3FFD0 -- lw %r3,-48(%r30)
+00000074 00230820 -- add %r1,%r1,%r3
+00000075 3C020000 -- lhi %r2,$0
+00000076 3442000A -- ori %r2,%r2,$10
+00000077 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000078 8FC3FFDC -- lw %r3,-36(%r30)
+00000079 0062101C -- MOD %r2,%r3,%r2
+0000007A 20420030 -- addi %r2,%r2,$48
+0000007B 2BBD0008 -- subi %r29,%r29,$8
+0000007C 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000007D 0C0001A9 -- jal storeByte
+0000007E 00000000 -- nop 
+0000007F 23BD0008 -- addi %r29,%r29,$8
+00000080 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000081 8FC1FFD0 -- lw %r1,-48(%r30)
+00000082 8FC2FFDC -- lw %r2,-36(%r30)
+00000083 20210001 -- addi %r1,%r1,$1
+00000084 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000085 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000086 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000087 AFC1FFD0 -- sw -48(%r30),%r1
+00000088 3C010000 -- lhi %r1,$0
+00000089 3421000A -- ori %r1,%r1,$10
+0000008A 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000008B 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000008C 0041081A -- div %r1,%r2,%r1
+0000008D AFC1FFDC -- sw -36(%r30),%r1
+0000008E 0BFFFFD8 -- j L_intToStr_5
+0000008F 00000000 -- nop 
+00000090 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000091 8FC2FFD0 -- lw %r2,-48(%r30)
+00000092 3C010000 -- lhi %r1,$0
+00000093 34210000 -- ori %r1,%r1,$0
+00000094 0041D82B -- sgt %r27,%r2,%r1
+00000095 17600004 -- bnez %r27,L_intToStr_8
+00000096 00000000 -- nop 
+00000097 08000023 -- j L_intToStr_9
+00000098 00000000 -- nop 
+00000099 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000009A 8FC2FFD0 -- lw %r2,-48(%r30)
+0000009B 2BC10020 -- subi %r1,%r30,$32
+0000009C 28420001 -- subi %r2,%r2,$1
+0000009D 00220820 -- add %r1,%r1,%r2
+0000009E 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000009F AFC2FFD0 -- sw -48(%r30),%r2
+000000A0 2BBD0008 -- subi %r29,%r29,$8
+000000A1 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000A2 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000A3 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000A4 0C000150 -- jal loadByteUnsigned
+000000A5 00000000 -- nop 
+000000A6 23BD0008 -- addi %r29,%r29,$8
+000000A7 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000A8 8FC1FFD8 -- lw %r1,-40(%r30)
+000000A9 8FC3FFD4 -- lw %r3,-44(%r30)
+000000AA 03801020 -- add %r2,%r28,%r0
+000000AB 00230820 -- add %r1,%r1,%r3
+000000AC 2BBD0008 -- subi %r29,%r29,$8
+000000AD 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000AE 0C000178 -- jal storeByte
+000000AF 00000000 -- nop 
+000000B0 23BD0008 -- addi %r29,%r29,$8
+000000B1 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000B2 8FC1FFD4 -- lw %r1,-44(%r30)
+000000B3 20210001 -- addi %r1,%r1,$1
+000000B4 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000B5 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000B6 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000B7 AFC1FFD4 -- sw -44(%r30),%r1
+000000B8 0BFFFFD8 -- j L_intToStr_7
+000000B9 00000000 -- nop 
+000000BA 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000BB 8FC1FFD8 -- lw %r1,-40(%r30)
+000000BC 8FC2FFD4 -- lw %r2,-44(%r30)
+000000BD 00220820 -- add %r1,%r1,%r2
+000000BE 3C020000 -- lhi %r2,$0
+000000BF 34420000 -- ori %r2,%r2,$0
+000000C0 2BBD0008 -- subi %r29,%r29,$8
+000000C1 0C000165 -- jal storeByte
+000000C2 00000000 -- nop 
+000000C3 23BD0008 -- addi %r29,%r29,$8
+000000C4 3C1C0000 -- lhi %r28,$0
+000000C5 379C0000 -- ori %r28,%r28,$0
+000000C6 08000002 -- j L_intToStr_10
+000000C7 00000000 -- nop 
+000000C8 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000000C9 8FDF0004 -- lw %r31,4(%r30)
+000000CA 27DD0004 -- addui %r29,%r30,$4
+000000CB 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000CC 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000CD 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000CE 8FDE0000 -- lw %r30,0(%r30)
+000000CF 03E00008 -- jr %r31
+000000D0 00000000 -- nop 
+000000D1 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000000D2 AFBEFFFC -- sw -4(%r29),%r30
+000000D3 AFBF0000 -- sw 0(%r29),%r31
+000000D4 2FBE0004 -- subui %r30,%r29,$4
+000000D5 2BBD0008 -- subi %r29,%r29,$8
+000000D6 3C1C0000 -- lhi %r28,$0
+000000D7 379C0000 -- ori %r28,%r28,$0
+000000D8 08000002 -- j L_lib_lcd_dlxsim_2
+000000D9 00000000 -- nop 
+000000DA 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000000DB 8FDF0004 -- lw %r31,4(%r30)
+000000DC 27DD0004 -- addui %r29,%r30,$4
+000000DD 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000DE 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000DF 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000E0 8FDE0000 -- lw %r30,0(%r30)
+000000E1 03E00008 -- jr %r31
+000000E2 00000000 -- nop 
+000000E3 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000000E4 AFBEFFFC -- sw -4(%r29),%r30
+000000E5 AFBF0000 -- sw 0(%r29),%r31
+000000E6 2FBE0004 -- subui %r30,%r29,$4
+000000E7 2BBD0008 -- subi %r29,%r29,$8
+000000E8 3C1C0000 -- lhi %r28,$0
+000000E9 379C0000 -- ori %r28,%r28,$0
+000000EA 08000002 -- j L_lib_lcd_dlxsim_4
+000000EB 00000000 -- nop 
+000000EC 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000000ED 8FDF0004 -- lw %r31,4(%r30)
+000000EE 27DD0004 -- addui %r29,%r30,$4
+000000EF 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000F0 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000F1 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000000F2 8FDE0000 -- lw %r30,0(%r30)
+000000F3 03E00008 -- jr %r31
+000000F4 00000000 -- nop 
+000000F5 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000000F6 AFBEFFFC -- sw -4(%r29),%r30
+000000F7 AFBF0000 -- sw 0(%r29),%r31
+000000F8 2FBE0004 -- subui %r30,%r29,$4
+000000F9 2BBD0008 -- subi %r29,%r29,$8
+000000FA 3C1C0000 -- lhi %r28,$0
+000000FB 379C0000 -- ori %r28,%r28,$0
+000000FC 08000002 -- j L_lib_lcd_dlxsim_6
+000000FD 00000000 -- nop 
+000000FE 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000000FF 8FDF0004 -- lw %r31,4(%r30)
+00000100 27DD0004 -- addui %r29,%r30,$4
+00000101 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000102 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000103 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000104 8FDE0000 -- lw %r30,0(%r30)
+00000105 03E00008 -- jr %r31
+00000106 00000000 -- nop 
+00000107 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000108 AFBEFFFC -- sw -4(%r29),%r30
+00000109 AFBF0000 -- sw 0(%r29),%r31
+0000010A 2FBE0004 -- subui %r30,%r29,$4
+0000010B 2BBD0008 -- subi %r29,%r29,$8
+0000010C 3C020200 -- lhi %r2, $0x200
+0000010D 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000010E 80230000 -- lb %r3,0(%r1)
+0000010F 3C040000 -- lhi %r4,$0
+00000110 34840000 -- ori %r4,%r4,$0
+00000111 0064D82F -- sne %r27,%r3,%r4
+00000112 17600004 -- bnez %r27,L_lib_lcd_dlxsim_9
+00000113 00000000 -- nop 
+00000114 0800000A -- j L_lib_lcd_dlxsim_10
+00000115 00000000 -- nop 
+00000116 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000117 80230000 -- lb %r3,0(%r1)
+00000118 AC430000 -- sw 0(%r2), %r3
+00000119 3C030000 -- lhi %r3,$0
+0000011A 34630001 -- ori %r3,%r3,$1
+0000011B 00230820 -- add %r1,%r1,%r3
+0000011C 0BFFFFF1 -- j L_lib_lcd_dlxsim_8
+0000011D 00000000 -- nop 
+0000011E 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000011F 3C1C0000 -- lhi %r28,$0
+00000120 379C0000 -- ori %r28,%r28,$0
+00000121 08000002 -- j L_lib_lcd_dlxsim_11
+00000122 00000000 -- nop 
+00000123 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000124 8FDF0004 -- lw %r31,4(%r30)
+00000125 27DD0004 -- addui %r29,%r30,$4
+00000126 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000127 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000128 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000129 8FDE0000 -- lw %r30,0(%r30)
+0000012A 03E00008 -- jr %r31
+0000012B 00000000 -- nop 
+0000012C 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000012D AFBEFFFC -- sw -4(%r29),%r30
+0000012E AFBF0000 -- sw 0(%r29),%r31
+0000012F 2FBE0004 -- subui %r30,%r29,$4
+00000130 2BBD0008 -- subi %r29,%r29,$8
+00000131 3C1C0000 -- lhi %r28,$0
+00000132 379C0000 -- ori %r28,%r28,$0
+00000133 08000002 -- j L_lib_lcd_dlxsim_13
+00000134 00000000 -- nop 
+00000135 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000136 8FDF0004 -- lw %r31,4(%r30)
+00000137 27DD0004 -- addui %r29,%r30,$4
+00000138 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000139 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000013A 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000013B 8FDE0000 -- lw %r30,0(%r30)
+0000013C 03E00008 -- jr %r31
+0000013D 00000000 -- nop 
+0000013E 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000013F AFBEFFFC -- sw -4(%r29),%r30
+00000140 AFBF0000 -- sw 0(%r29),%r31
+00000141 2FBE0004 -- subui %r30,%r29,$4
+00000142 2BBD0008 -- subi %r29,%r29,$8
+00000143 3C1C0000 -- lhi %r28,$0
+00000144 379C0000 -- ori %r28,%r28,$0
+00000145 08000002 -- j L_lib_lcd_dlxsim_15
+00000146 00000000 -- nop 
+00000147 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000148 8FDF0004 -- lw %r31,4(%r30)
+00000149 27DD0004 -- addui %r29,%r30,$4
+0000014A 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000014B 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000014C 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000014D 8FDE0000 -- lw %r30,0(%r30)
+0000014E 03E00008 -- jr %r31
+0000014F 00000000 -- nop 
+00000150 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000151 AFBEFFFC -- sw -4(%r29),%r30
+00000152 AFBF0000 -- sw 0(%r29),%r31
+00000153 2FBE0004 -- subui %r30,%r29,$4
+00000154 2BBD0008 -- subi %r29,%r29,$8
+00000155 3C1C0000 -- lhi %r28,$0
+00000156 379C0000 -- ori %r28,%r28,$0
+00000157 08000002 -- j L_lib_lcd_dlxsim_17
+00000158 00000000 -- nop 
+00000159 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000015A 8FDF0004 -- lw %r31,4(%r30)
+0000015B 27DD0004 -- addui %r29,%r30,$4
+0000015C 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000015D 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000015E 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000015F 8FDE0000 -- lw %r30,0(%r30)
+00000160 03E00008 -- jr %r31
+00000161 00000000 -- nop 
+00000162 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000163 AFBEFFFC -- sw -4(%r29),%r30
+00000164 AFBF0000 -- sw 0(%r29),%r31
+00000165 2FBE0004 -- subui %r30,%r29,$4
+00000166 2BBD0008 -- subi %r29,%r29,$8
+00000167 3C1C0000 -- lhi %r28,$0
+00000168 379C0000 -- ori %r28,%r28,$0
+00000169 08000002 -- j L_lib_lcd_dlxsim_19
+0000016A 00000000 -- nop 
+0000016B 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000016C 8FDF0004 -- lw %r31,4(%r30)
+0000016D 27DD0004 -- addui %r29,%r30,$4
+0000016E 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000016F 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000170 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000171 8FDE0000 -- lw %r30,0(%r30)
+00000172 03E00008 -- jr %r31
+00000173 00000000 -- nop 
+00000174 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000175 AFBEFFFC -- sw -4(%r29),%r30
+00000176 AFBF0000 -- sw 0(%r29),%r31
+00000177 2FBE0004 -- subui %r30,%r29,$4
+00000178 2BBD0008 -- subi %r29,%r29,$8
+00000179 3C1C0000 -- lhi %r28,$0
+0000017A 379C0000 -- ori %r28,%r28,$0
+0000017B 08000002 -- j L_lib_lcd_dlxsim_21
+0000017C 00000000 -- nop 
+0000017D 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000017E 8FDF0004 -- lw %r31,4(%r30)
+0000017F 27DD0004 -- addui %r29,%r30,$4
+00000180 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000181 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000182 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000183 8FDE0000 -- lw %r30,0(%r30)
+00000184 03E00008 -- jr %r31
+00000185 00000000 -- nop 
+00000186 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000187 AFBEFFFC -- sw -4(%r29),%r30
+00000188 AFBF0000 -- sw 0(%r29),%r31
+00000189 2FBE0004 -- subui %r30,%r29,$4
+0000018A 2BBD0008 -- subi %r29,%r29,$8
+0000018B 3C1C0000 -- lhi %r28,$0
+0000018C 379C0000 -- ori %r28,%r28,$0
+0000018D 08000002 -- j L_lib_lcd_dlxsim_23
+0000018E 00000000 -- nop 
+0000018F 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000190 8FDF0004 -- lw %r31,4(%r30)
+00000191 27DD0004 -- addui %r29,%r30,$4
+00000192 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000193 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000194 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000195 8FDE0000 -- lw %r30,0(%r30)
+00000196 03E00008 -- jr %r31
+00000197 00000000 -- nop 
+00000198 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000199 AFBEFFFC -- sw -4(%r29),%r30
+0000019A AFBF0000 -- sw 0(%r29),%r31
+0000019B 2FBE0004 -- subui %r30,%r29,$4
+0000019C 2BBD0008 -- subi %r29,%r29,$8
+0000019D 3C1C0000 -- lhi %r28,$0
+0000019E 379C0000 -- ori %r28,%r28,$0
+0000019F 08000002 -- j L_lib_lcd_dlxsim_25
+000001A0 00000000 -- nop 
+000001A1 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001A2 8FDF0004 -- lw %r31,4(%r30)
+000001A3 27DD0004 -- addui %r29,%r30,$4
+000001A4 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001A5 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001A6 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001A7 8FDE0000 -- lw %r30,0(%r30)
+000001A8 03E00008 -- jr %r31
+000001A9 00000000 -- nop 
+000001AA 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001AB 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001AC 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001AD AFBEFFFC -- sw -4(%r29),%r30
+000001AE AFBF0000 -- sw 0(%r29),%r31
+000001AF 2FBE0004 -- subui %r30,%r29,$4
+000001B0 2BBD0008 -- subi %r29,%r29,$8
+000001B1 3C1C0000 -- lhi %r28,$0
+000001B2 379C0000 -- ori %r28,%r28,$0
+000001B3 08000002 -- j L_lib_lcd_dlxsim_27
+000001B4 00000000 -- nop 
+000001B5 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001B6 8FDF0004 -- lw %r31,4(%r30)
+000001B7 27DD0004 -- addui %r29,%r30,$4
+000001B8 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001B9 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001BA 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001BB 8FDE0000 -- lw %r30,0(%r30)
+000001BC 03E00008 -- jr %r31
+000001BD 00000000 -- nop 
+000001BE 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001BF AFBEFFFC -- sw -4(%r29),%r30
+000001C0 AFBF0000 -- sw 0(%r29),%r31
+000001C1 2FBE0004 -- subui %r30,%r29,$4
+000001C2 2BBD0008 -- subi %r29,%r29,$8
+000001C3 3C1C0000 -- lhi %r28,$0
+000001C4 379C0000 -- ori %r28,%r28,$0
+000001C5 08000002 -- j L_lib_lcd_dlxsim_29
+000001C6 00000000 -- nop 
+000001C7 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001C8 8FDF0004 -- lw %r31,4(%r30)
+000001C9 27DD0004 -- addui %r29,%r30,$4
+000001CA 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001CB 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001CC 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001CD 8FDE0000 -- lw %r30,0(%r30)
+000001CE 03E00008 -- jr %r31
+000001CF 00000000 -- nop 
+000001D0 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001D1 AFBEFFFC -- sw -4(%r29),%r30
+000001D2 AFBF0000 -- sw 0(%r29),%r31
+000001D3 2FBE0004 -- subui %r30,%r29,$4
+000001D4 2BBD0008 -- subi %r29,%r29,$8
+000001D5 3C1C0000 -- lhi %r28,$0
+000001D6 379C0000 -- ori %r28,%r28,$0
+000001D7 08000002 -- j L_lib_lcd_dlxsim_31
+000001D8 00000000 -- nop 
+000001D9 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001DA 8FDF0004 -- lw %r31,4(%r30)
+000001DB 27DD0004 -- addui %r29,%r30,$4
+000001DC 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001DD 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001DE 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001DF 8FDE0000 -- lw %r30,0(%r30)
+000001E0 03E00008 -- jr %r31
+000001E1 00000000 -- nop 
+000001E2 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001E3 AFBEFFFC -- sw -4(%r29),%r30
+000001E4 AFBF0000 -- sw 0(%r29),%r31
+000001E5 2FBE0004 -- subui %r30,%r29,$4
+000001E6 2BBD0008 -- subi %r29,%r29,$8
+000001E7 3C1C0000 -- lhi %r28,$0
+000001E8 379C0000 -- ori %r28,%r28,$0
+000001E9 08000002 -- j L_lib_lcd_dlxsim_33
+000001EA 00000000 -- nop 
+000001EB 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001EC 8FDF0004 -- lw %r31,4(%r30)
+000001ED 27DD0004 -- addui %r29,%r30,$4
+000001EE 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001EF 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001F0 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+000001F1 8FDE0000 -- lw %r30,0(%r30)
+000001F2 03E00008 -- jr %r31
+000001F3 00000000 -- nop 
+000001F4 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+000001F5 AFBEFFFC -- sw -4(%r29),%r30
+000001F6 AFBF0000 -- sw 0(%r29),%r31
+000001F7 2FBE0004 -- subui %r30,%r29,$4
+000001F8 2BBD0008 -- subi %r29,%r29,$8
+000001F9 3022FFFC -- andi %r2,%r1,$-4
+000001FA 30210003 -- andi %r1,%r1,$3
+000001FB 20210001 -- addi %r1,%r1,$1
+000001FC 00010823 -- subu %r1,%r0,%r1
+000001FD 8C420000 -- lw %r2,0(%r2)
+000001FE 40210003 -- slli %r1,%r1,$3
+000001FF 00410803 -- sra %r1,%r2,%r1
+00000200 303C00FF -- andi %r28,%r1,$255
+00000201 08000002 -- j L_loadStoreByte_2
+00000202 00000000 -- nop 
+00000203 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000204 8FDF0004 -- lw %r31,4(%r30)
+00000205 27DD0004 -- addui %r29,%r30,$4
+00000206 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000207 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000208 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000209 8FDE0000 -- lw %r30,0(%r30)
+0000020A 03E00008 -- jr %r31
+0000020B 00000000 -- nop 
+0000020C 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000020D AFBEFFFC -- sw -4(%r29),%r30
+0000020E AFBF0000 -- sw 0(%r29),%r31
+0000020F 2FBE0004 -- subui %r30,%r29,$4
+00000210 2BBD0008 -- subi %r29,%r29,$8
+00000211 3022FFFC -- andi %r2,%r1,$-4
+00000212 30210003 -- andi %r1,%r1,$3
+00000213 20210001 -- addi %r1,%r1,$1
+00000214 00010823 -- subu %r1,%r0,%r1
+00000215 8C420000 -- lw %r2,0(%r2)
+00000216 40210003 -- slli %r1,%r1,$3
+00000217 00410803 -- sra %r1,%r2,%r1
+00000218 302100FF -- andi %r1,%r1,$255
+00000219 40210018 -- slli %r1,%r1,$24
+0000021A 483C0018 -- srai %r28,%r1,$24
+0000021B 08000002 -- j L_loadStoreByte_4
+0000021C 00000000 -- nop 
+0000021D 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000021E 8FDF0004 -- lw %r31,4(%r30)
+0000021F 27DD0004 -- addui %r29,%r30,$4
+00000220 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000221 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000222 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000223 8FDE0000 -- lw %r30,0(%r30)
+00000224 03E00008 -- jr %r31
+00000225 00000000 -- nop 
+00000226 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+00000227 AFBEFFFC -- sw -4(%r29),%r30
+00000228 AFBF0000 -- sw 0(%r29),%r31
+00000229 2FBE0004 -- subui %r30,%r29,$4
+0000022A 2BBD0008 -- subi %r29,%r29,$8
+0000022B 30230003 -- andi %r3,%r1,$3
+0000022C 30240003 -- andi %r4,%r1,$3
+0000022D 3C050000 -- lhi %r5,$0
+0000022E 34A50003 -- ori %r5,%r5,$3
+0000022F 3021FFFC -- andi %r1,%r1,$-4
+00000230 3C060000 -- lhi %r6,$0
+00000231 34C600FF -- ori %r6,%r6,$255
+00000232 20840001 -- addi %r4,%r4,$1
+00000233 00042023 -- subu %r4,%r0,%r4
+00000234 00A31822 -- sub %r3,%r5,%r3
+00000235 8C250000 -- lw %r5,0(%r1)
+00000236 40840003 -- slli %r4,%r4,$3
+00000237 40630003 -- slli %r3,%r3,$3
+00000238 00441000 -- sll %r2,%r2,%r4
+00000239 00C31800 -- sll %r3,%r6,%r3
+0000023A 20630001 -- addi %r3,%r3,$1
+0000023B 00031823 -- subu %r3,%r0,%r3
+0000023C 00A31824 -- and %r3,%r5,%r3
+0000023D 0062E025 -- or %r28,%r3,%r2
+0000023E AC3C0000 -- sw 0(%r1),%r28
+0000023F 08000002 -- j L_loadStoreByte_6
+00000240 00000000 -- nop 
+00000241 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000242 8FDF0004 -- lw %r31,4(%r30)
+00000243 27DD0004 -- addui %r29,%r30,$4
+00000244 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000245 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000246 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000247 8FDE0000 -- lw %r30,0(%r30)
+00000248 03E00008 -- jr %r31
+00000249 00000000 -- nop 
+0000024A 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000024B AFBEFFFC -- sw -4(%r29),%r30
+0000024C AFBF0000 -- sw 0(%r29),%r31
+0000024D 2FBE0004 -- subui %r30,%r29,$4
+0000024E 2BBD001C -- subi %r29,%r29,$28
+0000024F 2BC20014 -- subi %r2,%r30,$20
+00000250 3C010000 -- lhi %r1,$0
+00000251 3421002A -- ori %r1,%r1,$42
+00000252 2BBD0008 -- subi %r29,%r29,$8
+00000253 0FFFFDC1 -- jal intToStr
+00000254 00000000 -- nop 
+00000255 23BD0008 -- addi %r29,%r29,$8
+00000256 3C010000 -- lhi %r1,$( L_testOpt_1
+00000257 34210000 -- ori %r1,%r1,$( L_testOpt_1
+00000258 2BBD0008 -- subi %r29,%r29,$8
+00000259 0FFFFEAE -- jal t_print
+0000025A 00000000 -- nop 
+0000025B 23BD0008 -- addi %r29,%r29,$8
+0000025C 2BC10014 -- subi %r1,%r30,$20
+0000025D 2BBD0008 -- subi %r29,%r29,$8
+0000025E 0FFFFEA9 -- jal t_print
+0000025F 00000000 -- nop 
+00000260 23BD0008 -- addi %r29,%r29,$8
+00000261 3C010000 -- lhi %r1,$( L_testOpt_2
+00000262 34210007 -- ori %r1,%r1,$( L_testOpt_2
+00000263 2BBD0008 -- subi %r29,%r29,$8
+00000264 0FFFFEA3 -- jal t_print
+00000265 00000000 -- nop 
+00000266 23BD0008 -- addi %r29,%r29,$8
+00000267 3C1C0000 -- lhi %r28,$0
+00000268 379C0000 -- ori %r28,%r28,$0
+00000269 08000002 -- j L_testOpt_4
+0000026A 00000000 -- nop 
+0000026B 00000000 -- nop ; Automatically Added by addNopAfterLabels.pl
+0000026C 8FDF0004 -- lw %r31,4(%r30)
+0000026D 27DD0004 -- addui %r29,%r30,$4
+0000026E 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+0000026F 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000270 00000000 -- nop ; Automatically added by fix-stall-insns.pl
+00000271 8FDE0000 -- lw %r30,0(%r30)
+00000272 03E00008 -- jr %r31
+00000273 00000000 -- nop 
+00000274 FFFFFFFF -- halt

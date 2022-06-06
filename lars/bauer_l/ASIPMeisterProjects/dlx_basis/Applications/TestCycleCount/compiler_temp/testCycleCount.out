@@ -1,0 +1,153 @@
+****** Source Program List ******
+LineNo	LC	Code		Source Program 
+1				.section	.data
+2				.section	.text
+3				.addressing	Word
+4	0000	03def026		xor	%GPR30, %GPR30, %GPR30
+5	0001	03bde826		xor	%GPR29, %GPR29, %GPR29
+6	0002	039ce026		xor	%GPR28, %GPR28, %GPR28
+7	0003	00000000		nop
+8	0004	3c1e000f		lhi	%GPR30, $15
+9	0005	3c1d000f		lhi	%GPR29, $15
+10	0006	00000000		nop
+11	0007	00000000		nop
+12	0008	37defffc		ori	%GPR30, %GPR30, $65532
+13	0009	37bdfffc		ori	%GPR29, %GPR29, $65532
+14	000a	00000000		nop
+15	000b	00000000		nop
+16	000c	00000000		nop
+17	000d	afbefffc		sw	-4(%GPR29), %GPR30
+18	000e	afbffff8		sw	-8(%GPR29), %GPR31
+19	000f	23ddfff8		addi	%GPR29, %GPR30, $-8
+20	0010	0c000005		jal	main	
+21	0011	00000000		nop
+22	0012	afa10000		sw	0(%GPR29), %GPR1
+23	0013	0c00004b		jal	exit	
+24	0014	00000000		nop
+25			main:
+26			L1:
+27	0015	00000000		nop
+28	0016	00000000		nop
+29	0017	00000000		nop
+30				; Automatically 1 NOPs removed by reduceNOPs.sh
+31	0018	afbefffc		sw	-4(%GPR29),%GPR30	
+32	0019	afbf0000		sw	0(%GPR29),%GPR31	
+33	001a	2fbe0004		subui	%GPR30,%GPR29,$4	
+34	001b	2bbd0008		subi	%GPR29,%GPR29,$8	
+35	001c	00000000		nop
+36	001d	00000000		nop
+37	001e	00000000		nop
+38				; Automatically 9 NOPs removed by reduceNOPs.sh
+39	001f	3c1c0000		lhi	%GPR28,$0	
+40	0020	00000000		nop
+41	0021	00000000		nop
+42	0022	00000000		nop
+43				; Automatically 1 NOPs removed by reduceNOPs.sh
+44	0023	379c0000		ori	%GPR28,%GPR28,$0	
+45	0024	3c010000		lhi	%GPR1,$0	
+46	0025	00000000		nop
+47	0026	00000000		nop
+48	0027	00000000		nop
+49				; Automatically 1 NOPs removed by reduceNOPs.sh
+50	0028	34210000		ori	%GPR1,%GPR1,$0	
+51	0029	00000000		nop
+52	002a	00000000		nop
+53	002b	00000000		nop
+54			L2:
+55	002c	00000000		nop	;;0,4
+56	002d	00000000		nop	;;0,4
+57	002e	00000000		nop	;;0,4
+58				; Automatically 1 NOPs removed by reduceNOPs.sh
+59	002f	3c020000		lhi	%GPR2,$0	
+60	0030	00000000		nop
+61	0031	00000000		nop
+62	0032	00000000		nop
+63				; Automatically 1 NOPs removed by reduceNOPs.sh
+64	0033	3442002a		ori	%GPR2,%GPR2,$42	
+65	0034	3c0305f5		lhi	%GPR3,$1525	
+66	0035	00000000		nop
+67	0036	00000000		nop
+68	0037	00000000		nop
+69				; Automatically 1 NOPs removed by reduceNOPs.sh
+70	0038	3463e0ff		ori	%GPR3,%GPR3,$99999999	
+71	0039	00000000		nop	;;5,8
+72	003a	00000000		nop	;;5,8
+73	003b	00000000		nop	;;5,8
+74	003c	0422e038		mac	%GPR28,%GPR1,%GPR2	
+75	003d	20210001		addi	%GPR1,%GPR1,$1	
+76	003e	00000000		nop	;;9,13
+77	003f	00000000		nop	;;9,13
+78	0040	00000000		nop	;;9,13
+79				; Automatically 1 NOPs removed by reduceNOPs.sh
+80	0041	0023d82a		slt	%GPR27,%GPR1,%GPR3	
+81	0042	00000000		nop	; Automatically added by findDataDependency.sh
+82	0043	00000000		nop	; Automatically added by findDataDependency.sh
+83	0044	00000000		nop	; Automatically added by findDataDependency.sh
+84	0045	1760ffe7		bnez	%GPR27,L2	
+85	0046	00000000		nop
+86	0047	00000000		nop
+87	0048	00000000		nop
+88				; Automatically 1 NOPs removed by reduceNOPs.sh
+89	0049	08000004		j	L3	
+90	004a	00000000		nop
+91	004b	00000000		nop
+92	004c	00000000		nop
+93				; Automatically 1 NOPs removed by reduceNOPs.sh
+94			L3:
+95	004d	08000004		j	L4	
+96	004e	00000000		nop
+97	004f	00000000		nop
+98	0050	00000000		nop
+99				; Automatically 1 NOPs removed by reduceNOPs.sh
+100			L4:
+101	0051	00000000		nop
+102	0052	00000000		nop
+103	0053	00000000		nop
+104				; Automatically 1 NOPs removed by reduceNOPs.sh
+105	0054	8fdf0004		lw	%GPR31,4(%GPR30)	
+106	0055	27dd0004		addui	%GPR29,%GPR30,$4	
+107	0056	8fde0000		lw	%GPR30,0(%GPR30)	
+108	0057	00000000		nop
+109	0058	00000000		nop
+110	0059	00000000		nop
+111	005a	03e00008		jr	%GPR31	
+112	005b	00000000		nop
+113	005c	00000000		nop
+114	005d	00000000		nop
+115				; Automatically 2 NOPs removed by reduceNOPs.sh
+116			exit:
+117	005e	00000000		nop
+118	005f	00000000		nop
+
+
+******** Cross Reference List ********
+Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+exit	.text	005e	Label	5e	116 
+L1	.text	0015	Label	15	26 
+L2	.text	002c	Label	2c	54 
+L3	.text	004d	Label	4d	94 
+L4	.text	0051	Label	51	100 
+main	.text	0015	Label	15	25 
+
+
+Undefined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+Multiple Defined Symbol
+name   	section	lc     	attr   	value  	lineno 
+
+
+******* Section Data List ******* 
+Sec	Attr		Size
+.text 	Writable 	60 
+addr_space : 16 
+addressing : Word 
+bitwidth per byte : 8 
+word alignment : 4 
+.data 	Data		0 
+addr_space : 16 
+addressing : Byte 
+bitwidth per byte : 8 
+word alignment : 4 

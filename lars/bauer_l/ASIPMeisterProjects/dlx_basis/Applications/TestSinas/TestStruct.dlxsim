@@ -1,0 +1,286 @@
+	.section	.text
+	.addressing	Word
+_start:
+	xor	r30, r30, r30
+	xor	r29, r29, r29
+	xor	r28, r28, r28
+	nop
+	addui	r30, r30, $3
+	addui	r29, r29, $3
+	nop
+	nop
+	slli	r30, r30, $12
+	slli	r29, r29, $12
+	nop
+	nop
+	nop
+	sw	-4(r29), r30
+	sw	-8(r29), r31
+	addi	r29, r30, $-8
+	jal	main	
+	nop
+	sw	0(r29), r1
+	jal	exit	
+	nop
+maxMin:
+L1:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$16	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r30),r1	
+	sw	-8(r30),r2	
+	nop
+	nop
+	nop
+	; Automatically 36 NOPs removed by reduceNOPs.sh
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$8	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	malloc	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r2,-8(r30)	
+	lw	r1,-4(r30)	
+	nop	;;42,46
+	nop	;;42,46
+	nop	;;42,46
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sgt	r27,r1,r2	
+	nop	;;46,50
+	nop	;;46,50
+	nop	;;46,50
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	bnez	r27,L2	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L3	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L2:
+	lw	r1,-4(r30)	
+	lw	r2,-8(r30)	
+	nop	;;2,5
+	nop	;;2,5
+	nop	;;2,5
+	sw	0(r28),r1	
+	nop	;;5,35
+	nop	;;5,35
+	nop	;;5,35
+	; Automatically 27 NOPs removed by reduceNOPs.sh
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$4	
+	nop	;;35,39
+	nop	;;35,39
+	nop	;;35,39
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r28,r1	
+	nop	;;39,43
+	nop	;;39,43
+	nop	;;39,43
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	0(r1),r2	
+	j	L4	
+	nop
+	nop
+	nop
+L3:
+	lw	r1,-8(r30)	
+	lw	r2,-4(r30)	
+	nop	;;2,5
+	nop	;;2,5
+	nop	;;2,5
+	sw	0(r28),r1	
+	nop	;;5,35
+	nop	;;5,35
+	nop	;;5,35
+	; Automatically 27 NOPs removed by reduceNOPs.sh
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$4	
+	nop	;;35,39
+	nop	;;35,39
+	nop	;;35,39
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r28,r1	
+	nop	;;39,43
+	nop	;;39,43
+	nop	;;39,43
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	0(r1),r2	
+	nop
+	nop
+	nop
+L4:
+	j	L5	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L5:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+main:
+L6:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	sw	-4(r29),r30	
+	sw	0(r29),r31	
+	subui	r30,r29,$4	
+	subi	r29,r29,$12	
+	nop
+	nop
+	nop
+	; Automatically 40 NOPs removed by reduceNOPs.sh
+	lhi	r1,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r1,r1,$42	
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$23	
+	nop	;;38,41
+	nop	;;38,41
+	nop	;;38,41
+	sw	-4(r30),r1	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	subi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	jal	maxMin	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	addi	r29,r29,$8	
+	nop
+	nop
+	nop
+	; Automatically 3 NOPs removed by reduceNOPs.sh
+	lw	r1,0(r28)	
+	lw	r2,-4(r30)	
+	nop	;;45,49
+	nop	;;45,49
+	nop	;;45,49
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r1,r1,r2	
+	nop	;;49,78
+	nop	;;49,78
+	nop	;;49,78
+	; Automatically 26 NOPs removed by reduceNOPs.sh
+	lhi	r2,$0	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	ori	r2,r2,$4	
+	nop	;;78,82
+	nop	;;78,82
+	nop	;;78,82
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r2,r28,r2	
+	nop	;;82,86
+	nop	;;82,86
+	nop	;;82,86
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r2,0(r2)	
+	nop	;;86,90
+	nop	;;86,90
+	nop	;;86,90
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	add	r28,r1,r2	
+	nop	;;90,94
+	nop	;;90,94
+	nop	;;90,94
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	j	L7	
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+L7:
+	nop
+	nop
+	nop
+	; Automatically 1 NOPs removed by reduceNOPs.sh
+	lw	r31,4(r30)	
+	addui	r29,r30,$4	
+	lw	r30,0(r30)	
+	nop
+	nop
+	nop
+	jr	r31	
+	nop
+	nop
+	nop
+	; Automatically 2 NOPs removed by reduceNOPs.sh
+exit:
+	nop
+	nop
+	trap	#0	; HALT
+
+
+	.section	.data

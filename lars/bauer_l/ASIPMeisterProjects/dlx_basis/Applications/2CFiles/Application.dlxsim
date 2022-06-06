@@ -1,0 +1,184 @@
+	.section	.text
+	.addressing	Word
+_start:
+	xor	%GPR30, %GPR30, %GPR30
+	xor	%GPR29, %GPR29, %GPR29
+	xor	%GPR28, %GPR28, %GPR28
+	nop
+	addui	%GPR30, %GPR30, $3
+	addui	%GPR29, %GPR29, $3
+	nop
+	nop
+	slli	%GPR30, %GPR30, $12
+	slli	%GPR29, %GPR29, $12
+	nop
+	nop
+	nop
+	sw	-4(%GPR29), %GPR30
+	sw	-8(%GPR29), %GPR31
+	addi	%GPR29, %GPR30, $-8
+	jal	main	
+	nop
+	sw	0(%GPR29), %GPR1
+	jal	exit	
+	nop
+max:
+L_CFileHelp_1:
+	NOP
+	NOP
+	NOP
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$8	
+	NOP
+	NOP
+	NOP
+	sgt	%GPR27,%GPR1,%GPR2	
+	bnez	%GPR27,L_CFileHelp_2	
+	NOP
+	NOP
+	NOP
+	j	L_CFileHelp_3	
+	NOP
+	NOP
+	NOP
+L_CFileHelp_2:
+	add	%GPR2,%GPR1,%GPR0	
+	j	L_CFileHelp_4	
+	NOP
+	NOP
+	NOP
+L_CFileHelp_3:
+	NOP
+	NOP
+	NOP
+L_CFileHelp_4:
+	add	%GPR28,%GPR2,%GPR0	
+	NOP	;;0,4
+	NOP	;;0,4
+	NOP	;;0,4
+	j	L_CFileHelp_5	
+	NOP
+	NOP
+	NOP
+L_CFileHelp_5:
+	NOP
+	NOP
+	NOP
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	NOP
+	NOP
+	sll	%GPR0,%GPR0,%GPR0
+	jr	%GPR31	
+	sll	%GPR0,%GPR0,%GPR0
+	NOP
+	NOP
+	NOP
+	.section	.data
+	.align	4
+L_CFileMain_1:
+	.data.32	23
+	.align	4
+L_CFileMain_2:
+	.data.32	42
+	.align	4
+L_CFileMain_3:
+	.space	4
+	.section	.text
+	.addressing	Word
+main:
+L_CFileMain_4:
+	NOP
+	NOP
+	NOP
+	sw	-4(%GPR29),%GPR30	
+	sw	0(%GPR29),%GPR31	
+	subui	%GPR30,%GPR29,$4	
+	subi	%GPR29,%GPR29,$12	
+	NOP
+	NOP
+	NOP
+	lhi	%GPR2,$( L_CFileMain_2	/0x10000)
+	sll	%GPR0,%GPR0,%GPR0
+	sll	%GPR0,%GPR0,%GPR0
+	sll	%GPR0,%GPR0,%GPR0
+	ori	%GPR2,%GPR2,$( L_CFileMain_2	%0x10000)
+	lhi	%GPR1,$( L_CFileMain_1	/0x10000)
+	sll	%GPR0,%GPR0,%GPR0
+	sll	%GPR0,%GPR0,%GPR0
+	sll	%GPR0,%GPR0,%GPR0
+	ori	%GPR1,%GPR1,$( L_CFileMain_1	%0x10000)
+	lhi	%GPR3,$( L_CFileMain_3	/0x10000)
+	sll	%GPR0,%GPR0,%GPR0
+	sll	%GPR0,%GPR0,%GPR0
+	sll	%GPR0,%GPR0,%GPR0
+	ori	%GPR3,%GPR3,$( L_CFileMain_3	%0x10000)
+	NOP	;;4,37
+	NOP	;;4,37
+	NOP	;;4,37
+	lw	%GPR2,0(%GPR2)	
+	lw	%GPR1,0(%GPR1)	
+	NOP
+	sw	-4(%GPR30),%GPR3	
+	NOP
+	NOP
+	NOP
+	subi	%GPR29,%GPR29,$8	
+	NOP
+	NOP
+	NOP
+	jal	max	
+	NOP
+	NOP
+	NOP
+	addi	%GPR29,%GPR29,$8	
+	NOP
+	NOP
+	NOP
+	lhi	%GPR1,$( L_CFileMain_3	/0x10000)
+	sll	%GPR0,%GPR0,%GPR0
+	sll	%GPR0,%GPR0,%GPR0
+	sll	%GPR0,%GPR0,%GPR0
+	ori	%GPR1,%GPR1,$( L_CFileMain_3	%0x10000)
+	lw	%GPR2,-4(%GPR30)	
+	NOP	;;42,46
+	NOP	;;42,46
+	NOP	;;42,46
+	sw	0(%GPR2),%GPR28	
+	NOP	;;46,76
+	NOP	;;46,76
+	NOP	;;46,76
+	lw	%GPR28,0(%GPR1)	
+	NOP	;;76,80
+	NOP	;;76,80
+	NOP	;;76,80
+	j	L_CFileMain_5	
+	NOP
+	NOP
+	NOP
+L_CFileMain_5:
+	NOP
+	NOP
+	NOP
+	lw	%GPR31,4(%GPR30)	
+	addui	%GPR29,%GPR30,$4	
+	lw	%GPR30,0(%GPR30)	
+	NOP
+	NOP
+	sll	%GPR0,%GPR0,%GPR0
+	jr	%GPR31	
+	sll	%GPR0,%GPR0,%GPR0
+	NOP
+	NOP
+	NOP
+	NOP
+exit:
+	NOP
+	NOP
+	trap	#0	; HALT
+
+
+	.section	.data

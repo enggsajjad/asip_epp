@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Shell Script to run the Java(tm) Plug-in control panel.
+
+PRG=$0
+progname=`basename $0`
+os=`uname -s`
+
+PLUGIN_VERSION=1.3.1_12
+PLUGIN_NODOTVERSION=131_12
+
+if [ "${os}" = "Linux" ]; then
+    case "`uname -m`" in
+	i[3-6]86  | ia32 | ia64)
+	    proc=i386
+	    ;;
+	sparc*)
+	    proc=sparc
+	    ;;
+	*)
+	    proc="`uname -m`"
+	    ;;
+    esac
+    linktest="-L"
+else
+    proc=`uname -p`
+    linktest="-h"
+fi
+
+# Resolve symlinks. See 4152645.
+while [ "${linktest}" "${PRG}" ]; do
+    ls=`/usr/bin/ls -ld "${PRG}"`
+    link=`/usr/bin/expr "${ls}" : '^.*-> \(.*\)$'`
+    if /usr/bin/expr "${link}" : '^/' > /dev/null; then
+	PRG="${link}"
+    else
+	PRG="`dirname ${PRG}`/${link}"
+    fi
+done
+
+APPHOME=`dirname "${PRG}"`/..
+JREHOME=${APPHOME}/jre
+export APPHOME JREHOME
+
+# Where is JRE?
+unset jre
+if [ -f "${JREHOME}/lib/${proc}/libjava.so" ]; then
+    jre="${JREHOME}"
+fi
+if [ -f "${APPHOME}/lib/${proc}/libjava.so" ]; then
+    jre="${APPHOME}"
+fi
+if [ "x${jre}" = "x" ]; then
+    echo "Error: can't find libjava.so."
+    exit 1
+fi
+
+if [ "${os}" = "Linux" ]; then
+    jre="`$jre/bin/realpath $jre`"
+fi
+
+${APPHOME}/bin/java -Djavaplugin.version=${PLUGIN_VERSION} -Djavaplugin.nodotversion=${PLUGIN_NODOTVERSION} -classpath ${jre}/lib/javaplugin.jar:${jre}/lib/javaplugin_l10n.jar sun.plugin.panel.ControlPanel

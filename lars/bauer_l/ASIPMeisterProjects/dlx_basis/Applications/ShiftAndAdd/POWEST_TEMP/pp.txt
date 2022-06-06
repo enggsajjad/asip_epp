@@ -1,0 +1,10 @@
+set link_library {/usr/synopsys/libraries/TSMCHOME/digital/Front_End/timing_power/tcb015ghd_221a/tcb015ghdtc.db}
+read_vhdl -vhdl_compiler cpu_vhd.vhd
+current_design CPU
+link
+set pwr_read_vcd_ignore_case true
+read_vcd -strip_path TEST/DUT SwitchingActivities.vcd
+set_waveform_options -interval 100 -file power_wave -format fsdb
+calculate_power -waveform
+report_power -file PowerResult
+exit

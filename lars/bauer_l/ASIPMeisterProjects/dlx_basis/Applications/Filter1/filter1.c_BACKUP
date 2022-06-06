@@ -1,0 +1,159 @@
+#include <stdio.h>
+
+#include "waveSupport.h"
+
+
+#define GCC 1
+
+#if !GCC
+#define BIG_SOUND_DATA 1
+#include "soundData.h"
+#endif
+
+/*
+ * Adjust the DEBUG-Level of the code:
+ * 0 is 'release', i.e. no debug output
+ * 5 is 'full debug', i.e. all output
+ */
+#define DEBUG_LEVEL 0
+#if DEBUG_LEVEL
+#define PRINT_DEBUG(level, command) if (DEBUG_LEVEL >= level) command;
+#else
+#define PRINT_DEBUG(level, command) ;
+#endif
+
+/*
+ * This FIFO Implementation (circular buffer) only offers space for
+ * FIFO_SIZE-1 values, but is therefor a slightly faster implementation.
+ */
+#define FIFO_SIZE 16
+typedef float fifoValue;
+fifoValue fifoArray[FIFO_SIZE];
+int fifoNextWrite;  // TODO: ggf MutEx für Zugriff
+int fifoNextRead;
+
+int fifoInit() {
+  int i;
+  for (i=0; i<FIFO_SIZE; i++) {
+    fifoArray[i] = (fifoValue)0;
+  }
+  fifoNextWrite = 0;
+  fifoNextRead = 0;
+  return 0;
+}
+
+// returns 1 if the access was ignored; 0 otherwise
+int fifoPut(fifoValue value) {
+  PRINT_DEBUG(5, printf("  fifoPut(value:%f);\n", value))
+  int tempIndex = fifoNextWrite+1;
+  if (tempIndex == FIFO_SIZE) tempIndex = 0;
+  if (tempIndex == fifoNextRead) {
+    PRINT_DEBUG(1, printf("    FIFO Overflow Pending!! Access Ignored!!\n"))
+    return 1;
+  }
+  fifoArray[fifoNextWrite] = value;
+  PRINT_DEBUG(3, printf("    fifoArray[%i] = %f\n", fifoNextWrite, value))
+  fifoNextWrite = tempIndex;
+  return 0;
+}
+
+// returns 0 casted to fifoValue if the fifo was empty
+fifoValue fifoGet() {
+  PRINT_DEBUG(5, printf("  fifoGet();\n"))
+  fifoValue retVal = (fifoValue)0;
+  if (fifoNextRead == fifoNextWrite) {
+    PRINT_DEBUG(1, printf("    FIFO was empty: return 0\n"))
+    return (fifoValue)0;
+  }
+  retVal = fifoArray[fifoNextRead];
+  if (++fifoNextRead==FIFO_SIZE) fifoNextRead = 0;
+  PRINT_DEBUG(3, printf("    fifoGet(): return %f\n", retVal))
+  return retVal;
+}
+
+int getFifoFillLevel() {
+  int temp = fifoNextWrite;
+  if (fifoNextWrite < fifoNextRead) temp += FIFO_SIZE;
+  PRINT_DEBUG(5, printf("getFifoFillLevel(): %i\n", temp-fifoNextRead))
+  return temp - fifoNextRead;
+}
+
+
+
+
+unsigned int computeFilter1(unsigned int value) {
+  static float lastResult = 0;
+  PRINT_DEBUG(2, printf("computeFilter1(value: %u);\n", value))
+  float fValue = (float)value / (float)(FIFO_SIZE-1);
+  PRINT_DEBUG(5, printf("  fValue = %f\n", fValue))
+  lastResult += fValue;
+  PRINT_DEBUG(5, printf("  lastResult = %f\n", lastResult))
+  lastResult -= fifoGet();
+  PRINT_DEBUG(5, printf("  lastResult = %f\n", lastResult))
+  fifoPut(fValue);
+  return (unsigned char)lastResult;
+}
+
+
+
+int main() {
+  int i;
+  unsigned char ch;
+  struct waveHeader header;
+
+  /*
+//createTriangleOutput(char* fileName, int stepSize, int startValue, int length, int sampleRate);
+  createTriangleOutput("triangle_40000_4_0.wav", 4, 0, 10000, 40000);
+  return 0;
+  */
+
+
+  //  writeWaveDataAsArray("SimpsonsIntro_PCM_Mono_8Bit_40KHz_langsamer.wav", "SimpsonsIntro_langsamer_Array.h");
+  writeWaveDataAsArray("SimpsonsIntro_PCM_Mono_8Bit_48KHz.wav", "SimpsonsIntro_PCM_Mono_8Bit_48KHz_Array.h");
+  return 0;
+
+
+  fifoInit();
+
+  // Pre-Fill the FIFO
+  for (i=0; i<FIFO_SIZE-1; i++) {
+    float fValue = (float)0;
+    fifoPut(fValue);
+  }
+
+#if GCC
+  // Initialize files and copy header
+  FILE* inputFile = fopen("SimpsonsIntro_PCM_Mono_8Bit_40KHz.wav", "rb");
+  //FILE* inputFile = fopen("triangle_40000_4_0.wav", "rb");
+  FILE* outputFile = fopen("filtered.wav", "w");
+
+  cleanWaveHeader(&header);
+  i = readWaveHeader(inputFile, &header);
+  printWaveHeader(&header);
+  if (i != 0) {
+    printf("ERROR while parsing the Wave-Header!\n");
+    return 0;
+  }
+  writeWaveHeader(outputFile, &header);
+#endif
+
+
+  // Compute the filter
+#if GCC
+  while (!feof(inputFile)) {
+    fscanf(inputFile, "%c", &ch);
+    ch = computeFilter1(ch);
+    fprintf(outputFile, "%c", ch);
+  }
+  fclose(inputFile);
+  fclose(outputFile);
+#else
+  for (i=0; i<sizeof(soundData); i++) {
+    ch = computeFilter1(soundData[i]);
+    // writeToAudioOut(ch);
+  }
+#endif
+
+
+  return 0;
+}

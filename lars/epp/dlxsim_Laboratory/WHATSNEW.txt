@@ -1,0 +1,27 @@
+* Pipeline Stalling added (as described in ASIP.txt). Now the Load and Store-Commands behave exactly, like they do in vhdl-simmulation.
+* Stats-output for load/store-stalls and jump/branch-stalls adapted.
+* Fixed mult(u), div(u) and mod(u) commands. Those commands where not available, cause they were anyhow restricted to float-operations.
+* Used the new pipeline stalling to realise the mult(u), div(u) & mod(u) as multi-cycle operations which should now behave exactly like in the vhdl-simulation.
+* Ignoring Upper-/Lower-case letters in assembly-file. This way it was much more easy to read the CoSy-output.
+* Ignoring Upper-/Lower-case letters for get- an put-commands to simplify memory-access.
+* Added the mode UNSIGNED to the "get" command. Like "get _label 5u".
+* A warning is printed, if an assembly file without a "trap #0" command for termination is loaded.
+* Improved the recognition of assembly-commands with 4 reg-params. This was requested by the 2-people student group.
+* Added new instructions:
+	  Format: mac rd, rs1, rs2;		Semantic: rd += rs1*rs2;
+	  Format: mad rd, rs1, rs2, rs3;	Semantic: rd  = rs1*rs2 + rs3;
+	  Format: swap rd, rs1			Semantic: rd[15,0] = rs1[31,16]; rd[31,16]=rs1[15,0];
+	  Format: xchg rd, rs1			Semantic: rd = rs1 & rs1=rd;
+	  Format: avg rd, rs1, rs2		Semantic: rd = (rs1+rs2)/2;
+* A HOWTO is available for adding a new command into dlxsim for a give instruction-format and for adding a new instruction-format.
+* Added lb, lbu, lh, lhu, sb & sh to support the new dlx_basis to get a better CoSy-result.
+* Added recognition of .data.16 and .data.8 with range checking.
+
+------------------------------------------------------
+
+* Added new instruction "fex" together with an improvement of Instruction-Format ARITH_4PARAM, which can now not only read 4 registers, but also 3 registers plus an immediate.
+* Enhanced the recognition and treatment of immediate-out-of-range sittuations. Now only a warning is printed, but the command with the restricted immediate is placed into instruction-memory.
+* Added new Debugging-Aids for the simulated code:
+	a) Turn on DEBUG_ASSEMBLY in the beginning of sim.c to get informations about Load/Store/Branch and Jump commands.
+	b) Also turn on DEBUG_ASSEMBLY_BASEBLOCKS in the beginning of sim.c to get informations about the changed-registers at the beginning of every new BaseBlock.
+

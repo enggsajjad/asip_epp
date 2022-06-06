@@ -1,0 +1,67 @@
+#include "lib_lcd.h"
+#include "intToStr.h"
+
+extern struct switch_item {
+  int value;
+  int radio_group;
+  int update;
+} switches[16];
+
+extern struct bar_item {
+  int value;
+  int update;
+} bars[16];
+
+extern int activebars;
+extern int activeswitches;
+
+asm void SET_AUDIO( int value ) 
+{
+@[
+.barrier
+.scratch addr
+.restrict addr:reg
+]
+  ; SET_AUDIO(int value)
+  lhi @{addr}, $(0x2625A04/0x10000)
+  nop
+  nop
+  nop
+  nop
+  ori @{addr}, @{addr}, $(0x2625A04%0x10000)
+  nop
+  nop
+  nop
+  nop
+  sw 0(@{addr}), @{value}
+  nop
+  nop
+  nop
+  nop
+  }
+
+int soundtest() {
+  int i, inc, lc;
+  int value;
+
+  while(1) {
+    if (switches[0].value == 1) {
+      inc = bars[0].value;
+      lc = inc >> 3;
+      if (lc == 0) lc = 1;
+      for (i = 0; i < lc ; i++) {
+	for(value=0; value<255; value+=inc) {
+	  SET_AUDIO(value);
+	}
+	for(; value>0; value-=inc) {
+	  SET_AUDIO(value);
+	}
+      }
+    }
+
+    switchThread();
+
+  }
+
+  return 0;
+}

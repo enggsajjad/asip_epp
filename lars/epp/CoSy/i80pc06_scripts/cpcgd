@@ -1,0 +1,149 @@
+#!/bin/sh
+
+###############################################################
+# 
+# This script copys .cgd files, .c files, .tdf file, .edl file
+# to ${TARGETCG}, ${TARGETCC}
+#   
+# usage : cpcgd "target cg" "target cc"
+#
+
+#
+# addInsnInfo.c -> cg/emit/src
+# asmgen.c      -> cg/emit/src
+# emit.c        -> cg/emit/src
+# header.h      -> cg/emit/inc
+# operation.h   -> cg/emit/inc
+#
+# ccregtgt.h    -> cg/ccreg/inc
+#
+# arith.cgd
+# ccmir.cgd
+# ckf.cgd
+# control.cgd
+# intrinsics.cgd
+# loadStore.cgd
+# nonTerm.cgd
+# register.cgd
+# scheduler.cgd
+# spill.cgd
+# zol.cgd
+#                -> cg/cgd
+#
+
+#feste Zuweisung
+#export COSY_HOME=/home/saschgo/devrep
+
+#cosy script
+export COSY_HOME=$DEVREP
+echo "cpcgd DEVREP ist $COSY_HOME"
+
+export CG_DIR=${COSY_HOME}/engines/$1
+export CGD_DIR=${CG_DIR}/cgd
+export EMIT_DIR=${CG_DIR}/emit
+export CCREG_DIR=${CG_DIR}/ccreg
+
+export CC_DIR=${COSY_HOME}/compilers/$2
+export EDL_DIR=${CC_DIR}/edl
+export TDF_DIR=${CG_DIR}/misc
+
+export WORK_DIR=.
+
+ORGCG="peascg_v3" 
+ORGCC="peascc_v3" 
+TARGETCG=$1
+TARGETCC=$2
+
+##############################
+# check number of argument
+##############################
+if [ -z "$1" ] || [ -z "$2" ] ; then
+  echo "USAGE : cpcgd engname compname"
+  exit
+fi
+
+if [ ! -d "$CG_DIR" ] ; then
+  echo "$CG_DIR: No such engine"
+  exit
+fi
+
+if [ ! -d "$CC_DIR" ] ; then
+  echo "$CC_DIR: No such compiler"
+  exit
+fi
+
+
+
+##############################
+# copy .cgd files
+##############################
+ccgete ${CGD_DIR}/arith.cgd
+ccgete ${CGD_DIR}/ccmir.cgd
+ccgete ${CGD_DIR}/ckf.cgd
+ccgete ${CGD_DIR}/control.cgd
+ccgete ${CGD_DIR}/intrinsics.cgd
+ccgete ${CGD_DIR}/loadStore.cgd
+ccgete ${CGD_DIR}/nonTerm.cgd
+ccgete ${CGD_DIR}/register.cgd
+ccgete ${CGD_DIR}/scheduler.cgd
+ccgete ${CGD_DIR}/spill.cgd
+ccgete ${CGD_DIR}/zol.cgd
+
+cp ${WORK_DIR}/*.cgd ${CGD_DIR}
+
+ccpute -y "" ${CGD_DIR}/arith.cgd
+ccpute -y "" ${CGD_DIR}/ccmir.cgd
+ccpute -y "" ${CGD_DIR}/ckf.cgd
+ccpute -y "" ${CGD_DIR}/control.cgd
+ccpute -y "" ${CGD_DIR}/intrinsics.cgd
+ccpute -y "" ${CGD_DIR}/loadStore.cgd
+ccpute -y "" ${CGD_DIR}/nonTerm.cgd
+ccpute -y "" ${CGD_DIR}/register.cgd
+ccpute -y "" ${CGD_DIR}/scheduler.cgd
+ccpute -y "" ${CGD_DIR}/spill.cgd
+ccpute -y "" ${CGD_DIR}/zol.cgd
+
+
+##############################
+# copy files for emit engine
+##############################
+#ccgete ${EMIT_DIR}/src/emit.c
+ccgete ${EMIT_DIR}/src/addInsnInfo.c
+ccgete ${EMIT_DIR}/src/asmgen.c
+ccgete ${EMIT_DIR}/inc/operation.h
+#ccgete ${EMIT_DIR}/inc/header.h
+
+#cp ${WORK_DIR}/emit.c        ${EMIT_DIR}/src
+cp ${WORK_DIR}/addInsnInfo.c        ${EMIT_DIR}/src
+cp ${WORK_DIR}/asmgen.c        ${EMIT_DIR}/src
+cp ${WORK_DIR}/operation.h ${EMIT_DIR}/inc
+#cp ${WORK_DIR}/header.h   ${EMIT_DIR}/inc
+
+#ccpute -y "" ${EMIT_DIR}/src/emit.c
+ccpute -y "" ${EMIT_DIR}/src/addInsnInfo.c
+ccpute -y "" ${EMIT_DIR}/src/asmgen.c
+ccpute -y "" ${EMIT_DIR}/inc/operation.h
+#ccpute -y "" ${EMIT_DIR}/inc/header.h
+
+
+##############################
+# copy files for ccreg engine
+##############################
+ccgete ${CCREG_DIR}/inc/ccregtgt.h
+cp ${WORK_DIR}/ccregtgt.h   ${CCREG_DIR}/inc
+ccpute -y "" ${CCREG_DIR}/inc/ccregtgt.h
+
+##############################
+# copy cc.edl
+##############################
+ccgete ${EDL_DIR}/${TARGETCC}.edl
+sed s/${ORGCG}/$1/g ${ORGCC}.edl > ${EDL_DIR}/${TARGETCC}.edl
+#cp ${WORK_DIR}/${ORGCC}.edl ${EDL_DIR}/${TARGETCC}.edl
+ccpute -y "" ${EDL_DIR}/${TARGETCC}.edl
+
+##############################
+# copy cg.tdf
+##############################
+ccgete ${TDF_DIR}/${TARGETCG}.tdf
+cp ${WORK_DIR}/${ORGCG}.tdf ${TDF_DIR}/${TARGETCG}.tdf
+ccpute -y "" ${TDF_DIR}/${TARGETCG}.tdf
