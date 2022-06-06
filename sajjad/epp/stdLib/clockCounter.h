@@ -1,0 +1,6 @@
+#ifndef _clockCounter_h_weqghxt78qew4zdtoe4783a9zxtme478tzc7
+#define _clockCounter_h_weqghxt78qew4zdtoe4783a9zxtme478tzc7
+
+#define CLOCK_ADDR 0x3000000
+
+#endif

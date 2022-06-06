@@ -1,0 +1,44 @@
+---------------------------------------------------------------------------------------------------
+ADD A NEW COMMAND (for a given instruction format):
+* dlx.h:235	add a new define for OP_{CommandName} with a unique number.
+* sim.c:355	add the name of your assembly-command into the operationNames-array. The position of the name in this array has to correspond with the defined number in dlx.h
+* sim.c:315	specialTable: change anyone of the OP_RES into your OP_{CommandName}.
+* asm.c:350	add new entry with your command-name and instruction-format. The opcode must correspond to the position in the array of the preceding step!!
+* sim.c:1450	implement a new case for your command.
+
+
+---------------------------------------------------------------------------------------------------
+ADD A NEW INSTRUCTION FORMAT:
+* asm.c:140     define a unique number for your instruction-format
+* asm.c:160	add the min and max numbers of arguments, that your instruction format accepts. Use the position in the array, which corresponds to the defined number in the previous step.
+* asm.c:800     *maybe tricky*  implement how the parameters shall be stored in the 32-bit instruction word.
+* asm.c:1100    implement what shall be written if the instruction is disassembled.
+* sim.c:2080    imlement how the 32-bit instruction word shall be expanded.
+
+
+---------------------------------------------------------------------------------------------------
+After you type "load ..." the following will happen:
+* Asm_LoadCmd(...) in asm.c is called, which will controll the further happening
+* ReadFile(...) in asm.c is called, to read the file line by line and to parse the lines.
+  If a current line only contains a comment, or a assembly-directive, like ".data.32", the line will
+  be interpretet immediately.
+* If the current line contains an assembly-command, it will be forwarded to Asm_Assemble(...)
+* Asm_Assemble(...) in asm.c is determining the instruction and reading the parameters. After everything in the line is
+  read, the data will be combined into a 32-bit word and stored in the memory. This 32-bit word is later used for simulation.
+
+
+---------------------------------------------------------------------------------------------------
+When you type "step" or "go" the following will happen:
+* The 32-bit memory-word on which the pc points will be read in Simulate(...) in sim.c.
+* If the memory word is not compiled yet (i.e. 32-bit are extracted to parameter-values), the read memory-word
+  will be passed to Compile(...).
+* In Compile(...) in sim.c the memory word is extracted to it's parameters.
+* In Simulate(...) in sim.c the expanded command will be executed.
+
+
+---------------------------------------------------------------------------------------------------
+* To use the "specialTable" in sim.c, the opcode in the opcode-list in asm.c has to look like this:
+   * the 6 most significant bits have to be 0
+   * the 6 least significant bits are the position in the "specialTable" (sim.c), at which the internal number (#define OP_...) is placed.
+
+

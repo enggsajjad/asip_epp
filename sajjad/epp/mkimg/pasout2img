@@ -1,0 +1,22 @@
+#!/bin/bash
+# convert .out from pas, to img
+# written by Hirofumi IWATO
+# All Rights Reserved 2008. ASIP Solutions, Inc.
+
+
+CAT='/bin/cat'
+WHICH='/usr/bin/which'
+DIRNAME='/usr/bin/dirname'
+AWK='/bin/awk'
+
+if [ $# -lt  1 ]; then
+  echo "ERROR: Too few regular arguments."
+  echo "       pasout2img [hoge.out]"
+  exit
+fi
+
+#AWKSCRIPTDIR=$(${DIRNAME} $(${WHICH} pasout2img))
+
+${CAT} $1 | ${AWK} --posix -f ${MKIMG_DIR}/pasout2im.awk > TestData.IM
+${CAT} $1 | ${AWK} --posix -f ${MKIMG_DIR}/pasout2dm.awk > TestData.DM
+

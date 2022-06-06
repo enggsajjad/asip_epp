@@ -1,0 +1,24 @@
+#!/bin/bash
+# converting elf from gcc, to testbench img
+# written by Hirofumi IWATO
+# All Rights Reserved 2008. ASIP Solutions, Inc.
+
+
+CAT='/bin/cat'
+WHICH='/usr/bin/which'
+DIRNAME='/usr/bin/dirname'
+AWK='/bin/awk'
+GAWK='/bin/gawk'
+
+if [ $# -lt  1 ]; then
+  echo "ERROR: Too few regular arguments."
+  echo "       gccout2img [hoge.out]"
+  exit
+fi
+
+export LANG=C
+#AWKSCRIPTDIR=$(dirname $(which gccout2img))
+
+${COMPILER_DIR}/brownie32-elf-objdump -s $1  | ${GAWK} --posix 'BEGIN{shift=0;} /^ [[:digit:]]{4,}/{shift = length($1)-4;} {printf("%s\n", substr($0, 1, 41+shift));}' | ${GAWK} --posix -f ${MKIMG_DIR}/gccout2im.awk > TestData.IM
+${COMPILER_DIR}/brownie32-elf-objdump -s $1  | ${GAWK} --posix 'BEGIN{shift=0;} /^ [[:digit:]]{4,}/{shift = length($1)-4;} {printf("%s\n", substr($0, 1, 41+shift));}' | ${GAWK} --posix -f ${MKIMG_DIR}/gccout2dm.awk > TestData.DM
+
