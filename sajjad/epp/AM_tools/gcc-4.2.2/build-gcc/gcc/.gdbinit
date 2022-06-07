@@ -1,0 +1,10 @@
+dir .
+dir ../../gcc
+dir ../../gcc/ada
+dir ../../gcc/cp
+dir ../../gcc/fortran
+dir ../../gcc/java
+dir ../../gcc/objc
+dir ../../gcc/objcp
+dir ../../gcc/treelang
+source ../../gcc/gdbinit.in

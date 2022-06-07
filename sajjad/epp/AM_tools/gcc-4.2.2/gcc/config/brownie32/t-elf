@@ -1,0 +1,41 @@
+# Don't let CTOR_LIST end up in sdata section.
+#CRTSTUFF_T_CFLAGS = -G 0
+
+# Assemble startup files.
+#$(T)crti.o: $(srcdir)/config/Brownie32/crti.asm $(GCC_PASSES)
+#	$(GCC_FOR_TARGET) $(GCC_CFLAGS) $(MULTILIB_CFLAGS) $(INCLUDES) \
+#	-c -o $(T)crti.o -x assembler-with-cpp $(srcdir)/config/Brownie32/crti.asm
+
+#$(T)crtn.o: $(srcdir)/config/Brownie32/crtn.asm $(GCC_PASSES)
+#	$(GCC_FOR_TARGET) $(GCC_CFLAGS) $(MULTILIB_CFLAGS) $(INCLUDES) \
+#	-c -o $(T)crtn.o -x assembler-with-cpp $(srcdir)/config/Brownie32/crtn.asm
+#
+$(T)crt1.o: $(srcdir)/config/brownie32/crt1.s $(GCC_PASSES)
+	$(GCC_FOR_TARGET) $(GCC_CFLAGS) $(MULTILIB_CFLAGS) $(INCLUDES) \
+	-c -o $(T)crt1.o -x assembler-with-cpp $(srcdir)/config/brownie32/crt1.s
+
+##LIB1ASMSRC = brownie32/lib1funcs.asm
+##LIB1ASMFUNCS = 	_b32cmpsi2  _b32ucmpsi2 _b32addsf3 _b32subsf3 _b32mulsf3 _b32divsf3
+#LIB1ASMFUNCS = 	_b32cmpsi2  _b32ucmpsi2
+
+
+# We must build libgcc2.a with -G 0, in case the user wants to link
+# without the $gp register.
+#TARGET_LIBGCC2_CFLAGS = -G 0
+#TARGET_LIBGCC2_CFLAGS = -DDF=SF -DDI=SI
+#TARGET_LIBGCC2_CFLAGS = -DDF=SF
+#TARGET_LIBGCC2_CFLAGS = 
+
+# Build the libraries for both hard and soft floating point
+
+#MULTILIB_OPTIONS = msoft-float EL/EB
+#MULTILIB_DIRNAMES = soft-float el eb
+#MULTILIB_MATCHES = EL=mel EB=meb
+#MULTILIB_MATCHES = msingle-float=m4650
+#EXTRA_MULTILIB_PARTS = crtbegin.o crtend.o crti.o crtn.o
+#EXTRA_MULTILIB_PARTS = crt1.o
+EXTRA_MULTILIB_PARTS =
+
+LIBGCC = stmp-multilib
+INSTALL_LIBGCC = install-multilib
+

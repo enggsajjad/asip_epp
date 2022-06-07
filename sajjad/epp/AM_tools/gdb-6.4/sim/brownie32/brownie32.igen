@@ -1,0 +1,866 @@
+// Simulator definition for the Brownie32 instructions.
+// Copyright (C) 2004 Free Software Foundation, Inc.
+// Contributed by David Ung, of MIPS Technologies.
+//
+// Copyright (C) 2005,2006  Upwind technology, Inc.
+//
+// This file is part of GDB, the GNU debugger.
+// 
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2, or (at your option)
+// any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, write to the Free Software Foundation, Inc.,
+// 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+//
+// -*- C -*-
+//
+//    <insn> ::=
+//        <insn-word> { "+" <insn-word> }
+//        ":" <format-name>
+//        ":" <filter-flags>
+//        ":" <options>
+//        ":" <name>
+//        <nl>
+//        { <insn-model> }
+//        { <insn-mnemonic> }
+//        <code-block>
+//
+
+
+// IGEN config - brownie32_std
+:option:32::insn-bit-size:32
+// :option:32::hi-bit-nr:31
+:option:32::insn-specifying-widths:true
+:option:32::gen-delayed-branch:false
+
+
+// Generate separate simulators for each target
+// :option:::multi-sim:true
+
+// Models known by this simulator are defined below.
+//
+// When placing models in the instruction descriptions, please place
+// them one per line, in the order given here.
+
+//  Brownie32 ISAs:
+//
+//  Instructions and related functions for these models are included in
+//  this file.
+:model:::brownie32_std:brownie32_std:
+
+// Pseudo instructions known by IGEN
+:internal::::illegal:
+{
+//  SignalException (ReservedInstruction, 0);
+}
+
+// Helper:
+//
+// Calculate an effective address given a base and an offset.
+//
+
+:function:::address_word:loadstore_ea:address_word base, address_word offset
+*brownie32_std:
+{
+  return base + offset;
+}
+
+:function:::int:not_word_value:unsigned_word value
+*brownie32_std:
+{
+  /* On Brownie32, since registers are 32-bits, there's no check to be done.  */
+  return 0;
+}
+:function:::void:unpredictable:
+*brownie32_std:
+{
+  unpredictable_action (CPU, CIA);
+}
+
+// Helper:
+//
+// Simulate a 32 bit delayslot instruction
+//
+
+:function:::address_word:delayslot32:address_word target
+{
+  return target;
+}
+
+:function:::address_word:nullify_next_insn32:
+{
+  sim_events_slip (SD, 1);
+  dotrace (SD, CPU, tracefh, 2, CIA + 4, 4, "load instruction");
+  return CIA + 8;
+}
+
+//
+// Brownie32 Architecture:
+//
+//        CPU Instruction Set (brownie32_std)
+//
+
+// Instruction Type = RR
+5.RS1,5.RS2,5.RD,000,00000000,000001:NORMAL:32::ADD
+"add r<RD>, r<RS1>, r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### ADD inst #####\n");
+
+  if (NotWordValue (GPR[RS1]) || NotWordValue (GPR[RS2]))
+    Unpredictable ();
+
+  TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+  {
+     ALU32_BEGIN (GPR[RS1]);
+     ALU32_ADD (GPR[RS2]);
+     ALU32_END (GPR[RD]);
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,000,00000001,000001:NORMAL:32::SUB
+"sub r<RD>, r<RS1>, r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### SUB inst #####\n");
+    if (NotWordValue (GPR[RS1]) || NotWordValue (GPR[RS2]))
+      Unpredictable ();
+  
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+       ALU32_BEGIN (GPR[RS1]);
+//       ALU32_SUB (GPR[RS2]);
+         ALU32_SUBB(GPR[RS2]);
+       ALU32_END (GPR[RD]);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,000,00000010,000001:NORMAL:32::MUL
+"mul r<RD>, r<RS1>, r<RS2>"
+*brownie32_std:
+{
+    signed64 prod;
+//dbgprintf("##### MUL inst #####\n");
+    if (NotWordValue (GPR[RS1]) || NotWordValue (GPR[RS2]))
+      Unpredictable ();
+
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+      prod = (((signed64)(signed32) GPR[RS1])
+           * ((signed64)(signed32) GPR[RS2]));
+      GPR[RD] = EXTEND32 (VL4_8 (prod));
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,000,00000011,000001:NORMAL:32::DIV
+"div r<RD>, r<RS1>, r<RS2>"
+*brownie32_std:
+{
+    signed32 prod;
+//dbgprintf("##### DIV inst #####\n");
+    if (NotWordValue (GPR[RS1]) || NotWordValue (GPR[RS2]))
+      Unpredictable ();
+
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+        prod = (((signed32) GPR[RS1])
+             / ((signed32) GPR[RS2]));
+        GPR[RD] = EXTEND32 (VL4_8 (prod));
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,000,00000101,000001:NORMAL:32::DIVU
+"divu r<RD>, r<RS1>, r<RS2>"
+*brownie32_std:
+{
+    unsigned32 prod;
+//dbgprintf("##### DIV inst #####\n");
+    if (NotWordValue (GPR[RS1]) || NotWordValue (GPR[RS2]))
+      Unpredictable ();
+
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+// FIXMEE
+        prod = (((unsigned32) GPR[RS1])
+             / ((unsigned32) GPR[RS2]));
+        GPR[RD] = EXTEND32 (VL4_8 (prod));
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,000,00000100,000001:NORMAL:32::MOD
+"mod  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+    signed32 prod;
+//dbgprintf("##### MOD inst #####\n");
+    if (NotWordValue (GPR[RS1]) || NotWordValue (GPR[RS2]))
+      Unpredictable ();
+
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+#define TARGET_INT_MIN (-2147483647-1)
+      /* -2147483648 % 1 == 0 */
+      if ((signed32)GPR[RS1] == TARGET_INT_MIN && (signed32)GPR[RS2] == -1)
+        prod = 0;
+      else
+        prod = (((signed32) GPR[RS1])
+           % ((signed32) GPR[RS2]));
+      GPR[RD] = EXTEND32 (VL4_8 (prod));
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,000,00000110,000001:NORMAL:32::MODU
+"modu  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+    unsigned32 prod;
+//dbgprintf("##### MODU inst #####\n");
+    if (NotWordValue (GPR[RS1]) || NotWordValue (GPR[RS2]))
+      Unpredictable ();
+
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+// FIXMEE
+#define TARGET_INT_MIN (-2147483647-1)
+      /* -2147483648 % 1 == 0 */
+      if ((signed32)GPR[RS1] == TARGET_INT_MIN && (signed32)GPR[RS2] == -1)
+        prod = 0;
+      else
+        prod = (((signed32) GPR[RS1])
+           % ((unsigned32) GPR[RS2]));
+      GPR[RD] = EXTEND32 (VL4_8 (prod));
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,001,00000000,000001:NORMAL:32::AND
+"and  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### AND inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+      GPR[RD] = GPR[RS1] & GPR[RS2];
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,001,00000011,000001:NORMAL:32::NAND
+"nand  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### NAND inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+      GPR[RD] = ~(GPR[RS1] & GPR[RS2]);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,001,00000001,000001:NORMAL:32::OR
+"or   r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### OR inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+      GPR[RD] = (GPR[RS1] | GPR[RS2]);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,001,00000100,000001:NORMAL:32::NOR
+"nor   r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### NOR inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+      GPR[RD] = ~(GPR[RS1] | GPR[RS2]);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,001,00000010,000001:NORMAL:32::XOR
+"xor  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### XOR inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+    {
+      GPR[RD] = (GPR[RS1] ^ GPR[RS2]);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,010,00000000,000001:NORMAL:32::LLS
+"lls  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### LLS inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+  {
+    int s = MASKED (GPR[RS2], 4, 0);
+    unsigned32 temp = ((unsigned32)GPR[RS1] << s);
+    GPR[RD] = EXTEND32 (temp);
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,010,00000001,000001:NORMAL:32::LRS
+"lrs  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### LRS inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+  {
+    int s = MASKED (GPR[RS2], 4, 0);
+    unsigned32 temp = ((unsigned32)GPR[RS1] >> s);
+    GPR[RD] = EXTEND32 (temp);
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,010,00000010,000001:NORMAL:32::ARS
+"ars  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### ARS inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+  {
+    int s = MASKED (GPR[RS2], 4, 0);
+    signed32 temp = ((signed32)GPR[RS1] >> s);
+    GPR[RD] = EXTEND32 (temp);
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,011,00000000,000001:NORMAL:32::ELT
+"elt  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### ELT inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+  if ((signed_word) GPR[RS1] < (signed_word) GPR[RS2])
+    GPR[RD] = 1;
+  else
+    GPR[RD] = 0;
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,011,00000001,000001:NORMAL:32::ELTU
+"eltu r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### ELTU inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+  if ((unsigned_word) GPR[RS1] < (unsigned_word) GPR[RS2])
+    GPR[RD] = 1;
+  else
+    GPR[RD] = 0;
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,011,00000010,000001:NORMAL:32::EEQ
+"eeq  r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### EEQ inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+  if ((signed_word) GPR[RS1] == (signed_word) GPR[RS2])
+    GPR[RD] = 1;
+  else
+    GPR[RD] = 0;
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RS1,5.RS2,5.RD,011,00000011,000001:NORMAL:32::ENEQ
+"eneq r<RD>,r<RS1>,r<RS2>"
+*brownie32_std:
+{
+//dbgprintf("##### ENEQ inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], GPR[RS2]);
+  if ((signed_word) GPR[RS1] == (signed_word) GPR[RS2])
+    GPR[RD] = 0;
+  else
+    GPR[RD] = 1;
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+// Instruction Type = RI
+16.IMMEDIATE,5.RS1,5.RD,100000:NORMAL:32::ADDI
+"addi r<RD>,r<RS1>,<IMMEDIATE>"
+*brownie32_std:
+{
+//dbgprintf("##### ADDI inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], IMMEDIATE);
+  {
+    signed32 temp = EXTEND16(IMMEDIATE);
+     ALU32_BEGIN (GPR[RS1]);
+     ALU32_ADD (temp);
+     ALU32_END (GPR[RD]);
+//    GPR[RD] = GPR[RS1] + temp;
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+16.IMMEDIATE,5.RS1,5.RD,100001:NORMAL:32::SUBI
+"subi r<RD>,r<RS1>,<IMMEDIATE>"
+*brownie32_std:
+{
+//dbgprintf("##### SUBI inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], IMMEDIATE);
+  {
+    signed32 temp = EXTEND16(IMMEDIATE);
+     ALU32_BEGIN (GPR[RS1]);
+//   ALU32_SUB (temp);
+     ALU32_SUBB(temp);
+     ALU32_END (GPR[RD]);
+//    GPR[RD] = GPR[RS1] - temp;
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+16.IMMEDIATE,5.RS1,5.RD,100010:NORMAL:32::ANDI
+"andi r<RD>,r<RS1>,<IMMEDIATE>"
+*brownie32_std:
+{
+//dbgprintf("##### ANDI inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], IMMEDIATE);
+  {
+    GPR[RD] = GPR[RS1] & IMMEDIATE;
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+16.IMMEDIATE,5.RS1,5.RD,100011:NORMAL:32::ORI
+"ori  r<RD>,r<RS1>,<IMMEDIATE>"
+*brownie32_std:
+{
+//dbgprintf("##### ORI inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], IMMEDIATE);
+    {
+      GPR[RD] = (GPR[RS1] | IMMEDIATE);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+16.IMMEDIATE,5.RS1,5.RD,100100:NORMAL:32::XORI
+"xori r<RD>,r<RS1>,<IMMEDIATE>"
+*brownie32_std:
+{
+//dbgprintf("##### XORI inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], IMMEDIATE);
+    {
+      GPR[RD] = (GPR[RS1] ^ IMMEDIATE);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+16.IMMEDIATE,5.RS1,5.RD,100101:NORMAL:32::LLSI
+"llsi r<RD>,r<RS1>,<IMMEDIATE>"
+*brownie32_std:
+{
+//dbgprintf("##### LLSI inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], IMMEDIATE);
+    {
+      int s = MASKED (IMMEDIATE, 4, 0);
+      unsigned32 temp = ((unsigned32)GPR[RS1] << s);
+      GPR[RD] = EXTEND32 (temp);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+16.IMMEDIATE,5.RS1,5.RD,100110:NORMAL:32::LRSI
+"lrsi r<RD>,r<RS1>,<IMMEDIATE>"
+*brownie32_std:
+{
+//dbgprintf("##### LRSI inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], IMMEDIATE);
+    {
+      int s = MASKED (IMMEDIATE, 4, 0);
+      unsigned32 temp = ((unsigned32)GPR[RS1] >> s);
+      GPR[RD] = EXTEND32 (temp);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+16.IMMEDIATE,5.RS1,5.RD,100111:NORMAL:32::ARSI
+"arsi r<RD>,r<RS1>,<IMMEDIATE>"
+*brownie32_std:
+{
+//dbgprintf("##### ARSI inst #####\n");
+  TRACE_ALU_INPUT2 (GPR[RS1], IMMEDIATE);
+  {
+    int s = MASKED (IMMEDIATE, 4, 0);
+    signed32 temp = ((signed32)GPR[RS1] >> s);
+    GPR[RD] = EXTEND32 (temp);
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+16.IMMEDIATE,5.RS1,5.RD,101000:NORMAL:32::LSOI
+"lsoi r<RD>,r<RS1>,<IMMEDIATE>"
+*brownie32_std:
+{
+//dbgprintf("##### LSOI inst #####\n");
+    TRACE_ALU_INPUT2 (GPR[RS1], IMMEDIATE);
+    {
+      unsigned32 temp = ((unsigned32)GPR[RS1] << 16);
+      GPR[RD] = (temp | IMMEDIATE);
+    }
+    TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+
+// Instruction Type = MA
+// LoadMemory‚Å‚Ì‘‚«ž‚Ýˆ—‚Ì’†‚É’x‰„ˆ—‚ð“ü‚ê‚é
+
+//:function:::unsigned_word:do_load:unsigned access, address_word base, address_word offset
+:function:::void:do_load:unsigned access, address_word base, address_word offset, unsigned regno
+{
+  address_word mask = (WITH_TARGET_WORD_BITSIZE == 64 ? 0x7 : 0x3);
+  address_word bigendiancpu = (1 ? (mask ^ access) : 0);
+  address_word amask;
+  address_word reverseendian = 0;
+  unsigned int byte;
+  address_word paddr;
+  int uncached;
+  unsigned64 memval;
+  address_word vaddr;
+  int eff;
+  vaddr = loadstore_ea (SD_, base, offset);
+
+  amask = ~access;
+  vaddr&=amask;
+
+  if ((vaddr & access) != 0)
+    {
+      SIM_CORE_SIGNAL (SD, STATE_CPU (SD, 0), cia, read_map, access+1, vaddr, read_transfer, sim_core_unaligned_signal);
+    }
+  AddressTranslation (vaddr, isDATA, isLOAD, &paddr, &uncached, isTARGET, isREAL);
+  paddr = ((paddr & ~mask) | ((paddr & mask) ^ reverseendian));
+  LoadMemory (&memval, NULL, uncached, access, paddr, vaddr, isDATA, isREAL);
+
+#if 0
+  byte = ((vaddr & mask) ^ bigendiancpu);
+  return (memval >> (8 * byte));
+#else
+  byte = ((vaddr & mask) ^ bigendiancpu);
+//  DelayLoad_p(regno,memval,byte,access);
+  DelayLoad_p(regno,memval >> (8 * byte),byte,access);
+#endif
+}
+:function:::unsigned_word:re_load:
+{
+  unsigned int byte;
+  unsigned int regno;
+  unsigned64 memval;
+  unsigned int effect;
+
+  effect = DelayLoad_e(&regno,&memval,&byte);
+  if( effect == 1 )
+     GPR[regno] =  memval;
+//     GPR[regno] =  (memval >> (8 * byte));
+  return effect;
+}
+:function:::void:do_store:unsigned access, address_word base, address_word offset, unsigned_word word
+{
+  address_word mask = (WITH_TARGET_WORD_BITSIZE == 64 ? 0x7 : 0x3);
+  address_word reverseendian = 0;
+  address_word bigendiancpu = (1 ? (mask ^ access) : 0);
+  address_word amask;
+  unsigned int byte;
+  address_word paddr;
+  int uncached;
+  unsigned64 memval;
+  address_word vaddr;
+
+  vaddr = loadstore_ea (SD_, base, offset);
+
+  amask = ~access;
+  vaddr&=amask;
+
+  if ((vaddr & access) != 0)
+    {
+      SIM_CORE_SIGNAL (SD, STATE_CPU(SD, 0), cia, read_map, access+1, vaddr, write_transfer, sim_core_unaligned_signal);
+    }
+  AddressTranslation (vaddr, isDATA, isSTORE, &paddr, &uncached, isTARGET, isREAL);
+  paddr = ((paddr & ~mask) | ((paddr & mask) ^ reverseendian));
+  byte = ((vaddr & mask) ^ bigendiancpu);
+  memval = (word << (8 * byte));
+  StoreMemory (uncached, access, memval, 0, paddr, vaddr, isREAL);
+}
+
+
+16.OFFSET,5.RS1,5.RD,000010:NORMAL:32::LB
+"lb r<RD>,<OFFSET>(r<RS1>)"
+*brownie32_std:
+{
+//dbgprintf("##### LB inst #####\n");
+//  GPR[RD] = EXTEND8 (do_load (SD_, AccessLength_BYTE, GPR[RS1], EXTEND16 (OFFSET)));
+
+  do_load (SD_, AccessLength_BYTE, GPR[RS1], EXTEND16 (OFFSET),RD);
+  re_load (SD_ );
+}
+
+16.OFFSET,5.RS1,5.RD,000011:NORMAL:32::LH
+"lh r<RD>,<OFFSET>(r<RS1>)"
+*brownie32_std:
+{
+//dbgprintf("##### LH inst #####\n");
+//  GPR[RD] = EXTEND16 (do_load (SD_, AccessLength_HALFWORD, GPR[RS1], EXTEND16 (OFFSET),RD));
+  do_load (SD_, AccessLength_HALFWORD, GPR[RS1], EXTEND16 (OFFSET),RD);
+  re_load (SD_ );
+
+}
+
+16.OFFSET,5.RS1,5.RD,000100:NORMAL:32::LW
+"lw r<RD>,<OFFSET>(r<RS1>)"
+*brownie32_std:
+{
+//dbgprintf("##### LW inst #####\n");
+//  GPR[RD] = EXTEND32 (do_load (SD_, AccessLength_WORD, GPR[RS1], EXTEND16 (OFFSET),RD));
+  do_load (SD_, AccessLength_WORD, GPR[RS1], EXTEND16 (OFFSET),RD);
+  re_load (SD_ );
+}
+
+16.OFFSET,5.RS1,5.RD,000101:NORMAL:32::SB
+"sb <OFFSET>(r<RD>),r<RS1>"
+*brownie32_std:
+{
+//dbgprintf("##### SB inst #####\n");
+  do_store (SD_, AccessLength_BYTE, GPR[RD], EXTEND16 (OFFSET), GPR[RS1]);
+  re_load (SD_ );
+}
+
+16.OFFSET,5.RS1,5.RD,000110:NORMAL:32::SH
+"sh <OFFSET>(r<RD>),r<RS1>"
+*brownie32_std:
+{
+//dbgprintf("##### SH inst #####\n");
+  do_store (SD_, AccessLength_HALFWORD, GPR[RD], EXTEND16 (OFFSET), GPR[RS1]);
+  re_load (SD_ );
+}
+
+16.OFFSET,5.RS1,5.RD,000111:NORMAL:32::SW
+"sw <OFFSET>(r<RD>),r<RS1>"
+*brownie32_std:
+{
+//dbgprintf("##### SW inst #####\n");
+  do_store (SD_, AccessLength_WORD, GPR[RD], EXTEND16 (OFFSET), GPR[RS1]);
+  re_load (SD_ );
+}
+
+// Instruction Type = BR
+16.OFFSET,5.RS1,00000,001001:NORMAL:32::BRZ
+"brz r<RS1>,<OFFSET>"
+*brownie32_std:
+{
+  address_word offset = EXTEND16 (OFFSET);// << 2;
+//dbgprintf("##### BRZ inst #####offset=0x%x NIA=0x%x\n",offset,NIA);
+  if ((signed_word) GPR[RS1] == (signed_word) 0)
+    {
+//      DELAY_SLOT (NIA -4 + offset);
+      DELAY_SLOT (NIA + offset);
+    }
+  re_load (SD_ );
+}
+
+16.OFFSET,5.RS1,00000,001010:NORMAL:32::BRNZ
+"brnz r<RS1>,<OFFSET>"
+*brownie32_std:
+{
+  address_word offset = EXTEND16 (OFFSET);// << 2;
+//dbgprintf("##### BRNZ inst #####offset=0x%x NIA=0x%x\n",offset,NIA);
+  if ((signed_word) GPR[RS1] != (signed_word) 0)
+    {
+//      DELAY_SLOT (NIA -4 + offset);
+      DELAY_SLOT (NIA + offset);
+    }
+  re_load (SD_ );
+}
+
+// Instruction Type = JP
+26.OFFSET,001011:NORMAL:32::JP
+"jp <OFFSET>"
+*brownie32_std:
+{
+  address_word offset = EXTEND26 (OFFSET); //<< 2;
+//dbgprintf("##### JP inst ##### NIA=0x%x offset=0x%x ",NIA,offset);
+//  DELAY_SLOT (NIA -4 + offset);
+  DELAY_SLOT (NIA + offset);
+  re_load (SD_ );
+}
+
+26.OFFSET,001100:NORMAL:32::JPL
+"jpl <OFFSET>"
+*brownie32_std:
+{
+  address_word offset = EXTEND26 (OFFSET);// << 2;
+
+//dbgprintf("##### JPL inst ##### OFFSET=0x%x NIA=0x%x PC=0x%x offset=0x%x ",OFFSET,NIA,PC,offset);
+//   GPR[3] = PC + 4;	   // Save link register.
+   GPR[3] = NIA;	   // Save link register.
+//   DELAY_SLOT (NIA -4 + offset);
+   DELAY_SLOT (NIA + offset);
+  re_load (SD_ );
+}
+
+26.OFFSET,001101:NORMAL:32::TRAP
+"trap <OFFSET>"
+*brownie32_std:
+{
+//  TRACE_ALU_INPUT1 (OFFSET);
+//  {
+    unsigned32 trapno = OFFSET;
+//printf("##### TRAP instr #####offset=0x%x %x PC=0x%x \n",trapno,OFFSET,PC);
+
+      if( trapno == 0x1400 )
+         SignalException (BreakPoint,0);
+      else if( trapno == 0x0000)
+         SignalException (0xfffffffe,0);
+      else if( trapno == 0x000a)
+         SignalException (trapno,0);
+      else if( trapno == 34 )
+//         SignalExceptionSyscall (trapno,GPR[7],GPR[8],GPR[9],GPR[10]);
+         SignalExceptionSyscall (trapno, GPR[FIRST_ARG_IDX],
+                                         GPR[FIRST_ARG_IDX + 1],
+                                         GPR[FIRST_ARG_IDX + 2],
+                                         GPR[FIRST_ARG_IDX + 3]);
+//         Syscall( GPR[11],GPR[12],GPR[13],GPR[14]);
+//    if( trapno == 0 )
+//    {
+//      SignalException (DebugBreakPoint, 0);
+//    }
+//    if( trapno == 0 )
+//    {
+//      SignalException (DebugBreakPoint,0);
+//    }
+//      SignalException (BreakPoint,0);
+//    if( trapno == 0 )
+//    {
+//      SignalException (BreakPoint,0);
+//    }
+//    else
+//    {
+//        //SignalExceptionTrap (trapno);
+//    }
+//  }
+//
+//    address_word offset = EXTEND32 ( OFFSET );
+//    {
+//        
+//    }
+}
+
+// Instruction Type = JPR
+21.OFFSET,5.RS1,001110:NORMAL:32::JPR
+"jpr  r<RS1>"
+*brownie32_std:
+{
+//dbgprintf("##### JPR inst #####\n");
+  DELAY_SLOT (GPR[RS1]);
+  re_load (SD_ );
+}
+
+21.OFFSET,5.RS1,001111:NORMAL:32::JPRL
+"jprl r<RS1>"
+*brownie32_std:
+{
+//dbgprintf("##### JPRL inst #####\n");
+//   GPR[3] = PC + 4;	   // Save link register.
+   GPR[3] = NIA;	   // Save link register.
+  DELAY_SLOT (GPR[RS1]);
+  re_load (SD_ );
+}
+
+// Instruction Type = SP
+000000000000000000000,00000,000000:NORMAL:32::NOP
+"nop"
+*brownie32_std:
+{
+//dbgprintf("##### NOP inst #####\n");
+  re_load (SD_ );
+}
+
+000000000000000000000,00001,000000:NORMAL:32::RETI
+"reti"
+*brownie32_std:
+{
+//dbgprintf("##### RETI inst #####\n");
+  GPR[1] &= ~status_EIEN;  // Interrupt Mask
+  GPR[1] &= ~status_IEN;  //
+  DELAY_SLOT (GPR[2]);
+  re_load (SD_ );
+}
+
+5.RD,5.RS1,0000000000000010000000:NORMAL:32::EXBW
+"exbw r<RD>,r<RS1>"
+*brownie32_std:
+{
+//dbgprintf("##### EXBW inst #####\n");
+  TRACE_ALU_INPUT1 (GPR[RS1]);
+  {
+    GPR[RD] = EXTEND8 (GPR[RS1] & 0xFF);
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
+
+5.RD,5.RS1,0000000000100010000000:NORMAL:32::EXHW
+"exhw r<RD>,r<RS1>"
+*brownie32_std:
+{
+//dbgprintf("##### EXHW inst #####\n");
+  TRACE_ALU_INPUT1 (GPR[RS1]);
+  {
+    GPR[RD] = EXTEND16 (GPR[RS1] & 0xFFFF);
+  }
+  TRACE_ALU_RESULT (GPR[RD]);
+  re_load (SD_ );
+}
