@@ -943,7 +943,7 @@ int Asm_Assemble(machPtr, fileName, string, dot, wholeLine, sizeOnly, sizePtr, c
 				#endif
         		//Brownie
         		//codePtr[0] = insPtr->op | (operands[0] << 11) | (operands[1] << 21);
-        		codePtr[0] = insPtr->op | (operands[0] << 27) | (operands[1] << 22);
+        		codePtr[0] = insPtr->op | (operands[0] << 17) | (operands[1] << 27);
         	} else if (insPtr->class == ARITH_3PARAM) {
 				#if SET_DEBUG
         		printf("  ARITH_3PARAM instruction. opcode:0x%x\n", insPtr->op);
@@ -1321,7 +1321,7 @@ char * Asm_Disassemble(machPtr, ins, pc)
 	case ARITH_2PARAM:
 		//Brownie
 		//sprintf(string, "%s %s,%s", opPtr->name, Asm_RegNames[(ins >> 11) & 0x1f], Asm_RegNames[(ins >> 21) & 0x1f]);
-		sprintf(string, "%s %s,%s", opPtr->name, Asm_RegNames[(ins >> 27) & 0x1f], Asm_RegNames[(ins >> 22) & 0x1f]);
+		sprintf(string, "%s %s,%s", opPtr->name, Asm_RegNames[(ins >> 17) & 0x1f], Asm_RegNames[(ins >> 27) & 0x1f]);
 		break;
 
 	case ARITH_3PARAM:

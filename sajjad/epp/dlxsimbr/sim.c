@@ -3134,8 +3134,8 @@ static void Compile(wordPtr)
 		#if DEBUG_COMPILE
 		printf("Compile: SP & RT FMT-format.\n");
 		#endif
-		wordPtr->rd = (wordPtr->value >> 27) & 0x1f;
-		wordPtr->rs1 = (wordPtr->value >> 22) & 0x1f;
+		wordPtr->rd = (wordPtr->value >> 17) & 0x1f;
+		wordPtr->rs1 = (wordPtr->value >> 27) & 0x1f;
 	}else if (opPtr->format == RRFMT) {
 	//else if (opPtr->format == RFMT) {
 		#if DEBUG_COMPILE

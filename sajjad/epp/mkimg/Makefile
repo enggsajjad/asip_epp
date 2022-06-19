@@ -51,6 +51,10 @@ SIM_S_OBJS  := $(patsubst %,$(SIM_DIR)/%,$(patsubst %.s,%.asm,$(wildcard *.s)))
 DLXSIM_PARAM=-da0 -pf1
 GCC_PARAM=-O0
 
+TEST_FILE=$(wildcard *.s)
+TEST_ASM  := $(patsubst %,$(SIM_DIR)/%,$(patsubst %.s,%.asm,$(wildcard *.s)))
+
+
 
 #################################################
 # Main compile function for SIM and FPGA
@@ -121,6 +125,21 @@ dlxsim:  $(SIM_DIR)/$(APPLICATION_NAME).dlxsim
 	@echo '-----------------------------------------------'
 	$(DLXSIM_DIR)/dlxsim -f$(SIM_DIR)/$(APPLICATION_NAME).dlxsim $(DLXSIM_PARAM)
 
+
+.PHONY: dlxsim-test
+dlxsim-test: $(SIM_DIR) 
+	@echo '-----------------------------------------------'
+	@echo 'Starting dlxsim-test:'
+	@echo '-----------------------------------------------'
+	$(RM) -f $(SIM_DIR)/$(TEST_ASM)
+	@$(CP) $(TEST_FILE) $(TEST_ASM)
+	@COMPILER_TEMP_DIR=$(SIM_DIR) \
+                APPLICATION_NAME=$(APPLICATION_NAME) \
+                STACK_START=$(STACK_START_SIM) \
+                GCC_PARAM=$(GCC_PARAM) \
+                FULL_ASSEMBLE=0 \
+                ${MKIMG_DIR}/assemble-test.sh $(TEST_FILE)
+	$(DLXSIM_DIR)/dlxsim -f$(SIM_DIR)/$(APPLICATION_NAME).dlxsim $(DLXSIM_PARAM)
 
 #################################################
 .PHONY: all
@@ -300,6 +319,7 @@ help:
 	@echo "\--------"
 	@echo "'make sim':    compile for dlxsim/Modelsim"
 	@echo "'make dlxsim': compile for dlxsim and directly start simulation"
+	@echo "'make dlxsim-test': compile for dlxsim and directly start simulation, even without ASIPmeister implementation"
 	@echo "'make fpga':   compile for FPGA and update bitstream"
 	@echo "'make upload': upload the existing bitstream to the FPGA (note: this command does not generate a new bitstream)"
 	@echo "'make all':    compile for dlxsim/Modelsim and for FPGA"
